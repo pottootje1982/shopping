@@ -1,19 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Timer from "./Components/Timer";
+import React from 'react'
+import './App.css'
+import RecipeList from './Components/RecipeList'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p> 
+        <p>Shopper</p>
       </header>
-      <Timer></Timer>
+      <RecipeList></RecipeList>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
