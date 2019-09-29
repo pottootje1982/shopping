@@ -1,9 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Button from '@material-ui/core/Button'
-import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
-import Link from '@material-ui/core/Link'
+import { Grid, Paper, List, ListItem, ListItemText } from '@material-ui/core'
 
 axios.defaults.baseURL = 'http://localhost:4000'
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8'
@@ -15,18 +12,29 @@ export default class RecipeList extends React.Component {
     super(props)
     this.state = { recipes: [], ingredients: [] }
     this.handleClick = this.handleClick.bind(this)
+    this.addToShoppingList = this.addToShoppingList.bind(this)
   }
 
   async componentDidMount() {
     var resp = await axios.get('recipes')
     this.setState({ recipes: resp.data })
-    console.log(this.state)
   }
 
   handleClick(_button, recipeId) {
     const selectedRecipe = this.state.recipes.find(r => r.uid === recipeId)
     const ingredients = selectedRecipe.ingredients.split('\n')
-    this.setState({ ingredients })
+    const recipeName = selectedRecipe.name
+    console.log(recipeName)
+    this.setState({ ingredients, recipeName })
+  }
+
+  async addToShoppingList() {
+    const ingredients = this.state.ingredients
+
+    await axios.post('add-to-shoppinglist', {
+      name: this.state.recipeName,
+      ingredients: ingredients.map(name => ({ name }))
+    })
   }
 
   render() {
@@ -37,39 +45,29 @@ export default class RecipeList extends React.Component {
         ) : (
           <Grid container spacing={5} style={{ padding: 10 }}>
             <Grid item xs={6}>
-              <Grid
-                container
-                spacing={1}
-                direction="column"
-                alignItems="flex-start"
-              >
-                {this.state.recipes.map(item => (
-                  <Grid item key={item.uid}>
-                    <div key={item.uid}>
-                      <Button
-                        key={item.uid}
-                        variant="outlined"
-                        color="primary"
-                        onClick={e => this.handleClick(e, item.uid)}
-                      >
-                        {item.name}
-                      </Button>
-                      <br />
-                    </div>
-                  </Grid>
+              <List dense={true}>
+                {this.state.recipes.map((item, index) => (
+                  <ListItem button key={index}>
+                    <ListItemText
+                      primary={item.name}
+                      onClick={e => this.handleClick(e, item.uid)}
+                    />
+                  </ListItem>
                 ))}
-              </Grid>
+              </List>
             </Grid>
             <Grid item xs={6}>
               <Paper>
-                <Grid container direction="column" alignItems="flex-start">
+                <List>
                   {this.state.ingredients.map((item, i) => (
-                    <div key={i}>
-                      <Link key={i}>{item}</Link>
-                      <br />
-                    </div>
+                    <ListItem key={i}>
+                      <ListItemText key={i}>{item}</ListItemText>
+                    </ListItem>
                   ))}
-                </Grid>
+                  <ListItem button onClick={this.addToShoppingList}>
+                    Add to AH shopping
+                  </ListItem>
+                </List>
               </Paper>
             </Grid>
           </Grid>
