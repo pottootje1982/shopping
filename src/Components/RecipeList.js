@@ -8,9 +8,11 @@ import {
   ListItemText,
   GridList,
   GridListTile,
-  GridListTileBar
+  GridListTileBar,
+  ListSubheader
 } from '@material-ui/core'
 import blue from '@material-ui/core/colors/blue'
+import grey from '@material-ui/core/colors/grey'
 
 axios.defaults.baseURL = 'http://localhost:4000'
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8'
@@ -59,7 +61,7 @@ export default class RecipeList extends React.Component {
   async search(product) {
     var resp = await axios.get(`search?query=${product}`)
     console.log(resp)
-    this.setState({ products: resp.data })
+    this.setState({ products: resp.data, selectedProduct: product })
   }
 
   render() {
@@ -100,16 +102,28 @@ export default class RecipeList extends React.Component {
               </Paper>
             </Grid>
             <Grid item xs={6}>
-              <GridList cols={4}>
-                {this.state.products.map(item => (
-                  <GridListTile key={item.title} xs={3}>
-                    <img
-                      src={
-                        item.images.length > 0 ? item.images[0].url : undefined
-                      }
-                      alt={item.title}
-                      style={{ maxWidth: 100 }}
-                    />
+              <GridList cols={4} cellHeight="auto">
+                <GridListTile
+                  key="Subheader"
+                  cols={4}
+                  style={{ height: 'auto' }}
+                >
+                  <ListSubheader component="div">
+                    {this.state.selectedProduct}
+                  </ListSubheader>
+                </GridListTile>
+                {this.state.products.map((item, i) => (
+                  <GridListTile key={i} xs={3}>
+                    <div>
+                      <img
+                        src={
+                          item.images.length > 0
+                            ? item.images[0].url
+                            : undefined
+                        }
+                        alt={item.title}
+                      />
+                    </div>
                     <GridListTileBar title={item.title} />
                   </GridListTile>
                 ))}
