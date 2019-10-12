@@ -12,7 +12,6 @@ import {
   ListSubheader
 } from '@material-ui/core'
 import blue from '@material-ui/core/colors/blue'
-import grey from '@material-ui/core/colors/grey'
 
 axios.defaults.baseURL = 'http://localhost:4000'
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8'
@@ -43,7 +42,7 @@ export default class RecipeList extends React.Component {
 
   handleClick(_button, recipeId) {
     const selectedRecipe = this.state.recipes.find(r => r.uid === recipeId)
-    const ingredients = selectedRecipe.ingredients.split('\n')
+    const ingredients = selectedRecipe.ingredients
     const recipeName = selectedRecipe.name
     console.log(recipeName)
     this.setState({ ingredients, recipeName })
@@ -89,8 +88,12 @@ export default class RecipeList extends React.Component {
               <Paper style={{ backgroundColor: blue[50] }}>
                 <List dense>
                   {this.state.ingredients.map((item, i) => (
-                    <ListItem button key={i} onClick={e => this.search(item)}>
-                      <ListItemText key={i}>{item}</ListItemText>
+                    <ListItem
+                      button
+                      key={i}
+                      onClick={e => this.search(item.ingredient)}
+                    >
+                      <ListItemText key={i}>{item.full}</ListItemText>
                     </ListItem>
                   ))}
                   <br />
