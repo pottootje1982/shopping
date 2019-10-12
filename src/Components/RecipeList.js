@@ -1,17 +1,9 @@
 import React from 'react'
 import axios from 'axios'
-import {
-  Grid,
-  Paper,
-  List,
-  ListItem,
-  ListItemText,
-  GridList,
-  GridListTile,
-  GridListTileBar,
-  ListSubheader
-} from '@material-ui/core'
+import { Grid, Paper, List, ListItem, ListItemText } from '@material-ui/core'
 import blue from '@material-ui/core/colors/blue'
+import Recipe from './Recipe'
+import ProductSearch from './ProductSearch'
 
 axios.defaults.baseURL = 'http://localhost:4000'
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8'
@@ -36,7 +28,7 @@ export default class RecipeList extends React.Component {
     }
     const ingredients = this.state.ingredients
     if (ingredients.length > 0) {
-      this.search(ingredients[0])
+      this.search(ingredients[0].ingredient)
     }
   }
 
@@ -84,54 +76,14 @@ export default class RecipeList extends React.Component {
                 </List>
               </Paper>
             </Grid>
-            <Grid item xs={3}>
-              <Paper style={{ backgroundColor: blue[50] }}>
-                <List dense>
-                  {this.state.ingredients.map((item, i) => (
-                    <ListItem
-                      button
-                      key={i}
-                      onClick={e => this.search(item.ingredient)}
-                    >
-                      <ListItemText key={i}>{item.full}</ListItemText>
-                    </ListItem>
-                  ))}
-                  <br />
-                  <br />
-                  <ListItem button onClick={this.addToShoppingList}>
-                    Add to AH shopping
-                  </ListItem>
-                </List>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <GridList cols={4} cellHeight="auto">
-                <GridListTile
-                  key="Subheader"
-                  cols={4}
-                  style={{ height: 'auto' }}
-                >
-                  <ListSubheader component="div">
-                    {this.state.selectedProduct}
-                  </ListSubheader>
-                </GridListTile>
-                {this.state.products.map((item, i) => (
-                  <GridListTile key={i} xs={3}>
-                    <div>
-                      <img
-                        src={
-                          item.images.length > 0
-                            ? item.images[0].url
-                            : undefined
-                        }
-                        alt={item.title}
-                      />
-                    </div>
-                    <GridListTileBar title={item.title} />
-                  </GridListTile>
-                ))}
-              </GridList>
-            </Grid>
+            <Recipe
+              ingredients={this.state.ingredients}
+              handleSearch={this.search}
+            />
+            <ProductSearch
+              products={this.state.products}
+              selectedProduct={this.state.selectedProduct}
+            />
           </Grid>
         )}
       </div>
