@@ -51,7 +51,6 @@ export default class RecipeList extends React.Component {
 
   async search(product) {
     var resp = await axios.get(`search?query=${product}`)
-    console.log(resp)
     this.setState({ products: resp.data, selectedProduct: product })
   }
 
