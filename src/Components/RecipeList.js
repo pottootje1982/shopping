@@ -1,14 +1,9 @@
 import React from 'react'
-import axios from 'axios'
+import server from './server'
 import { Grid, Paper, List, ListItem, ListItemText } from '@material-ui/core'
 import blue from '@material-ui/core/colors/blue'
 import Recipe from './Recipe'
 import ProductSearch from './ProductSearch'
-
-axios.defaults.baseURL = 'http://localhost:4000'
-axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8'
-axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
-axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
 
 export default class RecipeList extends React.Component {
   constructor(props) {
@@ -20,11 +15,11 @@ export default class RecipeList extends React.Component {
   }
 
   async componentDidMount() {
-    var resp = await axios.get('recipes')
+    var resp = await server.get('recipes')
     const recipes = resp.data
     this.setState({ recipes })
     if (recipes.length > 0) {
-      this.handleClick(undefined, recipes[0].uid)
+      await this.handleClick(undefined, recipes[0].uid)
     }
     const ingredients = this.state.ingredients
     if (ingredients.length > 0) {
@@ -36,25 +31,36 @@ export default class RecipeList extends React.Component {
     const selectedRecipe = this.state.recipes.find(r => r.uid === recipeId)
     const ingredients = selectedRecipe.ingredients
     const recipeName = selectedRecipe.name
-    console.log(recipeName)
-    this.setState({ ingredients, recipeName })
+    this.setState({ ingredients, recipeName, recipeId })
   }
 
   async addToShoppingList() {
     const ingredients = this.state.ingredients
 
-    await axios.post('add-to-shoppinglist', {
+    await server.post('add-to-shoppinglist', {
       name: this.state.recipeName,
       ingredients: ingredients.map(name => ({ name }))
     })
   }
 
-  async search(product) {
-    var resp = await axios.get(`search?query=${product}`)
-    this.setState({ products: resp.data, selectedProduct: product })
+  async search(ingredient) {
+    const searchResponse = await server.get(`search?query=${ingredient}`)
+    const recipeId = this.state.recipeId
+    let mappings
+    if (recipeId) {
+      const mappingsResponse = await server.get(`mappings?uid=${recipeId}`)
+      mappings = mappingsResponse.data
+    }
+    this.setState({
+      products: searchResponse.data,
+      selectedIngredient: ingredient,
+      mappings
+    })
   }
 
   render() {
+    let selectedIngredient = this.state.selectedIngredient
+    selectedIngredient = selectedIngredient && selectedIngredient.toLowerCase()
     return (
       <div>
         {this.state.recipes === undefined ? (
@@ -65,7 +71,7 @@ export default class RecipeList extends React.Component {
               <Paper style={{ backgroundColor: blue[50] }}>
                 <List dense={true}>
                   {this.state.recipes.map((item, index) => (
-                    <ListItem button key={index}>
+                    <ListItem button key={index} divider={true}>
                       <ListItemText
                         primary={item.name}
                         onClick={e => this.handleClick(e, item.uid)}
@@ -81,7 +87,8 @@ export default class RecipeList extends React.Component {
             />
             <ProductSearch
               products={this.state.products}
-              selectedProduct={this.state.selectedProduct}
+              selectedIngredient={selectedIngredient}
+              mappings={this.state.mappings || {}}
             />
           </Grid>
         )}

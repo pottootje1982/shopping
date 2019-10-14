@@ -1,3 +1,4 @@
+import server from './server'
 import React from 'react'
 import {
   Grid,
@@ -15,38 +16,50 @@ export default class ProductSearch extends React.Component {
   }
 
   clickProduct(productId) {
-    this.setState({ selectedProduct: productId })
+    const mappings = this.props.mappings
+    let selectedIngredient = this.props.selectedIngredient
+    mappings[selectedIngredient] = productId
+    this.setState({ mappings })
+
+    server.post('choose', {
+      ingredient: this.props.selectedIngredient,
+      product: productId
+    })
+    this.forceUpdate()
   }
 
   render() {
+    const selectedIngredient = this.props.selectedIngredient
+    const mappings = this.props.mappings
     return (
       <Grid item xs={6}>
-        <GridList cols={4} cellHeight="auto">
-          <GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
+        <GridList cols={3} cellHeight="auto">
+          <GridListTile cols={3} key="Subheader" style={{ height: 'auto' }}>
             <ListSubheader component="div">
-              {this.props.selectedProduct}
+              {this.props.selectedIngredient}
             </ListSubheader>
           </GridListTile>
           {this.props.products.map((item, i) => (
-            <GridListTile key={item.id} xs={3}>
-              <div>
-                <img
-                  src={item.images.length > 0 ? item.images[0].url : undefined}
-                  alt={item.title}
-                />
-              </div>
+            <GridListTile key={item.id} xs={4}>
               <Button
-                variant={
-                  this.state.selectedProduct === item.id
-                    ? 'contained'
-                    : 'outlined'
-                }
                 color="primary"
                 onClick={() => this.clickProduct(item.id)}
-                style={{ textTransform: 'none' }}
+                style={{
+                  textTransform: 'none',
+                  border:
+                    mappings[selectedIngredient] === item.id ? '2px solid' : ''
+                }}
                 title={item.title}
               >
-                {item.title}
+                <div>
+                  <img
+                    src={
+                      item.images.length > 0 ? item.images[0].url : undefined
+                    }
+                    alt={item.title}
+                  />
+                  <div>{item.title}</div>
+                </div>
               </Button>
             </GridListTile>
           ))}

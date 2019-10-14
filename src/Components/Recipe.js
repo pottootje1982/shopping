@@ -10,6 +10,7 @@ export default class Recipe extends React.Component {
           <List dense>
             {this.props.ingredients.map((item, i) => (
               <ListItem
+                divider={true}
                 button
                 key={i}
                 onClick={e => this.props.handleSearch(item.ingredient)}
