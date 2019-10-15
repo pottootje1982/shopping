@@ -43,7 +43,7 @@ export default class RecipeList extends React.Component {
     })
   }
 
-  async search(ingredient) {
+  async search(ingredient, fullSelectedIngredient) {
     const searchResponse = await server.get(`search?query=${ingredient}`)
     const recipeId = this.state.recipeId
     let mappings
@@ -51,8 +51,10 @@ export default class RecipeList extends React.Component {
       const mappingsResponse = await server.get(`mappings?uid=${recipeId}`)
       mappings = mappingsResponse.data
     }
+    fullSelectedIngredient = fullSelectedIngredient || ingredient
     this.setState({
       products: searchResponse.data,
+      fullSelectedIngredient,
       selectedIngredient: ingredient,
       mappings
     })
@@ -61,38 +63,37 @@ export default class RecipeList extends React.Component {
   render() {
     let selectedIngredient = this.state.selectedIngredient
     selectedIngredient = selectedIngredient && selectedIngredient.toLowerCase()
-    return (
-      <div>
-        {this.state.recipes === undefined ? (
-          <div>Loading</div>
-        ) : (
-          <Grid container spacing={1} style={{ padding: 10 }}>
-            <Grid item xs={3}>
-              <Paper style={{ backgroundColor: blue[50] }}>
-                <List dense={true}>
-                  {this.state.recipes.map((item, index) => (
-                    <ListItem button key={index} divider={true}>
-                      <ListItemText
-                        primary={item.name}
-                        onClick={e => this.handleClick(e, item.uid)}
-                      />
-                    </ListItem>
-                  ))}
-                </List>
-              </Paper>
-            </Grid>
-            <Recipe
-              ingredients={this.state.ingredients}
-              handleSearch={this.search}
-            />
-            <ProductSearch
-              products={this.state.products}
-              selectedIngredient={selectedIngredient}
-              mappings={this.state.mappings || {}}
-            />
-          </Grid>
-        )}
-      </div>
+    return this.state.recipes === undefined ? (
+      <div>Loading</div>
+    ) : (
+      <Grid container spacing={1} style={{ padding: 10 }}>
+        <Grid item xs={3}>
+          <Paper style={{ backgroundColor: blue[50] }}>
+            <List dense={true}>
+              {this.state.recipes.map((item, index) => (
+                <ListItem button key={index} divider={true}>
+                  <ListItemText
+                    primary={item.name}
+                    onClick={e => this.handleClick(e, item.uid)}
+                  />
+                </ListItem>
+              ))}
+            </List>
+          </Paper>
+        </Grid>
+        <Recipe
+          ingredients={this.state.ingredients}
+          handleSearch={this.search}
+        />
+
+        <ProductSearch
+          products={this.state.products}
+          selectedIngredient={selectedIngredient}
+          searchIngredient={this.search}
+          fullSelectedIngredient={this.state.fullSelectedIngredient}
+          mappings={this.state.mappings || {}}
+        />
+      </Grid>
     )
   }
 }

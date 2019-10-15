@@ -4,7 +4,7 @@ import {
   Grid,
   GridList,
   GridListTile,
-  ListSubheader,
+  TextField,
   Button
 } from '@material-ui/core'
 
@@ -12,10 +12,10 @@ export default class ProductSearch extends React.Component {
   constructor(props) {
     super(props)
     this.state = {}
-    this.clickProduct = this.clickProduct.bind(this)
+    this.clickProduct = this.selectProduct.bind(this)
   }
 
-  clickProduct(productId) {
+  selectProduct(productId) {
     const mappings = this.props.mappings
     let selectedIngredient = this.props.selectedIngredient
     mappings[selectedIngredient] = productId
@@ -28,22 +28,59 @@ export default class ProductSearch extends React.Component {
     this.forceUpdate()
   }
 
+  componentDidMount() {
+    this.setState({ mount: true })
+  }
+
+  searchIngredient(event) {
+    if (event.keyCode === 13) {
+      this.props.searchIngredient(
+        event.target.value,
+        this.props.fullSelectedIngredient
+      )
+    }
+  }
+
   render() {
-    const selectedIngredient = this.props.selectedIngredient
+    const selectedIngredient = this.props.selectedIngredient || ''
+    const fullSelectedIngredient = this.props.fullSelectedIngredient || ''
+
     const mappings = this.props.mappings
     return (
       <Grid item xs={6}>
+        <div>
+          {fullSelectedIngredient.split(' ').map(item => (
+            <Button
+              key={item}
+              variant="contained"
+              color="secondary"
+              onClick={() =>
+                this.props.searchIngredient(item, fullSelectedIngredient)
+              }
+              style={{
+                margin: 2,
+                textTransform: 'none'
+              }}
+            >
+              {item}
+            </Button>
+          ))}
+          {this.state.mount ? (
+            <TextField
+              style={{ margin: 2 }}
+              defaultValue={selectedIngredient}
+              onKeyDown={e => this.searchIngredient(e)}
+              variant="outlined"
+            />
+          ) : null}
+        </div>
+
         <GridList cols={3} cellHeight="auto">
-          <GridListTile cols={3} key="Subheader" style={{ height: 'auto' }}>
-            <ListSubheader component="div">
-              {this.props.selectedIngredient}
-            </ListSubheader>
-          </GridListTile>
           {this.props.products.map((item, i) => (
             <GridListTile key={item.id} xs={4}>
               <Button
                 color="primary"
-                onClick={() => this.clickProduct(item.id)}
+                onClick={() => this.selectProduct(item.id)}
                 style={{
                   textTransform: 'none',
                   border:
