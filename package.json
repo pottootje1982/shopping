@@ -3,13 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "jest"
+    "test": "./api/node_modules/jest/bin/jest.js --verbose ./api"
   },
   "pre-commit": [
     "test"
   ],
   "devDependencies": {
-    "jest": "^24.9.0",
     "pre-commit": "^1.2.2"
   }
 }
