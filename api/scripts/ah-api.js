@@ -1,11 +1,13 @@
 var request = require('request-promise')
 request = request.defaults({ jar: true })
 var FileCookieStore = require('tough-cookie-filestore')
+const path = require('path')
 
 class AhApi {
   constructor(username, password) {
     this.body = { username, password }
-    this.jar = request.jar(new FileCookieStore('cookie.json'))
+    const file = path.resolve(__dirname, 'cookie.json')
+    this.jar = request.jar(new FileCookieStore(file))
   }
 
   async login() {

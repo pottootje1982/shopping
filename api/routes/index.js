@@ -7,8 +7,8 @@ const AhApi = require('../scripts/ah-api')
 const { ahUser, ahPass } = require('../config')
 const request = require('request-promise')
 
-const recipeDb = new RecipeDb(new TranslationsDb('db.json'))
-const mapping = new IngredientProductDb('db.json')
+const recipeDb = new RecipeDb(new TranslationsDb('data/db.json'))
+const mapping = new IngredientProductDb('data/db.json')
 
 /* GET home page. */
 router.get('/', function(_req, res) {

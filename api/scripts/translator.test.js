@@ -2,7 +2,7 @@ const Translator = require('./translator')
 var TranslationDb = require('./translations-db')
 
 describe('translates', () => {
-  const db = new TranslationDb('db.test.json')
+  const db = new TranslationDb('data/db.test.json')
   const translator = new Translator(db, 1)
 
   it('retrieves from cache first', async () => {

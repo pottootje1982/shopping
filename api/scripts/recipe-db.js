@@ -1,6 +1,7 @@
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 const { Ingredients } = require('./ingredients')
+const path = require('path')
 
 function getRecipes(db) {
   const recipes = db.get('recipes').value()
@@ -13,7 +14,8 @@ function getRecipes(db) {
 
 class RecipeDb {
   constructor(translationDb, file) {
-    const adapter = new FileSync(file || 'db.json')
+    file = path.resolve(__dirname, file || 'data/db.json')
+    const adapter = new FileSync(file)
     const db = low(adapter)
     db.defaults({ recipes: [] }).write()
 

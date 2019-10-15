@@ -5836,5 +5836,47 @@
       "original": "leek",
       "translation": "leek"
     }
+  ],
+  "mapping": [
+    {
+      "ingredient": "prei",
+      "product": 171425
+    },
+    {
+      "ingredient": "prei",
+      "product": 172451
+    },
+    {
+      "ingredient": "dille",
+      "product": 238966
+    },
+    {
+      "ingredient": "tomaten",
+      "product": 4137
+    },
+    {
+      "ingredient": "prei",
+      "product": 171425
+    },
+    {
+      "ingredient": "zalm",
+      "product": 51335
+    },
+    {
+      "ingredient": "zalm",
+      "product": 132045
+    },
+    {
+      "ingredient": "zalm",
+      "product": 132045
+    },
+    {
+      "ingredient": "aardappels",
+      "product": 111388
+    },
+    {
+      "ingredient": "koriander",
+      "product": 415009
+    }
   ]
 }

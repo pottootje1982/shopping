@@ -1,9 +1,11 @@
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 const Memory = require('lowdb/adapters/Memory')
+const path = require('path')
 
 class IngredientProductDb {
   constructor(file) {
+    file = file && path.resolve(__dirname, file)
     const adapter = file ? new FileSync(file) : new Memory()
     this.db = low(adapter)
     this.db.defaults({ mapping: [] }).write()
