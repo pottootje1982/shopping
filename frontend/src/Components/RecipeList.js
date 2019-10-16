@@ -44,6 +44,7 @@ export default class RecipeList extends React.Component {
   }
 
   async search(ingredient, fullSelectedIngredient) {
+    this.setState({ selectedIngredient: undefined })
     const searchResponse = await server.get(`search?query=${ingredient}`)
     const recipeId = this.state.recipeId
     let mappings
@@ -86,13 +87,15 @@ export default class RecipeList extends React.Component {
           handleSearch={this.search}
         />
 
-        <ProductSearch
-          products={this.state.products}
-          selectedIngredient={selectedIngredient}
-          searchIngredient={this.search}
-          fullSelectedIngredient={this.state.fullSelectedIngredient}
-          mappings={this.state.mappings || {}}
-        />
+        {selectedIngredient ? (
+          <ProductSearch
+            products={this.state.products}
+            selectedIngredient={selectedIngredient}
+            searchIngredient={this.search}
+            fullSelectedIngredient={this.state.fullSelectedIngredient}
+            mappings={this.state.mappings || {}}
+          />
+        ) : null}
       </Grid>
     )
   }

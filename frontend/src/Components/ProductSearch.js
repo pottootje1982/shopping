@@ -65,14 +65,12 @@ export default class ProductSearch extends React.Component {
               {item}
             </Button>
           ))}
-          {this.state.mount ? (
-            <TextField
-              style={{ margin: 2 }}
-              defaultValue={selectedIngredient}
-              onKeyDown={e => this.searchIngredient(e)}
-              variant="outlined"
-            />
-          ) : null}
+          <TextField
+            style={{ margin: 2 }}
+            defaultValue={selectedIngredient}
+            onKeyDown={e => this.searchIngredient(e)}
+            variant="outlined"
+          />
         </div>
 
         <GridList cols={3} cellHeight="auto">
