@@ -16,6 +16,7 @@
     "dotenv": "^8.1.0",
     "express": "~4.16.1",
     "fs": "0.0.1-security",
+    "lowdb": "^1.0.0",
     "morgan": "~1.9.1",
     "paprika-api": "^1.0.3",
     "request-cookies": "^1.1.0",

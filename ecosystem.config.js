@@ -19,8 +19,7 @@ module.exports = {
     {
       name: 'frontend',
       cwd: './frontend',
-      script: 'npm',
-      args: 'start',
+      script: './startscript.js',
 
       // Options reference: http://pm2.keymetrics.io/docs/usage/application-declaration/
       instances: 1,
