@@ -51,4 +51,6 @@ class TranslationsDb {
   }
 }
 
-module.exports = TranslationsDb
+const translationsDb = new TranslationsDb('data/db.json')
+
+module.exports = { TranslationsDb, translationsDb }

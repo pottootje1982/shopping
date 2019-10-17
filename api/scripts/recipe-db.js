@@ -7,7 +7,7 @@ function getRecipes(db) {
   const recipes = db.get('recipes').value()
   for (const recipe of recipes) {
     if (typeof recipe.ingredients === 'object') continue
-    recipe.ingredients = new Ingredients(recipe.ingredients)
+    recipe.ingredients = Ingredients.create(recipe.ingredients)
   }
   return recipes
 }

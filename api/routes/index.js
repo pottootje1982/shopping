@@ -1,14 +1,15 @@
 var express = require('express')
 var router = express.Router()
 const RecipeDb = require('../scripts/recipe-db')
-const TranslationsDb = require('../scripts/translations-db')
+const { translationsDb } = require('../scripts/translations-db')
 const IngredientProductDb = require('../scripts/ingredient-product-db')
 const AhApi = require('../scripts/ah-api')
 const { ahUser, ahPass } = require('../config')
 const request = require('request-promise')
 
-const recipeDb = new RecipeDb(new TranslationsDb('data/db.json'))
+const recipeDb = new RecipeDb(translationsDb)
 const mapping = new IngredientProductDb('data/db.json')
+const Translator = require('../scripts/translator')
 
 /* GET home page. */
 router.get('/', function(_req, res) {
@@ -35,7 +36,17 @@ router.post('/add-to-shoppinglist', async function(req, res) {
   res.send(resp)
 })
 
-router.post('/translate', async function(req, res) {})
+router.post('/translate', async function(req, res) {
+  for (const recipeId of req.body.recipes) {
+    const recipe = recipeDb.getRecipe(recipeId)
+    await Translator.create().translate(
+      recipe.ingredients.map(i => i.ingredient)
+    )
+    // update recipe with values from cache
+    translationsDb.translateRecipe(recipe.ingredients)
+    res.send(recipe)
+  }
+})
 
 router.post('/choose', async function(req, res) {
   mapping.storeMapping(req.body.ingredient, req.body.product)

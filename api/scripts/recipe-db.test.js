@@ -10,9 +10,7 @@ describe('storeRecipe()', () => {
     const uid = 'a4623ba1-8bf2-439d-b8bb-4c95c4aa8b18'
     const recipe = db.getRecipe(uid)
     expect(recipe.uid).toBe(uid)
-    const dutchIngredients = recipe.ingredients.ingredientsList.map(
-      i => i.ingredient
-    )
+    const dutchIngredients = recipe.ingredients.map(i => i.ingredient)
 
     expect(dutchIngredients).toEqual([
       'plantaardige olie',

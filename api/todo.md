@@ -1,0 +1,1 @@
+- don't store untranslated words

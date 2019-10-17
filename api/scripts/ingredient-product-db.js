@@ -32,7 +32,7 @@ class IngredientProductDb {
 
   getMappings(recipe) {
     const result = {}
-    recipe.ingredients.ingredientsList.forEach(i => {
+    recipe.ingredients.forEach(i => {
       const mapping = this.getMapping(i.ingredient)
       if (mapping) {
         result[mapping.ingredient] = mapping.product

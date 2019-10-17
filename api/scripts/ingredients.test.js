@@ -288,7 +288,7 @@ describe('Ingredient', () => {
   })
 
   it('filters ingredients list', () => {
-    const ingredients = new Ingredients(
+    const ingredients = Ingredients.create(
       'Ingredient\n4 personen\n2 theelepel suiker'
     )
     expect(ingredients.length).toBe(1)

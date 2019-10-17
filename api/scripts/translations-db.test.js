@@ -1,7 +1,7 @@
-var TranslationDb = require('./translations-db')
+var { TranslationsDb } = require('./translations-db')
 
 describe('storeTranslations()', () => {
-  const db = new TranslationDb()
+  const db = new TranslationsDb()
   db.storeTranslations(
     [
       'vegetable oil',

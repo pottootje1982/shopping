@@ -8,28 +8,27 @@ function filter(replacements, str) {
 }
 
 class Ingredients extends Array {
-  constructor(ingredients) {
+  getProducts() {
+    return this.map(i => i.ingredient)
+  }
+
+  setProducts(products) {
+    for (const [i, product] of products.entries()) {
+      this[i].setIngredient(product)
+    }
+  }
+
+  static create(ingredients) {
     const list = ingredients
       .split('\n')
       .filter(line => line.trim() != '')
       .filter(line => ingredientsRemoval.every(r => !r.exec(line)))
     const ingredientsList = list.map(i => new Ingredient(i))
-    super(...ingredientsList)
-    this.ingredientsList = ingredientsList
-  }
-
-  getProducts() {
-    return this.ingredientsList.map(i => i.ingredient)
-  }
-
-  setProducts(products) {
-    for (const [i, product] of products.entries()) {
-      this.ingredientsList[i].setIngredient(product)
-    }
+    return new Ingredients(...ingredientsList)
   }
 
   toString() {
-    return this.ingredientsList.map(ing => ing.toString()).join('\n\n')
+    return this.map(ing => ing.toString()).join('\n\n')
   }
 }
 
