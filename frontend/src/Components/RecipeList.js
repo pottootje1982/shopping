@@ -1,6 +1,6 @@
 import React from 'react'
 import server from './server'
-import { Grid, Paper, List, ListItem, ListItemText } from '@material-ui/core'
+import { Grid, Paper, List, ListItem, ListItemText, ListItemIcon, Checkbox } from '@material-ui/core'
 import blue from '@material-ui/core/colors/blue'
 import Recipe from './Recipe'
 import ProductSearch from './ProductSearch'
@@ -8,7 +8,7 @@ import ProductSearch from './ProductSearch'
 export default class RecipeList extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { recipes: [], ingredients: [], products: [] }
+    this.state = { recipes: [], ingredients: [], products: [], selectedRecipes: {} }
     this.handleClick = this.handleClick.bind(this)
     this.addToShoppingList = this.addToShoppingList.bind(this)
     this.search = this.search.bind(this)
@@ -61,8 +61,15 @@ export default class RecipeList extends React.Component {
     })
   }
 
+  toggleRecipe(uid) {
+    const selectedRecipes = this.state.selectedRecipes
+    selectedRecipes[uid] = selectedRecipes[uid]
+    this.setState({selectedRecipes})
+  }
+
   render() {
     let selectedIngredient = this.state.selectedIngredient
+    const selectedRecipes = this.state.selectedRecipes
     selectedIngredient = selectedIngredient && selectedIngredient.toLowerCase()
     return this.state.recipes === undefined ? (
       <div>Loading</div>
@@ -73,11 +80,19 @@ export default class RecipeList extends React.Component {
             <List dense={true}>
               {this.state.recipes.map((item, index) => (
                 <ListItem button key={index} divider={true}>
-                  <ListItemText
-                    primary={item.name}
-                    onClick={e => this.handleClick(e, item.uid)}
-                  />
-                </ListItem>
+                  <ListItemIcon>   
+                    <Checkbox
+                      edge="start"
+                      onChange={e=>this.toggleRecipe(item.uid)}
+                      checked={selectedRecipes[item.uid]}
+                      tabIndex={-1}
+                      disableRipple
+                    />
+                  </ListItemIcon>
+                    <ListItemText
+                      primary={item.name}
+                      onClick={e => this.handleClick(e, item.uid)} />
+                  </ListItem>
               ))}
             </List>
           </Paper>
