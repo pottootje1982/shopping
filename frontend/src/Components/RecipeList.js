@@ -8,10 +8,12 @@ import ProductSearch from './ProductSearch'
 export default class RecipeList extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { recipes: [], ingredients: [], products: [], selectedRecipes: {} }
-    this.handleClick = this.handleClick.bind(this)
+    this.state = { recipes: [], products: [], selectedRecipes: {} }
+    this.selectRecipe = this.selectRecipe.bind(this)
     this.addToShoppingList = this.addToShoppingList.bind(this)
     this.search = this.search.bind(this)
+    this.translate = this.translate.bind(this)
+
   }
 
   async componentDidMount() {
@@ -19,7 +21,7 @@ export default class RecipeList extends React.Component {
     const recipes = resp.data
     this.setState({ recipes })
     if (recipes.length > 0) {
-      await this.handleClick(undefined, recipes[0].uid)
+      await this.selectRecipe(undefined, recipes[0].uid)
     }
     const ingredients = this.state.ingredients
     if (ingredients.length > 0) {
@@ -27,11 +29,11 @@ export default class RecipeList extends React.Component {
     }
   }
 
-  handleClick(_button, recipeId) {
+  selectRecipe(_button, recipeId) {
     const selectedRecipe = this.state.recipes.find(r => r.uid === recipeId)
     const ingredients = selectedRecipe.ingredients
     const recipeName = selectedRecipe.name
-    this.setState({ ingredients, recipeName, recipeId })
+    this.setState({ ingredients, recipeName, recipeId, selectedRecipe })
   }
 
   async addToShoppingList() {
@@ -63,13 +65,24 @@ export default class RecipeList extends React.Component {
 
   toggleRecipe(uid) {
     const selectedRecipes = this.state.selectedRecipes
-    selectedRecipes[uid] = selectedRecipes[uid]
+    selectedRecipes[uid] = !selectedRecipes[uid]
     this.setState({selectedRecipes})
+  }
+
+  async translate(uid) {
+    const recipes = this.state.recipes
+    const recipe = recipes.find(r=>r.uid === uid)
+    const res = await server.post('translate', {recipeId: uid})
+    const ingredients = res.data.ingredients
+    recipe.ingredients = ingredients
+    this.setState({ingredients, recipes})
   }
 
   render() {
     let selectedIngredient = this.state.selectedIngredient
+    const selectedRecipe = this.state.selectedRecipe || {}
     const selectedRecipes = this.state.selectedRecipes
+    const ingredients = this.state.ingredients
     selectedIngredient = selectedIngredient && selectedIngredient.toLowerCase()
     return this.state.recipes === undefined ? (
       <div>Loading</div>
@@ -84,23 +97,26 @@ export default class RecipeList extends React.Component {
                     <Checkbox
                       edge="start"
                       onChange={e=>this.toggleRecipe(item.uid)}
-                      checked={selectedRecipes[item.uid]}
                       tabIndex={-1}
                       disableRipple
                     />
                   </ListItemIcon>
                     <ListItemText
                       primary={item.name}
-                      onClick={e => this.handleClick(e, item.uid)} />
+                      onClick={e => this.selectRecipe(e, item.uid)} />
                   </ListItem>
               ))}
             </List>
           </Paper>
         </Grid>
-        <Recipe
-          ingredients={this.state.ingredients}
-          handleSearch={this.search}
-        />
+        {ingredients ? 
+          (<Recipe
+            translate = {this.translate}
+            selectedRecipe={selectedRecipe.uid}
+            ingredients={this.state.ingredients}
+            handleSearch={this.search}
+          />) : null
+        }
 
         {selectedIngredient ? (
           <ProductSearch

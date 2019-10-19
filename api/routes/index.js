@@ -37,15 +37,13 @@ router.post('/add-to-shoppinglist', async function(req, res) {
 })
 
 router.post('/translate', async function(req, res) {
-  for (const recipeId of req.body.recipes) {
-    const recipe = recipeDb.getRecipe(recipeId)
-    await Translator.create().translate(
-      recipe.ingredients.map(i => i.ingredient)
-    )
-    // update recipe with values from cache
-    translationsDb.translateRecipe(recipe.ingredients)
-    res.send(recipe)
-  }
+  const recipe = recipeDb.getRecipe(req.body.recipeId)
+  await Translator.create().translate(
+    recipe.ingredients.map(i => i.ingredient)
+  )
+  // update recipe with values from cache
+  translationsDb.translateRecipe(recipe.ingredients)
+  res.send(recipe)
 })
 
 router.post('/choose', async function(req, res) {
