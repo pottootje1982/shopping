@@ -43,8 +43,9 @@ class AhApi {
   }
 
   async addRecipeToShoppingList(recipeId, name, ingredients) {
+    
     return await request.post(
-      'https://www.ah.nl/service/obtainment/rest/shoppinglist/ingredients',
+      'https://www.ah.nl/common/api/basket/v2/add',
       this.options({ recipeId, name, ingredients })
     )
   }

@@ -26,10 +26,51 @@ describe('storeMapping()', () => {
 
     const mappings = db.getMappings(recipe)
     expect(mappings).toEqual({
-      aardappels: 3,
-      dille: 2,
-      prei: 1273124,
-      zalm: 1
+      "aardappels": {
+        "id": 3,
+        "quantity": 1,
+      },
+      "dille": {
+        "id": 2,
+        "quantity": 1,
+      },
+      "prei": {
+        "id": 1273124,
+        "quantity": 1,
+      },
+      "zalm": {
+        "id": 1,
+        "quantity": 1,
+      }
+    })
+  })
+
+  it('picks order', () => {
+    db.storeMapping('aubergines', 1)
+    db.storeMapping('lasagna', 2)
+    db.storeMapping('ricotta', 3)
+    db.storeMapping('egg', 4)
+
+    const recipe = recipeDb.getRecipe('94ca1528-93ae-4b26-9576-a2dc1ada36c3')
+    const order = db.pickOrder(recipe)
+    expect(order).toEqual({
+      items: [{
+          "id": 1,
+          "quantity": 1,
+        },
+        {
+          "id": 4,
+          "quantity": 1,
+        },
+        {
+          "id": 2,
+          "quantity": 1,
+        },
+        {
+          "id": 3,
+          "quantity": 1,
+        }
+      ]
     })
   })
 })
