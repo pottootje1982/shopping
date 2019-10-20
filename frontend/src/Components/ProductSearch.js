@@ -1,35 +1,35 @@
-import server from './server'
-import React from 'react'
+import server from "./server";
+import React from "react";
 import {
   Grid,
   GridList,
   GridListTile,
   TextField,
   Button
-} from '@material-ui/core'
+} from "@material-ui/core";
 
 export default class ProductSearch extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {}
-    this.clickProduct = this.selectProduct.bind(this)
+    super(props);
+    this.state = {};
+    this.clickProduct = this.selectProduct.bind(this);
   }
 
   selectProduct(productId) {
-    const mappings = this.props.mappings
-    let selectedIngredient = this.props.selectedIngredient
-    mappings[selectedIngredient] = productId
-    this.setState({ mappings })
+    const mappings = this.props.mappings;
+    let selectedIngredient = this.props.selectedIngredient;
+    mappings[selectedIngredient] = productId;
+    this.setState({ mappings });
 
-    server.post('choose', {
+    server.post("choose", {
       ingredient: this.props.selectedIngredient,
       product: productId
-    })
-    this.forceUpdate()
+    });
+    this.forceUpdate();
   }
 
   componentDidMount() {
-    this.setState({ mount: true })
+    this.setState({ mount: true });
   }
 
   searchIngredient(event) {
@@ -37,19 +37,19 @@ export default class ProductSearch extends React.Component {
       this.props.searchIngredient(
         event.target.value,
         this.props.fullSelectedIngredient
-      )
+      );
     }
   }
 
   render() {
-    const selectedIngredient = this.props.selectedIngredient || ''
-    const fullSelectedIngredient = this.props.fullSelectedIngredient || ''
+    const selectedIngredient = this.props.selectedIngredient || "";
+    const fullSelectedIngredient = this.props.fullSelectedIngredient || "";
 
-    const mappings = this.props.mappings
+    const mappings = this.props.mappings;
     return (
       <Grid item xs={6}>
         <div>
-          {fullSelectedIngredient.split(' ').map(item => (
+          {fullSelectedIngredient.split(" ").map(item => (
             <Button
               key={item}
               variant="contained"
@@ -59,7 +59,7 @@ export default class ProductSearch extends React.Component {
               }
               style={{
                 margin: 2,
-                textTransform: 'none'
+                textTransform: "none"
               }}
             >
               {item}
@@ -80,9 +80,11 @@ export default class ProductSearch extends React.Component {
                 color="primary"
                 onClick={() => this.selectProduct(item.id)}
                 style={{
-                  textTransform: 'none',
+                  textTransform: "none",
                   border:
-                    mappings[selectedIngredient] === item.id ? '2px solid' : ''
+                    (mappings[selectedIngredient] || {}).id === item.id
+                      ? "2px solid"
+                      : ""
                 }}
                 title={item.title}
               >
@@ -100,6 +102,6 @@ export default class ProductSearch extends React.Component {
           ))}
         </GridList>
       </Grid>
-    )
+    );
   }
 }

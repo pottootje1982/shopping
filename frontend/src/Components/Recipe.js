@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import server from './server'
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Grid,
@@ -7,20 +6,22 @@ import {
   List,
   ListItem,
   ListItemText
-} from '@material-ui/core'
-import blue from '@material-ui/core/colors/blue'
+} from "@material-ui/core";
+import blue from "@material-ui/core/colors/blue";
 
 export default function Recipe(props) {
-  const ingredients = props.ingredients
-  
+  const ingredients = props.ingredients;
+
   function addToShoppingList() {}
 
   return (
     <Grid item xs={3}>
-      <div style={{
-                  alignItems:'left',
-                  justifyContent: 'left'
-                }}>
+      <div
+        style={{
+          alignItems: "left",
+          justifyContent: "left"
+        }}
+      >
         <Grid item>
           <Paper style={{ backgroundColor: blue[50] }}>
             <List dense>
@@ -42,14 +43,18 @@ export default function Recipe(props) {
             </List>
           </Paper>
         </Grid>
-        <Button color="secondary" 
-                variant="contained"
-                style={{
-                  margin: 2,
-                  textTransform: 'none'
-                }}
-                onClick={e=>props.translate(props.selectedRecipe)}>Translate</Button>
+        <Button
+          color="secondary"
+          variant="contained"
+          style={{
+            margin: 2,
+            textTransform: "none"
+          }}
+          onClick={e => props.translate(props.selectedRecipe)}
+        >
+          Translate
+        </Button>
       </div>
     </Grid>
-  )
+  );
 }

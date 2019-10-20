@@ -1,9 +1,17 @@
-import React from 'react'
-import server from './server'
-import { Grid, Paper, List, ListItem, ListItemText, ListItemIcon, Checkbox } from '@material-ui/core'
-import blue from '@material-ui/core/colors/blue'
-import Recipe from './Recipe'
-import ProductSearch from './ProductSearch'
+import React from "react"
+import server from "./server"
+import {
+  Grid,
+  Paper,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+  Checkbox
+} from "@material-ui/core"
+import blue from "@material-ui/core/colors/blue"
+import Recipe from "./Recipe"
+import ProductSearch from "./ProductSearch"
 
 export default class RecipeList extends React.Component {
   constructor(props) {
@@ -13,11 +21,10 @@ export default class RecipeList extends React.Component {
     this.addToShoppingList = this.addToShoppingList.bind(this)
     this.search = this.search.bind(this)
     this.translate = this.translate.bind(this)
-
   }
 
   async componentDidMount() {
-    var resp = await server.get('recipes')
+    var resp = await server.get("recipes")
     const recipes = resp.data
     this.setState({ recipes })
     if (recipes.length > 0) {
@@ -39,7 +46,7 @@ export default class RecipeList extends React.Component {
   async addToShoppingList() {
     const ingredients = this.state.ingredients
 
-    await server.post('add-to-shoppinglist', {
+    await server.post("add-to-shoppinglist", {
       name: this.state.recipeName,
       ingredients: ingredients.map(name => ({ name }))
     })
@@ -66,16 +73,16 @@ export default class RecipeList extends React.Component {
   toggleRecipe(uid) {
     const selectedRecipes = this.state.selectedRecipes
     selectedRecipes[uid] = !selectedRecipes[uid]
-    this.setState({selectedRecipes})
+    this.setState({ selectedRecipes })
   }
 
   async translate(uid) {
     const recipes = this.state.recipes
-    const recipe = recipes.find(r=>r.uid === uid)
-    const res = await server.post('translate', {recipeId: uid})
+    const recipe = recipes.find(r => r.uid === uid)
+    const res = await server.post("translate", { recipeId: uid })
     const ingredients = res.data.ingredients
     recipe.ingredients = ingredients
-    this.setState({ingredients, recipes})
+    this.setState({ ingredients, recipes })
   }
 
   render() {
@@ -93,30 +100,31 @@ export default class RecipeList extends React.Component {
             <List dense={true}>
               {this.state.recipes.map((item, index) => (
                 <ListItem button key={index} divider={true}>
-                  <ListItemIcon>   
+                  <ListItemIcon>
                     <Checkbox
                       edge="start"
-                      onChange={e=>this.toggleRecipe(item.uid)}
+                      onChange={e => this.toggleRecipe(item.uid)}
                       tabIndex={-1}
                       disableRipple
                     />
                   </ListItemIcon>
-                    <ListItemText
-                      primary={item.name}
-                      onClick={e => this.selectRecipe(e, item.uid)} />
-                  </ListItem>
+                  <ListItemText
+                    primary={item.name}
+                    onClick={e => this.selectRecipe(e, item.uid)}
+                  />
+                </ListItem>
               ))}
             </List>
           </Paper>
         </Grid>
-        {ingredients ? 
-          (<Recipe
-            translate = {this.translate}
+        {ingredients ? (
+          <Recipe
+            translate={this.translate}
             selectedRecipe={selectedRecipe.uid}
             ingredients={this.state.ingredients}
             handleSearch={this.search}
-          />) : null
-        }
+          />
+        ) : null}
 
         {selectedIngredient ? (
           <ProductSearch
