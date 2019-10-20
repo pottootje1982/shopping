@@ -1,11 +1,16 @@
 var request = require('request-promise')
-request = request.defaults({ jar: true })
+request = request.defaults({
+  jar: true
+})
 var FileCookieStore = require('tough-cookie-filestore')
 const path = require('path')
 
 class AhApi {
   constructor(username, password) {
-    this.body = { username, password }
+    this.body = {
+      username,
+      password
+    }
     const file = path.resolve(__dirname, 'cookie.json')
     this.jar = request.jar(new FileCookieStore(file))
   }
@@ -29,29 +34,32 @@ class AhApi {
     return resp
   }
 
-  async addToShoppingList(item) {
+  async addToShoppingList(items) {
     const resp = await request.post(
-      'https://www.ah.nl/service/rest/shoppinglists/0/items',
-      this.options({
-        quantity: 1,
-        type: 'UNSPECIFIED',
-        label: 'PROCESSING_UNSPECIFIED',
-        item: { description: item }
-      })
+      'https://www.ah.nl/common/api/basket/v2/add',
+      this.options(items)
     )
     return resp
   }
 
   async addRecipeToShoppingList(recipeId, name, ingredients) {
-    
+
     return await request.post(
       'https://www.ah.nl/common/api/basket/v2/add',
-      this.options({ recipeId, name, ingredients })
+      this.options({
+        recipeId,
+        name,
+        ingredients
+      })
     )
   }
 
   options(body) {
-    return { jar: this.jar, body, json: true }
+    return {
+      jar: this.jar,
+      body,
+      json: true
+    }
   }
 }
 

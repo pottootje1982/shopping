@@ -19,6 +19,7 @@ export default class RecipeList extends React.Component {
     this.state = { recipes: [], products: [], selectedRecipes: {} }
     this.selectRecipe = this.selectRecipe.bind(this)
     this.addToShoppingList = this.addToShoppingList.bind(this)
+    props.setSelectedRecipes(this.state.selectedRecipes)
     this.search = this.search.bind(this)
     this.translate = this.translate.bind(this)
   }
