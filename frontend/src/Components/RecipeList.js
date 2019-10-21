@@ -89,7 +89,7 @@ export default class RecipeList extends React.Component {
       <Grid container spacing={1} style={{ padding: 10 }}>
         <Grid item xs={3}>
           <Paper style={{ backgroundColor: blue[50] }}>
-            <List dense={true}>
+            <List dense={true} style={{ maxHeight: "80vh", overflow: "auto" }}>
               {this.state.recipes.map((item, index) => (
                 <ListItem button key={index} divider={true}>
                   <ListItemIcon>
