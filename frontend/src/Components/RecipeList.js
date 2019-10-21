@@ -18,7 +18,6 @@ export default class RecipeList extends React.Component {
     super(props)
     this.state = { recipes: [], products: [], selectedRecipes: {} }
     this.selectRecipe = this.selectRecipe.bind(this)
-    this.addToShoppingList = this.addToShoppingList.bind(this)
     props.setSelectedRecipes(this.state.selectedRecipes)
     this.search = this.search.bind(this)
     this.translate = this.translate.bind(this)
@@ -44,22 +43,15 @@ export default class RecipeList extends React.Component {
     this.setState({ ingredients, recipeName, recipeId, selectedRecipe })
   }
 
-  async addToShoppingList() {
-    const ingredients = this.state.ingredients
-
-    await server.post("add-to-shoppinglist", {
-      name: this.state.recipeName,
-      ingredients: ingredients.map(name => ({ name }))
-    })
-  }
-
   async search(ingredient, fullSelectedIngredient) {
     this.setState({ selectedIngredient: undefined })
-    const searchResponse = await server.get(`search?query=${ingredient}`)
+    const searchResponse = await server.get(`products?query=${ingredient}`)
     const recipeId = this.state.recipeId
     let mappings
     if (recipeId) {
-      const mappingsResponse = await server.get(`mappings?uid=${recipeId}`)
+      const mappingsResponse = await server.get(
+        `products/mappings?uid=${recipeId}`
+      )
       mappings = mappingsResponse.data
     }
     fullSelectedIngredient = fullSelectedIngredient || ingredient
@@ -80,7 +72,7 @@ export default class RecipeList extends React.Component {
   async translate(uid) {
     const recipes = this.state.recipes
     const recipe = recipes.find(r => r.uid === uid)
-    const res = await server.post("translate", { recipeId: uid })
+    const res = await server.post("recipes/translate", { recipeId: uid })
     const ingredients = res.data.ingredients
     recipe.ingredients = ingredients
     this.setState({ ingredients, recipes })
@@ -89,7 +81,6 @@ export default class RecipeList extends React.Component {
   render() {
     let selectedIngredient = this.state.selectedIngredient
     const selectedRecipe = this.state.selectedRecipe || {}
-    const selectedRecipes = this.state.selectedRecipes
     const ingredients = this.state.ingredients
     selectedIngredient = selectedIngredient && selectedIngredient.toLowerCase()
     return this.state.recipes === undefined ? (
