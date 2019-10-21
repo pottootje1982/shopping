@@ -38,7 +38,7 @@ router.get('/mappings', async function (req, res) {
 router.post('/order', async function (req, res) {
   const api = new AhApi(ahUser, ahPass)
   api.login()
-  req.body.recipes.forEach(id => {
+  req.body.recipes.forEach(async function (id) {
     const recipe = recipeDb.getRecipe(id)
     const order = mapping.pickOrder(recipe)
     await api.addToShoppingList(order)
