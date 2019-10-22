@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react"
 import {
   Button,
   Grid,
@@ -6,11 +6,11 @@ import {
   List,
   ListItem,
   ListItemText
-} from "@material-ui/core";
-import blue from "@material-ui/core/colors/blue";
+} from "@material-ui/core"
+import blue from "@material-ui/core/colors/blue"
 
 export default function Recipe(props) {
-  const ingredients = props.ingredients;
+  const ingredients = props.ingredients
 
   function addToShoppingList() {}
 
@@ -56,5 +56,5 @@ export default function Recipe(props) {
         </Button>
       </div>
     </Grid>
-  );
+  )
 }

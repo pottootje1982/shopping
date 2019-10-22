@@ -1,5 +1,6 @@
 {
-  "recipes": [{
+  "recipes": [
+    {
       "rating": 0,
       "photo_hash": null,
       "on_favorites": false,
@@ -5798,7 +5799,8 @@
       "nutritional_info": "Calories: 233\nTotal Carbohydrates: 21g\nTotal Fat: 10g\nDietary fiber: 6g\nProtein: 10g\nSaturated fat: 6g\nSodium: 0.8g\nSugar: 7g"
     }
   ],
-  "translations": [{
+  "translations": [
+    {
       "original": "vegetable oil",
       "translation": "plantaardige olie"
     },
@@ -6191,7 +6193,8 @@
       "translation": "Thaise basilicumbladeren of korianderbladeren"
     }
   ],
-  "mapping": [{
+  "mapping": [
+    {
       "ingredient": "prei",
       "product": 171425
     },

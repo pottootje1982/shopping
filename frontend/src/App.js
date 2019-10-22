@@ -8,13 +8,11 @@ function App() {
   let selectedRecipes
 
   function order() {
-    console.log(selectedRecipes)
     server.post("products/order", { recipes: Object.keys(selectedRecipes) })
   }
 
   function setSelectedRecipes(selRecipes) {
     selectedRecipes = selRecipes
-    console.log(selectedRecipes)
   }
 
   return (
