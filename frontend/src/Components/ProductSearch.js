@@ -1,5 +1,5 @@
 import server from "./server"
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import {
   Grid,
   GridList,
@@ -10,15 +10,14 @@ import {
 
 export default function ProductSearch(props) {
   const recipeId = props.recipeId
-  const bareIngredient = (
-    props.selectedIngredient.ingredient || ""
-  ).toLowerCase()
-  const fullSelectedIngredient = props.selectedIngredient.full || ""
+  const selectedIngredient = props.selectedIngredient
+  const bareIngredient = (selectedIngredient.ingredient || "").toLowerCase()
   let [mappings, setMappings] = useState({})
+  const textFieldRef = useRef(null)
 
   useEffect(() => {
     initMappings()
-  }, [props.selectedIngredient])
+  }, [selectedIngredient])
 
   async function initMappings() {
     if (recipeId) {
@@ -28,7 +27,8 @@ export default function ProductSearch(props) {
           setMappings(mappingsResponse.data)
         })
     }
-    props.search(props.selectedIngredient)
+    props.search(selectedIngredient)
+    textFieldRef.current.value = bareIngredient
   }
 
   function selectProduct(productId) {
@@ -41,21 +41,26 @@ export default function ProductSearch(props) {
     })
   }
 
-  function search(event) {
+  function textFieldSearch(event) {
     if (event.keyCode === 13) {
       props.search(undefined, event.target.value)
     }
   }
 
+  function search(value) {
+    props.search(undefined, value)
+    textFieldRef.current.value = value
+  }
+
   return (
     <Grid item xs={6}>
       <div>
-        {fullSelectedIngredient.split(" ").map(item => (
+        {bareIngredient.split(" ").map(item => (
           <Button
             key={item}
             variant="contained"
             color="secondary"
-            onClick={() => props.search(item, fullSelectedIngredient)}
+            onClick={() => search(item)}
             style={{
               margin: 2,
               height: 54,
@@ -66,9 +71,10 @@ export default function ProductSearch(props) {
           </Button>
         ))}
         <TextField
+          inputRef={textFieldRef}
           style={{ margin: 2 }}
           defaultValue={bareIngredient}
-          onKeyDown={e => search(e)}
+          onKeyDown={e => textFieldSearch(e)}
           variant="outlined"
         />
       </div>

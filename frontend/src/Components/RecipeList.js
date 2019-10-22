@@ -22,7 +22,7 @@ export default function RecipeList(props) {
   let [ingredients, setIngredients] = useState([])
   let selectedRecipe = {}
   let [recipeId, setRecipeId] = useState()
-  let [selectedIngredient, setSelectedIngredient] = useState(undefined)
+  let [selectedIngredient, setSelectedIngredient] = useState()
   props.setSelectedRecipes(selectedRecipes)
 
   async function selectedFirstRecipe() {
