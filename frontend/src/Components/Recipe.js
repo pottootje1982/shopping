@@ -38,7 +38,7 @@ export default function Recipe(props) {
                   divider={true}
                   button
                   key={i}
-                  onClick={e => props.handleSearch(item.ingredient)}
+                  onClick={e => props.search(item)}
                 >
                   <ListItemText key={i}>{item.full}</ListItemText>
                 </ListItem>
@@ -53,7 +53,7 @@ export default function Recipe(props) {
             margin: 2,
             textTransform: "none"
           }}
-          onClick={e => translate(props.selectedRecipe)}
+          onClick={e => translate(props.recipeId)}
         >
           Translate
         </Button>

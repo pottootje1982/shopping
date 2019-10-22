@@ -21,9 +21,7 @@ export default function RecipeList(props) {
   const [selectedRecipes, setSelectedRecipes] = useState({})
   let [ingredients, setIngredients] = useState([])
   let selectedRecipe = {}
-  let [mappings, setMappings] = useState({})
   let [recipeId, setRecipeId] = useState()
-  let [fullSelectedIngredient, setFullSelectedIngredient] = useState(undefined)
   let [selectedIngredient, setSelectedIngredient] = useState(undefined)
   props.setSelectedRecipes(selectedRecipes)
 
@@ -32,10 +30,8 @@ export default function RecipeList(props) {
     recipes = result.data
     setRecipes(recipes)
     if (recipes.length > 0) {
-      selectRecipe(undefined, recipes[0].uid)
-      if (ingredients.length > 0) {
-        search(ingredients[0].ingredient)
-      }
+      const recipe = recipes[0]
+      selectRecipe(undefined, recipe.uid)
     }
   }
 
@@ -50,20 +46,18 @@ export default function RecipeList(props) {
     selectedRecipe = recipes.find(r => r.uid === id)
     ingredients = selectedRecipe.ingredients
     setIngredients(ingredients)
+    if (ingredients.length > 0) {
+      setSelectedIngredient(ingredients[0])
+    }
   }
 
-  async function search(ingredient, fullSelectedIngr) {
-    setSelectedIngredient(ingredient)
-    const searchResponse = await server.get(`products?query=${ingredient}`)
-    if (recipeId) {
-      const mappingsResponse = await server.get(
-        `products/mappings?uid=${recipeId}`
-      )
-      setMappings(mappingsResponse.data)
+  async function search(item, customSearch) {
+    const query = customSearch ? customSearch : item.ingredient
+    if (item) {
+      setSelectedIngredient(item)
     }
-    setFullSelectedIngredient(fullSelectedIngr || ingredient)
+    const searchResponse = await server.get(`products?query=${query}`)
     setProducts(searchResponse.data)
-    return products
   }
 
   function toggleRecipe(uid) {
@@ -71,7 +65,6 @@ export default function RecipeList(props) {
     setSelectedRecipes(selectedRecipes)
   }
 
-  selectedIngredient = selectedIngredient && selectedIngredient.toLowerCase()
   return recipes === undefined ? (
     <div>Loading</div>
   ) : (
@@ -100,9 +93,9 @@ export default function RecipeList(props) {
       </Grid>
       {ingredients ? (
         <Recipe
-          selectedRecipe={selectedRecipe.uid}
+          recipeId={recipeId}
           ingredients={ingredients}
-          handleSearch={search}
+          search={search}
           recipes={recipes}
           setIngredients={setIngredients}
         />
@@ -112,9 +105,8 @@ export default function RecipeList(props) {
         <ProductSearch
           products={products}
           selectedIngredient={selectedIngredient}
-          searchIngredient={search}
-          fullSelectedIngredient={fullSelectedIngredient}
-          mappings={mappings}
+          search={search}
+          recipeId={recipeId}
         />
       ) : null}
     </Grid>
