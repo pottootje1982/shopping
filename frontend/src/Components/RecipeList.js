@@ -21,8 +21,8 @@ export default function RecipeList(props) {
   const [selectedRecipes, setSelectedRecipes] = useState({})
   let [ingredients, setIngredients] = useState([])
   let selectedRecipe = {}
-  let mappings = {}
-  let recipeId
+  let [mappings, setMappings] = useState({})
+  let [recipeId, setRecipeId] = useState()
   let [fullSelectedIngredient, setFullSelectedIngredient] = useState(undefined)
   let [selectedIngredient, setSelectedIngredient] = useState(undefined)
   props.setSelectedRecipes(selectedRecipes)
@@ -44,8 +44,10 @@ export default function RecipeList(props) {
     firstRun = false
   }
 
-  function selectRecipe(_button, recipeId) {
-    selectedRecipe = recipes.find(r => r.uid === recipeId)
+  function selectRecipe(_button, id) {
+    recipeId = id
+    setRecipeId(id)
+    selectedRecipe = recipes.find(r => r.uid === id)
     ingredients = selectedRecipe.ingredients
     setIngredients(ingredients)
   }
@@ -57,7 +59,7 @@ export default function RecipeList(props) {
       const mappingsResponse = await server.get(
         `products/mappings?uid=${recipeId}`
       )
-      mappings = mappingsResponse.data
+      setMappings(mappingsResponse.data)
     }
     setFullSelectedIngredient(fullSelectedIngr || ingredient)
     setProducts(searchResponse.data)

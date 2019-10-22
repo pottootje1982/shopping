@@ -1,5 +1,3 @@
 - don't store untranslated words
 - search for first product when selecting new recipe
-- selected product doesn't get selection border
-- sometimes selected recipe doesn't get updated
 - translate and then immediately choosing products doesn't work (server-side recipe doesn't get updated)

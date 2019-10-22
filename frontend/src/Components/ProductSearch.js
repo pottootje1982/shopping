@@ -18,7 +18,7 @@ export default class ProductSearch extends React.Component {
   selectProduct(productId) {
     const mappings = this.props.mappings
     let selectedIngredient = this.props.selectedIngredient
-    mappings[selectedIngredient] = productId
+    mappings[selectedIngredient].id = productId
     this.setState({ mappings })
 
     server.post("products/choose", {
