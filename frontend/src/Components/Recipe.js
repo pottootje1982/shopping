@@ -8,11 +8,19 @@ import {
   ListItemText
 } from "@material-ui/core"
 import blue from "@material-ui/core/colors/blue"
+import server from "./server"
 
 export default function Recipe(props) {
   const ingredients = props.ingredients
+  const recipes = props.recipes
+  const setIngredients = props.setIngredients
 
-  function addToShoppingList() {}
+  async function translate(uid) {
+    const recipe = recipes.find(r => r.uid === uid)
+    const res = await server.post("recipes/translate", { recipeId: uid })
+    setIngredients(res.data.ingredients)
+    recipe.ingredients = ingredients
+  }
 
   return (
     <Grid item xs={3}>
@@ -35,11 +43,6 @@ export default function Recipe(props) {
                   <ListItemText key={i}>{item.full}</ListItemText>
                 </ListItem>
               ))}
-              <br />
-              <br />
-              <ListItem button onClick={addToShoppingList}>
-                Add to AH shopping
-              </ListItem>
             </List>
           </Paper>
         </Grid>
@@ -50,7 +53,7 @@ export default function Recipe(props) {
             margin: 2,
             textTransform: "none"
           }}
-          onClick={e => props.translate(props.selectedRecipe)}
+          onClick={e => translate(props.selectedRecipe)}
         >
           Translate
         </Button>

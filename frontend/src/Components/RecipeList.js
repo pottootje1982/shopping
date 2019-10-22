@@ -71,13 +71,6 @@ export default function RecipeList(props) {
     setSelectedRecipes(selectedRecipes)
   }
 
-  async function translate(uid) {
-    const recipe = recipes.find(r => r.uid === uid)
-    const res = await server.post("recipes/translate", { recipeId: uid })
-    setIngredients(res.data.ingredients)
-    recipe.ingredients = ingredients
-  }
-
   selectedIngredient = selectedIngredient && selectedIngredient.toLowerCase()
   return recipes === undefined ? (
     <div>Loading</div>
@@ -107,10 +100,11 @@ export default function RecipeList(props) {
       </Grid>
       {ingredients ? (
         <Recipe
-          translate={translate}
           selectedRecipe={selectedRecipe.uid}
           ingredients={ingredients}
           handleSearch={search}
+          recipes={recipes}
+          setIngredients={setIngredients}
         />
       ) : null}
 
