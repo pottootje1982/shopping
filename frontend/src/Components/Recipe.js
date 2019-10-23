@@ -50,7 +50,7 @@ export default function Recipe(props) {
           color="secondary"
           variant="contained"
           style={{
-            margin: 2,
+            margin: 5,
             textTransform: "none"
           }}
           onClick={e => translate(props.recipeId)}

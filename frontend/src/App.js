@@ -21,17 +21,19 @@ function App() {
         <header>
           <p>Shopper</p>
         </header>
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={order}
-          style={{
-            margin: 2,
-            textTransform: "none"
-          }}
-        >
-          Order
-        </Button>
+        <div style={{ textAlign: "left" }}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={order}
+            style={{
+              margin: 5,
+              textTransform: "none"
+            }}
+          >
+            Order
+          </Button>
+        </div>
       </div>
 
       <RecipeList setSelectedRecipes={setSelectedRecipes}></RecipeList>

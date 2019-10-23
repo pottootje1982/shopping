@@ -1,6 +1,4 @@
 - don't store untranslated words
-- search for first product when selecting new recipe
 - translate and then immediately choosing products doesn't work (server-side recipe doesn't get updated)
 - always show selected product first (we could have done a custom search and select a product there)
-- update custom search field
 - show recipe directions
