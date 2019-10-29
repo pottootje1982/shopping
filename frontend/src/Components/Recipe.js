@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Fragment, useEffect, useState } from "react"
 import {
   Button,
   Grid,
@@ -7,6 +7,7 @@ import {
   ListItem,
   ListItemText
 } from "@material-ui/core"
+import ProductSearch from "./ProductSearch"
 import blue from "@material-ui/core/colors/blue"
 import server from "./server"
 
@@ -14,6 +15,24 @@ export default function Recipe(props) {
   const ingredients = props.ingredients
   const recipes = props.recipes
   const setIngredients = props.setIngredients
+
+  let [products, setProducts] = useState([])
+  let [selectedIngredient, setSelectedIngredient] = useState()
+
+  useEffect(() => {
+    if (ingredients.length > 0) {
+      setSelectedIngredient(ingredients[0])
+    }
+  }, [ingredients])
+
+  async function search(item, customSearch) {
+    const query = customSearch ? customSearch : item.ingredient
+    if (item) {
+      setSelectedIngredient(item)
+    }
+    const searchResponse = await server.get(`products?query=${query}`)
+    setProducts(searchResponse.data)
+  }
 
   async function translate(uid) {
     const recipe = recipes.find(r => r.uid === uid)
@@ -23,41 +42,51 @@ export default function Recipe(props) {
   }
 
   return (
-    <Grid item xs={3}>
-      <div
-        style={{
-          alignItems: "left",
-          justifyContent: "left"
-        }}
-      >
-        <Grid item>
-          <Paper style={{ backgroundColor: blue[50] }}>
-            <List dense>
-              {(ingredients || []).map((item, i) => (
-                <ListItem
-                  divider={true}
-                  button
-                  key={i}
-                  onClick={e => props.search(item)}
-                >
-                  <ListItemText key={i}>{item.full}</ListItemText>
-                </ListItem>
-              ))}
-            </List>
-          </Paper>
-        </Grid>
-        <Button
-          color="secondary"
-          variant="contained"
+    <Fragment>
+      <Grid item xs={3}>
+        <div
           style={{
-            margin: 5,
-            textTransform: "none"
+            alignItems: "left",
+            justifyContent: "left"
           }}
-          onClick={e => translate(props.recipeId)}
         >
-          Translate
-        </Button>
-      </div>
-    </Grid>
+          <Grid item>
+            <Paper style={{ backgroundColor: blue[50] }}>
+              <List dense>
+                {(ingredients || []).map((item, i) => (
+                  <ListItem
+                    divider={true}
+                    button
+                    key={i}
+                    onClick={e => search(item)}
+                  >
+                    <ListItemText key={i}>{item.full}</ListItemText>
+                  </ListItem>
+                ))}
+              </List>
+            </Paper>
+          </Grid>
+          <Button
+            color="secondary"
+            variant="contained"
+            style={{
+              margin: 5,
+              textTransform: "none"
+            }}
+            onClick={e => translate(props.recipeId)}
+          >
+            Translate
+          </Button>
+        </div>
+      </Grid>
+      {selectedIngredient ? (
+        <ProductSearch
+          products={products}
+          selectedIngredient={selectedIngredient}
+          search={search}
+          recipeId={props.recipeId}
+        />
+      ) : null}
+    </Fragment>
   )
 }

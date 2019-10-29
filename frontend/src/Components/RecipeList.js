@@ -11,18 +11,15 @@ import {
 } from "@material-ui/core"
 import blue from "@material-ui/core/colors/blue"
 import Recipe from "./Recipe"
-import ProductSearch from "./ProductSearch"
 
 let firstRun = true
 
 export default function RecipeList(props) {
   let [recipes, setRecipes] = useState([])
-  let [products, setProducts] = useState([])
   const [selectedRecipes, setSelectedRecipes] = useState({})
   let [ingredients, setIngredients] = useState([])
   let selectedRecipe = {}
   let [recipeId, setRecipeId] = useState()
-  let [selectedIngredient, setSelectedIngredient] = useState()
   props.setSelectedRecipes(selectedRecipes)
 
   async function selectedFirstRecipe() {
@@ -46,18 +43,6 @@ export default function RecipeList(props) {
     selectedRecipe = recipes.find(r => r.uid === id)
     ingredients = selectedRecipe.ingredients
     setIngredients(ingredients)
-    if (ingredients.length > 0) {
-      setSelectedIngredient(ingredients[0])
-    }
-  }
-
-  async function search(item, customSearch) {
-    const query = customSearch ? customSearch : item.ingredient
-    if (item) {
-      setSelectedIngredient(item)
-    }
-    const searchResponse = await server.get(`products?query=${query}`)
-    setProducts(searchResponse.data)
   }
 
   function toggleRecipe(uid) {
@@ -95,18 +80,8 @@ export default function RecipeList(props) {
         <Recipe
           recipeId={recipeId}
           ingredients={ingredients}
-          search={search}
           recipes={recipes}
           setIngredients={setIngredients}
-        />
-      ) : null}
-
-      {selectedIngredient ? (
-        <ProductSearch
-          products={products}
-          selectedIngredient={selectedIngredient}
-          search={search}
-          recipeId={recipeId}
         />
       ) : null}
     </Grid>
