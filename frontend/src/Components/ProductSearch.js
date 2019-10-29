@@ -9,24 +9,17 @@ import {
 } from "@material-ui/core"
 
 export default function ProductSearch(props) {
-  const recipeId = props.recipeId
   const selectedIngredient = props.selectedIngredient
   const bareIngredient = (selectedIngredient.ingredient || "").toLowerCase()
-  let [mappings, setMappings] = useState({})
   const textFieldRef = useRef(null)
+  const mappings = props.mappings
+  const setMappings = props.setMappings
 
   useEffect(() => {
-    initMappings()
+    doSearch()
   }, [selectedIngredient])
 
-  async function initMappings() {
-    if (recipeId) {
-      server
-        .get(`products/mappings?uid=${recipeId}`)
-        .then(function(mappingsResponse) {
-          setMappings(mappingsResponse.data)
-        })
-    }
+  async function doSearch() {
     props.search(selectedIngredient)
     textFieldRef.current.value = bareIngredient
   }

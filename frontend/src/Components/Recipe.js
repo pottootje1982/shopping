@@ -15,15 +15,24 @@ export default function Recipe(props) {
   const ingredients = props.ingredients
   const recipes = props.recipes
   const setIngredients = props.setIngredients
+  const recipeId = props.recipeId
 
   let [products, setProducts] = useState([])
   let [selectedIngredient, setSelectedIngredient] = useState()
+  let [mappings, setMappings] = useState({})
 
   useEffect(() => {
     if (ingredients.length > 0) {
       setSelectedIngredient(ingredients[0])
     }
-  }, [ingredients])
+    if (recipeId) {
+      server
+        .get(`products/mappings?uid=${recipeId}`)
+        .then(function(mappingsResponse) {
+          setMappings(mappingsResponse.data)
+        })
+    }
+  }, [ingredients, recipeId])
 
   async function search(item, customSearch) {
     const query = customSearch ? customSearch : item.ingredient
@@ -73,18 +82,21 @@ export default function Recipe(props) {
               margin: 5,
               textTransform: "none"
             }}
-            onClick={e => translate(props.recipeId)}
+            onClick={e => translate(recipeId)}
           >
             Translate
           </Button>
         </div>
       </Grid>
+
       {selectedIngredient ? (
         <ProductSearch
           products={products}
           selectedIngredient={selectedIngredient}
           search={search}
-          recipeId={props.recipeId}
+          recipeId={recipeId}
+          mappings={mappings}
+          setMappings={setMappings}
         />
       ) : null}
     </Fragment>
