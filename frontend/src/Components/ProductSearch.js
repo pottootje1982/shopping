@@ -15,7 +15,7 @@ export default function ProductSearch(props) {
   const setMappings = props.setMappings
   const mappings = props.mappings
   let [productId, setProductId] = useState()
-  productId = mappings[bareIngredient].id
+  productId = (mappings[bareIngredient] || {}).id
 
   useEffect(() => {
     doSearch()
