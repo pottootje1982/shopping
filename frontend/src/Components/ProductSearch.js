@@ -12,8 +12,10 @@ export default function ProductSearch(props) {
   const selectedIngredient = props.selectedIngredient
   const bareIngredient = (selectedIngredient.ingredient || "").toLowerCase()
   const textFieldRef = useRef(null)
-  const mappings = props.mappings
   const setMappings = props.setMappings
+  const mappings = props.mappings
+  let [productId, setProductId] = useState()
+  productId = mappings[bareIngredient].id
 
   useEffect(() => {
     doSearch()
@@ -26,7 +28,9 @@ export default function ProductSearch(props) {
 
   function selectProduct(productId) {
     mappings[bareIngredient].id = productId
+    setProductId(productId)
     setMappings(mappings)
+    props.setMappings(mappings)
 
     server.post("products/choose", {
       ingredient: bareIngredient,
@@ -80,10 +84,7 @@ export default function ProductSearch(props) {
               onClick={() => selectProduct(item.id)}
               style={{
                 textTransform: "none",
-                border:
-                  (mappings[bareIngredient] || {}).id === item.id
-                    ? "2px solid"
-                    : ""
+                border: productId === item.id ? "2px solid" : ""
               }}
               title={item.title}
             >

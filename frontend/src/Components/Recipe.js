@@ -19,7 +19,7 @@ export default function Recipe(props) {
 
   let [products, setProducts] = useState([])
   let [selectedIngredient, setSelectedIngredient] = useState()
-  let [mappings, setMappings] = useState({})
+  let [mappings, setMappings] = useState()
 
   useEffect(() => {
     if (ingredients.length > 0) {
@@ -89,7 +89,7 @@ export default function Recipe(props) {
         </div>
       </Grid>
 
-      {selectedIngredient ? (
+      {selectedIngredient && mappings ? (
         <ProductSearch
           products={products}
           selectedIngredient={selectedIngredient}
