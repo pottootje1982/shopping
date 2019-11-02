@@ -1,5 +1,5 @@
 import server from "./server"
-import React, { useState, useEffect, useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import {
   Grid,
   GridList,
@@ -13,28 +13,24 @@ export default function ProductSearch(props) {
   const bareIngredient = (selectedIngredient.ingredient || "").toLowerCase()
   const textFieldRef = useRef(null)
   const setMappings = props.setMappings
-  const mappings = props.mappings
-  let [productId, setProductId] = useState()
-  productId = (mappings[bareIngredient] || {}).id
+  const mappings = JSON.parse(JSON.stringify(props.mappings))
 
-  useEffect(() => {
-    doSearch()
-  }, [selectedIngredient])
+  useEffect(doSearch, [selectedIngredient])
 
-  async function doSearch() {
+  function doSearch() {
     props.search(selectedIngredient)
     textFieldRef.current.value = bareIngredient
   }
 
-  function selectProduct(productId) {
-    mappings[bareIngredient].id = productId
-    setProductId(productId)
+  function selectProduct(completeProduct) {
+    const { id, title, price } = completeProduct
+    const product = { id, title, price }
+    mappings[bareIngredient] = product
     setMappings(mappings)
-    props.setMappings(mappings)
 
     server.post("products/choose", {
       ingredient: bareIngredient,
-      product: productId
+      product: product
     })
   }
 
@@ -81,10 +77,11 @@ export default function ProductSearch(props) {
           <GridListTile key={item.id} xs={4}>
             <Button
               color="primary"
-              onClick={() => selectProduct(item.id)}
+              onClick={() => selectProduct(item)}
               style={{
                 textTransform: "none",
-                border: productId === item.id ? "2px solid" : ""
+                border:
+                  mappings[bareIngredient].id === item.id ? "2px solid" : ""
               }}
               title={item.title}
             >
