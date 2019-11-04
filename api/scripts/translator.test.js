@@ -25,4 +25,17 @@ describe("translates", () => {
       new TypeError("this.service.translate is not a function")
     )
   })
+
+  class TranslatorServiceStub {
+    translate(items) {
+      return [["baby nieuwe aardappelen"]]
+    }
+  }
+
+  it("translates with translator service", async () => {
+    const translator = new Translator(db, new TranslatorServiceStub())
+    expect(await translator.translate(["baby new potatoes"])).toEqual([
+      "baby nieuwe aardappelen"
+    ])
+  })
 })

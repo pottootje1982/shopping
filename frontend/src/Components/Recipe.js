@@ -82,7 +82,7 @@ export default function Recipe(props) {
                           variant="subtitle2"
                           style={{ color: green[500], fontSize: 9 }}
                         >
-                          {productInfo[i].title}
+                          {(productInfo[i] || {}).title}
                         </Typography>
                       }
                     >

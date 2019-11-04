@@ -17,7 +17,7 @@ class Translator {
     target = target || "nl"
 
     if (!success) {
-      translations = await this.service.translate(untranslated, target)
+      ;[translations] = await this.service.translate(untranslated, target)
       this.cache.storeTranslations(untranslated, translations)
     }
 
