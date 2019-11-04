@@ -6601,6 +6601,51 @@
           "unitSize": "150 g"
         }
       }
+    },
+    {
+      "ingredient": "koriander poeder",
+      "product": {
+        "id": 415009,
+        "title": "Verstegen Strooier koriander gemalen",
+        "price": {
+          "unitInfo": {
+            "price": 69.39,
+            "description": "KG"
+          },
+          "now": 2.29,
+          "unitSize": "33 g"
+        }
+      }
+    },
+    {
+      "ingredient": "gesneden tomaten",
+      "product": {
+        "id": 395307,
+        "title": "AH Biologisch Tomatenblokjes",
+        "price": {
+          "unitInfo": {
+            "price": 3.13,
+            "description": "KG"
+          },
+          "now": 1.25,
+          "unitSize": "400 g"
+        }
+      }
+    },
+    {
+      "ingredient": "lasagne",
+      "product": {
+        "id": 210489,
+        "title": "De Cecco Lasagne all'uovo n° 112",
+        "price": {
+          "unitInfo": {
+            "price": 7.18,
+            "description": "KG"
+          },
+          "now": 3.59,
+          "unitSize": "500 g"
+        }
+      }
     }
   ]
 }

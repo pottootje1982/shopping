@@ -81,7 +81,9 @@ export default function ProductSearch(props) {
               style={{
                 textTransform: "none",
                 border:
-                  mappings[bareIngredient].id === item.id ? "2px solid" : ""
+                  (mappings[bareIngredient] || {}).id === item.id
+                    ? "2px solid"
+                    : ""
               }}
               title={item.title}
             >

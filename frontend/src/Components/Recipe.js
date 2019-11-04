@@ -36,11 +36,11 @@ export default function Recipe(props) {
 
   async function search(item, customSearch) {
     const query = customSearch ? customSearch : item.ingredient
-    if (item) {
-      setSelectedIngredient(item)
-    }
-    const searchResponse = await server.get(`products?query=${query}`)
-    setProducts(searchResponse.data)
+    const searchResponse = await server.get(
+      `products?query=${query}&full=${selectedIngredient.ingredient}`
+    )
+    let products = searchResponse.data
+    setProducts(products)
   }
 
   async function translate(uid) {
@@ -67,7 +67,7 @@ export default function Recipe(props) {
                     divider={true}
                     button
                     key={i}
-                    onClick={e => search(item)}
+                    onClick={e => setSelectedIngredient(item)}
                   >
                     <ListItemText key={i}>{item.full}</ListItemText>
                   </ListItem>

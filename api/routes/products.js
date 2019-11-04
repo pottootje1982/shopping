@@ -5,17 +5,14 @@ const { translationsDb } = require("../scripts/translations-db")
 const IngredientProductDb = require("../scripts/ingredient-product-db")
 const AhApi = require("../scripts/ah-api")
 const { ahUser, ahPass } = require("../config")
-const request = require("request-promise")
 
 const recipeDb = new RecipeDb(translationsDb)
 const mapping = new IngredientProductDb("data/db.json")
+const api = new AhApi(ahUser, ahPass)
 
 router.get("/", async function(req, res) {
-  const response = await request.get(
-    `https://www.ah.nl/zoeken/api/products/search?query=${req.query.query}`
-  )
-  const cards = JSON.parse(response).cards
-  res.send(cards.map(card => card.products[0]))
+  const products = await api.search(req.query.query, req.query.full)
+  res.send(products)
 })
 
 router.post("/choose", async function(req, res) {
@@ -30,7 +27,6 @@ router.get("/mappings", async function(req, res) {
 })
 
 router.post("/order", async function(req, res) {
-  const api = new AhApi(ahUser, ahPass)
   api.login()
   req.body.recipes.forEach(async function(id) {
     const recipe = recipeDb.getRecipe(id)

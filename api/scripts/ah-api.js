@@ -3,6 +3,8 @@ request = request.defaults({
   jar: true
 })
 var FileCookieStore = require("tough-cookie-filestore")
+const IngredientProductDb = require("../scripts/ingredient-product-db")
+const ingToProduct = new IngredientProductDb("data/db.json")
 const path = require("path")
 
 class AhApi {
@@ -20,6 +22,26 @@ class AhApi {
       "https://www.ah.nl/mijn/api/login",
       this.options(this.body)
     )
+  }
+
+  async search(query, full) {
+    const response = await request.get(
+      `https://www.ah.nl/zoeken/api/products/search?query=${query}`
+    )
+    const cards = JSON.parse(response).cards
+    let products = cards.map(card => card.products[0])
+    if (!full) {
+      return products
+    }
+    const mapping = ingToProduct.getMapping(full)
+    if (mapping) {
+      const selectedProduct = products.find(p => p.id === mapping.product.id)
+      const withoutSelected = products.filter(p => p.id !== mapping.product.id)
+      products = selectedProduct
+        ? [selectedProduct, ...withoutSelected]
+        : products
+    }
+    return products
   }
 
   async mijnLijst() {
