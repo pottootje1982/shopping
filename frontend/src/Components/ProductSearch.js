@@ -92,7 +92,9 @@ export default function ProductSearch(props) {
                   src={item.images.length > 0 ? item.images[0].url : undefined}
                   alt={item.title}
                 />
-                <div>{item.title}</div>
+                <div>
+                  {item.title} €{item.price.now.toFixed(2)}
+                </div>
               </div>
             </Button>
           </GridListTile>
