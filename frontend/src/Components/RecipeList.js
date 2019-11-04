@@ -43,6 +43,7 @@ export default function RecipeList(props) {
     selectedRecipe = recipes.find(r => r.uid === id)
     ingredients = selectedRecipe.ingredients
     setIngredients(ingredients)
+    props.setRecipeTitle(selectedRecipe.name)
   }
 
   function toggleRecipe(uid) {
