@@ -6646,6 +6646,109 @@
           "unitSize": "500 g"
         }
       }
+    },
+    {
+      "ingredient": "wortelen",
+      "product": {
+        "id": 4076,
+        "title": "AH Winterpeen verpakt voordeel",
+        "price": {
+          "unitInfo": {
+            "price": 0.69,
+            "description": "KG"
+          },
+          "now": 0.69,
+          "unitSize": "1 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "plantaardige olie",
+      "product": {
+        "id": 47173,
+        "title": "AH BASIC Zonnebloemolie",
+        "price": {
+          "unitInfo": {
+            "price": 1.19,
+            "description": "LT"
+          },
+          "now": 1.19,
+          "unitSize": "1 l"
+        }
+      }
+    },
+    {
+      "ingredient": "grote ui",
+      "product": {
+        "id": 4083,
+        "title": "AH Middelgrote uien",
+        "price": {
+          "unitInfo": {
+            "price": 1.09,
+            "description": "KG"
+          },
+          "now": 1.09,
+          "unitSize": "1 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "madras curry pasta",
+      "product": {
+        "id": 203816,
+        "title": "Patak's Kruidenpasta madras",
+        "price": {
+          "unitInfo": {
+            "price": 12.06,
+            "description": "KG"
+          },
+          "theme": "ah",
+          "now": 1.99,
+          "unitSize": "165 g"
+        }
+      }
+    },
+    {
+      "ingredient": "groentebouillon",
+      "product": {
+        "id": 388183,
+        "title": "AH Groentebouillon",
+        "price": {
+          "unitInfo": {
+            "price": 11.2,
+            "description": "KG"
+          },
+          "now": 1.12,
+          "unitSize": "100 g"
+        }
+      }
+    },
+    {
+      "ingredient": "duurzame witte visfilets",
+      "product": {
+        "id": 155601,
+        "title": "AH Schelvisfilet",
+        "price": {
+          "unitInfo": {
+            "price": 20.49,
+            "description": "KG"
+          },
+          "now": 5.74,
+          "unitSize": "ca. 280 g"
+        }
+      }
+    },
+    {
+      "ingredient": "rijst of naanbrood",
+      "product": {
+        "id": 450187,
+        "title": "Patak's Naan garlic & coriander",
+        "price": {
+          "theme": "ah",
+          "now": 1.99,
+          "unitSize": "240 g"
+        }
+      }
     }
   ]
 }

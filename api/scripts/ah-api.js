@@ -35,8 +35,12 @@ class AhApi {
     }
     const mapping = ingToProduct.getMapping(full)
     if (mapping) {
-      const selectedProduct = products.find(p => p.id === mapping.product.id)
-      const withoutSelected = products.filter(p => p.id !== mapping.product.id)
+      const id = mapping.product.id
+      let selectedProduct = products.find(p => p.id === id)
+      const withoutSelected = products.filter(p => p.id !== id)
+      if (!selectedProduct) {
+        selectedProduct = await this.getProduct(id)
+      }
       products = selectedProduct
         ? [selectedProduct, ...withoutSelected]
         : products
@@ -57,7 +61,6 @@ class AhApi {
   }
 
   async getProduct(id) {
-    console.log(`https://www.ah.nl/zoeken/api/products/product?webshopId=${id}`)
     const resp = await request.get(
       `https://www.ah.nl/zoeken/api/products/product?webshopId=${id}`
     )

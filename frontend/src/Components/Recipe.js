@@ -5,10 +5,12 @@ import {
   Paper,
   List,
   ListItem,
-  ListItemText
+  ListItemText,
+  Typography
 } from "@material-ui/core"
 import ProductSearch from "./ProductSearch"
 import blue from "@material-ui/core/colors/blue"
+import green from "@material-ui/core/colors/green"
 import server from "./server"
 
 export default function Recipe(props) {
@@ -20,6 +22,10 @@ export default function Recipe(props) {
   let [products, setProducts] = useState([])
   let [selectedIngredient, setSelectedIngredient] = useState()
   let [mappings, setMappings] = useState({})
+
+  const productInfo = ingredients.map(
+    i => mappings[i.ingredient.toLowerCase()] || {}
+  )
 
   useEffect(() => {
     if (ingredients.length > 0) {
@@ -69,7 +75,19 @@ export default function Recipe(props) {
                     key={i}
                     onClick={e => setSelectedIngredient(item)}
                   >
-                    <ListItemText key={i}>{item.full}</ListItemText>
+                    <ListItemText
+                      key={i}
+                      secondary={
+                        <Typography
+                          variant="subtitle2"
+                          style={{ color: green[500], fontSize: 9 }}
+                        >
+                          {productInfo[i].title}
+                        </Typography>
+                      }
+                    >
+                      {item.full}
+                    </ListItemText>
                   </ListItem>
                 ))}
               </List>
