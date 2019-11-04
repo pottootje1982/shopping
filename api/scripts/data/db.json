@@ -6753,6 +6753,36 @@
           "unitSize": "240 g"
         }
       }
+    },
+    {
+      "ingredient": "tonijn",
+      "product": {
+        "id": 420788,
+        "title": "Statesman Tonijn stukken in zon olie",
+        "price": {
+          "unitInfo": {
+            "price": 7.5,
+            "description": "KG"
+          },
+          "now": 1.2,
+          "unitSize": "160 g"
+        }
+      }
+    },
+    {
+      "ingredient": "asperge",
+      "product": {
+        "id": 215707,
+        "title": "AH Groene asperges",
+        "price": {
+          "unitInfo": {
+            "price": 10.54,
+            "description": "KG"
+          },
+          "now": 3.69,
+          "unitSize": "350 g"
+        }
+      }
     }
   ]
 }

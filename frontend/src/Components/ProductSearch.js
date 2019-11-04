@@ -13,7 +13,7 @@ export default function ProductSearch(props) {
   const bareIngredient = (selectedIngredient.ingredient || "").toLowerCase()
   const textFieldRef = useRef(null)
   const setMappings = props.setMappings
-  const mappings = JSON.parse(JSON.stringify(props.mappings))
+  const mappings = props.mappings
 
   useEffect(doSearch, [selectedIngredient])
 
@@ -25,8 +25,7 @@ export default function ProductSearch(props) {
   function selectProduct(completeProduct) {
     const { id, title, price } = completeProduct
     const product = { id, title, price }
-    mappings[bareIngredient] = product
-    setMappings(mappings)
+    setMappings({ ...mappings, [bareIngredient]: product })
 
     server.post("products/choose", {
       ingredient: bareIngredient,

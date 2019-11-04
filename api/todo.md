@@ -1,4 +1,4 @@
 - don't store untranslated words
 - translate and then immediately choosing products doesn't work (server-side recipe doesn't get updated)
-- always show selected product first (we could have done a custom search and select a product there)
 - show recipe directions
+-
