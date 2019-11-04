@@ -77,7 +77,7 @@ describe("storeMapping()", () => {
   it.skip("hydrates ingredient product maps", async () => {
     const AhApi = require("./ah-api")
     const ahApi = new AhApi(ahUser, ahPass)
-    const db = new IngredientProductDb("data/db.json")
+    const db = new IngredientProductDb("data/ing-to-product.json")
     const mappings = db.getAllMappings()
     for (const mapping of mappings) {
       if (typeof mapping.product === "number") {

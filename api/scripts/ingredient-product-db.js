@@ -75,4 +75,5 @@ class IngredientProductDb {
   }
 }
 
-module.exports = IngredientProductDb
+const ingToProduct = new IngredientProductDb("data/ing-to-product.json")
+module.exports = { IngredientProductDb, ingToProduct }

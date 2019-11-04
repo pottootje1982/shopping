@@ -3,8 +3,7 @@ request = request.defaults({
   jar: true
 })
 var FileCookieStore = require("tough-cookie-filestore")
-const IngredientProductDb = require("../scripts/ingredient-product-db")
-const ingToProduct = new IngredientProductDb("data/db.json")
+const { ingToProduct } = require("../scripts/ingredient-product-db")
 const path = require("path")
 
 class AhApi {

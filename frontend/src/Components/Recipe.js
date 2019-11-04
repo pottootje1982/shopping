@@ -52,8 +52,9 @@ export default function Recipe(props) {
   async function translate(uid) {
     const recipe = recipes.find(r => r.uid === uid)
     const res = await server.post("recipes/translate", { recipeId: uid })
-    setIngredients(res.data.ingredients)
-    recipe.ingredients = ingredients
+    const newIngredients = res.data.ingredients
+    setIngredients(newIngredients)
+    recipe.ingredients = newIngredients
   }
 
   return (

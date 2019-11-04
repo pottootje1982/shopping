@@ -1,0 +1,616 @@
+{
+  "mapping": [
+    {
+      "ingredient": "prei",
+      "product": {
+        "id": 171425,
+        "title": "AH Prei",
+        "price": {
+          "now": 0.5,
+          "unitSize": "per stuk"
+        }
+      }
+    },
+    {
+      "ingredient": "dille",
+      "product": {
+        "id": 238966,
+        "title": "AH Dille",
+        "price": {
+          "unitInfo": {
+            "price": 92.67,
+            "description": "KG"
+          },
+          "now": 1.39,
+          "unitSize": "15 g"
+        }
+      }
+    },
+    {
+      "ingredient": "tomaten",
+      "product": {
+        "id": 395307,
+        "title": "AH Biologisch Tomatenblokjes",
+        "price": {
+          "unitInfo": {
+            "price": 3.13,
+            "description": "KG"
+          },
+          "now": 1.25,
+          "unitSize": "400 g"
+        }
+      }
+    },
+    {
+      "ingredient": "zalm",
+      "product": {
+        "id": 132045,
+        "title": "AH Zalmfilet op huid",
+        "price": {
+          "unitInfo": {
+            "price": 20.99,
+            "description": "KG"
+          },
+          "now": 6.51,
+          "unitSize": "ca. 310 g"
+        }
+      }
+    },
+    {
+      "ingredient": "aardappels",
+      "product": {
+        "id": 111388,
+        "title": "AH Kilo'tje iets kruimige aardappelen",
+        "price": {
+          "unitInfo": {
+            "price": 1.99,
+            "description": "KG"
+          },
+          "theme": "ah",
+          "now": 1.99,
+          "unitSize": "1 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "koriander",
+      "product": {
+        "id": 415009,
+        "title": "Verstegen Strooier koriander gemalen",
+        "price": {
+          "unitInfo": {
+            "price": 69.39,
+            "description": "KG"
+          },
+          "now": 2.29,
+          "unitSize": "33 g"
+        }
+      }
+    },
+    {
+      "ingredient": "wijn",
+      "product": {
+        "id": 30539,
+        "title": "Undurraga Sauvignon Blanc",
+        "price": {
+          "unitInfo": {
+            "price": 6.65,
+            "description": "LT"
+          },
+          "theme": "ah",
+          "now": 4.99,
+          "unitSize": "0,75 l"
+        }
+      }
+    },
+    {
+      "ingredient": "honing",
+      "product": {
+        "id": 410194,
+        "title": "Bloemenhoning vloeibaar",
+        "price": {
+          "unitInfo": {
+            "price": 5.11,
+            "description": "KG"
+          },
+          "now": 1.79,
+          "unitSize": "350 g"
+        }
+      }
+    },
+    {
+      "ingredient": "knoflook",
+      "product": {
+        "id": 185774,
+        "title": "AH Biologisch Knoflook",
+        "price": {
+          "unitInfo": {
+            "price": 8.9,
+            "description": "KG"
+          },
+          "now": 0.89,
+          "unitSize": "100 g"
+        }
+      }
+    },
+    {
+      "ingredient": "olijfolie",
+      "product": {
+        "id": 58055,
+        "title": "AH Olijfolie traditioneel",
+        "price": {
+          "unitInfo": {
+            "price": 6.53,
+            "description": "LT"
+          },
+          "now": 6.53,
+          "unitSize": "1 l"
+        }
+      }
+    },
+    {
+      "ingredient": "tomatenpuree",
+      "product": {
+        "id": 2226,
+        "title": "AH Tomatenpuree",
+        "price": {
+          "unitInfo": {
+            "price": 4.57,
+            "description": "KG"
+          },
+          "now": 0.32,
+          "unitSize": "70 g"
+        }
+      }
+    },
+    {
+      "ingredient": "aubergine",
+      "product": {
+        "id": 4180,
+        "title": "AH Aubergine",
+        "price": {
+          "unitInfo": {
+            "price": 2.73,
+            "description": "KG"
+          },
+          "now": 0.75,
+          "unitSize": "per stuk"
+        }
+      }
+    },
+    {
+      "ingredient": "parmezaan",
+      "product": {
+        "id": 238913,
+        "title": "AH Biologisch Parmigiano Reggiano 32+ stuk",
+        "price": {
+          "unitInfo": {
+            "price": 39.07,
+            "description": "KG"
+          },
+          "now": 5.7,
+          "unitSize": "ca. 145 g"
+        }
+      }
+    },
+    {
+      "ingredient": "basilicum",
+      "product": {
+        "id": 41172,
+        "title": "AH Verse basilicum",
+        "price": {
+          "unitInfo": {
+            "price": 92.67,
+            "description": "KG"
+          },
+          "now": 1.39,
+          "unitSize": "15 g"
+        }
+      }
+    },
+    {
+      "ingredient": "ei",
+      "product": {
+        "id": 127231,
+        "title": "AH Biologisch Eieren",
+        "price": {
+          "now": 2.25,
+          "unitSize": "6 stuks"
+        }
+      }
+    },
+    {
+      "ingredient": "lasagnebladen",
+      "product": {
+        "id": 210489,
+        "title": "De Cecco Lasagne all'uovo n° 112",
+        "price": {
+          "unitInfo": {
+            "price": 7.18,
+            "description": "KG"
+          },
+          "now": 3.59,
+          "unitSize": "500 g"
+        }
+      }
+    },
+    {
+      "ingredient": "ricotta",
+      "product": {
+        "id": 400469,
+        "title": "AH Biologisch Ricotta",
+        "price": {
+          "unitInfo": {
+            "price": 9.96,
+            "description": "KG"
+          },
+          "now": 2.49,
+          "unitSize": "250 g"
+        }
+      }
+    },
+    {
+      "ingredient": "pastinaak",
+      "product": {
+        "id": 203003,
+        "title": "AH Biologisch Pastinaak",
+        "price": {
+          "unitInfo": {
+            "price": 3.48,
+            "description": "KG"
+          },
+          "now": 1.39,
+          "unitSize": "400 g"
+        }
+      }
+    },
+    {
+      "ingredient": "winterwortel",
+      "product": {
+        "id": 99036,
+        "title": "AH Winterpeen",
+        "price": {
+          "unitInfo": {
+            "price": 2.45,
+            "description": "KG"
+          },
+          "now": 0.49,
+          "unitSize": "per stuk"
+        }
+      }
+    },
+    {
+      "ingredient": "kruimige aardappels",
+      "product": {
+        "id": 111388,
+        "title": "AH Kilo'tje iets kruimige aardappelen",
+        "price": {
+          "unitInfo": {
+            "price": 1.99,
+            "description": "KG"
+          },
+          "theme": "ah",
+          "now": 1.99,
+          "unitSize": "1 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "braadworsten",
+      "product": {
+        "id": 169421,
+        "title": "AH Varkensbraadworst",
+        "price": {
+          "now": 2.49,
+          "unitSize": "4 stuks"
+        }
+      }
+    },
+    {
+      "ingredient": "melk",
+      "product": {
+        "id": 382907,
+        "title": "AH Biologisch Halfvolle melk",
+        "price": {
+          "unitInfo": {
+            "price": 0.99,
+            "description": "LT"
+          },
+          "now": 1.49,
+          "unitSize": "1,5 l"
+        }
+      }
+    },
+    {
+      "ingredient": "roomboter 250",
+      "product": {
+        "id": 58082,
+        "title": "AH Biologisch Roomboter ongezouten",
+        "price": {
+          "unitInfo": {
+            "price": 9.72,
+            "description": "KG"
+          },
+          "theme": "ah",
+          "now": 2.43,
+          "unitSize": "250 g"
+        }
+      }
+    },
+    {
+      "ingredient": "tilapiafilets",
+      "product": {
+        "id": 121443,
+        "title": "AH Tilapiafilet",
+        "price": {
+          "unitInfo": {
+            "price": 18.5,
+            "description": "KG"
+          },
+          "now": 3.33,
+          "unitSize": "ca. 180 g"
+        }
+      }
+    },
+    {
+      "ingredient": "maïzena",
+      "product": {
+        "id": 233263,
+        "title": "Duryea Bindmiddel maizena",
+        "price": {
+          "unitInfo": {
+            "price": 2.36,
+            "description": "KG"
+          },
+          "now": 0.59,
+          "unitSize": "250 g"
+        }
+      }
+    },
+    {
+      "ingredient": "zonnebloemolie",
+      "product": {
+        "id": 47173,
+        "title": "AH BASIC Zonnebloemolie",
+        "price": {
+          "unitInfo": {
+            "price": 1.19,
+            "description": "LT"
+          },
+          "now": 1.19,
+          "unitSize": "1 l"
+        }
+      }
+    },
+    {
+      "ingredient": "lente-uitjes",
+      "product": {
+        "id": 46236,
+        "title": "AH Bosuitjes",
+        "price": {
+          "now": 0.99,
+          "unitSize": "3 stuks"
+        }
+      }
+    },
+    {
+      "ingredient": "verse gember",
+      "product": {
+        "id": 104818,
+        "title": "AH Biologisch Gember (verse gemberwortel)",
+        "price": {
+          "unitInfo": {
+            "price": 13.27,
+            "description": "KG"
+          },
+          "now": 1.99,
+          "unitSize": "150 g"
+        }
+      }
+    },
+    {
+      "ingredient": "koriander poeder",
+      "product": {
+        "id": 415009,
+        "title": "Verstegen Strooier koriander gemalen",
+        "price": {
+          "unitInfo": {
+            "price": 69.39,
+            "description": "KG"
+          },
+          "now": 2.29,
+          "unitSize": "33 g"
+        }
+      }
+    },
+    {
+      "ingredient": "gesneden tomaten",
+      "product": {
+        "id": 395307,
+        "title": "AH Biologisch Tomatenblokjes",
+        "price": {
+          "unitInfo": {
+            "price": 3.13,
+            "description": "KG"
+          },
+          "now": 1.25,
+          "unitSize": "400 g"
+        }
+      }
+    },
+    {
+      "ingredient": "lasagne",
+      "product": {
+        "id": 210489,
+        "title": "De Cecco Lasagne all'uovo n° 112",
+        "price": {
+          "unitInfo": {
+            "price": 7.18,
+            "description": "KG"
+          },
+          "now": 3.59,
+          "unitSize": "500 g"
+        }
+      }
+    },
+    {
+      "ingredient": "wortelen",
+      "product": {
+        "id": 4076,
+        "title": "AH Winterpeen verpakt voordeel",
+        "price": {
+          "unitInfo": {
+            "price": 0.69,
+            "description": "KG"
+          },
+          "now": 0.69,
+          "unitSize": "1 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "plantaardige olie",
+      "product": {
+        "id": 47173,
+        "title": "AH BASIC Zonnebloemolie",
+        "price": {
+          "unitInfo": {
+            "price": 1.19,
+            "description": "LT"
+          },
+          "now": 1.19,
+          "unitSize": "1 l"
+        }
+      }
+    },
+    {
+      "ingredient": "grote ui",
+      "product": {
+        "id": 4083,
+        "title": "AH Middelgrote uien",
+        "price": {
+          "unitInfo": {
+            "price": 1.09,
+            "description": "KG"
+          },
+          "now": 1.09,
+          "unitSize": "1 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "madras curry pasta",
+      "product": {
+        "id": 203816,
+        "title": "Patak's Kruidenpasta madras",
+        "price": {
+          "unitInfo": {
+            "price": 12.06,
+            "description": "KG"
+          },
+          "theme": "ah",
+          "now": 1.99,
+          "unitSize": "165 g"
+        }
+      }
+    },
+    {
+      "ingredient": "groentebouillon",
+      "product": {
+        "id": 388183,
+        "title": "AH Groentebouillon",
+        "price": {
+          "unitInfo": {
+            "price": 11.2,
+            "description": "KG"
+          },
+          "now": 1.12,
+          "unitSize": "100 g"
+        }
+      }
+    },
+    {
+      "ingredient": "duurzame witte visfilets",
+      "product": {
+        "id": 155601,
+        "title": "AH Schelvisfilet",
+        "price": {
+          "unitInfo": {
+            "price": 20.49,
+            "description": "KG"
+          },
+          "now": 5.74,
+          "unitSize": "ca. 280 g"
+        }
+      }
+    },
+    {
+      "ingredient": "rijst of naanbrood",
+      "product": {
+        "id": 450187,
+        "title": "Patak's Naan garlic & coriander",
+        "price": {
+          "theme": "ah",
+          "now": 1.99,
+          "unitSize": "240 g"
+        }
+      }
+    },
+    {
+      "ingredient": "tonijn",
+      "product": {
+        "id": 420788,
+        "title": "Statesman Tonijn stukken in zon olie",
+        "price": {
+          "unitInfo": {
+            "price": 7.5,
+            "description": "KG"
+          },
+          "now": 1.2,
+          "unitSize": "160 g"
+        }
+      }
+    },
+    {
+      "ingredient": "asperge",
+      "product": {
+        "id": 215707,
+        "title": "AH Groene asperges",
+        "price": {
+          "unitInfo": {
+            "price": 10.54,
+            "description": "KG"
+          },
+          "now": 3.69,
+          "unitSize": "350 g"
+        }
+      }
+    },
+    {
+      "ingredient": "baby nieuwe aardappelen",
+      "product": {
+        "id": 215683,
+        "title": "AH Krieltjes vastkokend voordeel",
+        "price": {
+          "unitInfo": {
+            "price": 2.09,
+            "description": "KG"
+          },
+          "now": 2.09,
+          "unitSize": "1 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "middelgrote eieren",
+      "product": {
+        "id": 168502,
+        "title": "AH Biologisch Eieren",
+        "price": {
+          "now": 3.69,
+          "unitSize": "10 stuks"
+        }
+      }
+    }
+  ]
+}
