@@ -78,6 +78,7 @@ export default function Recipe(props) {
                   <ListItem
                     divider={true}
                     button
+                    selected={item === selectedIngredient}
                     key={i}
                     onClick={e => setSelectedIngredient(item)}
                   >

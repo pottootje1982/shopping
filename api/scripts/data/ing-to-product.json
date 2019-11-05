@@ -772,6 +772,163 @@
           "unitSize": "750 g"
         }
       }
+    },
+    {
+      "ingredient": "eieren",
+      "product": {
+        "id": 161001,
+        "title": "Blije Kip Buitenei vrije uitloop",
+        "price": {
+          "now": 3.09,
+          "unitSize": "10 stuks"
+        }
+      }
+    },
+    {
+      "ingredient": "bloem",
+      "product": {
+        "id": 951,
+        "title": "AH Patent tarwebloem",
+        "price": {
+          "unitInfo": {
+            "price": 0.64,
+            "description": "KG"
+          },
+          "now": 0.64,
+          "unitSize": "1 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "mespunt zout",
+      "product": {
+        "id": 3372,
+        "title": "AH Keukenzout met jodium",
+        "price": {
+          "unitInfo": {
+            "price": 0.45,
+            "description": "KG"
+          },
+          "now": 0.45,
+          "unitSize": "1 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "suiker",
+      "product": {
+        "id": 101206,
+        "title": "AH Biologisch Kristalsuiker",
+        "price": {
+          "unitInfo": {
+            "price": 2.12,
+            "description": "KG"
+          },
+          "now": 1.59,
+          "unitSize": "750 g"
+        }
+      }
+    },
+    {
+      "ingredient": "bakpoeder",
+      "product": {
+        "id": 52896,
+        "title": "Dr. Oetker Backin bakpoeder",
+        "price": {
+          "unitInfo": {
+            "price": 7.63,
+            "description": "KG"
+          },
+          "now": 0.61,
+          "unitSize": "5 x 16 g"
+        }
+      }
+    },
+    {
+      "ingredient": "citroen",
+      "product": {
+        "id": 190654,
+        "title": "AH Biologisch Citroen",
+        "price": {
+          "unitInfo": {
+            "price": 5.3,
+            "description": "KG"
+          },
+          "now": 1.59,
+          "unitSize": "2 stuks"
+        }
+      }
+    },
+    {
+      "ingredient": "amandelen",
+      "product": {
+        "id": 403607,
+        "title": "AH Ongebrande amandelen",
+        "price": {
+          "unitInfo": {
+            "price": 13.98,
+            "description": "KG"
+          },
+          "now": 6.29,
+          "unitSize": "450 g"
+        }
+      }
+    },
+    {
+      "ingredient": "halfvolle melk",
+      "product": {
+        "id": 61007,
+        "title": "AH Biologisch Halfvolle melk",
+        "price": {
+          "unitInfo": {
+            "price": 1.09,
+            "description": "LT"
+          },
+          "now": 1.09,
+          "unitSize": "1 l"
+        }
+      }
+    },
+    {
+      "ingredient": "bakpapier",
+      "product": {
+        "id": 221756,
+        "title": "Toppits Bakpapiervellen",
+        "price": {
+          "now": 2.19,
+          "unitSize": "16 stuks"
+        }
+      }
+    },
+    {
+      "ingredient": "munt",
+      "product": {
+        "id": 238969,
+        "title": "AH Munt",
+        "price": {
+          "unitInfo": {
+            "price": 72.67,
+            "description": "KG"
+          },
+          "now": 1.09,
+          "unitSize": "15 g"
+        }
+      }
+    },
+    {
+      "ingredient": "groene plantaardige medley",
+      "product": {
+        "id": 455363,
+        "title": "AH Ovengroente courgette rode paprika peen",
+        "price": {
+          "unitInfo": {
+            "price": 5.82,
+            "description": "KG"
+          },
+          "now": 3.49,
+          "unitSize": "600 g"
+        }
+      }
     }
   ]
 }

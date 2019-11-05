@@ -51,7 +51,12 @@ export default function RecipeList(props) {
         <Paper style={{ backgroundColor: blue[50] }}>
           <List dense={true} style={{ maxHeight: "80vh", overflow: "auto" }}>
             {recipes.map((item, index) => (
-              <ListItem button key={index} divider={true}>
+              <ListItem
+                button
+                key={index}
+                divider={true}
+                selected={recipeId === item.uid}
+              >
                 <ListItemIcon>
                   <Checkbox
                     edge="start"
