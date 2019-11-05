@@ -1,13 +1,23 @@
-const low = require('lowdb')
-const FileSync = require('lowdb/adapters/FileSync')
-const Memory = require('lowdb/adapters/Memory')
-const path = require('path')
+const low = require("lowdb")
+const FileSync = require("lowdb/adapters/FileSync")
+const Memory = require("lowdb/adapters/Memory")
+const path = require("path")
 
 function getTranslation(db, key) {
-  const result = db
-    .get('translations')
+  let result = db
+    .get("translations")
     .find({ original: key })
     .value()
+  if (!result) {
+    const reverse = db
+      .get("translations")
+      .find({ translation: key })
+      .value()
+    result = reverse && {
+      original: reverse.translation,
+      translation: reverse.translation
+    }
+  }
   return result || { original: key }
 }
 
@@ -22,7 +32,7 @@ class TranslationsDb {
   storeTranslations(originals, translations) {
     for (const [i, original] of originals.entries()) {
       this.db
-        .get('translations')
+        .get("translations")
         .push({ original, translation: translations[i] })
         .write()
     }
@@ -41,7 +51,7 @@ class TranslationsDb {
     return {
       success: translations.every(t => t.translation),
       translations: translations.map(t => t.translation),
-      untranslated,
+      untranslated
     }
   }
 
@@ -52,6 +62,6 @@ class TranslationsDb {
   }
 }
 
-const translationsDb = new TranslationsDb('data/translations.json')
+const translationsDb = new TranslationsDb("data/translations.json")
 
 module.exports = { TranslationsDb, translationsDb }
