@@ -92,7 +92,8 @@ export default function ProductSearch(props) {
                   alt={item.title}
                 />
                 <div>
-                  {item.title} €{item.price.now.toFixed(2)}
+                  {item.title} ({item.price.unitSize}) €
+                  {item.price.now.toFixed(2)}
                 </div>
               </div>
             </Button>

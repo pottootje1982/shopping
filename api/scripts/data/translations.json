@@ -169,6 +169,10 @@
       "translation": "munt"
     },
     {
+      "original": "baby nieuwe aardappel",
+      "translation": "baby nieuwe aardappel"
+    },
+    {
       "original": "Nieuwe aardappelen",
       "translation": "Nieuwe aardappelen"
     },
@@ -226,78 +230,14 @@
     },
     {
       "original": "wholegrain mustard",
-      "translation": "volkoren mosterd"
+      "translation": "grove mosterd"
     },
     {
       "original": "mature cheddar",
-      "translation": "volwassen cheddar"
+      "translation": "rijpe cheddar"
     },
     {
       "original": "frozen peas",
-      "translation": "bevroren erwten"
-    },
-    {
-      "original": "pastinaak",
-      "translation": "pastinaak"
-    },
-    {
-      "original": "wortel",
-      "translation": "wortelen"
-    },
-    {
-      "original": "kruimige aardappels",
-      "translation": "kruimige aardappels"
-    },
-    {
-      "original": "braadworsten",
-      "translation": "braadworsten"
-    },
-    {
-      "original": "melk",
-      "translation": "melk"
-    },
-    {
-      "original": "boter",
-      "translation": "boter"
-    },
-    {
-      "original": "zout en peper",
-      "translation": "zout en peper"
-    },
-    {
-      "original": "prei",
-      "translation": "prei"
-    },
-    {
-      "original": "stengels bleekselderij",
-      "translation": "stengels bleekselderij"
-    },
-    {
-      "original": "meelachtige aardappelen",
-      "translation": "meelachtige aardappelen"
-    },
-    {
-      "original": "0% dikke Griekse yoghurt",
-      "translation": "0% dikke Griekse yoghurt"
-    },
-    {
-      "original": "meel",
-      "translation": "een"
-    },
-    {
-      "original": "Engelse mosterd",
-      "translation": "Engelse mosterd"
-    },
-    {
-      "original": "volkoren mosterd",
-      "translation": "volkoren mosterd"
-    },
-    {
-      "original": "volwassen cheddar",
-      "translation": "volwassen cheddar"
-    },
-    {
-      "original": "bevroren erwten",
       "translation": "bevroren erwten"
     },
     {
@@ -503,6 +443,82 @@
     {
       "original": "mango chutney",
       "translation": "mangochutney"
+    },
+    {
+      "original": "gember",
+      "translation": "gember"
+    },
+    {
+      "original": "light soy sauce",
+      "translation": "lichte soja saus"
+    },
+    {
+      "original": "rice wine vinegar",
+      "translation": "rijstwijnazijn"
+    },
+    {
+      "original": "salmon fillets",
+      "translation": "zalmfilets"
+    },
+    {
+      "original": "soba noodles",
+      "translation": "soba noedels"
+    },
+    {
+      "original": "frozen soya beans",
+      "translation": "bevroren sojabonen"
+    },
+    {
+      "original": "baby corn and mange tout mix",
+      "translation": "baby mais en peultjes mix"
+    },
+    {
+      "original": "smoked streaky bacon",
+      "translation": "gerookt gestreept spek"
+    },
+    {
+      "original": "onion",
+      "translation": "ui"
+    },
+    {
+      "original": "celery",
+      "translation": "selderij"
+    },
+    {
+      "original": "medium carrot",
+      "translation": "middelgrote wortel"
+    },
+    {
+      "original": "Carrot",
+      "translation": "Wortel"
+    },
+    {
+      "original": "beef mince",
+      "translation": "gehakt"
+    },
+    {
+      "original": "clear honey",
+      "translation": "heldere honing"
+    },
+    {
+      "original": "fresh egg lasagne sheets",
+      "translation": "verse lasagnebladen"
+    },
+    {
+      "original": "crème fraîche",
+      "translation": "verse room"
+    },
+    {
+      "original": "ball mozzarella",
+      "translation": "bal mozzarella"
+    },
+    {
+      "original": "freshly grated Parmesan",
+      "translation": "vers geraspte Parmezaanse kaas"
+    },
+    {
+      "original": "basil leaves",
+      "translation": "basilicum blaadjes"
     }
   ]
 }
