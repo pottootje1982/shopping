@@ -1,11 +1,11 @@
-const low = require("lowdb")
-const FileSync = require("lowdb/adapters/FileSync")
-const { Ingredients } = require("./ingredients")
-const path = require("path")
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+const { Ingredients } = require('./ingredients')
+const path = require('path')
 
 class RecipeDb {
   constructor(translationDb, file) {
-    file = path.resolve(__dirname, file || "data/recipes.json")
+    file = path.resolve(__dirname, file || 'data/recipes.json')
     const adapter = new FileSync(file)
     this.db = low(adapter)
     this.db.defaults({ recipes: [] }).write()
@@ -14,14 +14,14 @@ class RecipeDb {
 
   storeRecipes(recipes) {
     recipes.forEach(recipe => {
-      db.get("recipes")
+      db.get('recipes')
         .push(recipe)
         .write()
     })
   }
 
   translateRecipe(recipe) {
-    if (typeof recipe.ingredients !== "object") {
+    if (typeof recipe.ingredients !== 'object') {
       recipe.ingredients = Ingredients.create(recipe.ingredients)
     }
     this.translationDb.translateRecipe(recipe.ingredients)
@@ -29,7 +29,7 @@ class RecipeDb {
   }
 
   getRecipes() {
-    const recipes = this.db.get("recipes").value()
+    const recipes = this.db.get('recipes').value()
     for (const recipe of recipes) {
       this.translateRecipe(recipe)
     }
@@ -38,7 +38,7 @@ class RecipeDb {
 
   getRecipe(uid) {
     const recipe = this.db
-      .get("recipes")
+      .get('recipes')
       .find({ uid })
       .value()
     return this.translateRecipe(recipe)

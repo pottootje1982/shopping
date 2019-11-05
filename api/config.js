@@ -5,5 +5,5 @@ module.exports = {
   paprikaPass: process.env.PAPRIKA_PASS,
   ahUser: process.env.AH_USER,
   ahPass: process.env.AH_PASS,
-  googleApiKey: process.env.GOOGLE_API_KEY
+  googleApiKey: process.env.GOOGLE_API_KEY,
 }

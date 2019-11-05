@@ -1,24 +1,24 @@
-var request = require("request-promise")
+var request = require('request-promise')
 request = request.defaults({
-  jar: true
+  jar: true,
 })
-var FileCookieStore = require("tough-cookie-filestore")
-const { ingToProduct } = require("../scripts/ingredient-product-db")
-const path = require("path")
+var FileCookieStore = require('tough-cookie-filestore')
+const { ingToProduct } = require('../scripts/ingredient-product-db')
+const path = require('path')
 
 class AhApi {
   constructor(username, password) {
     this.body = {
       username,
-      password
+      password,
     }
-    const file = path.resolve(__dirname, "cookie.json")
+    const file = path.resolve(__dirname, 'cookie.json')
     this.jar = request.jar(new FileCookieStore(file))
   }
 
   async login() {
     return await request.post(
-      "https://www.ah.nl/mijn/api/login",
+      'https://www.ah.nl/mijn/api/login',
       this.options(this.body)
     )
   }
@@ -48,12 +48,12 @@ class AhApi {
   }
 
   async mijnLijst() {
-    return await request.get("https://www.ah.nl/mijnlijst", this.options())
+    return await request.get('https://www.ah.nl/mijnlijst', this.options())
   }
 
   async getList() {
     const resp = await request.get(
-      "https://www.ah.nl/service/rest/shoppinglists/0",
+      'https://www.ah.nl/service/rest/shoppinglists/0',
       this.options()
     )
     return resp
@@ -69,7 +69,7 @@ class AhApi {
 
   async addToShoppingList(items) {
     const resp = await request.post(
-      "https://www.ah.nl/common/api/basket/v2/add",
+      'https://www.ah.nl/common/api/basket/v2/add',
       this.options(items)
     )
     return resp
@@ -77,11 +77,11 @@ class AhApi {
 
   async addRecipeToShoppingList(recipeId, name, ingredients) {
     return await request.post(
-      "https://www.ah.nl/common/api/basket/v2/add",
+      'https://www.ah.nl/common/api/basket/v2/add',
       this.options({
         recipeId,
         name,
-        ingredients
+        ingredients,
       })
     )
   }
@@ -90,7 +90,7 @@ class AhApi {
     return {
       jar: this.jar,
       body,
-      json: true
+      json: true,
     }
   }
 }

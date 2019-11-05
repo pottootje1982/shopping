@@ -1,7 +1,7 @@
-const low = require("lowdb")
-const FileSync = require("lowdb/adapters/FileSync")
-const Memory = require("lowdb/adapters/Memory")
-const path = require("path")
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+const Memory = require('lowdb/adapters/Memory')
+const path = require('path')
 
 class IngredientProductDb {
   constructor(file) {
@@ -10,28 +10,28 @@ class IngredientProductDb {
     this.db = low(adapter)
     this.db
       .defaults({
-        mapping: []
+        mapping: [],
       })
       .write()
   }
 
   storeMapping(ingredient, product) {
     ingredient = ingredient.toLowerCase()
-    const table = this.db.get("mapping")
+    const table = this.db.get('mapping')
     const mapping = table.find({
-      ingredient
+      ingredient,
     })
     if (mapping.value()) {
       mapping
         .assign({
-          product
+          product,
         })
         .write()
     } else {
       table
         .push({
           ingredient,
-          product
+          product,
         })
         .write()
     }
@@ -40,15 +40,15 @@ class IngredientProductDb {
   getMapping(ingredient) {
     ingredient = ingredient.toLowerCase()
     return this.db
-      .get("mapping")
+      .get('mapping')
       .find({
-        ingredient
+        ingredient,
       })
       .value()
   }
 
   getAllMappings() {
-    return this.db.get("mapping").value()
+    return this.db.get('mapping').value()
   }
 
   getMappings(recipe) {
@@ -60,7 +60,7 @@ class IngredientProductDb {
         const quantity = (i.unit ? 1 : i.quantity) || 1
         result[mapping.ingredient] = {
           ...product,
-          quantity
+          quantity,
         }
       }
     })
@@ -70,10 +70,10 @@ class IngredientProductDb {
   pickOrder(recipe) {
     const mappings = this.getMappings(recipe)
     return {
-      items: Object.values(mappings)
+      items: Object.values(mappings),
     }
   }
 }
 
-const ingToProduct = new IngredientProductDb("data/ing-to-product.json")
+const ingToProduct = new IngredientProductDb('data/ing-to-product.json')
 module.exports = { IngredientProductDb, ingToProduct }

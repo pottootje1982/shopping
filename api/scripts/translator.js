@@ -1,6 +1,6 @@
-const { googleApiKey } = require("../config")
-const { Translate } = require("@google-cloud/translate")
-const { translationsDb } = require("../scripts/translations-db")
+const { googleApiKey } = require('../config')
+const { Translate } = require('@google-cloud/translate')
+const { translationsDb } = require('../scripts/translations-db')
 
 class Translator {
   constructor(cache, translateService) {
@@ -13,8 +13,8 @@ class Translator {
       itemsToTranslate
     )
 
-    source = source || "en"
-    target = target || "nl"
+    source = source || 'en'
+    target = target || 'nl'
 
     if (!success) {
       ;[translations] = await this.service.translate(untranslated, target)
