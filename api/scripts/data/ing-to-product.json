@@ -929,6 +929,194 @@
           "unitSize": "600 g"
         }
       }
+    },
+    {
+      "ingredient": "mosterdzaden",
+      "product": {
+        "id": 216665,
+        "title": "Verstegen Strooier mosterdzaad",
+        "price": {
+          "unitInfo": {
+            "price": 36.18,
+            "description": "KG"
+          },
+          "now": 1.99,
+          "unitSize": "55 g"
+        }
+      }
+    },
+    {
+      "ingredient": "grote rode uien",
+      "product": {
+        "id": 199772,
+        "title": "AH Smaakmakermix",
+        "price": {
+          "unitInfo": {
+            "price": 5.53,
+            "description": "KG"
+          },
+          "now": 2.49,
+          "unitSize": "450 g"
+        }
+      }
+    },
+    {
+      "ingredient": "gember",
+      "product": {
+        "id": 104818,
+        "title": "AH Biologisch Gember (verse gemberwortel)",
+        "price": {
+          "unitInfo": {
+            "price": 13.27,
+            "description": "KG"
+          },
+          "now": 1.99,
+          "unitSize": "150 g"
+        }
+      }
+    },
+    {
+      "ingredient": "kurkuma",
+      "product": {
+        "id": 414884,
+        "title": "Verstegen Strooier kurkuma",
+        "price": {
+          "unitInfo": {
+            "price": 44.47,
+            "description": "KG"
+          },
+          "now": 2.09,
+          "unitSize": "47 g"
+        }
+      }
+    },
+    {
+      "ingredient": "chili poeder",
+      "product": {
+        "id": 216614,
+        "title": "Verstegen Strooier chili",
+        "price": {
+          "unitInfo": {
+            "price": 65.43,
+            "description": "KG"
+          },
+          "now": 2.29,
+          "unitSize": "35 g"
+        }
+      }
+    },
+    {
+      "ingredient": "basmati rijst",
+      "product": {
+        "id": 327670,
+        "title": "Fairtrade Original Basmati rijst",
+        "price": {
+          "unitInfo": {
+            "price": 4.23,
+            "description": "KG"
+          },
+          "now": 1.69,
+          "unitSize": "400 g"
+        }
+      }
+    },
+    {
+      "ingredient": "gespleten rode linzen",
+      "product": {
+        "id": 198410,
+        "title": "Valle del sole Rode split linzen",
+        "price": {
+          "unitInfo": {
+            "price": 2.5,
+            "description": "KG"
+          },
+          "now": 2.25,
+          "unitSize": "900 g"
+        }
+      }
+    },
+    {
+      "ingredient": "uien",
+      "product": {
+        "id": 4083,
+        "title": "AH Middelgrote uien",
+        "price": {
+          "unitInfo": {
+            "price": 1.09,
+            "description": "KG"
+          },
+          "now": 1.09,
+          "unitSize": "1 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "hele groene pepers",
+      "product": {
+        "id": 368706,
+        "title": "AH Paprika groen",
+        "price": {
+          "now": 0.99,
+          "unitSize": "per stuk"
+        }
+      }
+    },
+    {
+      "ingredient": "laurierblaadjes",
+      "product": {
+        "id": 197873,
+        "title": "Euroma Laurierblad vriesdroog",
+        "price": {
+          "unitInfo": {
+            "price": 250,
+            "description": "KG"
+          },
+          "now": 2.25,
+          "unitSize": "9 g"
+        }
+      }
+    },
+    {
+      "ingredient": "mangochutney",
+      "product": {
+        "id": 126390,
+        "title": "Patak's Mango chutney zoet",
+        "price": {
+          "unitInfo": {
+            "price": 4.97,
+            "description": "KG"
+          },
+          "theme": "ah",
+          "now": 1.69,
+          "unitSize": "340 g"
+        }
+      }
+    },
+    {
+      "ingredient": "broccoli",
+      "product": {
+        "id": 4177,
+        "title": "AH Broccoli",
+        "price": {
+          "unitInfo": {
+            "price": 2.18,
+            "description": "KG"
+          },
+          "now": 1.09,
+          "unitSize": "500 g"
+        }
+      }
+    },
+    {
+      "ingredient": "stengels bleekselderij",
+      "product": {
+        "id": 4178,
+        "title": "AH Bleekselderij",
+        "price": {
+          "now": 0.95,
+          "unitSize": "per stuk"
+        }
+      }
     }
   ]
 }

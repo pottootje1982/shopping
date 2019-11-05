@@ -56,6 +56,7 @@ export default function RecipeList(props) {
                 key={index}
                 divider={true}
                 selected={recipeId === item.uid}
+                onClick={e => selectRecipe(e, item.uid)}
               >
                 <ListItemIcon>
                   <Checkbox
@@ -65,10 +66,7 @@ export default function RecipeList(props) {
                     disableRipple
                   />
                 </ListItemIcon>
-                <ListItemText
-                  primary={item.name}
-                  onClick={e => selectRecipe(e, item.uid)}
-                />
+                <ListItemText primary={item.name} />
               </ListItem>
             ))}
           </List>

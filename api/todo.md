@@ -1,4 +1,4 @@
 - don't store untranslated words
-- translate and then immediately choosing products doesn't work (server-side recipe doesn't get updated)
 - show recipe directions
--
+- don't allow translating already translated ingredients
+- add translations for quantities

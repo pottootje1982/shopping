@@ -73,7 +73,7 @@ export default function Recipe(props) {
         >
           <Grid item>
             <Paper style={{ backgroundColor: blue[50] }}>
-              <List dense>
+              <List dense style={{ maxHeight: "75vh", overflow: "auto" }}>
                 {(ingredients || []).map((item, i) => (
                   <ListItem
                     divider={true}
@@ -89,7 +89,7 @@ export default function Recipe(props) {
                           variant="subtitle2"
                           style={{ color: green[500], fontSize: 9 }}
                         >
-                          {(productInfo[i] || {}).title}
+                          {productInfo[i].quantity} {productInfo[i].title}
                         </Typography>
                       }
                     >
