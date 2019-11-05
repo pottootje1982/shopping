@@ -21,8 +21,9 @@ class RecipeDb {
   }
 
   translateRecipe(recipe) {
-    if (typeof recipe.ingredients === "object") return recipe
-    recipe.ingredients = Ingredients.create(recipe.ingredients)
+    if (typeof recipe.ingredients !== "object") {
+      recipe.ingredients = Ingredients.create(recipe.ingredients)
+    }
     this.translationDb.translateRecipe(recipe.ingredients)
     return recipe
   }

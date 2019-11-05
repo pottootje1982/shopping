@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import server from "./server"
 import {
   Grid,
@@ -12,37 +12,29 @@ import {
 import blue from "@material-ui/core/colors/blue"
 import Recipe from "./Recipe"
 
-let firstRun = true
-
 export default function RecipeList(props) {
   let [recipes, setRecipes] = useState([])
   const [selectedRecipes, setSelectedRecipes] = useState({})
-  let [ingredients, setIngredients] = useState([])
-  let selectedRecipe = {}
   let [recipeId, setRecipeId] = useState()
   props.setSelectedRecipes(selectedRecipes)
 
-  async function selectedFirstRecipe() {
-    const result = await server.get("recipes")
-    recipes = result.data
-    setRecipes(recipes)
-    if (recipes.length > 0) {
-      const recipe = recipes[0]
-      selectRecipe(undefined, recipe.uid)
-    }
+  function selectedFirstRecipe() {
+    server.get("recipes").then(function(result) {
+      recipes = result.data
+      setRecipes(recipes)
+      if (recipes.length > 0) {
+        const recipe = recipes[0]
+        selectRecipe(undefined, recipe.uid)
+      }
+    })
   }
 
-  if (firstRun) {
-    selectedFirstRecipe()
-    firstRun = false
-  }
+  useEffect(selectedFirstRecipe, [])
 
   function selectRecipe(_button, id) {
     recipeId = id
     setRecipeId(id)
-    selectedRecipe = recipes.find(r => r.uid === id)
-    ingredients = selectedRecipe.ingredients
-    setIngredients(ingredients)
+    const selectedRecipe = recipes.find(r => r.uid === id)
     props.setRecipeTitle(selectedRecipe.name)
   }
 
@@ -77,14 +69,7 @@ export default function RecipeList(props) {
           </List>
         </Paper>
       </Grid>
-      {ingredients ? (
-        <Recipe
-          recipeId={recipeId}
-          ingredients={ingredients}
-          recipes={recipes}
-          setIngredients={setIngredients}
-        />
-      ) : null}
+      {recipeId ? <Recipe recipeId={recipeId} recipes={recipes} /> : null}
     </Grid>
   )
 }

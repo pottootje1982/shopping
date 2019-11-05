@@ -611,6 +611,167 @@
           "unitSize": "10 stuks"
         }
       }
+    },
+    {
+      "ingredient": "baby nieuwe aardappel",
+      "product": {
+        "id": 198690,
+        "title": "AH Krieltjes",
+        "price": {
+          "unitInfo": {
+            "price": 1.58,
+            "description": "KG"
+          },
+          "now": 0.95,
+          "unitSize": "600 g"
+        }
+      }
+    },
+    {
+      "ingredient": "nieuwe aardappelen",
+      "product": {
+        "id": 111388,
+        "title": "AH Kilo'tje iets kruimige aardappelen",
+        "price": {
+          "unitInfo": {
+            "price": 1.99,
+            "description": "KG"
+          },
+          "now": 1.99,
+          "unitSize": "1 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "forelfilets",
+      "product": {
+        "id": 170806,
+        "title": "AH Gerookte forelfilet",
+        "price": {
+          "unitInfo": {
+            "price": 16.4,
+            "description": "KG"
+          },
+          "now": 2.05,
+          "unitSize": "125 g"
+        }
+      }
+    },
+    {
+      "ingredient": "kleine zwarte olijven",
+      "product": {
+        "id": 238642,
+        "title": "AH Biologisch Griekse kalamon olijven",
+        "price": {
+          "unitInfo": {
+            "price": 25,
+            "description": "KG"
+          },
+          "now": 2.5,
+          "unitSize": "100 g"
+        }
+      }
+    },
+    {
+      "ingredient": "romeinse sla",
+      "product": {
+        "id": 193245,
+        "title": "AH Romaine sla",
+        "price": {
+          "unitInfo": {
+            "price": 8.45,
+            "description": "KG"
+          },
+          "now": 1.69,
+          "unitSize": "200 g"
+        }
+      }
+    },
+    {
+      "ingredient": "knapperig brood",
+      "product": {
+        "id": 112339,
+        "title": "AH Tijger bruin heel",
+        "price": {
+          "now": 1.09,
+          "unitSize": "per stuk"
+        }
+      }
+    },
+    {
+      "ingredient": "sjalot",
+      "product": {
+        "id": 160653,
+        "title": "AH Sjalotten",
+        "price": {
+          "unitInfo": {
+            "price": 3.13,
+            "description": "KG"
+          },
+          "now": 1.25,
+          "unitSize": "400 g"
+        }
+      }
+    },
+    {
+      "ingredient": "engels mosterdpoeder",
+      "product": {
+        "id": 375991,
+        "title": "Colman's Mustard double superfine mustard powder",
+        "price": {
+          "unitInfo": {
+            "price": 31.77,
+            "description": "KG"
+          },
+          "now": 3.59,
+          "unitSize": "113 g"
+        }
+      }
+    },
+    {
+      "ingredient": "witte wijn azijn",
+      "product": {
+        "id": 185775,
+        "title": "AH Biologisch Witte wijnazijn",
+        "price": {
+          "unitInfo": {
+            "price": 5.56,
+            "description": "LT"
+          },
+          "now": 1.39,
+          "unitSize": "250 ml"
+        }
+      }
+    },
+    {
+      "ingredient": "extra vergine olijfolie",
+      "product": {
+        "id": 429759,
+        "title": "Carapelli Oro verde oilio extra vergine di olivia",
+        "price": {
+          "unitInfo": {
+            "price": 13.69,
+            "description": "LT"
+          },
+          "now": 10.27,
+          "unitSize": "0,75 l"
+        }
+      }
+    },
+    {
+      "ingredient": "van suiker",
+      "product": {
+        "id": 101206,
+        "title": "AH Biologisch Kristalsuiker",
+        "price": {
+          "unitInfo": {
+            "price": 2.12,
+            "description": "KG"
+          },
+          "now": 1.59,
+          "unitSize": "750 g"
+        }
+      }
     }
   ]
 }

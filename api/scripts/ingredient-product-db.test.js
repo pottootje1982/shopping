@@ -1,4 +1,4 @@
-const IngredientProductDb = require("./ingredient-product-db")
+const { IngredientProductDb } = require("./ingredient-product-db")
 const recipeDb = require("./recipe-db.stub")
 const { ahUser, ahPass } = require("../config")
 

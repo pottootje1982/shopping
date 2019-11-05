@@ -14,31 +14,34 @@ import green from "@material-ui/core/colors/green"
 import server from "./server"
 
 export default function Recipe(props) {
-  const ingredients = props.ingredients
   const recipes = props.recipes
-  const setIngredients = props.setIngredients
   const recipeId = props.recipeId
 
   let [products, setProducts] = useState([])
   let [selectedIngredient, setSelectedIngredient] = useState()
   let [mappings, setMappings] = useState({})
+  let [ingredients, setIngredients] = useState([])
 
   const productInfo = ingredients.map(
     i => mappings[i.ingredient.toLowerCase()] || {}
   )
 
   useEffect(() => {
+    const selectedRecipe = recipes.find(r => r.uid === recipeId)
+    setIngredients(selectedRecipe.ingredients)
+
+    server
+      .get(`products/mappings?uid=${recipeId}`)
+      .then(function(mappingsResponse) {
+        setMappings(mappingsResponse.data)
+      })
+  }, [recipeId, recipes])
+
+  useEffect(() => {
     if (ingredients.length > 0) {
       setSelectedIngredient(ingredients[0])
     }
-    if (recipeId) {
-      server
-        .get(`products/mappings?uid=${recipeId}`)
-        .then(function(mappingsResponse) {
-          setMappings(mappingsResponse.data)
-        })
-    }
-  }, [ingredients, recipeId])
+  }, [ingredients])
 
   async function search(item, customSearch) {
     const query = customSearch ? customSearch : item.ingredient
@@ -52,7 +55,9 @@ export default function Recipe(props) {
   async function translate(uid) {
     const recipe = recipes.find(r => r.uid === uid)
     const res = await server.post("recipes/translate", { recipeId: uid })
-    const newIngredients = res.data.ingredients
+    const newIngredients = res.data.recipe.ingredients
+    const newMapping = res.data.mapping
+    setMappings(newMapping)
     setIngredients(newIngredients)
     recipe.ingredients = newIngredients
   }
