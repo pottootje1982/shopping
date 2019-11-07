@@ -12,11 +12,9 @@ import {
 import blue from "@material-ui/core/colors/blue"
 import Recipe from "./Recipe"
 
-export default function RecipeList(props) {
+export default function RecipeList({ setRecipeTitle, selectedRecipes }) {
   let [recipes, setRecipes] = useState([])
-  const [selectedRecipes, setSelectedRecipes] = useState({})
   let [recipeId, setRecipeId] = useState()
-  props.setSelectedRecipes(selectedRecipes)
 
   function selectedFirstRecipe() {
     server.get("recipes").then(function(result) {
@@ -35,12 +33,15 @@ export default function RecipeList(props) {
     recipeId = id
     setRecipeId(id)
     const selectedRecipe = recipes.find(r => r.uid === id)
-    props.setRecipeTitle(selectedRecipe.name)
+    setRecipeTitle(selectedRecipe.name)
   }
 
-  function toggleRecipe(uid) {
-    selectedRecipes[uid] = !selectedRecipes[uid]
-    setSelectedRecipes(selectedRecipes)
+  function toggleRecipe(checked, uid) {
+    if (checked) {
+      selectedRecipes.push(uid)
+    } else {
+      selectedRecipes.splice(selectedRecipes.indexOf(uid), 1)
+    }
   }
 
   return recipes === undefined ? (
@@ -61,7 +62,7 @@ export default function RecipeList(props) {
                 <ListItemIcon>
                   <Checkbox
                     edge="start"
-                    onChange={e => toggleRecipe(item.uid)}
+                    onChange={(e, checked) => toggleRecipe(checked, item.uid)}
                     tabIndex={-1}
                     disableRipple
                   />

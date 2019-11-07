@@ -5,21 +5,17 @@ import { Button, Grid, Typography } from "@material-ui/core"
 import server from "./Components/server"
 
 function App() {
-  let selectedRecipes
+  const [selectedRecipes] = useState(() => [])
   const [recipeTitle, setRecipeTitle] = useState()
 
   function order() {
-    server.post("products/order", { recipes: Object.keys(selectedRecipes) })
-  }
-
-  function setSelectedRecipes(selRecipes) {
-    selectedRecipes = selRecipes
+    server.post("products/order", { recipes: selectedRecipes })
   }
 
   return (
     <div className="App">
       <div className="App-header">
-        <Typography variant="h3" style={{ paddingTop: 30 }}>
+        <Typography variant="h3" style={{ paddingTop: 20 }}>
           Shopper
         </Typography>
         <Grid container spacing={1} style={{ padding: 10 }}>
@@ -45,7 +41,7 @@ function App() {
       </div>
 
       <RecipeList
-        setSelectedRecipes={setSelectedRecipes}
+        selectedRecipes={selectedRecipes}
         setRecipeTitle={setRecipeTitle}
       ></RecipeList>
     </div>

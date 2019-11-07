@@ -71,7 +71,11 @@ export default function ProductSearch(props) {
         />
       </div>
 
-      <GridList cols={3} cellHeight="auto">
+      <GridList
+        cols={3}
+        cellHeight="auto"
+        style={{ maxHeight: "75vh", overflow: "auto" }}
+      >
         {props.products.map((item, i) => (
           <GridListTile key={item.id} xs={4}>
             <Button

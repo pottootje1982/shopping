@@ -1,4 +1,9 @@
-- don't store untranslated words
 - show recipe directions
-- don't allow translating already translated ingredients
 - add translations for quantities
+- show recipes green if all ingredients are translated (add button to ignore ingredient if it is something like 'voor 4 personen')
+- spinner to control quantity in recipe ingredients
+- store ordered recipes
+- group recipes in recipe list
+- sort recipes by names
+- show message if product search didn't yield any results
+- possibilty to add new ingredients
