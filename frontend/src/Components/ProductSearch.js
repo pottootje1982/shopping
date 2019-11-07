@@ -5,7 +5,8 @@ import {
   GridList,
   GridListTile,
   TextField,
-  Button
+  Button,
+  Typography
 } from "@material-ui/core"
 
 export default function ProductSearch(props) {
@@ -70,40 +71,47 @@ export default function ProductSearch(props) {
           variant="outlined"
         />
       </div>
-
-      <GridList
-        cols={3}
-        cellHeight="auto"
-        style={{ maxHeight: "75vh", overflow: "auto" }}
-      >
-        {props.products.map((item, i) => (
-          <GridListTile key={item.id} xs={4}>
-            <Button
-              color="primary"
-              onClick={() => selectProduct(item)}
-              style={{
-                textTransform: "none",
-                border:
-                  (mappings[bareIngredient] || {}).id === item.id
-                    ? "2px solid"
-                    : ""
-              }}
-              title={item.title}
-            >
-              <div>
-                <img
-                  src={item.images.length > 0 ? item.images[0].url : undefined}
-                  alt={item.title}
-                />
+      {props.products.length === 0 ? (
+        <Typography color="secondary" style={{ paddingTop: 20 }}>
+          No products found
+        </Typography>
+      ) : (
+        <GridList
+          cols={3}
+          cellHeight="auto"
+          style={{ maxHeight: "75vh", overflow: "auto" }}
+        >
+          {props.products.map((item, i) => (
+            <GridListTile key={item.id} xs={4}>
+              <Button
+                color="primary"
+                onClick={() => selectProduct(item)}
+                style={{
+                  textTransform: "none",
+                  border:
+                    (mappings[bareIngredient] || {}).id === item.id
+                      ? "2px solid"
+                      : ""
+                }}
+                title={item.title}
+              >
                 <div>
-                  {item.title} ({item.price.unitSize}) €
-                  {item.price.now.toFixed(2)}
+                  <img
+                    src={
+                      item.images.length > 0 ? item.images[0].url : undefined
+                    }
+                    alt={item.title}
+                  />
+                  <div>
+                    {item.title} ({item.price.unitSize}) €
+                    {item.price.now.toFixed(2)}
+                  </div>
                 </div>
-              </div>
-            </Button>
-          </GridListTile>
-        ))}
-      </GridList>
+              </Button>
+            </GridListTile>
+          ))}
+        </GridList>
+      )}
     </Grid>
   )
 }
