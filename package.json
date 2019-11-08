@@ -3,12 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "./api/node_modules/jest/bin/jest.js --verbose ./api"
+    "test": "jest --verbose ./api"
   },
   "pre-commit": [
     "test"
   ],
   "devDependencies": {
     "pre-commit": "^1.2.2"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0"
   }
 }

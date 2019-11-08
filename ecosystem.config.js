@@ -1,3 +1,6 @@
+const dotenv = require("dotenv")
+dotenv.config()
+
 module.exports = {
   apps: [
     {
@@ -40,6 +43,7 @@ module.exports = {
 
   deploy: {
     production: {
+      key: "~/.ssh/id_rsa.pub",
       user: "wouterpot",
       host: [
         {
