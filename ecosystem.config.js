@@ -53,6 +53,7 @@ module.exports = {
       ],
       ref: "origin/master",
       repo: "git@github.com:pottootje1982/shopping.git",
+      //ssh_options: ["StrictHostKeyChecking=no", "PasswordAuthentication=no"],
       path: "/var/services/web/shopping",
       "post-deploy":
         "npm install && pm2 reload ecosystem.config.js --env production"
