@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "jest --verbose ./api"
+    "test": "jest --verbose ./api",
+    "start": "pm2-runtime start ecosystem.config.js --env production"
   },
   "pre-commit": [
     "test"
