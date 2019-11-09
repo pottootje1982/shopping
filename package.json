@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest",
     "start": "node app.js",
-    "heroku-postbuild": "cd frontend && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "pre-commit": [
     "test"
