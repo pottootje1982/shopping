@@ -19,7 +19,7 @@ app.use(
   })
 )
 app.use(cookieParser())
-app.use(express.static(path.join(__dirname, "public")))
+app.use(express.static(path.join(__dirname, "/client/public")))
 
 // nb: cors settings must be included before other routes
 
@@ -32,7 +32,7 @@ app.use("/products", productsRouter)
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/frontend/build/index.html"))
+  res.sendFile(path.join(__dirname + "/client/build/index.html"))
 })
 
 module.exports = app
