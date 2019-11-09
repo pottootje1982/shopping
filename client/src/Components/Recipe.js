@@ -29,12 +29,7 @@ export default function Recipe(props) {
   useEffect(() => {
     const selectedRecipe = recipes.find(r => r.uid === recipeId)
     setIngredients(selectedRecipe.ingredients)
-
-    server
-      .get(`products/mappings?uid=${recipeId}`)
-      .then(function(mappingsResponse) {
-        setMappings(mappingsResponse.data)
-      })
+    setMappings(selectedRecipe.mappings)
   }, [recipeId, recipes])
 
   useEffect(() => {

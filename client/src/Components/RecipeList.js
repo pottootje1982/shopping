@@ -10,11 +10,13 @@ import {
   Checkbox
 } from "@material-ui/core"
 import blue from "@material-ui/core/colors/blue"
+import green from "@material-ui/core/colors/green"
 import Recipe from "./Recipe"
 
 export default function RecipeList({ setRecipeTitle, selectedRecipes }) {
   let [recipes, setRecipes] = useState([])
   let [recipeId, setRecipeId] = useState()
+  let [recipeReadyToOrder, setRecipeReadyToOrder] = useState()
 
   function selectedFirstRecipe() {
     server.get("recipes").then(function(result) {
@@ -34,6 +36,10 @@ export default function RecipeList({ setRecipeTitle, selectedRecipes }) {
     setRecipeId(id)
     const selectedRecipe = recipes.find(r => r.uid === id)
     setRecipeTitle(selectedRecipe.name)
+    setRecipeReadyToOrder(
+      selectedRecipe.ingredients.length ===
+        Object.keys(selectedRecipe.mappings || {}).length
+    )
   }
 
   function toggleRecipe(checked, uid) {
@@ -67,7 +73,16 @@ export default function RecipeList({ setRecipeTitle, selectedRecipes }) {
                     disableRipple
                   />
                 </ListItemIcon>
-                <ListItemText primary={item.name} />
+                <ListItemText
+                  primary={item.name}
+                  style={{
+                    color:
+                      item.ingredients.length ===
+                      Object.keys(item.mappings || {}).length
+                        ? green[600]
+                        : "black"
+                  }}
+                />
               </ListItem>
             ))}
           </List>
