@@ -9,25 +9,24 @@ import {
   Typography
 } from "@material-ui/core"
 import ProductSearch from "./ProductSearch"
+import EditAddRecipe from "./EditAddRecipe"
 import blue from "@material-ui/core/colors/blue"
 import green from "@material-ui/core/colors/green"
 import server from "./server"
 
-export default function Recipe(props) {
-  const recipes = props.recipes
-  const recipeId = props.recipeId
-
+export default function Recipe({ recipes, recipeId }) {
   let [products, setProducts] = useState([])
   let [selectedIngredient, setSelectedIngredient] = useState()
   let [mappings, setMappings] = useState({})
   let [ingredients, setIngredients] = useState([])
+  let [editRecipe, setEditRecipe] = useState(false)
+  const selectedRecipe = recipes.find(r => r.uid === recipeId)
 
   const productInfo = ingredients.map(
     i => mappings[i.ingredient.toLowerCase()] || {}
   )
 
   useEffect(() => {
-    const selectedRecipe = recipes.find(r => r.uid === recipeId)
     setIngredients(selectedRecipe.ingredients)
     setMappings(selectedRecipe.mappings)
   }, [recipeId, recipes])
@@ -55,6 +54,10 @@ export default function Recipe(props) {
     setMappings(newMapping)
     setIngredients(newIngredients)
     recipe.ingredients = newIngredients
+  }
+
+  function editRecipeClick() {
+    setEditRecipe(true)
   }
 
   return (
@@ -106,10 +109,23 @@ export default function Recipe(props) {
           >
             Translate
           </Button>
+          <Button
+            color="secondary"
+            variant="contained"
+            style={{
+              margin: 5,
+              textTransform: "none"
+            }}
+            onClick={editRecipeClick}
+          >
+            Edit Recipe
+          </Button>
         </div>
       </Grid>
 
-      {selectedIngredient ? (
+      {editRecipe && selectedRecipe ? (
+        <EditAddRecipe selectedRecipe={selectedRecipe} />
+      ) : selectedIngredient ? (
         <ProductSearch
           products={products}
           selectedIngredient={selectedIngredient}
