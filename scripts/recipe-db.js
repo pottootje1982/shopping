@@ -25,8 +25,8 @@ class RecipeDb {
     if (typeof recipe.ingredients !== "object") {
       recipe.ingredients = Ingredients.create(recipe.ingredients)
     }
-    recipe.mappings = ingToProduct.getMappings(recipe)
     this.translationDb.translateRecipe(recipe.ingredients)
+    recipe.mappings = ingToProduct.getMappings(recipe)
     return recipe
   }
 
