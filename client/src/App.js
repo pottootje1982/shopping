@@ -16,7 +16,7 @@ function App() {
     <div className="App">
       <div className="App-header">
         <Typography variant="h3" style={{ paddingTop: 20 }}>
-          Shopper
+          Lazy chef
         </Typography>
         <Grid container spacing={1} style={{ padding: 10 }}>
           <Grid item xs={3}>

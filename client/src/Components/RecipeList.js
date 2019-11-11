@@ -16,7 +16,7 @@ import Recipe from "./Recipe"
 export default function RecipeList({ setRecipeTitle, selectedRecipes }) {
   let [recipes, setRecipes] = useState([])
   let [recipeId, setRecipeId] = useState()
-  let [recipeReadyToOrder, setRecipeReadyToOrder] = useState()
+  let [_, setRecipeReadyToOrder] = useState()
 
   function selectedFirstRecipe() {
     server.get("recipes").then(function(result) {
