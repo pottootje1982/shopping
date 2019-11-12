@@ -57,6 +57,10 @@ export default function RecipeList({ setRecipeTitle }) {
     server.post("products/order", { recipes: selectedRecipes })
   }
 
+  function addRecipe() {
+    setSelectedRecipe()
+  }
+
   return recipes === undefined ? (
     <div>Loading</div>
   ) : (
@@ -74,7 +78,12 @@ export default function RecipeList({ setRecipeTitle }) {
           >
             Order
           </Button>
-          <Fab color="secondary" aria-label="add" size="small">
+          <Fab
+            color="secondary"
+            aria-label="add"
+            size="small"
+            onClick={addRecipe}
+          >
             <AddIcon />
           </Fab>
         </div>
@@ -113,12 +122,11 @@ export default function RecipeList({ setRecipeTitle }) {
           </Paper>
         </Grid>
       </Grid>
-      {selectedRecipe ? (
-        <Recipe
-          selectedRecipe={selectedRecipe}
-          setSelectedRecipe={setSelectedRecipe}
-        />
-      ) : null}
+      <Recipe
+        key={(selectedRecipe || {}).uid}
+        selectedRecipe={selectedRecipe}
+        setSelectedRecipe={setSelectedRecipe}
+      />
     </Grid>
   )
 }

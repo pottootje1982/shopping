@@ -15,12 +15,20 @@ import EditAddRecipe from "./EditAddRecipe"
 import blue from "@material-ui/core/colors/blue"
 import green from "@material-ui/core/colors/green"
 import server from "./server"
+const uuidv1 = require("uuid/v1")
 
 export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   let [products, setProducts] = useState([])
   let [selectedIngredient, setSelectedIngredient] = useState()
-  let [editRecipe, setEditRecipe] = useState(false)
+  let [editOrAddRecipe, setEditOrAddRecipe] = useState()
+  const addRecipe = selectedRecipe === undefined
 
+  selectedRecipe = selectedRecipe || {
+    ingredients: [],
+    mappings: [],
+    uid: uuidv1(),
+    created: new Date().toLocaleString("en-GB").replace(/\//g, "-")
+  }
   const recipeId = selectedRecipe.uid
   const mappings = selectedRecipe.mappings
   const ingredients = selectedRecipe.ingredients
@@ -30,12 +38,11 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   )
 
   useEffect(() => {
-    setEditRecipe(false)
-    const ingredients = selectedRecipe.ingredients
-    if (selectedRecipe.ingredients.length > 0) {
+    setEditOrAddRecipe(addRecipe)
+    if (ingredients.length > 0) {
       setSelectedIngredient(ingredients[0])
     }
-  }, [selectedRecipe])
+  }, [selectedRecipe, ingredients])
 
   async function search(item, customSearch) {
     const query = customSearch ? customSearch : item.ingredient
@@ -52,7 +59,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   }
 
   function editRecipeClick() {
-    setEditRecipe(true)
+    setEditOrAddRecipe(true)
   }
 
   return (
@@ -105,8 +112,12 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
         </Grid>
       </Grid>
 
-      {editRecipe && selectedRecipe ? (
-        <EditAddRecipe selectedRecipe={selectedRecipe} />
+      {editOrAddRecipe ? (
+        <EditAddRecipe
+          key={selectedRecipe.uid}
+          selectedRecipe={selectedRecipe}
+          setSelectedRecipe={setSelectedRecipe}
+        />
       ) : selectedIngredient ? (
         <ProductSearch
           products={products}

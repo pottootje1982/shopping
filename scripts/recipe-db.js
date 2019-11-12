@@ -58,6 +58,13 @@ class RecipeDb {
       foundRecipe.assign(recipe).write()
     }
   }
+
+  addRecipe(recipe) {
+    this.db
+      .get("recipes")
+      .push(recipe)
+      .write()
+  }
 }
 
 module.exports = RecipeDb

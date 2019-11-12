@@ -16,6 +16,10 @@ router.put("/", async function(req, res) {
   recipeDb.editRecipe(req.body)
 })
 
+router.post("/", async function(req, res) {
+  recipeDb.addRecipe(req.body)
+})
+
 router.post("/translate", async function(req, res) {
   const recipe = recipeDb.getRecipe(req.body.recipeId)
   await Translator.create().translate(recipe.ingredients.map(i => i.ingredient))

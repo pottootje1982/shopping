@@ -6,28 +6,27 @@ export default function EditAddRecipe({ selectedRecipe }) {
   const nameRef = useRef(null)
   const ingredientsRef = useRef(null)
   const directionsRef = useRef(null)
+  const edit = selectedRecipe.name !== undefined
+  const title = edit ? "Edit Recipe" : "Add Recipe"
 
   function saveRecipeClick() {
-    console.log(nameRef)
     const name = nameRef.current.value
     const uid = selectedRecipe.uid
     const created = new Date().toLocaleString("en-GB").replace(/\//g, "-")
     const ingredients = ingredientsRef.current.value
     const directions = directionsRef.current.value
-    server.put("recipes", { name, uid, created, ingredients, directions })
+    if (edit) {
+      server.put("recipes", { name, uid, created, ingredients, directions })
+    } else {
+      server.post("recipes", { name, uid, created, ingredients, directions })
+    }
   }
 
   return (
     <Grid item xs={6}>
-      <Grid
-        container
-        spacing={1}
-        alignItems="stretch"
-        direction="column"
-        key={selectedRecipe.uid}
-      >
+      <Grid container spacing={1} alignItems="stretch" direction="column">
         <Grid item>
-          <Typography variant="h5">Edit Recipe</Typography>
+          <Typography variant="h5">{title}</Typography>
         </Grid>
         <Grid item>
           <TextField
@@ -41,7 +40,7 @@ export default function EditAddRecipe({ selectedRecipe }) {
         <Grid item>
           <TextField
             fullWidth
-            label="Ceated"
+            label="Created"
             readOnly
             defaultValue={selectedRecipe.created}
             variant="outlined"
