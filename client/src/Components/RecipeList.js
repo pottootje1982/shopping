@@ -8,8 +8,10 @@ import {
   ListItem,
   ListItemText,
   ListItemIcon,
-  Checkbox
+  Checkbox,
+  Fab
 } from "@material-ui/core"
+import AddIcon from "@material-ui/icons/Add"
 import blue from "@material-ui/core/colors/blue"
 import green from "@material-ui/core/colors/green"
 import Recipe from "./Recipe"
@@ -72,6 +74,9 @@ export default function RecipeList({ setRecipeTitle }) {
           >
             Order
           </Button>
+          <Fab color="secondary" aria-label="add" size="small">
+            <AddIcon />
+          </Fab>
         </div>
         <Grid item xs={12} style={{ minHeight: "75vh" }}>
           <Paper style={{ backgroundColor: blue[50] }}>

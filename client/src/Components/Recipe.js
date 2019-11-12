@@ -6,8 +6,10 @@ import {
   List,
   ListItem,
   ListItemText,
-  Typography
+  Typography,
+  Fab
 } from "@material-ui/core"
+import EditIcon from "@material-ui/icons/Edit"
 import ProductSearch from "./ProductSearch"
 import EditAddRecipe from "./EditAddRecipe"
 import blue from "@material-ui/core/colors/blue"
@@ -68,6 +70,9 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
           >
             Translate
           </Button>
+          <Fab color="secondary" aria-label="add" size="small">
+            <EditIcon onClick={editRecipeClick} />
+          </Fab>
           <Button
             color="secondary"
             variant="contained"
