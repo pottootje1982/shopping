@@ -73,17 +73,6 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
           <Fab color="secondary" aria-label="add" size="small">
             <EditIcon onClick={editRecipeClick} />
           </Fab>
-          <Button
-            color="secondary"
-            variant="contained"
-            style={{
-              margin: 5,
-              textTransform: "none"
-            }}
-            onClick={editRecipeClick}
-          >
-            Edit Recipe
-          </Button>
         </div>
         <Grid item xs={12} style={{ minHeight: "75vh" }}>
           <Paper style={{ backgroundColor: blue[50] }}>

@@ -62,7 +62,7 @@ export default function ProductSearch({
         {bareIngredient.split(" ").map(item => (
           <Button
             key={item}
-            variant="contained"
+            variant="outlined"
             color="secondary"
             onClick={() => search(item)}
             style={{

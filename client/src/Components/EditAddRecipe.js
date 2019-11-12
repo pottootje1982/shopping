@@ -1,8 +1,21 @@
-import React from "react"
+import React, { useRef } from "react"
 import { Typography, TextField, Grid, Button } from "@material-ui/core"
+import server from "./server"
 
 export default function EditAddRecipe({ selectedRecipe }) {
-  function saveRecipeClick() {}
+  const nameRef = useRef(null)
+  const ingredientsRef = useRef(null)
+  const directionsRef = useRef(null)
+
+  function saveRecipeClick() {
+    console.log(nameRef)
+    const name = nameRef.current.value
+    const uid = selectedRecipe.uid
+    const created = new Date().toLocaleString("en-GB").replace(/\//g, "-")
+    const ingredients = ingredientsRef.current.value
+    const directions = directionsRef.current.value
+    server.put("recipes", { name, uid, created, ingredients, directions })
+  }
 
   return (
     <Grid item xs={6}>
@@ -22,6 +35,7 @@ export default function EditAddRecipe({ selectedRecipe }) {
             label="Title"
             defaultValue={selectedRecipe.name}
             variant="outlined"
+            inputRef={nameRef}
           />
         </Grid>
         <Grid item>
@@ -42,6 +56,7 @@ export default function EditAddRecipe({ selectedRecipe }) {
             defaultValue={selectedRecipe.ingredients
               .map(i => i.ingredient)
               .join("\n")}
+            inputRef={ingredientsRef}
           />
         </Grid>
         <Grid item>
@@ -51,6 +66,7 @@ export default function EditAddRecipe({ selectedRecipe }) {
             multiline
             variant="outlined"
             defaultValue={selectedRecipe.directions}
+            inputRef={directionsRef}
           />
         </Grid>
 

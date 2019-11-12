@@ -31,7 +31,10 @@ class RecipeDb {
   }
 
   getRecipes() {
-    const recipes = this.db.get("recipes").value()
+    const recipes = this.db
+      .get("recipes")
+      .cloneDeep()
+      .value()
     for (const recipe of recipes) {
       this.translateRecipe(recipe)
     }
@@ -44,6 +47,16 @@ class RecipeDb {
       .find({ uid })
       .value()
     return this.translateRecipe(recipe)
+  }
+
+  editRecipe(recipe) {
+    const table = this.db.get("recipes")
+    const foundRecipe = table.find({
+      uid: recipe.uid
+    })
+    if (foundRecipe.value()) {
+      foundRecipe.assign(recipe).write()
+    }
   }
 }
 
