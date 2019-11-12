@@ -2215,6 +2215,21 @@
           "unitSize": "1 kg"
         }
       }
+    },
+    {
+      "ingredient": "tomaatblokjes",
+      "product": {
+        "id": 395307,
+        "title": "AH Biologisch Tomatenblokjes",
+        "price": {
+          "unitInfo": {
+            "price": 3.13,
+            "description": "KG"
+          },
+          "now": 1.25,
+          "unitSize": "400 g"
+        }
+      }
     }
   ]
 }

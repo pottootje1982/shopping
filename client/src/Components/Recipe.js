@@ -14,28 +14,26 @@ import blue from "@material-ui/core/colors/blue"
 import green from "@material-ui/core/colors/green"
 import server from "./server"
 
-export default function Recipe({ recipes, recipeId }) {
+export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   let [products, setProducts] = useState([])
   let [selectedIngredient, setSelectedIngredient] = useState()
-  let [mappings, setMappings] = useState({})
-  let [ingredients, setIngredients] = useState([])
   let [editRecipe, setEditRecipe] = useState(false)
-  const selectedRecipe = recipes.find(r => r.uid === recipeId)
+
+  const recipeId = selectedRecipe.uid
+  const mappings = selectedRecipe.mappings
+  const ingredients = selectedRecipe.ingredients
 
   const productInfo = ingredients.map(
     i => mappings[i.ingredient.toLowerCase()] || {}
   )
 
   useEffect(() => {
-    setIngredients(selectedRecipe.ingredients)
-    setMappings(selectedRecipe.mappings)
-  }, [recipeId, recipes])
-
-  useEffect(() => {
-    if (ingredients.length > 0) {
+    setEditRecipe(false)
+    const ingredients = selectedRecipe.ingredients
+    if (selectedRecipe.ingredients.length > 0) {
       setSelectedIngredient(ingredients[0])
     }
-  }, [ingredients])
+  }, [selectedRecipe])
 
   async function search(item, customSearch) {
     const query = customSearch ? customSearch : item.ingredient
@@ -47,13 +45,8 @@ export default function Recipe({ recipes, recipeId }) {
   }
 
   async function translate(uid) {
-    const recipe = recipes.find(r => r.uid === uid)
     const res = await server.post("recipes/translate", { recipeId: uid })
-    const newIngredients = res.data.recipe.ingredients
-    const newMapping = res.data.mapping
-    setMappings(newMapping)
-    setIngredients(newIngredients)
-    recipe.ingredients = newIngredients
+    setSelectedRecipe(res.data.recipe)
   }
 
   function editRecipeClick() {
@@ -62,42 +55,8 @@ export default function Recipe({ recipes, recipeId }) {
 
   return (
     <Fragment>
-      <Grid item xs={3}>
-        <div
-          style={{
-            alignItems: "left",
-            justifyContent: "left"
-          }}
-        >
-          <Grid item>
-            <Paper style={{ backgroundColor: blue[50] }}>
-              <List dense style={{ maxHeight: "75vh", overflow: "auto" }}>
-                {(ingredients || []).map((item, i) => (
-                  <ListItem
-                    divider={true}
-                    button
-                    selected={item === selectedIngredient}
-                    key={i}
-                    onClick={e => setSelectedIngredient(item)}
-                  >
-                    <ListItemText
-                      key={i}
-                      secondary={
-                        <Typography
-                          variant="subtitle2"
-                          style={{ color: green[500], fontSize: 9 }}
-                        >
-                          {productInfo[i].quantity} {productInfo[i].title}
-                        </Typography>
-                      }
-                    >
-                      {item.full}
-                    </ListItemText>
-                  </ListItem>
-                ))}
-              </List>
-            </Paper>
-          </Grid>
+      <Grid container item xs={3}>
+        <div>
           <Button
             color="secondary"
             variant="contained"
@@ -121,6 +80,35 @@ export default function Recipe({ recipes, recipeId }) {
             Edit Recipe
           </Button>
         </div>
+        <Grid item xs={12} style={{ minHeight: "75vh" }}>
+          <Paper style={{ backgroundColor: blue[50] }}>
+            <List dense style={{ maxHeight: "75vh", overflow: "auto" }}>
+              {(ingredients || []).map((item, i) => (
+                <ListItem
+                  divider={true}
+                  button
+                  selected={item === selectedIngredient}
+                  key={i}
+                  onClick={e => setSelectedIngredient(item)}
+                >
+                  <ListItemText
+                    key={i}
+                    secondary={
+                      <Typography
+                        variant="subtitle2"
+                        style={{ color: green[500], fontSize: 9 }}
+                      >
+                        {productInfo[i].quantity} {productInfo[i].title}
+                      </Typography>
+                    }
+                  >
+                    {item.full}
+                  </ListItemText>
+                </ListItem>
+              ))}
+            </List>
+          </Paper>
+        </Grid>
       </Grid>
 
       {editRecipe && selectedRecipe ? (
@@ -129,10 +117,9 @@ export default function Recipe({ recipes, recipeId }) {
         <ProductSearch
           products={products}
           selectedIngredient={selectedIngredient}
-          search={search}
-          recipeId={recipeId}
-          mappings={mappings}
-          setMappings={setMappings}
+          searchProducts={search}
+          selectedRecipe={selectedRecipe}
+          setSelectedRecipe={setSelectedRecipe}
         />
       ) : null}
     </Fragment>

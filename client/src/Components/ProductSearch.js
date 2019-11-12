@@ -1,5 +1,6 @@
 import server from "./server"
-import React, { useEffect, useRef } from "react"
+import React, { useEffect } from "react"
+import { makeStyles } from "@material-ui/core/styles"
 import {
   Grid,
   GridList,
@@ -9,24 +10,35 @@ import {
   Typography
 } from "@material-ui/core"
 
-export default function ProductSearch(props) {
-  const selectedIngredient = props.selectedIngredient
+const styles = makeStyles(theme => ({
+  input: {
+    height: 36
+  }
+}))
+
+export default function ProductSearch({
+  selectedIngredient,
+  selectedRecipe,
+  setSelectedRecipe,
+  searchProducts,
+  products
+}) {
+  const classes = styles()
+
+  const mappings = selectedRecipe.mappings
   const bareIngredient = (selectedIngredient.ingredient || "").toLowerCase()
-  const textFieldRef = useRef(null)
-  const setMappings = props.setMappings
-  const mappings = props.mappings
 
   useEffect(doSearch, [selectedIngredient])
 
   function doSearch() {
-    props.search(selectedIngredient)
-    textFieldRef.current.value = bareIngredient
+    searchProducts(selectedIngredient)
   }
 
   function selectProduct(completeProduct) {
     const { id, title, price } = completeProduct
     const product = { id, title, price }
-    setMappings({ ...mappings, [bareIngredient]: product })
+    mappings[bareIngredient] = product
+    setSelectedRecipe({ ...selectedRecipe, mappings })
 
     server.post("products/choose", {
       ingredient: bareIngredient,
@@ -36,17 +48,16 @@ export default function ProductSearch(props) {
 
   function textFieldSearch(event) {
     if (event.keyCode === 13) {
-      props.search(undefined, event.target.value)
+      searchProducts(undefined, event.target.value)
     }
   }
 
   function search(value) {
-    props.search(undefined, value)
-    textFieldRef.current.value = value
+    searchProducts(undefined, value)
   }
 
   return (
-    <Grid item xs={6}>
+    <Grid container item xs={6} key={bareIngredient} alignItems="stretch">
       <div>
         {bareIngredient.split(" ").map(item => (
           <Button
@@ -56,7 +67,6 @@ export default function ProductSearch(props) {
             onClick={() => search(item)}
             style={{
               margin: 2,
-              height: 54,
               textTransform: "none"
             }}
           >
@@ -64,14 +74,16 @@ export default function ProductSearch(props) {
           </Button>
         ))}
         <TextField
-          inputRef={textFieldRef}
           style={{ margin: 2 }}
+          InputProps={{
+            className: classes.input
+          }}
           defaultValue={bareIngredient}
           onKeyDown={e => textFieldSearch(e)}
           variant="outlined"
         />
       </div>
-      {props.products.length === 0 ? (
+      {products.length === 0 ? (
         <Typography color="secondary" style={{ paddingTop: 20 }}>
           No products found
         </Typography>
@@ -81,7 +93,7 @@ export default function ProductSearch(props) {
           cellHeight="auto"
           style={{ maxHeight: "75vh", overflow: "auto" }}
         >
-          {props.products.map((item, i) => (
+          {products.map((item, i) => (
             <GridListTile key={item.id} xs={4}>
               <Button
                 color="primary"

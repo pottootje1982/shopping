@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import server from "./server"
 import {
+  Button,
   Grid,
   Paper,
   List,
@@ -13,10 +14,11 @@ import blue from "@material-ui/core/colors/blue"
 import green from "@material-ui/core/colors/green"
 import Recipe from "./Recipe"
 
-export default function RecipeList({ setRecipeTitle, selectedRecipes }) {
+export default function RecipeList({ setRecipeTitle }) {
+  const [selectedRecipes] = useState(() => [])
   let [recipes, setRecipes] = useState([])
-  let [recipeId, setRecipeId] = useState()
   let [_, setRecipeReadyToOrder] = useState()
+  let [selectedRecipe, setSelectedRecipe] = useState()
 
   function selectedFirstRecipe() {
     server.get("recipes").then(function(result) {
@@ -32,9 +34,8 @@ export default function RecipeList({ setRecipeTitle, selectedRecipes }) {
   useEffect(selectedFirstRecipe, [])
 
   function selectRecipe(_button, id) {
-    recipeId = id
-    setRecipeId(id)
     const selectedRecipe = recipes.find(r => r.uid === id)
+    setSelectedRecipe(selectedRecipe)
     setRecipeTitle(selectedRecipe.name)
     setRecipeReadyToOrder(
       selectedRecipe.ingredients.length ===
@@ -50,45 +51,69 @@ export default function RecipeList({ setRecipeTitle, selectedRecipes }) {
     }
   }
 
+  function order() {
+    server.post("products/order", { recipes: selectedRecipes })
+  }
+
   return recipes === undefined ? (
     <div>Loading</div>
   ) : (
     <Grid container spacing={1} style={{ padding: 10 }}>
-      <Grid item xs={3}>
-        <Paper style={{ backgroundColor: blue[50] }}>
-          <List dense={true} style={{ maxHeight: "80vh", overflow: "auto" }}>
-            {recipes.map((item, index) => (
-              <ListItem
-                button
-                key={index}
-                divider={true}
-                selected={recipeId === item.uid}
-                onClick={e => selectRecipe(e, item.uid)}
-              >
-                <ListItemIcon>
-                  <Checkbox
-                    edge="start"
-                    onChange={(e, checked) => toggleRecipe(checked, item.uid)}
-                    tabIndex={-1}
-                    disableRipple
+      <Grid container item xs={3}>
+        <div>
+          <Button
+            color="secondary"
+            variant="contained"
+            style={{
+              margin: 5,
+              textTransform: "none"
+            }}
+            onClick={order}
+          >
+            Order
+          </Button>
+        </div>
+        <Grid item xs={12} style={{ minHeight: "75vh" }}>
+          <Paper style={{ backgroundColor: blue[50] }}>
+            <List dense={true} style={{ maxHeight: "75vh", overflow: "auto" }}>
+              {recipes.map((item, index) => (
+                <ListItem
+                  button
+                  key={index}
+                  divider={true}
+                  selected={(selectedRecipe || {}).uid === item.uid}
+                  onClick={e => selectRecipe(e, item.uid)}
+                >
+                  <ListItemIcon>
+                    <Checkbox
+                      edge="start"
+                      onChange={(e, checked) => toggleRecipe(checked, item.uid)}
+                      tabIndex={-1}
+                      disableRipple
+                    />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={item.name}
+                    style={{
+                      color:
+                        item.ingredients.length ===
+                        Object.keys(item.mappings || {}).length
+                          ? green[600]
+                          : "black"
+                    }}
                   />
-                </ListItemIcon>
-                <ListItemText
-                  primary={item.name}
-                  style={{
-                    color:
-                      item.ingredients.length ===
-                      Object.keys(item.mappings || {}).length
-                        ? green[600]
-                        : "black"
-                  }}
-                />
-              </ListItem>
-            ))}
-          </List>
-        </Paper>
+                </ListItem>
+              ))}
+            </List>
+          </Paper>
+        </Grid>
       </Grid>
-      {recipeId ? <Recipe recipeId={recipeId} recipes={recipes} /> : null}
+      {selectedRecipe ? (
+        <Recipe
+          selectedRecipe={selectedRecipe}
+          setSelectedRecipe={setSelectedRecipe}
+        />
+      ) : null}
     </Grid>
   )
 }
