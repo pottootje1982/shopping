@@ -1,13 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react"
 import {
-  Button,
   Grid,
   Paper,
   List,
   ListItem,
   ListItemText,
-  Typography,
-  Fab
+  Typography
 } from "@material-ui/core"
 import EditIcon from "@material-ui/icons/Edit"
 import ProductSearch from "./ProductSearch"
@@ -15,20 +13,15 @@ import EditAddRecipe from "./EditAddRecipe"
 import blue from "@material-ui/core/colors/blue"
 import green from "@material-ui/core/colors/green"
 import server from "./server"
-const uuidv1 = require("uuid/v1")
+import Button from "./Styled/Button"
+import Fab from "./Styled/Fab"
 
 export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   let [products, setProducts] = useState([])
   let [selectedIngredient, setSelectedIngredient] = useState()
   let [editOrAddRecipe, setEditOrAddRecipe] = useState()
-  const addRecipe = selectedRecipe === undefined
+  const addRecipe = selectedRecipe.uid === undefined
 
-  selectedRecipe = selectedRecipe || {
-    ingredients: [],
-    mappings: [],
-    uid: uuidv1(),
-    created: new Date().toLocaleString("en-GB").replace(/\//g, "-")
-  }
   const recipeId = selectedRecipe.uid
   const mappings = selectedRecipe.mappings
   const ingredients = selectedRecipe.ingredients
@@ -42,7 +35,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
     if (ingredients.length > 0) {
       setSelectedIngredient(ingredients[0])
     }
-  }, [selectedRecipe, ingredients])
+  }, [selectedRecipe, ingredients, addRecipe])
 
   async function search(item, customSearch) {
     const query = customSearch ? customSearch : item.ingredient
@@ -66,19 +59,9 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
     <Fragment>
       <Grid container item xs={3}>
         <div>
-          <Button
-            color="secondary"
-            variant="contained"
-            style={{
-              margin: 5,
-              textTransform: "none"
-            }}
-            onClick={e => translate(recipeId)}
-          >
-            Translate
-          </Button>
-          <Fab color="secondary" aria-label="add" size="small">
-            <EditIcon onClick={editRecipeClick} />
+          <Button onClick={e => translate(recipeId)}>Translate</Button>
+          <Fab onClick={editRecipeClick}>
+            <EditIcon />
           </Fab>
         </div>
         <Grid item xs={12} style={{ minHeight: "75vh" }}>

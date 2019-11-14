@@ -1,25 +1,35 @@
 import React, { useRef } from "react"
-import { Typography, TextField, Grid, Button } from "@material-ui/core"
+import { Typography, TextField, Grid, Button, Link } from "@material-ui/core"
 import server from "./server"
+const uuidv1 = require("uuid/v1")
 
-export default function EditAddRecipe({ selectedRecipe }) {
+export default function EditAddRecipe({ selectedRecipe, setSelectedRecipe }) {
   const nameRef = useRef(null)
   const ingredientsRef = useRef(null)
   const directionsRef = useRef(null)
+  const urlRef = useRef(null)
   const edit = selectedRecipe.name !== undefined
   const title = edit ? "Edit Recipe" : "Add Recipe"
 
-  function saveRecipeClick() {
+  async function saveRecipeClick() {
     const name = nameRef.current.value
-    const uid = selectedRecipe.uid
+    const uid = selectedRecipe.uid || uuidv1()
     const created = new Date().toLocaleString("en-GB").replace(/\//g, "-")
     const ingredients = ingredientsRef.current.value
     const directions = directionsRef.current.value
-    if (edit) {
-      server.put("recipes", { name, uid, created, ingredients, directions })
-    } else {
-      server.post("recipes", { name, uid, created, ingredients, directions })
+    const source_url = urlRef.current.value
+    let recipe = {
+      name,
+      uid,
+      created,
+      ingredients,
+      directions,
+      source_url
     }
+    const res = edit
+      ? await server.put("recipes", recipe)
+      : await server.post("recipes", recipe)
+    setSelectedRecipe(res.data)
   }
 
   return (
@@ -53,7 +63,7 @@ export default function EditAddRecipe({ selectedRecipe }) {
             multiline
             variant="outlined"
             defaultValue={selectedRecipe.ingredients
-              .map(i => i.ingredient)
+              .map(i => i.full)
               .join("\n")}
             inputRef={ingredientsRef}
           />
@@ -67,6 +77,21 @@ export default function EditAddRecipe({ selectedRecipe }) {
             defaultValue={selectedRecipe.directions}
             inputRef={directionsRef}
           />
+        </Grid>
+        <Grid item>
+          <TextField
+            fullWidth
+            label="Source Url"
+            multiline
+            variant="outlined"
+            defaultValue={selectedRecipe.source_url}
+            inputRef={urlRef}
+          />
+        </Grid>
+        <Grid item>
+          <Link href={selectedRecipe.source_url}>
+            {selectedRecipe.source_url}
+          </Link>
         </Grid>
 
         <Grid item>

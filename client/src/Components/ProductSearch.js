@@ -6,9 +6,10 @@ import {
   GridList,
   GridListTile,
   TextField,
-  Button,
-  Typography
+  Typography,
+  Button as MuiButton
 } from "@material-ui/core"
+import Button from "./Styled/Button"
 
 const styles = makeStyles(theme => ({
   input: {
@@ -58,72 +59,66 @@ export default function ProductSearch({
 
   return (
     <Grid container item xs={6} key={bareIngredient} alignItems="stretch">
-      <div>
-        {bareIngredient.split(" ").map(item => (
-          <Button
-            key={item}
-            variant="outlined"
-            color="secondary"
-            onClick={() => search(item)}
-            style={{
-              margin: 2,
-              textTransform: "none"
-            }}
-          >
-            {item}
-          </Button>
-        ))}
-        <TextField
-          style={{ margin: 2 }}
-          InputProps={{
-            className: classes.input
-          }}
-          defaultValue={bareIngredient}
-          onKeyDown={e => textFieldSearch(e)}
-          variant="outlined"
-        />
-      </div>
-      {products.length === 0 ? (
-        <Typography color="secondary" style={{ paddingTop: 20 }}>
-          No products found
-        </Typography>
-      ) : (
-        <GridList
-          cols={3}
-          cellHeight="auto"
-          style={{ maxHeight: "75vh", overflow: "auto" }}
-        >
-          {products.map((item, i) => (
-            <GridListTile key={item.id} xs={4}>
-              <Button
-                color="primary"
-                onClick={() => selectProduct(item)}
-                style={{
-                  textTransform: "none",
-                  border:
-                    (mappings[bareIngredient] || {}).id === item.id
-                      ? "2px solid"
-                      : ""
-                }}
-                title={item.title}
-              >
-                <div>
-                  <img
-                    src={
-                      item.images.length > 0 ? item.images[0].url : undefined
-                    }
-                    alt={item.title}
-                  />
-                  <div>
-                    {item.title} ({item.price.unitSize}) €
-                    {item.price.now.toFixed(2)}
-                  </div>
-                </div>
-              </Button>
-            </GridListTile>
+      <Grid container item xs={12}>
+        <div>
+          {bareIngredient.split(" ").map(item => (
+            <Button key={item} variant="outlined" onClick={() => search(item)}>
+              {item}
+            </Button>
           ))}
-        </GridList>
-      )}
+          <TextField
+            InputProps={{
+              className: classes.input
+            }}
+            defaultValue={bareIngredient}
+            onKeyDown={e => textFieldSearch(e)}
+            variant="outlined"
+          />
+        </div>
+      </Grid>
+      <Grid item xs={12}>
+        {products.length === 0 ? (
+          <Typography color="secondary" style={{ paddingTop: 20 }}>
+            No products found
+          </Typography>
+        ) : (
+          <GridList
+            cols={3}
+            cellHeight="auto"
+            style={{ maxHeight: "75vh", overflow: "auto" }}
+          >
+            {products.map((item, i) => (
+              <GridListTile key={item.id} xs={4}>
+                <MuiButton
+                  color="primary"
+                  onClick={() => selectProduct(item)}
+                  style={{
+                    textTransform: "none",
+                    border:
+                      (mappings[bareIngredient] || {}).id === item.id
+                        ? "2px solid"
+                        : ""
+                  }}
+                  title={item.title}
+                >
+                  <div>
+                    <img
+                      src={
+                        item.images.length > 0 ? item.images[0].url : undefined
+                      }
+                      alt={item.title}
+                    />
+                    <div>
+                      {item.title} ({item.price.unitSize}) €
+                      {item.price.now.toFixed(2)}
+                    </div>
+                  </div>
+                </MuiButton>
+              </GridListTile>
+            ))}
+          </GridList>
+        )}
+      </Grid>
     </Grid>
   )
 }

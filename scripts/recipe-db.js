@@ -50,19 +50,32 @@ class RecipeDb {
   }
 
   editRecipe(recipe) {
-    const table = this.db.get("recipes")
-    const foundRecipe = table.find({
-      uid: recipe.uid
-    })
-    if (foundRecipe.value()) {
-      foundRecipe.assign(recipe).write()
-    }
+    console.log(recipe)
+    this.db
+      .get("recipes")
+      .find({
+        uid: recipe.uid
+      })
+      .assign(recipe)
+      .unset("mappings")
+      .write()
+    return this.getRecipe(recipe.uid)
   }
 
   addRecipe(recipe) {
     this.db
       .get("recipes")
       .push(recipe)
+      .write()
+    return this.getRecipe(recipe.uid)
+  }
+
+  removeRecipe(recipe) {
+    return this.db
+      .get("recipes")
+      .remove({
+        uid: recipe.uid
+      })
       .write()
   }
 }

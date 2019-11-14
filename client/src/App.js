@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import "./App.css"
 import RecipeList from "./Components/RecipeList"
 import { Grid, Typography } from "@material-ui/core"
+import { ReactComponent as Hat } from "./hat.svg"
+import blue from "@material-ui/core/colors/blue"
 
 function App() {
   const [recipeTitle, setRecipeTitle] = useState()
@@ -9,13 +11,26 @@ function App() {
   return (
     <div className="App">
       <div className="App-header">
-        <Typography variant="h3" style={{ paddingTop: 20 }}>
-          Lazy chef
-        </Typography>
-        <Grid container spacing={1} style={{ padding: 10 }}>
+        <div style={{ display: "table", clear: "both" }}></div>
+        <Grid container justify="center" spacing={3}>
+          <Grid item>
+            <Typography
+              variant="h3"
+              style={{ paddingTop: 20, color: blue[50] }}
+            >
+              Lazy chef
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Hat style={{ width: 80, height: 80 }}></Hat>
+          </Grid>
+        </Grid>
+        <Grid container spacing={1}>
           <Grid item xs={3}></Grid>
           <Grid item xs={3}>
-            <Typography variant="h6">{recipeTitle}</Typography>
+            <Typography variant="h6" style={{ color: blue[50] }}>
+              {recipeTitle}
+            </Typography>
           </Grid>
         </Grid>
       </div>

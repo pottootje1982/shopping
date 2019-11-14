@@ -13,11 +13,18 @@ router.get("/", async function(_req, res) {
 })
 
 router.put("/", async function(req, res) {
-  recipeDb.editRecipe(req.body)
+  const recipe = recipeDb.editRecipe(req.body)
+  res.send(recipe)
 })
 
 router.post("/", async function(req, res) {
-  recipeDb.addRecipe(req.body)
+  const recipe = recipeDb.addRecipe(req.body)
+  res.send(recipe)
+})
+
+router.delete("/", async function(req, res) {
+  const success = recipeDb.removeRecipe(req.body)
+  res.send(success)
 })
 
 router.post("/translate", async function(req, res) {

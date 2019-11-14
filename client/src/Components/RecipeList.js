@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react"
 import server from "./server"
 import {
-  Button,
   Grid,
   Paper,
   List,
   ListItem,
   ListItemText,
   ListItemIcon,
-  Checkbox,
-  Fab
+  Checkbox
 } from "@material-ui/core"
 import AddIcon from "@material-ui/icons/Add"
+import DeleteIcon from "@material-ui/icons/Delete"
 import blue from "@material-ui/core/colors/blue"
 import green from "@material-ui/core/colors/green"
 import Recipe from "./Recipe"
+import Button from "./Styled/Button"
+import Fab from "./Styled/Fab"
 
 export default function RecipeList({ setRecipeTitle }) {
   const [selectedRecipes] = useState(() => [])
@@ -28,21 +29,36 @@ export default function RecipeList({ setRecipeTitle }) {
       setRecipes(recipes)
       if (recipes.length > 0) {
         const recipe = recipes[0]
-        selectRecipe(undefined, recipe.uid)
+        setSelectedRecipe(recipe)
       }
     })
   }
 
   useEffect(selectedFirstRecipe, [])
 
-  function selectRecipe(_button, id) {
-    const selectedRecipe = recipes.find(r => r.uid === id)
-    setSelectedRecipe(selectedRecipe)
+  useEffect(selectRecipe, [selectedRecipe])
+
+  function selectRecipe() {
+    if (!selectedRecipe) return
     setRecipeTitle(selectedRecipe.name)
     setRecipeReadyToOrder(
       selectedRecipe.ingredients.length ===
         Object.keys(selectedRecipe.mappings || {}).length
     )
+    if (!recipes.includes(selectedRecipe)) {
+      const index = recipes.indexOf(
+        recipes.find(r => r.uid === selectedRecipe.uid)
+      )
+      const newRecipes = [...recipes]
+      if (index >= 0) {
+        // edit
+        newRecipes.splice(index, 1, selectedRecipe)
+      } else {
+        // add
+        newRecipes.push(selectedRecipe)
+      }
+      setRecipes(newRecipes)
+    }
   }
 
   function toggleRecipe(checked, uid) {
@@ -58,7 +74,23 @@ export default function RecipeList({ setRecipeTitle }) {
   }
 
   function addRecipe() {
-    setSelectedRecipe()
+    setSelectedRecipe({
+      ingredients: [],
+      mappings: [],
+      created: new Date().toLocaleString("en-GB").replace(/\//g, "-")
+    })
+  }
+
+  function removeRecipe() {
+    if (recipes.length > 0) {
+      server.delete("recipes", { data: selectedRecipe })
+      const index = recipes.indexOf(selectedRecipe)
+      const newRecipes = [...recipes]
+      newRecipes.splice(index, 1)
+      setRecipes(newRecipes)
+      const newIndex = Math.min(index, newRecipes.length - 1)
+      setSelectedRecipe(newRecipes[newIndex])
+    }
   }
 
   return recipes === undefined ? (
@@ -67,24 +99,12 @@ export default function RecipeList({ setRecipeTitle }) {
     <Grid container spacing={1} style={{ padding: 10 }}>
       <Grid container item xs={3}>
         <div>
-          <Button
-            color="secondary"
-            variant="contained"
-            style={{
-              margin: 5,
-              textTransform: "none"
-            }}
-            onClick={order}
-          >
-            Order
-          </Button>
-          <Fab
-            color="secondary"
-            aria-label="add"
-            size="small"
-            onClick={addRecipe}
-          >
+          <Button onClick={order}>Order</Button>
+          <Fab onClick={addRecipe}>
             <AddIcon />
+          </Fab>
+          <Fab color="secondary" size="small" onClick={removeRecipe}>
+            <DeleteIcon />
           </Fab>
         </div>
         <Grid item xs={12} style={{ minHeight: "75vh" }}>
@@ -93,10 +113,10 @@ export default function RecipeList({ setRecipeTitle }) {
               {recipes.map((item, index) => (
                 <ListItem
                   button
-                  key={index}
+                  key={`${item.created}_${item.name}`}
                   divider={true}
                   selected={(selectedRecipe || {}).uid === item.uid}
-                  onClick={e => selectRecipe(e, item.uid)}
+                  onClick={() => setSelectedRecipe(item)}
                 >
                   <ListItemIcon>
                     <Checkbox
@@ -122,11 +142,13 @@ export default function RecipeList({ setRecipeTitle }) {
           </Paper>
         </Grid>
       </Grid>
-      <Recipe
-        key={(selectedRecipe || {}).uid}
-        selectedRecipe={selectedRecipe}
-        setSelectedRecipe={setSelectedRecipe}
-      />
+      {selectedRecipe ? (
+        <Recipe
+          key={selectedRecipe.uid}
+          selectedRecipe={selectedRecipe}
+          setSelectedRecipe={setSelectedRecipe}
+        />
+      ) : null}
     </Grid>
   )
 }
