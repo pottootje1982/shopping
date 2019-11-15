@@ -2230,6 +2230,12 @@
           "unitSize": "400 g"
         }
       }
+    },
+    {
+      "ingredient": "zout en peper",
+      "product": {
+        "ignore": true
+      }
     }
   ]
 }

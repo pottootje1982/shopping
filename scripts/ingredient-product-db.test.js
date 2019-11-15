@@ -9,7 +9,7 @@ describe('storeMapping()', () => {
     db.storeMapping('Prei', { id: 1273124, title: 'prei' })
     expect(db.getMapping('pRei').product).toEqual({
       id: 1273124,
-      title: 'prei',
+      title: 'prei'
     })
   })
 
@@ -17,7 +17,7 @@ describe('storeMapping()', () => {
     db.storeMapping('prei', { id: 1273124, title: 'prei' })
     expect(db.getMapping('prei').product).toEqual({
       id: 1273124,
-      title: 'prei',
+      title: 'prei'
     })
 
     db.storeMapping('prei', { id: 4, title: 'AH prei' })
@@ -36,7 +36,7 @@ describe('storeMapping()', () => {
       prei: { id: 1273124, quantity: 1 },
       dille: { id: 2, quantity: 1 },
       zalm: { id: 1, quantity: 1 },
-      aardappels: { id: 3, quantity: 1 },
+      aardappels: { id: 3, quantity: 1 }
     })
   })
 
@@ -53,25 +53,67 @@ describe('storeMapping()', () => {
       items: [
         {
           id: 1,
-          quantity: 1,
+          quantity: 1
         },
         {
           id: 5,
-          quantity: 1,
+          quantity: 1
         },
         {
           id: 2,
-          quantity: 1,
+          quantity: 1
         },
         {
           id: 3,
-          quantity: 1,
-        },
-      ],
+          quantity: 1
+        }
+      ]
     })
     expect(
       db.getAllMappings().filter(map => map.ingredient === 'egg').length
     ).toBe(1)
+  })
+
+  it('does not order ignored items', () => {
+    db.storeMapping('pastinaak', { id: 3 })
+    db.storeMapping('wortel', { id: 2 })
+    db.storeMapping('kruimige aardappels', { ignore: true })
+    db.storeMapping('zout en peper', { id: 1, ignore: true })
+
+    const recipe = recipeDb.getRecipe('2ce31202-4560-4273-bdfa-06c20ae46084')
+    let order = db.pickOrder(recipe)
+    expect(order).toEqual({
+      items: [
+        {
+          id: 3,
+          quantity: 1
+        },
+        {
+          id: 2,
+          quantity: 1
+        }
+      ]
+    })
+    db.storeMapping('kruimige aardappels', {})
+    db.storeMapping('zout en peper', { id: 1, ignore: false })
+    order = db.pickOrder(recipe)
+    expect(order).toEqual({
+      items: [
+        {
+          id: 3,
+          quantity: 1
+        },
+        {
+          id: 2,
+          quantity: 1
+        },
+        {
+          id: 1,
+          ignore: false,
+          quantity: 1
+        }
+      ]
+    })
   })
 
   it.skip('hydrates ingredient product maps', async () => {

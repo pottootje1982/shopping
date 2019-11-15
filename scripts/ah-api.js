@@ -1,6 +1,6 @@
 var request = require('request-promise')
 request = request.defaults({
-  jar: true,
+  jar: true
 })
 var FileCookieStore = require('tough-cookie-filestore')
 const { ingToProduct } = require('../scripts/ingredient-product-db')
@@ -10,7 +10,7 @@ class AhApi {
   constructor(username, password) {
     this.body = {
       username,
-      password,
+      password
     }
     const file = path.resolve(__dirname, 'cookie.json')
     this.jar = request.jar(new FileCookieStore(file))
@@ -33,7 +33,7 @@ class AhApi {
       return products
     }
     const mapping = ingToProduct.getMapping(full)
-    if (mapping) {
+    if (mapping && !mapping.product.ignore) {
       const id = mapping.product.id
       let selectedProduct = products.find(p => p.id === id)
       const withoutSelected = products.filter(p => p.id !== id)
@@ -81,7 +81,7 @@ class AhApi {
       this.options({
         recipeId,
         name,
-        ingredients,
+        ingredients
       })
     )
   }
@@ -90,7 +90,7 @@ class AhApi {
     return {
       jar: this.jar,
       body,
-      json: true,
+      json: true
     }
   }
 }

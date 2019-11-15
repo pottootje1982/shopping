@@ -1,6 +1,6 @@
-import server from "./server"
-import React, { useEffect } from "react"
-import { makeStyles } from "@material-ui/core/styles"
+import server from './server'
+import React, { useEffect } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 import {
   Grid,
   GridList,
@@ -8,8 +8,10 @@ import {
   TextField,
   Typography,
   Button as MuiButton
-} from "@material-ui/core"
-import Button from "./Styled/Button"
+} from '@material-ui/core'
+import Button from './Styled/Button'
+import Fab from './Styled/Fab'
+import DoneIcon from '@material-ui/icons/Done'
 
 const styles = makeStyles(theme => ({
   input: {
@@ -27,7 +29,8 @@ export default function ProductSearch({
   const classes = styles()
 
   const mappings = selectedRecipe.mappings
-  const bareIngredient = (selectedIngredient.ingredient || "").toLowerCase()
+  const bareIngredient = (selectedIngredient.ingredient || '').toLowerCase()
+  const product = mappings[bareIngredient] || {}
 
   useEffect(doSearch, [selectedIngredient])
 
@@ -36,12 +39,12 @@ export default function ProductSearch({
   }
 
   function selectProduct(completeProduct) {
-    const { id, title, price } = completeProduct
-    const product = { id, title, price }
+    const { id, title, price, ignore } = completeProduct
+    const product = { id, title, price, ignore }
     mappings[bareIngredient] = product
     setSelectedRecipe({ ...selectedRecipe, mappings })
 
-    server.post("products/choose", {
+    server.post('products/choose', {
       ingredient: bareIngredient,
       product: product
     })
@@ -57,11 +60,20 @@ export default function ProductSearch({
     searchProducts(undefined, value)
   }
 
+  function ignoreIngredient() {
+    product.ignore = !product.ignore
+    selectProduct(product)
+  }
+
   return (
     <Grid container item xs={6} key={bareIngredient} alignItems="stretch">
       <Grid container item xs={12}>
         <div>
-          {bareIngredient.split(" ").map(item => (
+          <Fab onClick={ignoreIngredient} disabled={product.ignore}>
+            <DoneIcon />
+          </Fab>
+
+          {bareIngredient.split(' ').map(item => (
             <Button key={item} variant="outlined" onClick={() => search(item)}>
               {item}
             </Button>
@@ -85,7 +97,7 @@ export default function ProductSearch({
           <GridList
             cols={3}
             cellHeight="auto"
-            style={{ maxHeight: "75vh", overflow: "auto" }}
+            style={{ maxHeight: '75vh', overflow: 'auto' }}
           >
             {products.map((item, i) => (
               <GridListTile key={item.id} xs={4}>
@@ -93,11 +105,11 @@ export default function ProductSearch({
                   color="primary"
                   onClick={() => selectProduct(item)}
                   style={{
-                    textTransform: "none",
+                    textTransform: 'none',
                     border:
                       (mappings[bareIngredient] || {}).id === item.id
-                        ? "2px solid"
-                        : ""
+                        ? '2px solid'
+                        : ''
                   }}
                   title={item.title}
                 >

@@ -1,10 +1,12 @@
-- spinner to control quantity in recipe ingredients
-- show recipes green if all ingredients are translated (add button to ignore ingredient if it is something like 'voor 4 personen')
-- sync with Paprika
-- group recipes in recipe list
-- sort recipes by names
+- spinner to control quantity in recipe ingredients: 8
+- sync with Paprika: 2
+- group recipes in recipe list: 4
+- sort recipes by names: 4
 
-- distill list of recipes that were ordered
+- search field for list: 4
+- MongoDb: 16
 
-- add translations for quantities
-- store ordered recipes
+- distill list of recipes that were ordered: 8
+
+- add translations for quantities: 4
+- store ordered recipes:

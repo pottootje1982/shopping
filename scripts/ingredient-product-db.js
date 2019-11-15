@@ -10,7 +10,7 @@ class IngredientProductDb {
     this.db = low(adapter)
     this.db
       .defaults({
-        mapping: [],
+        mapping: []
       })
       .write()
   }
@@ -19,19 +19,19 @@ class IngredientProductDb {
     ingredient = ingredient.toLowerCase()
     const table = this.db.get('mapping')
     const mapping = table.find({
-      ingredient,
+      ingredient
     })
     if (mapping.value()) {
       mapping
         .assign({
-          product,
+          product
         })
         .write()
     } else {
       table
         .push({
           ingredient,
-          product,
+          product
         })
         .write()
     }
@@ -42,7 +42,7 @@ class IngredientProductDb {
     return this.db
       .get('mapping')
       .find({
-        ingredient,
+        ingredient
       })
       .value()
   }
@@ -60,7 +60,7 @@ class IngredientProductDb {
         const quantity = (i.unit ? 1 : i.quantity) || 1
         result[mapping.ingredient] = {
           ...product,
-          quantity,
+          quantity
         }
       }
     })
@@ -70,7 +70,9 @@ class IngredientProductDb {
   pickOrder(recipe) {
     const mappings = this.getMappings(recipe)
     return {
-      items: Object.values(mappings),
+      items: Object.values(mappings).filter(
+        mapping => !mapping.ignore && mapping.id
+      )
     }
   }
 }

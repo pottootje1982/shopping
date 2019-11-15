@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react"
+import React, { Fragment, useEffect, useState } from 'react'
 import {
   Grid,
   Paper,
@@ -6,15 +6,16 @@ import {
   ListItem,
   ListItemText,
   Typography
-} from "@material-ui/core"
-import EditIcon from "@material-ui/icons/Edit"
-import ProductSearch from "./ProductSearch"
-import EditAddRecipe from "./EditAddRecipe"
-import blue from "@material-ui/core/colors/blue"
-import green from "@material-ui/core/colors/green"
-import server from "./server"
-import Button from "./Styled/Button"
-import Fab from "./Styled/Fab"
+} from '@material-ui/core'
+import EditIcon from '@material-ui/icons/Edit'
+import ProductSearch from './ProductSearch'
+import EditAddRecipe from './EditAddRecipe'
+import blue from '@material-ui/core/colors/blue'
+import green from '@material-ui/core/colors/green'
+import grey from '@material-ui/core/colors/grey'
+import server from './server'
+import Button from './Styled/Button'
+import Fab from './Styled/Fab'
 
 export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   let [products, setProducts] = useState([])
@@ -47,7 +48,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   }
 
   async function translate(uid) {
-    const res = await server.post("recipes/translate", { recipeId: uid })
+    const res = await server.post('recipes/translate', { recipeId: uid })
     setSelectedRecipe(res.data.recipe)
   }
 
@@ -64,9 +65,9 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
             <EditIcon />
           </Fab>
         </div>
-        <Grid item xs={12} style={{ minHeight: "75vh" }}>
+        <Grid item xs={12} style={{ minHeight: '75vh' }}>
           <Paper style={{ backgroundColor: blue[50] }}>
-            <List dense style={{ maxHeight: "75vh", overflow: "auto" }}>
+            <List dense style={{ maxHeight: '75vh', overflow: 'auto' }}>
               {(ingredients || []).map((item, i) => (
                 <ListItem
                   divider={true}
@@ -77,17 +78,26 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
                 >
                   <ListItemText
                     key={i}
-                    secondary={
+                    primary={
                       <Typography
-                        variant="subtitle2"
-                        style={{ color: green[500], fontSize: 9 }}
+                        style={{
+                          color: productInfo[i].ignore ? grey[500] : undefined
+                        }}
                       >
-                        {productInfo[i].quantity} {productInfo[i].title}
+                        {item.full}
                       </Typography>
                     }
-                  >
-                    {item.full}
-                  </ListItemText>
+                    secondary={
+                      !productInfo[i].ignore ? (
+                        <Typography
+                          variant="subtitle2"
+                          style={{ color: green[500], fontSize: 9 }}
+                        >
+                          {productInfo[i].quantity} {productInfo[i].title}
+                        </Typography>
+                      ) : null
+                    }
+                  ></ListItemText>
                 </ListItem>
               ))}
             </List>
