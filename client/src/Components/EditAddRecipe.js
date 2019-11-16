@@ -1,6 +1,7 @@
 import React, { useRef } from "react"
 import { Typography, TextField, Grid, Button, Link } from "@material-ui/core"
 import server from "./server"
+import getDateString from "./date"
 const uuidv1 = require("uuid/v1")
 
 export default function EditAddRecipe({ selectedRecipe, setSelectedRecipe }) {
@@ -14,7 +15,7 @@ export default function EditAddRecipe({ selectedRecipe, setSelectedRecipe }) {
   async function saveRecipeClick() {
     const name = nameRef.current.value
     const uid = selectedRecipe.uid || uuidv1()
-    const created = new Date().toLocaleString("en-GB").replace(/\//g, "-")
+    const created = getDateString()
     const ingredients = ingredientsRef.current.value
     const directions = directionsRef.current.value
     const source_url = urlRef.current.value
@@ -50,6 +51,9 @@ export default function EditAddRecipe({ selectedRecipe, setSelectedRecipe }) {
         <Grid item>
           <TextField
             fullWidth
+            InputProps={{
+              readOnly: true
+            }}
             label="Created"
             readOnly
             defaultValue={selectedRecipe.created}

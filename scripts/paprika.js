@@ -1,20 +1,45 @@
-let PaprikaApi = require('paprika-api')
-const { paprikaUser, paprikaPass } = require('../config')
+const { PaprikaApi } = require("paprika-api")
+const { paprikaUser, paprikaPass } = require("../config")
 
-let paprikaApi = new PaprikaApi.PaprikaApi(paprikaUser, paprikaPass)
-
-async function getRecipe(uid) {
-  return await paprikaApi.recipe(uid)
-}
-
-async function getAllHydratedRecipes() {
-  const recipesRaw = await paprikaApi.recipes()
-  var recipes = []
-  for (let i = 0; i < recipesRaw.length; i++) {
-    const recipe = await getRecipe(recipesRaw[i].uid)
-    recipes.push(recipe)
+PaprikaApi.prototype.upsertRecipe = function(recipe) {
+  const request = require("request-promise")
+  var formData = {
+    data: recipe
   }
-  return recipes
+  request.post(`https://www.paprikaapp.com/api/v1/sync/recipe/${uid}/`, {
+    formData
+  })
 }
 
-module.exports = getAllHydratedRecipes
+class Paprika {
+  constructor(paprikaApi) {
+    this.paprikaApi = paprikaApi || new PaprikaApi(paprikaUser, paprikaPass)
+  }
+
+  async getRecipe(uid) {
+    return await this.paprikaApi.recipe(uid)
+  }
+
+  async getAllHydratedRecipes() {
+    const recipesRaw = await this.paprikaApi.recipes()
+    var recipes = []
+    for (let i = 0; i < recipesRaw.length; i++) {
+      const recipe = await this.getRecipe(recipesRaw[i].uid)
+      recipes.push(recipe)
+    }
+    return recipes
+  }
+
+  async synchronize(localRecipes) {
+    const remoteRecipes = await this.paprikaApi.recipes()
+    const upsertToRemote = localRecipes.filter(local => {
+      const remote = remoteRecipes.find(remote => remote.uid === local.uid)
+      return !remote || remote.hash !== local.hash
+    })
+    for (const local in upsertToRemote) {
+      this.paprikaApi.upsertRecipe(local)
+    }
+  }
+}
+
+module.exports = Paprika

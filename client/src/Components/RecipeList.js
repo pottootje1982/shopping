@@ -16,6 +16,7 @@ import green from "@material-ui/core/colors/green"
 import Recipe from "./Recipe"
 import Button from "./Styled/Button"
 import Fab from "./Styled/Fab"
+import getDateString from "./date"
 
 export default function RecipeList({ setRecipeTitle }) {
   const [selectedRecipes] = useState(() => [])
@@ -74,10 +75,11 @@ export default function RecipeList({ setRecipeTitle }) {
   }
 
   function addRecipe() {
+    const created = getDateString()
     setSelectedRecipe({
       ingredients: [],
       mappings: [],
-      created: new Date().toLocaleString("en-GB").replace(/\//g, "-")
+      created
     })
   }
 

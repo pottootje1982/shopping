@@ -50,7 +50,6 @@ class RecipeDb {
   }
 
   editRecipe(recipe) {
-    console.log(recipe)
     this.db
       .get("recipes")
       .find({
