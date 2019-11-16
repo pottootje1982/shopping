@@ -20,7 +20,7 @@ import getDateString from "./date"
 export default function RecipeList({ setRecipeTitle }) {
   const [selectedRecipes] = useState(() => [])
   let [recipes, setRecipes] = useState([])
-  let [_, setRecipeReadyToOrder] = useState()
+  let [, setRecipeReadyToOrder] = useState()
   let [selectedRecipe, setSelectedRecipe] = useState()
 
   function selectedFirstRecipe() {
@@ -61,7 +61,8 @@ export default function RecipeList({ setRecipeTitle }) {
     }
   }
 
-  function toggleRecipe(checked, uid) {
+  async function toggleRecipe(event, checked, uid) {
+    event.stopPropagation()
     if (checked) {
       selectedRecipes.push(uid)
     } else {
@@ -122,7 +123,9 @@ export default function RecipeList({ setRecipeTitle }) {
                   <ListItemIcon>
                     <Checkbox
                       edge="start"
-                      onChange={(e, checked) => toggleRecipe(checked, item.uid)}
+                      onChange={(e, checked) =>
+                        toggleRecipe(e, checked, item.uid)
+                      }
                       tabIndex={-1}
                       disableRipple
                     />

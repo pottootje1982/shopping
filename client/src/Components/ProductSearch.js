@@ -63,7 +63,6 @@ export default function ProductSearch({
   }
 
   function ignoreIngredient(checked) {
-    console.log(checked)
     product.ignore = checked
     selectProduct(product)
   }

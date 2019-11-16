@@ -3,6 +3,7 @@ const FileSync = require("lowdb/adapters/FileSync")
 const { Ingredients } = require("./ingredients")
 const { ingToProduct } = require("../scripts/ingredient-product-db")
 const path = require("path")
+var crypto = require("crypto")
 
 class RecipeDb {
   constructor(translationDb, file) {
@@ -49,7 +50,16 @@ class RecipeDb {
     return this.translateRecipe(recipe)
   }
 
+  setHash(recipe) {
+    const str = JSON.stringify(recipe)
+    recipe.hash = crypto
+      .createHash("sha256")
+      .update(str)
+      .digest("hex")
+  }
+
   editRecipe(recipe) {
+    this.setHash(recipe)
     this.db
       .get("recipes")
       .find({
@@ -62,6 +72,7 @@ class RecipeDb {
   }
 
   addRecipe(recipe) {
+    this.setHash(recipe)
     this.db
       .get("recipes")
       .push(recipe)
