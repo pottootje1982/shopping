@@ -14,8 +14,7 @@ import DeleteIcon from "@material-ui/icons/Delete"
 import blue from "@material-ui/core/colors/blue"
 import green from "@material-ui/core/colors/green"
 import Recipe from "./Recipe"
-import Button from "./Styled/Button"
-import Fab from "./Styled/Fab"
+import { Button, Fab } from "./Styled"
 import getDateString from "./date"
 
 export default function RecipeList({ setRecipeTitle }) {

@@ -1,10 +1,15 @@
 import React, { useRef } from "react"
-import { Typography, TextField, Grid, Button, Link } from "@material-ui/core"
+import { Typography, Grid, Link } from "@material-ui/core"
 import server from "./server"
 import getDateString from "./date"
+import { TextField, Button } from "./Styled"
 const uuidv1 = require("uuid/v1")
 
-export default function EditAddRecipe({ selectedRecipe, setSelectedRecipe }) {
+export default function EditAddRecipe({
+  selectedRecipe,
+  setSelectedRecipe,
+  setEditOrAddRecipe
+}) {
   const nameRef = useRef(null)
   const ingredientsRef = useRef(null)
   const directionsRef = useRef(null)
@@ -33,6 +38,10 @@ export default function EditAddRecipe({ selectedRecipe, setSelectedRecipe }) {
     setSelectedRecipe(res.data)
   }
 
+  function cancelClick() {
+    setEditOrAddRecipe(false)
+  }
+
   return (
     <Grid item xs={6}>
       <Grid container spacing={1} alignItems="stretch" direction="column">
@@ -41,31 +50,25 @@ export default function EditAddRecipe({ selectedRecipe, setSelectedRecipe }) {
         </Grid>
         <Grid item>
           <TextField
-            fullWidth
             label="Title"
             defaultValue={selectedRecipe.name}
-            variant="outlined"
             inputRef={nameRef}
           />
         </Grid>
         <Grid item>
           <TextField
-            fullWidth
             InputProps={{
               readOnly: true
             }}
             label="Created"
             readOnly
             defaultValue={selectedRecipe.created}
-            variant="outlined"
           />
         </Grid>
         <Grid item>
           <TextField
-            fullWidth
             label="Ingredients"
             multiline
-            variant="outlined"
             defaultValue={selectedRecipe.ingredients
               .map(i => i.full)
               .join("\n")}
@@ -74,20 +77,16 @@ export default function EditAddRecipe({ selectedRecipe, setSelectedRecipe }) {
         </Grid>
         <Grid item>
           <TextField
-            fullWidth
             label="Directions"
             multiline
-            variant="outlined"
             defaultValue={selectedRecipe.directions}
             inputRef={directionsRef}
           />
         </Grid>
         <Grid item>
           <TextField
-            fullWidth
             label="Source Url"
             multiline
-            variant="outlined"
             defaultValue={selectedRecipe.source_url}
             inputRef={urlRef}
           />
@@ -99,17 +98,8 @@ export default function EditAddRecipe({ selectedRecipe, setSelectedRecipe }) {
         </Grid>
 
         <Grid item>
-          <Button
-            color="secondary"
-            variant="contained"
-            style={{
-              margin: 5,
-              textTransform: "none"
-            }}
-            onClick={saveRecipeClick}
-          >
-            Save
-          </Button>
+          <Button onClick={saveRecipeClick}>Save</Button>
+          <Button onClick={cancelClick}>Cancel</Button>
         </Grid>
       </Grid>
     </Grid>
