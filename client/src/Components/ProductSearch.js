@@ -7,14 +7,17 @@ import {
   GridListTile,
   TextField,
   Typography,
+  FormControlLabel,
+  Checkbox,
   Button as MuiButton
 } from "@material-ui/core"
-import { Button, Fab } from "./Styled"
-import DoneIcon from "@material-ui/icons/Done"
+import { Button } from "./Styled"
 
 const styles = makeStyles(theme => ({
   input: {
-    height: 36
+    height: 36,
+    marginRight: 4,
+    marginTop: 3
   }
 }))
 
@@ -59,8 +62,9 @@ export default function ProductSearch({
     searchProducts(undefined, value)
   }
 
-  function ignoreIngredient() {
-    product.ignore = !product.ignore
+  function ignoreIngredient(checked) {
+    console.log(checked)
+    product.ignore = checked
     selectProduct(product)
   }
 
@@ -68,10 +72,6 @@ export default function ProductSearch({
     <Grid container item xs={6} key={bareIngredient} alignItems="stretch">
       <Grid container item xs={12}>
         <div>
-          <Fab onClick={ignoreIngredient} disabled={product.ignore}>
-            <DoneIcon />
-          </Fab>
-
           {bareIngredient.split(" ").map(item => (
             <Button key={item} variant="outlined" onClick={() => search(item)}>
               {item}
@@ -84,6 +84,15 @@ export default function ProductSearch({
             defaultValue={bareIngredient}
             onKeyDown={e => textFieldSearch(e)}
             variant="outlined"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                onChange={(e, checked) => ignoreIngredient(checked)}
+                checked={product.ignore}
+              ></Checkbox>
+            }
+            label="Ignore ingredient"
           />
         </div>
       </Grid>
