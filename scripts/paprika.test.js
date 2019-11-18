@@ -39,4 +39,24 @@ describe("Index", () => {
     expect(localRecipes[4].name).toEqual("Cantuccini")
     expect(localRecipes[4].created).toEqual("2017-12-23 09:07:38")
   })
+
+  it("Saves recipes to paprika", async () => {
+    const paprika = new Paprika()
+    const recipe = require("./data/db.test.json").recipes[0]
+    recipe.name = "Zalm met prei 4"
+    await paprika.paprikaApi.upsertRecipe(recipe)
+  })
+
+  it("Creates gzip archive", async () => {
+    const fs = require("fs")
+    var output = fs.createWriteStream("test.gz")
+    var zlib = require("zlib")
+    var compress = zlib.createGzip()
+    /* The following line will pipe everything written into compress to the file stream */
+    compress.pipe(output)
+    /* Since we're piped through the file stream, the following line will do: 
+   'Hello World!'->gzip compression->file which is the desired effect */
+    compress.write("Hello, World!")
+    compress.end()
+  })
 })

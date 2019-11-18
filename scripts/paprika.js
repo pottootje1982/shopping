@@ -1,14 +1,28 @@
 const { PaprikaApi } = require("paprika-api")
 const { paprikaUser, paprikaPass } = require("../config")
+const { gzip } = require("node-gzip")
+const request = require("request")
 
 PaprikaApi.prototype.upsertRecipe = async function(recipe) {
-  const request = require("request-promise")
+  console.log(recipe)
   var formData = {
-    data: recipe
+    data: await gzip(JSON.stringify(recipe))
   }
-  await request.post(`https://www.paprikaapp.com/api/v1/sync/recipe/${uid}/`, {
-    formData
-  })
+  const headers = {
+    Authorization: "Basic d291dGVycG90MkBnbWFpbC5jb206amFiaWdhcTE5ODI="
+  }
+  const res = await request.post(
+    `https://www.paprikaapp.com/api/v1/sync/recipe/${recipe.uid}/`,
+    {
+      auth: {
+        user: paprikaUser,
+        pass: paprikaPass
+      },
+      formData,
+      headers
+    }
+  )
+  console.log(res)
 }
 
 class Paprika {
