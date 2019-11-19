@@ -2,3 +2,4 @@ bin
 .env
 .npmrc
 node_modules
+file.gz

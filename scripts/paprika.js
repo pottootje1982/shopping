@@ -3,26 +3,42 @@ const { paprikaUser, paprikaPass } = require("../config")
 const { gzip } = require("node-gzip")
 const request = require("request")
 
+const fs = require("fs")
+const zlib = require("zlib")
+
+function createZip(recipe, fn) {
+  return new Promise((resolve, reject) => {
+    const { Readable } = require("stream")
+    const s = new Readable()
+    s.push(recipe)
+    s.push(null)
+
+    const writeStream = fs.createWriteStream(fn)
+    const zip = zlib.createGzip()
+    s.pipe(zip)
+      .pipe(writeStream)
+      .on("finish", err => {
+        if (err) return reject(err)
+        else resolve()
+      })
+  })
+}
+
 PaprikaApi.prototype.upsertRecipe = async function(recipe) {
-  console.log(recipe)
-  var formData = {
-    data: await gzip(JSON.stringify(recipe))
-  }
-  const headers = {
-    Authorization: "Basic d291dGVycG90MkBnbWFpbC5jb206amFiaWdhcTE5ODI="
-  }
+  await createZip(JSON.stringify(recipe), "./file.gz")
   const res = await request.post(
     `https://www.paprikaapp.com/api/v1/sync/recipe/${recipe.uid}/`,
     {
       auth: {
-        user: paprikaUser,
-        pass: paprikaPass
+        user: this.email,
+        pass: this.password
       },
-      formData,
-      headers
+      formData: {
+        data: await fs.createReadStream("./file.gz")
+      }
     }
   )
-  console.log(res)
+  return res
 }
 
 class Paprika {

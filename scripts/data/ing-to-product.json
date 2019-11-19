@@ -2236,6 +2236,57 @@
       "product": {
         "ignore": true
       }
+    },
+    {
+      "ingredient": "keukenspullen",
+      "product": {
+        "ignore": true
+      }
+    },
+    {
+      "ingredient": "voor de hollandaise saus:",
+      "product": {
+        "ignore": true
+      }
+    },
+    {
+      "ingredient": "azijn",
+      "product": {
+        "id": 101200,
+        "title": "AH Biologisch Natuurazijn",
+        "price": {
+          "unitInfo": {
+            "price": 0.87,
+            "description": "LT"
+          },
+          "now": 0.87,
+          "unitSize": "1 l"
+        }
+      }
+    },
+    {
+      "ingredient": "voor de eiercurry",
+      "product": {
+        "ignore": true
+      }
+    },
+    {
+      "ingredient": "voor de rijst en linzen",
+      "product": {
+        "ignore": true
+      }
+    },
+    {
+      "ingredient": "curry bladeren",
+      "product": {
+        "ignore": true
+      }
+    },
+    {
+      "ingredient": "heekfilets",
+      "product": {
+        "ignore": true
+      }
     }
   ]
 }
