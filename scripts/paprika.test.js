@@ -43,12 +43,29 @@ describe("Index", () => {
 
   it("Edits recipe", async () => {
     const uid = "3fe04f98-8d73-4e9d-a7da-f4c1241aa3c4"
-    await paprika.syncRecipe(uid)
     const recipe = apiStub.recipe(uid)
-    expect(recipe.name).toBe("Zalm met prei 2")
+    recipe.name = "Zalm met prei 3"
+    await paprika.syncRecipe(recipe)
+    expect(recipe.name).toBe("Zalm met prei 3")
     expect(recipe.ingredients).toBe(
       "Prei\nDille\nBlik tomaten\nZalm\nAardappels\nWijn\nHoning\nkoriander poeder"
     )
+  })
+
+  it("Adds recipe", async () => {
+    const uid = "e42df73f-3588-47ed-9f3a-41c364ededef"
+    const newRecipe = {
+      photo: "ce2f1e34-239d-424b-94fd-98e0bf59c085.jpg",
+      uid,
+      name: "Trout traybake with minty hollandaise"
+    }
+    await paprika.syncRecipe(newRecipe)
+    const recipe = apiStub.recipe(uid)
+    expect(recipe).toEqual({
+      photo: "ce2f1e34-239d-424b-94fd-98e0bf59c085.jpg",
+      uid,
+      name: "Trout traybake with minty hollandaise"
+    })
   })
 
   it.skip("Saves recipes to paprika", async () => {
