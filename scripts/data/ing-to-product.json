@@ -44,15 +44,15 @@
     {
       "ingredient": "zalm",
       "product": {
-        "id": 132045,
-        "title": "AH Zalmfilet op huid",
+        "id": 211064,
+        "title": "AH Biologisch Gerookte zalm",
         "price": {
           "unitInfo": {
-            "price": 20.99,
+            "price": 47.9,
             "description": "KG"
           },
-          "now": 6.51,
-          "unitSize": "ca. 310 g"
+          "now": 4.79,
+          "unitSize": "100 g"
         }
       }
     },
@@ -211,11 +211,11 @@
     {
       "ingredient": "ei",
       "product": {
-        "id": 127231,
-        "title": "AH Biologisch Eieren",
+        "id": 161001,
+        "title": "Blije Kip Buitenei vrije uitloop",
         "price": {
-          "now": 2.25,
-          "unitSize": "6 stuks"
+          "now": 3.09,
+          "unitSize": "10 stuks"
         }
       }
     },
@@ -615,15 +615,15 @@
     {
       "ingredient": "baby nieuwe aardappel",
       "product": {
-        "id": 198690,
-        "title": "AH Krieltjes",
+        "id": 215683,
+        "title": "AH Krieltjes vastkokend voordeel",
         "price": {
           "unitInfo": {
-            "price": 1.58,
+            "price": 2.09,
             "description": "KG"
           },
-          "now": 0.95,
-          "unitSize": "600 g"
+          "now": 2.09,
+          "unitSize": "1 kg"
         }
       }
     },
@@ -639,7 +639,8 @@
           },
           "now": 1.99,
           "unitSize": "1 kg"
-        }
+        },
+        "ignore": true
       }
     },
     {
@@ -654,7 +655,8 @@
           },
           "now": 2.05,
           "unitSize": "125 g"
-        }
+        },
+        "ignore": true
       }
     },
     {
@@ -1375,14 +1377,14 @@
     {
       "ingredient": "meel",
       "product": {
-        "id": 951,
-        "title": "AH Patent tarwebloem",
+        "id": 407571,
+        "title": "Bij Robèrt Broodbloem volkoren",
         "price": {
           "unitInfo": {
-            "price": 0.64,
+            "price": 1.94,
             "description": "KG"
           },
-          "now": 0.64,
+          "now": 1.94,
           "unitSize": "1 kg"
         }
       }
@@ -2286,6 +2288,317 @@
       "ingredient": "heekfilets",
       "product": {
         "ignore": true
+      }
+    },
+    {
+      "ingredient": "hollandaise saus",
+      "product": {
+        "ignore": true
+      }
+    },
+    {
+      "ingredient": "bal mozzarella",
+      "product": {
+        "id": 238911,
+        "title": "AH Biologisch Mozzarella",
+        "price": {
+          "unitInfo": {
+            "price": 14.72,
+            "description": "KG"
+          },
+          "now": 1.84,
+          "unitSize": "125 g"
+        }
+      }
+    },
+    {
+      "ingredient": "vers geraspte parmezaanse kaas",
+      "product": {
+        "id": 238913,
+        "title": "AH Biologisch Parmigiano Reggiano 32+ stuk",
+        "price": {
+          "unitInfo": {
+            "price": 38.49,
+            "description": "KG"
+          },
+          "now": 5.62,
+          "unitSize": "ca. 145 g"
+        }
+      }
+    },
+    {
+      "ingredient": "basilicum blaadjes",
+      "product": {
+        "id": 41172,
+        "title": "AH Verse basilicum",
+        "price": {
+          "unitInfo": {
+            "price": 92.67,
+            "description": "KG"
+          },
+          "now": 1.39,
+          "unitSize": "15 g"
+        }
+      }
+    },
+    {
+      "ingredient": "kwark",
+      "product": {
+        "id": 114817,
+        "title": "AH Biologisch Magere kwark naturel",
+        "price": {
+          "unitInfo": {
+            "price": 3.78,
+            "description": "KG"
+          },
+          "now": 1.89,
+          "unitSize": "500 g"
+        }
+      }
+    },
+    {
+      "ingredient": "karnemelk",
+      "product": {
+        "id": 61008,
+        "title": "AH Biologisch Karnemelk",
+        "price": {
+          "unitInfo": {
+            "price": 1.05,
+            "description": "LT"
+          },
+          "now": 1.05,
+          "unitSize": "1 l"
+        }
+      }
+    },
+    {
+      "ingredient": "fruit",
+      "product": {
+        "id": 368480,
+        "title": "AH Biologisch Bananen",
+        "price": {
+          "now": 2.09,
+          "unitSize": "5 stuks"
+        }
+      }
+    },
+    {
+      "ingredient": "havermout",
+      "product": {
+        "id": 368021,
+        "title": "AH Vezelrijke havermout grove vlokken",
+        "price": {
+          "unitInfo": {
+            "price": 1.98,
+            "description": "KG"
+          },
+          "theme": "bonus",
+          "now": 0.67,
+          "was": 0.89,
+          "unitSize": "450 g"
+        }
+      }
+    },
+    {
+      "ingredient": "gist",
+      "product": {
+        "id": 30228,
+        "title": "Dr. Oetker Gist levure",
+        "price": {
+          "unitInfo": {
+            "price": 28.1,
+            "description": "KG"
+          },
+          "now": 0.59,
+          "unitSize": "3 x 7 g"
+        }
+      }
+    },
+    {
+      "ingredient": "kauwgom",
+      "product": {
+        "id": 458507,
+        "title": "Sportlife Frozn deepmint",
+        "price": {
+          "unitInfo": {
+            "price": 35.97,
+            "description": "KG"
+          },
+          "now": 2.59,
+          "unitSize": "72 g"
+        }
+      }
+    },
+    {
+      "ingredient": "zoet beleg",
+      "product": {
+        "id": 440464,
+        "title": "AH Gekleurde hagel",
+        "price": {
+          "unitInfo": {
+            "price": 1.98,
+            "description": "KG"
+          },
+          "now": 0.79,
+          "unitSize": "400 g"
+        }
+      }
+    },
+    {
+      "ingredient": "muesli",
+      "product": {
+        "id": 437365,
+        "title": "AH Fruit noten muesli",
+        "price": {
+          "unitInfo": {
+            "price": 3.45,
+            "description": "KG"
+          },
+          "theme": "bonus",
+          "now": 2.59,
+          "was": 3.45,
+          "unitSize": "1 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "nootjes",
+      "product": {
+        "id": 460617,
+        "title": "AH Elitehaver",
+        "price": {
+          "unitInfo": {
+            "price": 12.45,
+            "description": "KG"
+          },
+          "now": 2.49,
+          "unitSize": "200 g"
+        }
+      }
+    },
+    {
+      "ingredient": "chocola",
+      "product": {
+        "id": 193233,
+        "title": "AH Biologisch Pure chocolade met hazelnoot",
+        "price": {
+          "unitInfo": {
+            "price": 16.5,
+            "description": "KG"
+          },
+          "now": 1.65,
+          "unitSize": "100 g"
+        }
+      }
+    },
+    {
+      "ingredient": "volkoren brood",
+      "product": {
+        "id": 437239,
+        "title": "AH Biologisch Les Pains Montagne heel",
+        "price": {
+          "now": 2.66,
+          "unitSize": "per stuk"
+        }
+      }
+    },
+    {
+      "ingredient": "vleeswaren",
+      "product": {
+        "id": 171483,
+        "title": "AH Biologisch Gerookte kipfilet",
+        "price": {
+          "unitInfo": {
+            "price": 33.39,
+            "description": "KG"
+          },
+          "theme": "bonus",
+          "now": 3.01,
+          "was": 3.34,
+          "unitSize": "ca. 100 g"
+        }
+      }
+    },
+    {
+      "ingredient": "beschuit",
+      "product": {
+        "id": 420825,
+        "title": "Bolletje Beschuit vezelrijk meerzaden",
+        "price": {
+          "now": 1.19,
+          "unitSize": "13 stuks"
+        }
+      }
+    },
+    {
+      "ingredient": "mandarijnen",
+      "product": {
+        "id": 188797,
+        "title": "AH Mandarijnen voordeel",
+        "price": {
+          "unitInfo": {
+            "price": 1.85,
+            "description": "KG"
+          },
+          "now": 3.69,
+          "unitSize": "2 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "sinaasappels",
+      "product": {
+        "id": 67896,
+        "title": "AH Handsinaasappelen medium",
+        "price": {
+          "unitInfo": {
+            "price": 1.5,
+            "description": "KG"
+          },
+          "now": 2.99,
+          "unitSize": "2 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "bananen",
+      "product": {
+        "id": 368480,
+        "title": "AH Biologisch Bananen",
+        "price": {
+          "now": 2.09,
+          "unitSize": "5 stuks"
+        }
+      }
+    },
+    {
+      "ingredient": "appels",
+      "product": {
+        "id": 123723,
+        "title": "AH Biologisch Elstar",
+        "price": {
+          "unitInfo": {
+            "price": 3.56,
+            "description": "KG"
+          },
+          "now": 2.49,
+          "unitSize": "4 stuks"
+        }
+      }
+    },
+    {
+      "ingredient": "pindakaas",
+      "product": {
+        "id": 65232,
+        "title": "AH Biologisch Pindakaas met stukjes pinda",
+        "price": {
+          "unitInfo": {
+            "price": 7.11,
+            "description": "KG"
+          },
+          "now": 2.49,
+          "unitSize": "350 g"
+        }
       }
     }
   ]

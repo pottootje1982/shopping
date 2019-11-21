@@ -105,7 +105,7 @@ export default function RecipeList({ setRecipeTitle }) {
           <Fab onClick={addRecipe}>
             <AddIcon />
           </Fab>
-          <Fab color="secondary" size="small" onClick={removeRecipe}>
+          <Fab onClick={removeRecipe}>
             <DeleteIcon />
           </Fab>
         </div>

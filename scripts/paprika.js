@@ -1,7 +1,7 @@
 const { PaprikaApi } = require("paprika-api")
 const { paprikaUser, paprikaPass } = require("../config")
-const { gzip } = require("node-gzip")
 const request = require("request")
+const { recipeDb } = require("../scripts/recipe-db")
 
 const fs = require("fs")
 const zlib = require("zlib")
@@ -42,8 +42,9 @@ PaprikaApi.prototype.upsertRecipe = async function(recipe) {
 }
 
 class Paprika {
-  constructor(paprikaApi) {
+  constructor(paprikaApi, db) {
     this.paprikaApi = paprikaApi || new PaprikaApi(paprikaUser, paprikaPass)
+    this.recipeDb = db || recipeDb
   }
 
   async getRecipe(uid) {
@@ -60,6 +61,11 @@ class Paprika {
     return recipes
   }
 
+  async syncRecipe(recipe) {
+    const recipeRaw = this.recipeDb.getRecipeRaw(recipe.uid) || {}
+    await this.paprikaApi.upsertRecipe({ ...recipeRaw, ...recipe })
+  }
+
   async synchronize(localRecipes) {
     const remoteRecipes = await this.paprikaApi.recipes()
     const upsertToRemote = localRecipes.filter(local => {
@@ -68,11 +74,12 @@ class Paprika {
     })
     for (const local of upsertToRemote) {
       let remote = remoteRecipes.find(r => r.uid === local.uid)
-      remote = remote && this.paprikaApi.recipe(remote.uid)
+      remote = remote && (await this.paprikaApi.recipe(remote.uid))
       if (
         !remote ||
         (remote.hash !== local.hash && local.created > remote.created)
       ) {
+        console.log(`Saving recipe '${local.name}' to Paprika`)
         await this.paprikaApi.upsertRecipe(local)
       } else if (
         remote &&
@@ -87,8 +94,8 @@ class Paprika {
       return !local
     })
     for (let remote of insertToLocal) {
-      let local = localRecipes.find(l => l.uid === remote.uid)
-      remote = this.paprikaApi.recipe(remote.uid)
+      remote = await this.paprikaApi.recipe(remote.uid)
+      console.log(`Get new version of recipe '${remote.name}' to Paprika`)
       localRecipes.push(remote)
     }
   }

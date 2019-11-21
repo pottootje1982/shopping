@@ -33,4 +33,19 @@ describe("storeRecipe()", () => {
     ])
     expect(recipe.ingredients[0].full).toBe("1 tbsp plantaardige olie")
   })
+
+  it("edits recipe", () => {
+    const db = require("./recipe-db.stub")
+    const uid = "a4623ba1-8bf2-439d-b8bb-4c95c4aa8b18"
+    const recipe = db.getRecipeRaw(uid)
+
+    const newRecipe = db.editRecipe({
+      uid: "a4623ba1-8bf2-439d-b8bb-4c95c4aa8b18",
+      name: "Super-quick fish curry 2"
+    })
+    expect(newRecipe.name).toBe("Super-quick fish curry 2")
+    // Undefined properties should remain untouched
+    expect(newRecipe.photo).toBe("0f512f99-54ed-43c1-9157-e1affaddd085.jpg")
+    expect(recipe.hash).not.toEqual(newRecipe.hash)
+  })
 })

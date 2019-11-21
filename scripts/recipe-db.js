@@ -2,6 +2,7 @@ const low = require("lowdb")
 const FileSync = require("lowdb/adapters/FileSync")
 const { Ingredients } = require("./ingredients")
 const { ingToProduct } = require("../scripts/ingredient-product-db")
+const { translationsDb } = require("../scripts/translations-db")
 const path = require("path")
 var crypto = require("crypto")
 
@@ -42,11 +43,20 @@ class RecipeDb {
     return recipes
   }
 
-  getRecipe(uid) {
-    const recipe = this.db
+  getRecipesRaw() {
+    return this.db.get("recipes").value()
+  }
+
+  getRecipeRaw(uid) {
+    return this.db
       .get("recipes")
       .find({ uid })
+      .cloneDeep()
       .value()
+  }
+
+  getRecipe(uid) {
+    const recipe = this.getRecipeRaw(uid)
     return this.translateRecipe(recipe)
   }
 
@@ -59,16 +69,22 @@ class RecipeDb {
   }
 
   editRecipe(recipe) {
-    this.setHash(recipe)
+    const oldRecipe = this.getRecipeRaw(recipe.uid)
+    const newRecipe = { ...oldRecipe, ...recipe }
+    this.setHash(newRecipe)
     this.db
       .get("recipes")
       .find({
         uid: recipe.uid
       })
-      .assign(recipe)
+      .assign(newRecipe)
       .unset("mappings")
       .write()
     return this.getRecipe(recipe.uid)
+  }
+
+  save() {
+    this.db.get("recipes").write()
   }
 
   addRecipe(recipe) {
@@ -90,4 +106,6 @@ class RecipeDb {
   }
 }
 
-module.exports = RecipeDb
+const recipeDb = new RecipeDb(translationsDb)
+
+module.exports = { RecipeDb, recipeDb }

@@ -3,7 +3,8 @@ const PaprikaApiStub = require("./paprika.stub")
 const recipeDb = require("./recipe-db.stub")
 
 describe("Index", () => {
-  const paprika = new Paprika(new PaprikaApiStub())
+  const apiStub = new PaprikaApiStub()
+  const paprika = new Paprika(apiStub, recipeDb)
 
   it("Download recipes", async () => {
     const recipes = await paprika.getRecipes()
@@ -38,6 +39,16 @@ describe("Index", () => {
 
     expect(localRecipes[4].name).toEqual("Cantuccini")
     expect(localRecipes[4].created).toEqual("2017-12-23 09:07:38")
+  })
+
+  it("Edits recipe", async () => {
+    const uid = "3fe04f98-8d73-4e9d-a7da-f4c1241aa3c4"
+    await paprika.syncRecipe(uid)
+    const recipe = apiStub.recipe(uid)
+    expect(recipe.name).toBe("Zalm met prei 2")
+    expect(recipe.ingredients).toBe(
+      "Prei\nDille\nBlik tomaten\nZalm\nAardappels\nWijn\nHoning\nkoriander poeder"
+    )
   })
 
   it.skip("Saves recipes to paprika", async () => {
