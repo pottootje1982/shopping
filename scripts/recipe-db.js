@@ -1,18 +1,15 @@
-const low = require("lowdb")
-const FileSync = require("lowdb/adapters/FileSync")
 const { Ingredients } = require("./ingredients")
-const { ingToProduct } = require("../scripts/ingredient-product-db")
-const { translationsDb } = require("../scripts/translations-db")
-const path = require("path")
+const { ingToProduct } = require("./ingredient-product-db")
+const { translationsDb } = require("./translations-db")
+const createDb = require("./file-db")
 var crypto = require("crypto")
 
 class RecipeDb {
-  constructor(translationDb, file) {
-    file = path.resolve(__dirname, file || "data/recipes.json")
-    const adapter = new FileSync(file)
-    this.db = low(adapter)
+  constructor(db, translationDb, ingToProduct) {
+    this.db = db
     this.db.defaults({ recipes: [] }).write()
     this.translationDb = translationDb
+    this.ingToProduct = ingToProduct
   }
 
   storeRecipes(recipes) {
@@ -28,7 +25,7 @@ class RecipeDb {
       recipe.ingredients = Ingredients.create(recipe.ingredients)
     }
     this.translationDb.translateRecipe(recipe.ingredients)
-    recipe.mappings = ingToProduct.getMappings(recipe)
+    recipe.mappings = this.ingToProduct.getMappings(recipe)
     return recipe
   }
 
@@ -106,6 +103,10 @@ class RecipeDb {
   }
 }
 
-const recipeDb = new RecipeDb(translationsDb)
+const recipeDb = new RecipeDb(
+  createDb("./data/recipes.json"),
+  translationsDb,
+  ingToProduct
+)
 
 module.exports = { RecipeDb, recipeDb }

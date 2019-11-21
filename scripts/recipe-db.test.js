@@ -10,7 +10,9 @@ describe("storeRecipe()", () => {
     const recipes = db.getRecipes()
     const recipe = recipes[3]
     expect(recipe.uid).toBe("a4623ba1-8bf2-439d-b8bb-4c95c4aa8b18")
-    expect(Object.keys(recipe.mappings).length).toBe(8)
+    // Not for all translated ingredients there are mappings
+    // defined (only for tomaten)
+    expect(Object.keys(recipe.mappings).length).toBe(1)
     expect(recipe.ingredients.length).toBe(8)
   })
 

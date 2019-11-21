@@ -1,13 +1,8 @@
-const low = require('lowdb')
-const FileSync = require('lowdb/adapters/FileSync')
-const Memory = require('lowdb/adapters/Memory')
-const path = require('path')
+const createDb = require("./file-db")
 
 class IngredientProductDb {
-  constructor(file) {
-    file = file && path.resolve(__dirname, file)
-    const adapter = file ? new FileSync(file) : new Memory()
-    this.db = low(adapter)
+  constructor(db) {
+    this.db = db
     this.db
       .defaults({
         mapping: []
@@ -17,7 +12,7 @@ class IngredientProductDb {
 
   storeMapping(ingredient, product) {
     ingredient = ingredient.toLowerCase()
-    const table = this.db.get('mapping')
+    const table = this.db.get("mapping")
     const mapping = table.find({
       ingredient
     })
@@ -40,7 +35,7 @@ class IngredientProductDb {
   getMapping(ingredient) {
     ingredient = ingredient.toLowerCase()
     return this.db
-      .get('mapping')
+      .get("mapping")
       .find({
         ingredient
       })
@@ -48,7 +43,7 @@ class IngredientProductDb {
   }
 
   getAllMappings() {
-    return this.db.get('mapping').value()
+    return this.db.get("mapping").value()
   }
 
   getMappings(recipe) {
@@ -77,5 +72,7 @@ class IngredientProductDb {
   }
 }
 
-const ingToProduct = new IngredientProductDb('data/ing-to-product.json')
+const ingToProduct = new IngredientProductDb(
+  createDb("data/ing-to-product.json")
+)
 module.exports = { IngredientProductDb, ingToProduct }
