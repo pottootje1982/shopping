@@ -41,6 +41,23 @@ PaprikaApi.prototype.upsertRecipe = async function(recipe) {
   return res
 }
 
+PaprikaApi.prototype.downloadRecipe = async function(url) {
+  const contents = await request.get(url)
+  await createZip(contents, "./recipe.gz")
+  let res = await request.post(`https://www.paprikaapp.com/api/v1/recipe/`, {
+    auth: {
+      user: this.email,
+      pass: this.password
+    },
+    formData: {
+      url,
+      html: await fs.createReadStream("./recipe.gz")
+    }
+  })
+  res = JSON.parse(res)
+  return res.result
+}
+
 class Paprika {
   constructor(paprikaApi, db) {
     this.paprikaApi = paprikaApi || new PaprikaApi(paprikaUser, paprikaPass)
@@ -63,6 +80,10 @@ class Paprika {
 
   async syncRecipe(recipe) {
     await this.paprikaApi.upsertRecipe(recipe)
+  }
+
+  async downloadRecipe(url) {
+    return await this.paprikaApi.downloadRecipe(url)
   }
 
   async synchronize(localRecipes) {

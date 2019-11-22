@@ -70,10 +70,22 @@ describe("Index", () => {
     })
   })
 
-  it("Saves recipes to paprika", async () => {
+  it.skip("Saves recipes to paprika", async () => {
     const paprika = new Paprika()
     const recipe = require("./data/db.test.json").recipes[0]
     recipe.name = "Zalm met prei 9"
-    await paprika.paprikaApi.upsertRecipe(recipe)
+    await paprika.upsertRecipe(recipe)
+  })
+
+  it.skip("Downloads recipe from url with paprika", async () => {
+    jest.setTimeout(15000)
+    const paprika = new Paprika()
+    const recipe = await paprika.downloadRecipe(
+      "https://www.bbcgoodfood.com/recipes/10033/aubergine-tomato-and-parmesan-bake-melanzane-alla-"
+    )
+    console.log(recipe)
+    expect(recipe.name).toBe(
+      "Aubergine, tomato & Parmesan bake (Melanzane alla Parmigiana)"
+    )
   })
 })
