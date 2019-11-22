@@ -77,7 +77,7 @@ class RecipeDb {
       .assign(newRecipe)
       .unset("mappings")
       .write()
-    return this.getRecipe(recipe.uid)
+    return this.getRecipeRaw(recipe.uid)
   }
 
   save() {
@@ -90,7 +90,7 @@ class RecipeDb {
       .get("recipes")
       .push(recipe)
       .write()
-    return this.getRecipe(recipe.uid)
+    return this.getRecipeRaw(recipe.uid)
   }
 
   removeRecipe(recipe) {

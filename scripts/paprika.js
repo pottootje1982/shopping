@@ -62,8 +62,7 @@ class Paprika {
   }
 
   async syncRecipe(recipe) {
-    const recipeRaw = this.recipeDb.getRecipeRaw(recipe.uid) || {}
-    await this.paprikaApi.upsertRecipe({ ...recipeRaw, ...recipe })
+    await this.paprikaApi.upsertRecipe(recipe)
   }
 
   async synchronize(localRecipes) {
@@ -86,7 +85,7 @@ class Paprika {
         remote.hash !== local.hash &&
         remote.created > local.created
       ) {
-        localRecipes.splice(localRecipes.indexOf(local), 1, remote)
+        this.recipeDb.editRecipe(remote)
       }
     }
     const insertToLocal = remoteRecipes.filter(recipe => {
@@ -95,9 +94,12 @@ class Paprika {
     })
     for (let remote of insertToLocal) {
       remote = await this.paprikaApi.recipe(remote.uid)
-      console.log(`Get new version of recipe '${remote.name}' to Paprika`)
-      localRecipes.push(remote)
+      console.log(
+        `Get new version of recipe '${remote.name}' from Paprika to local`
+      )
+      this.recipeDb.addRecipe(remote)
     }
+    return insertToLocal.length > 0 ? this.recipeDb.getRecipes() : null
   }
 }
 

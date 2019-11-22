@@ -18,14 +18,14 @@ router.get("/", async function(req, res) {
 
 router.put("/", async function(req, res) {
   const recipe = recipeDb.editRecipe(req.body)
-  paprika.upsertRecipe(recipe)
-  res.send(recipe)
+  paprika.syncRecipe(recipe)
+  res.send(recipeDb.getRecipe(recipe.uid))
 })
 
 router.post("/", async function(req, res) {
   const recipe = recipeDb.addRecipe(req.body)
-  paprika.upsertRecipe(recipe)
-  res.send(recipe)
+  paprika.syncRecipe(recipe)
+  res.send(recipeDb.getRecipe(recipe.uid))
 })
 
 router.delete("/", async function(req, res) {

@@ -1,6 +1,6 @@
 const { IngredientProductDb, ingToProduct } = require("./ingredient-product-db")
 const createDb = require("./memory-db")
-const recipeDb = require("./recipe-db.stub")
+const recipeDb = require("./recipe-db.stub")()
 const { ahUser, ahPass } = require("../config")
 
 describe("storeMapping()", () => {
