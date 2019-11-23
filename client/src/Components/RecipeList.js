@@ -53,7 +53,7 @@ export default function RecipeList({ setRecipeTitle }) {
       if (index >= 0) {
         // edit
         newRecipes.splice(index, 1, selectedRecipe)
-      } else {
+      } else if (selectedRecipe.uid) {
         // add
         newRecipes.push(selectedRecipe)
       }

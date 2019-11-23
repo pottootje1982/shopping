@@ -33,9 +33,10 @@ export default function EditAddRecipe({
       directions,
       source_url
     }
+    delete selectedRecipe.mappings
     const res = edit
       ? await server.put("recipes", recipe)
-      : await server.post("recipes", recipe)
+      : await server.post("recipes", { ...selectedRecipe, ...recipe })
     setSelectedRecipe(res.data)
   }
 

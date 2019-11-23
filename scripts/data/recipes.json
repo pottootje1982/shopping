@@ -5799,13 +5799,34 @@
       "nutritional_info": "Calories: 233\nTotal Carbohydrates: 21g\nTotal Fat: 10g\nDietary fiber: 6g\nProtein: 10g\nSaturated fat: 6g\nSodium: 0.8g\nSugar: 7g"
     },
     {
+      "cook_time": "25 min",
+      "name": "Easy spiced salmon kedgeree",
+      "ingredients": "300 g Basmati rijst\n100g unsalted butter\n2 tbsp olijfolie\nOlive oil\nol-iv oyl\nProbably the most widely-used oil in cooking, olive oil is pressed from fresh olives. It's…\n1 tbsp hot curry paste (Madras)\n1 small red onion, finely chopped\n225g hot smoked salmon, cut into chunks or flaked\n4 hard-boiled eggs, shelled then roughly chopped\nEgg\nei\nThe ultimate convenience food, eggs are powerhouses of nutrition, packed with protein and a…\n4 lente-uitjes\nSpring onion\nsp-ring un-yun\nAlso known as scallions or green onions, spring onions are in fact very young uien\njuice of 1 lime\nLime\nly-m\nThe same shape, but smaller than…\n2 tbsp each chopped fresh coriander and flatleaf parsley",
+      "nutritional_info": "",
+      "difficulty": "",
+      "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--4791_11.jpg?itok=0kLyO_e6",
+      "prep_time": "15 min",
+      "servings": "4 - 6",
+      "directions": "1. Throw the rice into a large heavy-based saucepan, pour over 700ml/11/4 pints water and sprinkle in a good shake of salt. Cover and bring to the boil, then remove the lid and allow all the water to be absorbed – this should take about 15 minutes. Turn off the heat, cover again and allow to steam dry.\n\n2. Melt half the butter with the oil in a large frying pan. Stir in the curry paste and cook until you start to smell the wonderful aromas.Now add the onion and cook until softened and beginning to brown.\n\n3. Next throw in your rice and quickly stir to make sure all the buttery juices are absorbed and the rice is heated through. Now mix in the salmon, eggs, spring onions and lime juice. Stir gently, chuck in the herbs along with cubes of the remaining butter and serve in warm bowls.",
+      "source_url": "https://www.bbcgoodfood.com/recipes/3221/easy-spiced-salmon-kedgeree",
+      "uid": "b58b6fe0-0dd9-11ea-9e74-1fa2d041460e",
+      "created": "2019-10-6 11:12:09",
+      "hash": "271409ef5893303b46cff4a59af6d5eb8f624a1ba6c6c418d97925e4806908bf"
+    },
+    {
+      "cook_time": "45 min",
       "name": "Spinach kedgeree with spiced salmon",
-      "uid": "7c78bf10-0dd3-11ea-862a-99a532c8ebbf",
-      "created": "2019-10-6 10:27:36",
       "ingredients": "2 tsp rapeseed oil\nRapeseed oil\nIf you want a light alternative to other cooking oils, rapeseed is a great choice and has…\n1 sliced grote ui\nUi\nun-yun\nthumb-sized piece of ginger, finely chopped\nGinger\njin-jer\nMainly grown in Jamaica, Africa, India, China and Australia, ginger is the root of the plant. It…\n½ tsp cumin seeds\n½ tsp ground cinnamon\n6-8 cardamom pods, seeds crushed\n1½ tsp ground turmeric\n1½ tsp ground coriander\n1 sliced rode Chili\n1 clove knoflook\n1 large red pepper, deseeded and roughly chopped\n70g brown basmati rice\n375 ml groentebouillon\n160g baby spinach leaves, roughly chopped\nFor the salmon\n3 tbsp fat-free natural yogurt\n1 tbsp finely chopped mint or coriander\n2 skinless wild salmon fillets\nSalmon\nsam-on\nWith its delicate, sweet flesh and wide availability, salmon is one of the most popular fish.…\n1 tbsp toasted almonds, to serve",
+      "nutritional_info": "",
+      "difficulty": "",
+      "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2019/09/spinach-kedgeree-with-spiced-salmon.jpg?itok=lCiYBQxb",
+      "prep_time": "15 min",
+      "servings": "2",
       "directions": "1. Heat the oil in a large frying pan and fry the onion and ginger for 5 mins or until soft. Add the cumin, cinnamon, crushed cardamom seeds, and 1 tsp each of the turmeric and coriander. Cook for 30 secs until fragrant. Add the chilli, garlic, pepper and rice, stir briefly, then pour in the stock. Cover and simmer for 35 mins or until the rice is tender and the stock has been absorbed. If the rice is cooked but some liquid remains, remove the lid and simmer uncovered to allow the liquid to evaporate. Add the spinach, cover and cook for 3 mins to wilt.\n\n2. Meanwhile, prepare the salmon. Heat the grill to medium and line a baking sheet with foil. Mix the yogurt with the mint or coriander and the remaining turmeric and ground coriander. Spread the yogurt mixture over the salmon, then transfer to the prepared baking sheet and grill for 8-10 mins until the fish can be flaked easily with a fork. Top the kedgeree with the salmon fillets or flake the fish into it, and scatter over the almonds to serve.",
       "source_url": "https://www.bbcgoodfood.com/recipes/spinach-kedgeree-spiced-salmon",
-      "hash": "712831dc82ae200cdcf90fbd5512f16a637c64d3f77deff86c350fab3c2d8fe8"
+      "uid": "d507e470-0dd9-11ea-9e74-1fa2d041460e",
+      "created": "2019-10-6 11:13:02",
+      "hash": "b363ccaefebddb806d2d2fc79cfcaa3026b365e121a5747fdcbf4efef8f9ac05"
     }
   ]
 }
