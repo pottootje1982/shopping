@@ -1,6 +1,5 @@
 const { PaprikaApi } = require("paprika-api")
 const { paprikaUser, paprikaPass } = require("../config")
-const request = require("request")
 const { recipeDb } = require("../scripts/recipe-db")
 
 const fs = require("fs")
@@ -25,6 +24,7 @@ function createZip(recipe, fn) {
 }
 
 PaprikaApi.prototype.upsertRecipe = async function(recipe) {
+  const request = require("request-promise")
   await createZip(JSON.stringify(recipe), "./file.gz")
   const res = await request.post(
     `https://www.paprikaapp.com/api/v1/sync/recipe/${recipe.uid}/`,
@@ -42,6 +42,7 @@ PaprikaApi.prototype.upsertRecipe = async function(recipe) {
 }
 
 PaprikaApi.prototype.downloadRecipe = async function(url) {
+  const request = require("request-promise")
   const contents = await request.get(url)
   await createZip(contents, "./recipe.gz")
   let res = await request.post(`https://www.paprikaapp.com/api/v1/recipe/`, {

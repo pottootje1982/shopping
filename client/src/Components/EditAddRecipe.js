@@ -1,8 +1,9 @@
 import React, { useRef } from "react"
-import { Typography, Grid, Link } from "@material-ui/core"
+import { Typography, Grid, Link, List, ListItem } from "@material-ui/core"
 import server from "./server"
 import getDateString from "./date"
-import { TextField, Button } from "./Styled"
+import { TextField, Button, Fab } from "./Styled"
+import DownloadIcon from "@material-ui/icons/GetApp"
 const uuidv1 = require("uuid/v1")
 
 export default function EditAddRecipe({
@@ -14,7 +15,7 @@ export default function EditAddRecipe({
   const ingredientsRef = useRef(null)
   const directionsRef = useRef(null)
   const urlRef = useRef(null)
-  const edit = selectedRecipe.name !== undefined
+  const edit = selectedRecipe.uid !== undefined
   const title = edit ? "Edit Recipe" : "Add Recipe"
 
   async function saveRecipeClick() {
@@ -42,20 +43,26 @@ export default function EditAddRecipe({
     setEditOrAddRecipe(false)
   }
 
+  async function downloadRecipe() {
+    const source_url = urlRef.current.value
+    const res = await server.post("recipes/download", { url: source_url })
+    setSelectedRecipe(res.data)
+  }
+
   return (
     <Grid item xs={6}>
-      <Grid container spacing={1} alignItems="stretch" direction="column">
-        <Grid item>
+      <List padding={1} style={{ maxHeight: "80vh", overflow: "auto" }}>
+        <ListItem>
           <Typography variant="h5">{title}</Typography>
-        </Grid>
-        <Grid item>
+        </ListItem>
+        <ListItem>
           <TextField
             label="Title"
             defaultValue={selectedRecipe.name}
             inputRef={nameRef}
           />
-        </Grid>
-        <Grid item>
+        </ListItem>
+        <ListItem>
           <TextField
             InputProps={{
               readOnly: true
@@ -64,8 +71,8 @@ export default function EditAddRecipe({
             readOnly
             defaultValue={selectedRecipe.created}
           />
-        </Grid>
-        <Grid item>
+        </ListItem>
+        <ListItem>
           <TextField
             label="Ingredients"
             multiline
@@ -74,34 +81,37 @@ export default function EditAddRecipe({
               .join("\n")}
             inputRef={ingredientsRef}
           />
-        </Grid>
-        <Grid item>
+        </ListItem>
+        <ListItem>
           <TextField
             label="Directions"
             multiline
             defaultValue={selectedRecipe.directions}
             inputRef={directionsRef}
           />
-        </Grid>
-        <Grid item>
+        </ListItem>
+        <ListItem>
           <TextField
             label="Source Url"
             multiline
             defaultValue={selectedRecipe.source_url}
             inputRef={urlRef}
           />
-        </Grid>
-        <Grid item>
+          <Fab onClick={downloadRecipe}>
+            <DownloadIcon />
+          </Fab>
+        </ListItem>
+        <ListItem>
           <Link href={selectedRecipe.source_url}>
             {selectedRecipe.source_url}
           </Link>
-        </Grid>
+        </ListItem>
 
-        <Grid item>
+        <ListItem>
           <Button onClick={saveRecipeClick}>Save</Button>
           <Button onClick={cancelClick}>Cancel</Button>
-        </Grid>
-      </Grid>
+        </ListItem>
+      </List>
     </Grid>
   )
 }

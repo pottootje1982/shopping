@@ -44,15 +44,15 @@
     {
       "ingredient": "zalm",
       "product": {
-        "id": 211064,
-        "title": "AH Biologisch Gerookte zalm",
+        "id": 51335,
+        "title": "AH Zalmfilet",
         "price": {
           "unitInfo": {
-            "price": 47.9,
+            "price": 24.99,
             "description": "KG"
           },
-          "now": 4.79,
-          "unitSize": "100 g"
+          "now": 7.75,
+          "unitSize": "ca. 310 g"
         }
       }
     },
@@ -2598,6 +2598,21 @@
           },
           "now": 2.49,
           "unitSize": "350 g"
+        }
+      }
+    },
+    {
+      "ingredient": "gerookte zalm",
+      "product": {
+        "id": 211064,
+        "title": "AH Biologisch Gerookte zalm",
+        "price": {
+          "unitInfo": {
+            "price": 47.9,
+            "description": "KG"
+          },
+          "now": 4.79,
+          "unitSize": "100 g"
         }
       }
     }

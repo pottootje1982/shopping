@@ -83,7 +83,6 @@ describe("Index", () => {
     const recipe = await paprika.downloadRecipe(
       "https://www.bbcgoodfood.com/recipes/10033/aubergine-tomato-and-parmesan-bake-melanzane-alla-"
     )
-    console.log(recipe)
     expect(recipe.name).toBe(
       "Aubergine, tomato & Parmesan bake (Melanzane alla Parmigiana)"
     )

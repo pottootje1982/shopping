@@ -27,7 +27,8 @@
     "paprika-api": "^1.0.3",
     "request-cookies": "^1.1.0",
     "request-promise": "^4.2.4",
-    "tough-cookie-filestore": "0.0.1"
+    "tough-cookie-filestore": "0.0.1",
+    "uuidv1": "^1.6.14"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",

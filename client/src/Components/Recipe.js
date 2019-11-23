@@ -106,7 +106,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
 
       {editOrAddRecipe ? (
         <EditAddRecipe
-          key={selectedRecipe.uid}
+          key={selectedRecipe.name}
           selectedRecipe={selectedRecipe}
           setSelectedRecipe={setSelectedRecipe}
           setEditOrAddRecipe={setEditOrAddRecipe}

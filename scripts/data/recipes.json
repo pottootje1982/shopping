@@ -2659,11 +2659,11 @@
       "photo": null,
       "uid": "D9148F9A-BED3-4828-A4D7-7FC7A7AAD6A9",
       "scale": null,
-      "ingredients": "kwark\nkarnemelk\nbeschuit\nei\nfruit\nboter\nzalm\nvleeswaren \nbrood\nmeel\nchocola\nnootjes\nmuesli\nzoet beleg\nkauwgom\ngist\nhavermout \n\n\n",
+      "ingredients": "kwark\nkarnemelk\nbeschuit\nei\nfruit\nboter\ngerookte zalm\nvleeswaren \nbrood\nmeel\nchocola\nnootjes\nmuesli\nzoet beleg\nkauwgom\ngist\nhavermout ",
       "is_pinned": false,
       "source": "",
       "total_time": "",
-      "hash": "F18CF4C02EB16ECD31A9D8BA93601B6649E89EAB6664B1A80E43DB6B7E2E3129",
+      "hash": "baadb624e931397bf57b7fb2615abf3b68bc4b0cde00527789056bfb7790ee03",
       "description": "",
       "source_url": "",
       "difficulty": "",
@@ -2674,7 +2674,7 @@
       "photo_url": null,
       "cook_time": "",
       "name": "Basics",
-      "created": "2019-09-20 14:02:54",
+      "created": "2019-10-6 10:20:13",
       "notes": "",
       "photo_large": null,
       "image_url": null,
@@ -5797,6 +5797,15 @@
       "prep_time": "10 mins",
       "servings": "Serves 2 as a main, 4 as a side",
       "nutritional_info": "Calories: 233\nTotal Carbohydrates: 21g\nTotal Fat: 10g\nDietary fiber: 6g\nProtein: 10g\nSaturated fat: 6g\nSodium: 0.8g\nSugar: 7g"
+    },
+    {
+      "name": "Spinach kedgeree with spiced salmon",
+      "uid": "7c78bf10-0dd3-11ea-862a-99a532c8ebbf",
+      "created": "2019-10-6 10:27:36",
+      "ingredients": "2 tsp rapeseed oil\nRapeseed oil\nIf you want a light alternative to other cooking oils, rapeseed is a great choice and has…\n1 sliced grote ui\nUi\nun-yun\nthumb-sized piece of ginger, finely chopped\nGinger\njin-jer\nMainly grown in Jamaica, Africa, India, China and Australia, ginger is the root of the plant. It…\n½ tsp cumin seeds\n½ tsp ground cinnamon\n6-8 cardamom pods, seeds crushed\n1½ tsp ground turmeric\n1½ tsp ground coriander\n1 sliced rode Chili\n1 clove knoflook\n1 large red pepper, deseeded and roughly chopped\n70g brown basmati rice\n375 ml groentebouillon\n160g baby spinach leaves, roughly chopped\nFor the salmon\n3 tbsp fat-free natural yogurt\n1 tbsp finely chopped mint or coriander\n2 skinless wild salmon fillets\nSalmon\nsam-on\nWith its delicate, sweet flesh and wide availability, salmon is one of the most popular fish.…\n1 tbsp toasted almonds, to serve",
+      "directions": "1. Heat the oil in a large frying pan and fry the onion and ginger for 5 mins or until soft. Add the cumin, cinnamon, crushed cardamom seeds, and 1 tsp each of the turmeric and coriander. Cook for 30 secs until fragrant. Add the chilli, garlic, pepper and rice, stir briefly, then pour in the stock. Cover and simmer for 35 mins or until the rice is tender and the stock has been absorbed. If the rice is cooked but some liquid remains, remove the lid and simmer uncovered to allow the liquid to evaporate. Add the spinach, cover and cook for 3 mins to wilt.\n\n2. Meanwhile, prepare the salmon. Heat the grill to medium and line a baking sheet with foil. Mix the yogurt with the mint or coriander and the remaining turmeric and ground coriander. Spread the yogurt mixture over the salmon, then transfer to the prepared baking sheet and grill for 8-10 mins until the fish can be flaked easily with a fork. Top the kedgeree with the salmon fillets or flake the fish into it, and scatter over the almonds to serve.",
+      "source_url": "https://www.bbcgoodfood.com/recipes/spinach-kedgeree-spiced-salmon",
+      "hash": "712831dc82ae200cdcf90fbd5512f16a637c64d3f77deff86c350fab3c2d8fe8"
     }
   ]
 }

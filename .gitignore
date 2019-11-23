@@ -3,3 +3,4 @@ bin
 .npmrc
 node_modules
 file.gz
+recipe.gz

@@ -39,6 +39,14 @@ router.get("/sync", async (req, res) => {
   res.send(result)
 })
 
+router.post("/download", async (req, res) => {
+  const url = req.body.url
+  let recipe = await paprika.downloadRecipe(url)
+  recipe = recipeDb.translateRecipe(recipe)
+  recipe.source_url = url
+  res.send(recipe)
+})
+
 router.post("/translate", async function(req, res) {
   const recipe = recipeDb.getRecipe(req.body.recipeId)
   await Translator.create().translate(recipe.ingredients.map(i => i.ingredient))
