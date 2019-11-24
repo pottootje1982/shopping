@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from "react"
 import server from "./server"
-import {
-  Grid,
-  Paper,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  Checkbox
-} from "@material-ui/core"
+import { Grid, Paper } from "@material-ui/core"
 import AddIcon from "@material-ui/icons/Add"
 import DeleteIcon from "@material-ui/icons/Delete"
 import blue from "@material-ui/core/colors/blue"
@@ -16,6 +8,8 @@ import green from "@material-ui/core/colors/green"
 import Recipe from "./Recipe"
 import { Button, Fab } from "./Styled"
 import getDateString from "./date"
+import { DataGrid, ToolbarOptions } from "tubular-react"
+import { ColumnModel, ColumnDataType } from "tubular-common"
 
 export default function RecipeList({ setRecipeTitle }) {
   const [selectedRecipes] = useState(() => [])
@@ -104,11 +98,30 @@ export default function RecipeList({ setRecipeTitle }) {
     }
   }
 
+  function clickRow(row) {
+    const recipe = recipes.find(r => r.uid === row.uid)
+    setSelectedRecipe(recipe)
+  }
+
+  const columns = [
+    new ColumnModel("uid", { IsKey: true, Visible: false }),
+    new ColumnModel("selected", { DataType: ColumnDataType.BOOLEAN }),
+    new ColumnModel("name", { Sortable: true, Searchable: true }),
+    new ColumnModel("created", { Sortable: true })
+  ]
+  const toolbarOptions = new ToolbarOptions({
+    itemsPerPage: 8,
+    topPager: false,
+    exportButton: false,
+    printButton: false,
+    advancePagination: false
+  })
+
   return recipes === undefined ? (
     <div>Loading</div>
   ) : (
-    <Grid container spacing={1} style={{ padding: 10 }}>
-      <Grid container item xs={3}>
+    <Grid container spacing={1} style={{ padding: 10 }} alignItems="flex-start">
+      <Grid container item xs={4}>
         <div>
           <Button onClick={order}>Order</Button>
           <Fab onClick={addRecipe}>
@@ -120,38 +133,15 @@ export default function RecipeList({ setRecipeTitle }) {
         </div>
         <Grid item xs={12} style={{ minHeight: "75vh" }}>
           <Paper style={{ backgroundColor: blue[50] }}>
-            <List dense={true} style={{ maxHeight: "75vh", overflow: "auto" }}>
-              {recipes.map((item, index) => (
-                <ListItem
-                  button
-                  key={`${item.uid}`}
-                  divider={true}
-                  selected={(selectedRecipe || {}).uid === item.uid}
-                  onClick={() => setSelectedRecipe(item)}
-                >
-                  <ListItemIcon>
-                    <Checkbox
-                      edge="start"
-                      onChange={(e, checked) =>
-                        toggleRecipe(e, checked, item.uid)
-                      }
-                      tabIndex={-1}
-                      disableRipple
-                    />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={item.name}
-                    style={{
-                      color:
-                        item.ingredients.length ===
-                        Object.keys(item.mappings || {}).length
-                          ? green[600]
-                          : "black"
-                    }}
-                  />
-                </ListItem>
-              ))}
-            </List>
+            <DataGrid
+              dense={true}
+              toolbarOptions={toolbarOptions}
+              onRowClick={clickRow}
+              title="Recipes"
+              style={{ maxHeight: "75vh", overflow: "auto" }}
+              columns={columns}
+              dataSource={recipes}
+            ></DataGrid>
           </Paper>
         </Grid>
       </Grid>

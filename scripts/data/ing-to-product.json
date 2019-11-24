@@ -2615,6 +2615,96 @@
           "unitSize": "100 g"
         }
       }
+    },
+    {
+      "ingredient": "visbouillon",
+      "product": {
+        "id": 388296,
+        "title": "AH Visbouillon",
+        "price": {
+          "unitInfo": {
+            "price": 12.2,
+            "description": "KG"
+          },
+          "now": 1.22,
+          "unitSize": "100 g"
+        }
+      }
+    },
+    {
+      "ingredient": "g zalmfilet",
+      "product": {
+        "id": 132045,
+        "title": "AH Zalmfilet op huid",
+        "price": {
+          "unitInfo": {
+            "price": 20.99,
+            "description": "KG"
+          },
+          "now": 6.51,
+          "unitSize": "ca. 310 g"
+        }
+      }
+    },
+    {
+      "ingredient": "zwarte peperkorrels",
+      "product": {
+        "id": 197871,
+        "title": "Jozo Zwarte peperkorrels navulbare molen",
+        "price": {
+          "unitInfo": {
+            "price": 53.8,
+            "description": "KG"
+          },
+          "now": 2.69,
+          "unitSize": "50 g"
+        }
+      }
+    },
+    {
+      "ingredient": "geraspte schil en sap van 1 citroen",
+      "product": {
+        "id": 190654,
+        "title": "AH Biologisch Citroen",
+        "price": {
+          "unitInfo": {
+            "price": 5.63,
+            "description": "KG"
+          },
+          "now": 1.69,
+          "unitSize": "2 stuks"
+        }
+      }
+    },
+    {
+      "ingredient": "groene asperges",
+      "product": {
+        "id": 215707,
+        "title": "AH Groene asperges",
+        "price": {
+          "unitInfo": {
+            "price": 10.54,
+            "description": "KG"
+          },
+          "now": 3.69,
+          "unitSize": "350 g"
+        }
+      }
+    },
+    {
+      "ingredient": "magere crème fraîche",
+      "product": {
+        "id": 60060,
+        "title": "AH Biologisch Crème fraîche",
+        "price": {
+          "unitInfo": {
+            "price": 11.12,
+            "description": "LT"
+          },
+          "now": 1.39,
+          "unitSize": "125 ml"
+        }
+      }
     }
   ]
 }

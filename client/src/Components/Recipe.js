@@ -57,7 +57,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
 
   return (
     <Fragment>
-      <Grid container item xs={3}>
+      <Grid container item xs={2}>
         <div>
           <Button onClick={e => translate(recipeId)}>Translate</Button>
           <Fab onClick={editRecipeClick}>
