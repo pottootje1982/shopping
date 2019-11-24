@@ -52,9 +52,29 @@ export default function EditAddRecipe({
 
   return (
     <Grid item xs={6}>
+      <div>
+        <Button onClick={saveRecipeClick}>Save</Button>
+        <Button onClick={cancelClick}>Cancel</Button>
+      </div>
       <List padding={1} style={{ maxHeight: "80vh", overflow: "auto" }}>
         <ListItem>
           <Typography variant="h5">{title}</Typography>
+        </ListItem>
+        <ListItem>
+          <TextField
+            label="Source Url"
+            multiline
+            defaultValue={selectedRecipe.source_url}
+            inputRef={urlRef}
+          />
+          <Fab onClick={downloadRecipe}>
+            <DownloadIcon />
+          </Fab>
+        </ListItem>
+        <ListItem>
+          <Link href={selectedRecipe.source_url}>
+            {selectedRecipe.source_url}
+          </Link>
         </ListItem>
         <ListItem>
           <TextField
@@ -90,27 +110,6 @@ export default function EditAddRecipe({
             defaultValue={selectedRecipe.directions}
             inputRef={directionsRef}
           />
-        </ListItem>
-        <ListItem>
-          <TextField
-            label="Source Url"
-            multiline
-            defaultValue={selectedRecipe.source_url}
-            inputRef={urlRef}
-          />
-          <Fab onClick={downloadRecipe}>
-            <DownloadIcon />
-          </Fab>
-        </ListItem>
-        <ListItem>
-          <Link href={selectedRecipe.source_url}>
-            {selectedRecipe.source_url}
-          </Link>
-        </ListItem>
-
-        <ListItem>
-          <Button onClick={saveRecipeClick}>Save</Button>
-          <Button onClick={cancelClick}>Cancel</Button>
         </ListItem>
       </List>
     </Grid>

@@ -18,13 +18,34 @@ router.get("/", async function(req, res) {
 
 router.put("/", async function(req, res) {
   const recipe = recipeDb.editRecipe(req.body)
-  paprika.syncRecipe(recipe)
+  console.log("Updating Paprika recipe:")
+  paprika.updateRecipe(recipe)
   res.send(recipeDb.getRecipe(recipe.uid))
 })
 
+const defaultRecipe = {
+  photo: null,
+  image_url: null,
+  photo_hash: null,
+  source: null,
+  nutritional_info: "",
+  scale: null,
+  deleted: false,
+  categories: [],
+  servings: "",
+  rating: 0,
+  difficulty: null,
+  notes: "",
+  on_favorites: false,
+  cook_time: "",
+  prep_time: ""
+}
+
 router.post("/", async function(req, res) {
-  const recipe = recipeDb.addRecipe(req.body)
-  paprika.syncRecipe(recipe)
+  let recipe = { ...defaultRecipe, ...req.body }
+  recipe = recipeDb.addRecipe(recipe)
+  console.log("Adding recipe to Paprika:", recipe)
+  paprika.updateRecipe(recipe)
   res.send(recipeDb.getRecipe(recipe.uid))
 })
 

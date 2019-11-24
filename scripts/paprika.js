@@ -38,6 +38,7 @@ PaprikaApi.prototype.upsertRecipe = async function(recipe) {
       }
     }
   )
+  console.log(res)
   return res
 }
 
@@ -79,7 +80,7 @@ class Paprika {
     return recipes
   }
 
-  async syncRecipe(recipe) {
+  async updateRecipe(recipe) {
     await this.paprikaApi.upsertRecipe(recipe)
   }
 

@@ -46,7 +46,7 @@ describe("Index", () => {
     let recipe = apiStub.recipe(uid)
     expect(recipe.name).toBe("Zalm met prei 2")
     recipe.name = "Zalm met prei 3"
-    await paprika.syncRecipe(recipe)
+    await paprika.updateRecipe(recipe)
     recipe = apiStub.recipe(uid)
     expect(recipe.name).toBe("Zalm met prei 3")
     expect(recipe.ingredients).toEqual(
@@ -61,7 +61,7 @@ describe("Index", () => {
       uid,
       name: "Trout traybake with minty hollandaise"
     }
-    await paprika.syncRecipe(newRecipe)
+    await paprika.updateRecipe(newRecipe)
     const recipe = apiStub.recipe(uid)
     expect(recipe).toEqual({
       photo: "ce2f1e34-239d-424b-94fd-98e0bf59c085.jpg",
