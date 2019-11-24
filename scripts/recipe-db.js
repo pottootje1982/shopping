@@ -80,10 +80,6 @@ class RecipeDb {
     return this.getRecipeRaw(recipe.uid)
   }
 
-  save() {
-    this.db.get("recipes").write()
-  }
-
   addRecipe(recipe) {
     this.setHash(recipe)
     this.db

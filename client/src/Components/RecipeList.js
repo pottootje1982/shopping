@@ -30,6 +30,7 @@ export default function RecipeList({ setRecipeTitle }) {
       if (recipes.length > 0) {
         const recipe = recipes[0]
         setSelectedRecipe(recipe)
+        sync()
       }
     })
   }
@@ -95,6 +96,14 @@ export default function RecipeList({ setRecipeTitle }) {
     }
   }
 
+  async function sync() {
+    const res = await server.get("recipes/sync")
+    const recipes = res.data
+    if (recipes && recipes !== "") {
+      setRecipes(recipes)
+    }
+  }
+
   return recipes === undefined ? (
     <div>Loading</div>
   ) : (
@@ -115,7 +124,7 @@ export default function RecipeList({ setRecipeTitle }) {
               {recipes.map((item, index) => (
                 <ListItem
                   button
-                  key={`${item.created}_${item.name}`}
+                  key={`${item.uid}`}
                   divider={true}
                   selected={(selectedRecipe || {}).uid === item.uid}
                   onClick={() => setSelectedRecipe(item)}

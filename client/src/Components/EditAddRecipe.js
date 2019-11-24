@@ -56,10 +56,8 @@ export default function EditAddRecipe({
         <Button onClick={saveRecipeClick}>Save</Button>
         <Button onClick={cancelClick}>Cancel</Button>
       </div>
-      <List padding={1} style={{ maxHeight: "80vh", overflow: "auto" }}>
-        <ListItem>
-          <Typography variant="h5">{title}</Typography>
-        </ListItem>
+      <Typography variant="h5">{title}</Typography>
+      <List padding={1} style={{ maxHeight: "70vh", overflow: "auto" }}>
         <ListItem>
           <TextField
             label="Source Url"

@@ -55,8 +55,7 @@ router.delete("/", async function(req, res) {
 })
 
 router.get("/sync", async (req, res) => {
-  const result = paprika.synchronize(await recipeDb.getRecipesRaw())
-  recipeDb.save()
+  const result = await paprika.synchronize(await recipeDb.getRecipesRaw())
   res.send(result)
 })
 
