@@ -8,8 +8,7 @@ import green from "@material-ui/core/colors/green"
 import Recipe from "./Recipe"
 import { Button, Fab } from "./Styled"
 import getDateString from "./date"
-import { DataGrid, ToolbarOptions } from "tubular-react"
-import { ColumnModel, ColumnDataType } from "tubular-common"
+import MaterialTable from "material-table"
 
 export default function RecipeList({ setRecipeTitle }) {
   const [selectedRecipes] = useState(() => [])
@@ -98,24 +97,17 @@ export default function RecipeList({ setRecipeTitle }) {
     }
   }
 
-  function clickRow(row) {
+  function clickRow(event, row) {
     const recipe = recipes.find(r => r.uid === row.uid)
     setSelectedRecipe(recipe)
   }
 
   const columns = [
-    new ColumnModel("uid", { IsKey: true, Visible: false }),
-    new ColumnModel("selected", { DataType: ColumnDataType.BOOLEAN }),
-    new ColumnModel("name", { Sortable: true, Searchable: true }),
-    new ColumnModel("created", { Sortable: true })
+    { field: "uid", hidden: true },
+    { field: "selected", type: "boolean", editable: "always" },
+    { field: "name" },
+    { field: "created" }
   ]
-  const toolbarOptions = new ToolbarOptions({
-    itemsPerPage: 8,
-    topPager: false,
-    exportButton: false,
-    printButton: false,
-    advancePagination: false
-  })
 
   return recipes === undefined ? (
     <div>Loading</div>
@@ -133,15 +125,15 @@ export default function RecipeList({ setRecipeTitle }) {
         </div>
         <Grid item xs={12} style={{ minHeight: "75vh" }}>
           <Paper style={{ backgroundColor: blue[50] }}>
-            <DataGrid
+            <MaterialTable
               dense={true}
-              toolbarOptions={toolbarOptions}
               onRowClick={clickRow}
               title="Recipes"
               style={{ maxHeight: "75vh", overflow: "auto" }}
               columns={columns}
-              dataSource={recipes}
-            ></DataGrid>
+              data={recipes}
+              options={{ pageSize: 7 }}
+            ></MaterialTable>
           </Paper>
         </Grid>
       </Grid>
