@@ -3148,6 +3148,32 @@
           "unitSize": "350 g"
         }
       }
+    },
+    {
+      "ingredient": "thaise vissaus",
+      "product": {
+        "id": 103360,
+        "title": "AH Vissaus",
+        "price": {
+          "unitInfo": {
+            "price": 6.2,
+            "description": "LT"
+          },
+          "now": 1.55,
+          "unitSize": "250 ml"
+        }
+      }
+    },
+    {
+      "ingredient": "brood",
+      "product": {
+        "id": 437239,
+        "title": "AH Biologisch Les Pains Montagne heel",
+        "price": {
+          "now": 2.66,
+          "unitSize": "per stuk"
+        }
+      }
     }
   ]
 }

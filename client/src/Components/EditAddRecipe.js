@@ -21,17 +21,18 @@ export default function EditAddRecipe({
   async function saveRecipeClick() {
     const name = nameRef.current.value
     const uid = selectedRecipe.uid || uuidv1()
-    const created = getDateString()
     const ingredients = ingredientsRef.current.value
     const directions = directionsRef.current.value
     const source_url = urlRef.current.value
     let recipe = {
       name,
       uid,
-      created,
       ingredients,
       directions,
       source_url
+    }
+    if (!edit) {
+      recipe.created = getDateString()
     }
     delete selectedRecipe.mappings
     const res = edit
@@ -47,7 +48,11 @@ export default function EditAddRecipe({
   async function downloadRecipe() {
     const source_url = urlRef.current.value
     const res = await server.post("recipes/download", { url: source_url })
-    setSelectedRecipe(res.data)
+    if (res.data) {
+      setSelectedRecipe(res.data)
+    } else {
+      alert("Recipe could not be downloaded from url")
+    }
   }
 
   return (

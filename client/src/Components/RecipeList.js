@@ -115,7 +115,7 @@ export default function RecipeList({ setRecipeTitle }) {
     return {
       maxHeight: 10,
       backgroundColor: rowData.ingredients.every(
-        i => rowData.mappings[i.ingredient] !== undefined
+        i => rowData.mappings && rowData.mappings[i.ingredient] !== undefined
       )
         ? green[100 + selectedOffset]
         : blue[50 + selectedOffset]

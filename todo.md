@@ -15,5 +15,4 @@
 
 # Bugs
 
-- fix exceptions when trying to download unscrapable recipe (when Paprika download fails): 2
 - 2 courgettes, dik --> dik
