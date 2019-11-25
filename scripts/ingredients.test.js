@@ -41,9 +41,14 @@ describe("Ingredient", () => {
   })
 
   it("contains comma", () => {
+    equals("2 courgettes, sliced thickly (about 300g)", [
+      2,
+      undefined,
+      "courgettes"
+    ])
     equals("4 aubergines, cut into long, 5mm thick slices", [
       4,
-      "slices",
+      undefined,
       "aubergines"
     ])
   })
@@ -210,8 +215,8 @@ describe("Ingredient", () => {
 
     equals("4 slices wholemeal seeded bread", [
       4,
-      "slices",
-      "wholemeal seeded bread"
+      undefined,
+      "slices wholemeal seeded bread"
     ])
     equals("3 cloves garlic", [3, "cloves", "garlic"])
     equals("1 litre lamb or chicken stock", [
@@ -319,7 +324,7 @@ describe("Ingredient", () => {
         [6, "tbsp", "olive oil"],
         [2, "400g cans", "chopped tomatoes"],
         [2, "tbsp", "tomato purée"],
-        [4, "slices", "aubergines"],
+        [4, undefined, "aubergines"],
         [85, "g", "parmesan"],
         [20, "g pack", "basil"],
         [1, undefined, "egg"],
@@ -388,7 +393,7 @@ describe("Ingredient", () => {
         [250, "g", "basmati rice"],
         [140, "g", "split red lentils"],
         [4, "tbsp", "vegetable oil"],
-        [2, "sliced", "onions"],
+        [2, undefined, "onions"],
         [50, "g", "ginger"],
         [3, undefined, "whole green chillies"],
         [2, undefined, "bay leaves"],
@@ -398,7 +403,7 @@ describe("Ingredient", () => {
       [
         [500, "g slim young", "leeks"],
         [300, "g", "broccoli"],
-        [3, "sliced", "celery sticks"],
+        [3, undefined, "celery sticks"],
         ["1½", "kg", "floury potatoes"],
         [85, "g", "butter"],
         [170, "g pot", "0% fat Greek yogurt"],

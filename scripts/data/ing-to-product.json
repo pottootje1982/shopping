@@ -3174,6 +3174,298 @@
           "unitSize": "per stuk"
         }
       }
+    },
+    {
+      "ingredient": "koolzaadolie",
+      "product": {
+        "id": 212707,
+        "title": "Brassica Koolzaadolie bak & braad",
+        "price": {
+          "unitInfo": {
+            "price": 7.38,
+            "description": "LT"
+          },
+          "now": 3.69,
+          "unitSize": "500 ml"
+        }
+      }
+    },
+    {
+      "ingredient": "van gember",
+      "product": {
+        "id": 104818,
+        "title": "AH Biologisch Gember (verse gemberwortel)",
+        "price": {
+          "unitInfo": {
+            "price": 13.27,
+            "description": "KG"
+          },
+          "now": 1.99,
+          "unitSize": "150 g"
+        }
+      }
+    },
+    {
+      "ingredient": "komijnzaad",
+      "product": {
+        "id": 216645,
+        "title": "Verstegen Strooier komijnzaad",
+        "price": {
+          "unitInfo": {
+            "price": 49.75,
+            "description": "KG"
+          },
+          "now": 1.99,
+          "unitSize": "40 g"
+        }
+      }
+    },
+    {
+      "ingredient": "gemalen kaneel",
+      "product": {
+        "id": 216632,
+        "title": "Verstegen Strooier kaneel",
+        "price": {
+          "unitInfo": {
+            "price": 56.49,
+            "description": "KG"
+          },
+          "now": 2.09,
+          "unitSize": "37 g"
+        }
+      }
+    },
+    {
+      "ingredient": "kardemom",
+      "product": {
+        "id": 216635,
+        "title": "Verstegen Strooier kardemom",
+        "price": {
+          "unitInfo": {
+            "price": 69.67,
+            "description": "KG"
+          },
+          "now": 2.09,
+          "unitSize": "30 g"
+        }
+      }
+    },
+    {
+      "ingredient": "gemalen kurkuma",
+      "product": {
+        "id": 414884,
+        "title": "Verstegen Strooier kurkuma",
+        "price": {
+          "unitInfo": {
+            "price": 44.47,
+            "description": "KG"
+          },
+          "now": 2.09,
+          "unitSize": "47 g"
+        }
+      }
+    },
+    {
+      "ingredient": "gemalen koriander",
+      "product": {
+        "id": 415009,
+        "title": "Verstegen Strooier koriander gemalen",
+        "price": {
+          "unitInfo": {
+            "price": 69.39,
+            "description": "KG"
+          },
+          "now": 2.29,
+          "unitSize": "33 g"
+        }
+      }
+    },
+    {
+      "ingredient": "grote rode peper",
+      "product": {
+        "id": 123865,
+        "title": "AH Zoete rode puntpaprika's",
+        "price": {
+          "unitInfo": {
+            "price": 19.9,
+            "description": "KG"
+          },
+          "now": 1.99,
+          "unitSize": "2 stuks"
+        }
+      }
+    },
+    {
+      "ingredient": "bruine basmatirijst",
+      "product": {
+        "id": 435948,
+        "title": "AH Biologisch Volkoren basmati rijst",
+        "price": {
+          "unitInfo": {
+            "price": 5.98,
+            "description": "KG"
+          },
+          "now": 2.39,
+          "unitSize": "400 g"
+        }
+      }
+    },
+    {
+      "ingredient": "baby spinazie bladeren",
+      "product": {
+        "id": 224710,
+        "title": "AH Babyspinazie",
+        "price": {
+          "unitInfo": {
+            "price": 15.9,
+            "description": "KG"
+          },
+          "now": 1.59,
+          "unitSize": "100 g"
+        }
+      }
+    },
+    {
+      "ingredient": "voor de zalm:",
+      "product": {
+        "ignore": true
+      }
+    },
+    {
+      "ingredient": "filets van wilde zalm",
+      "product": {
+        "id": 191133,
+        "title": "AH Biologisch Verse zalmfilet",
+        "price": {
+          "unitInfo": {
+            "price": 34.99,
+            "description": "KG"
+          },
+          "now": 10.5,
+          "unitSize": "ca. 300 g"
+        }
+      }
+    },
+    {
+      "ingredient": "geroosterde amandelen",
+      "product": {
+        "id": 161499,
+        "title": "AH Amandelschaafsel",
+        "price": {
+          "unitInfo": {
+            "price": 37.27,
+            "description": "KG"
+          },
+          "now": 2.05,
+          "unitSize": "55 g"
+        }
+      }
+    },
+    {
+      "ingredient": "fijngehakte munt of koriander",
+      "product": {
+        "id": 238968,
+        "title": "AH Koriander",
+        "price": {
+          "unitInfo": {
+            "price": 92.67,
+            "description": "KG"
+          },
+          "now": 1.39,
+          "unitSize": "15 g"
+        }
+      }
+    },
+    {
+      "ingredient": "vetvrije natuurlijke yoghurt",
+      "product": {
+        "id": 60063,
+        "title": "AH Biologisch Milde yoghurt",
+        "price": {
+          "unitInfo": {
+            "price": 2.12,
+            "description": "KG"
+          },
+          "now": 1.06,
+          "unitSize": "500 g"
+        }
+      }
+    },
+    {
+      "ingredient": "korianderzaad",
+      "product": {
+        "id": 234763,
+        "title": "Verstegen Strooier korianderzaad",
+        "price": {
+          "unitInfo": {
+            "price": 93.75,
+            "description": "KG"
+          },
+          "now": 2.25,
+          "unitSize": "24 g"
+        }
+      }
+    },
+    {
+      "ingredient": "rode port",
+      "product": {
+        "id": 171583,
+        "title": "Sobreiro Port Ruby",
+        "price": {
+          "unitInfo": {
+            "price": 6.39,
+            "description": "LT"
+          },
+          "theme": "ah",
+          "now": 4.79,
+          "unitSize": "0,75 l"
+        }
+      }
+    },
+    {
+      "ingredient": "gevogeltefond",
+      "product": {
+        "id": 30226,
+        "title": "AH Gevogeltefond",
+        "price": {
+          "unitInfo": {
+            "price": 5.66,
+            "description": "LT"
+          },
+          "now": 2.15,
+          "unitSize": "380 ml"
+        }
+      }
+    },
+    {
+      "ingredient": "sap + rasp van een halve sinaasappel",
+      "product": {
+        "id": 95822,
+        "title": "AH Handsinaasappelen groot",
+        "price": {
+          "unitInfo": {
+            "price": 1.93,
+            "description": "KG"
+          },
+          "now": 2.89,
+          "unitSize": "1,5 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "koude boter",
+      "product": {
+        "id": 58082,
+        "title": "AH Biologisch Roomboter ongezouten",
+        "price": {
+          "unitInfo": {
+            "price": 9.72,
+            "description": "KG"
+          },
+          "now": 2.43,
+          "unitSize": "250 g"
+        }
+      }
     }
   ]
 }

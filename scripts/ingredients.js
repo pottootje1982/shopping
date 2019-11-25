@@ -89,7 +89,6 @@ let units = [
   /rasher/,
   /sprig/,
   /jar/,
-  /slice/, // we don't want it to match with sliced
 
   // NL
   /kilo/,

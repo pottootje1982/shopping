@@ -57,7 +57,7 @@ describe("storeMapping()", () => {
       items: [
         {
           id: 1,
-          quantity: 1
+          quantity: 4
         },
         {
           id: 5,
