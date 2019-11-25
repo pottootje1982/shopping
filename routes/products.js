@@ -28,7 +28,7 @@ router.get("/mappings", async function(req, res) {
 })
 
 router.post("/order", async function(req, res) {
-  api.login()
+  await api.login()
   req.body.recipes.forEach(async function(id) {
     const recipe = recipeDb.getRecipe(id)
     const order = ingToProduct.pickOrder(recipe)

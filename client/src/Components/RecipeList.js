@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import server from "./server"
-import { Grid, Paper } from "@material-ui/core"
+import { Grid } from "@material-ui/core"
 import AddIcon from "@material-ui/icons/Add"
 import DeleteIcon from "@material-ui/icons/Delete"
 import blue from "@material-ui/core/colors/blue"
@@ -11,7 +11,7 @@ import getDateString from "./date"
 import MaterialTable from "material-table"
 
 export default function RecipeList({ setRecipeTitle }) {
-  const [selectedRecipes] = useState(() => [])
+  let [selectedRecipes, setSelectedRecipes] = useState(() => [])
   let [recipes, setRecipes] = useState([])
   let [, setRecipeReadyToOrder] = useState()
   let [selectedRecipe, setSelectedRecipe] = useState()
@@ -55,17 +55,12 @@ export default function RecipeList({ setRecipeTitle }) {
     }
   }
 
-  async function toggleRecipe(event, checked, uid) {
-    event.stopPropagation()
-    if (checked) {
-      selectedRecipes.push(uid)
-    } else {
-      selectedRecipes.splice(selectedRecipes.indexOf(uid), 1)
-    }
+  function onSelectionChange(selRecipes) {
+    setSelectedRecipes(selRecipes)
   }
 
   function order() {
-    server.post("products/order", { recipes: selectedRecipes })
+    server.post("products/order", { recipes: selectedRecipes.map(r => r.uid) })
   }
 
   function addRecipe() {
@@ -104,9 +99,8 @@ export default function RecipeList({ setRecipeTitle }) {
 
   const columns = [
     { field: "uid", hidden: true },
-    { field: "selected", type: "boolean", editable: "always" },
-    { field: "name" },
-    { field: "created" }
+    { title: "Name", field: "name" },
+    { title: "Created", field: "created" }
   ]
 
   return recipes === undefined ? (
@@ -124,17 +118,27 @@ export default function RecipeList({ setRecipeTitle }) {
           </Fab>
         </div>
         <Grid item xs={12} style={{ minHeight: "75vh" }}>
-          <Paper style={{ backgroundColor: blue[50] }}>
-            <MaterialTable
-              dense={true}
-              onRowClick={clickRow}
-              title="Recipes"
-              style={{ maxHeight: "75vh", overflow: "auto" }}
-              columns={columns}
-              data={recipes}
-              options={{ pageSize: 7 }}
-            ></MaterialTable>
-          </Paper>
+          <MaterialTable
+            dense={true}
+            onRowClick={clickRow}
+            title="Recipes"
+            style={{ maxHeight: "75vh", overflow: "auto" }}
+            columns={columns}
+            data={recipes}
+            onSelectionChange={onSelectionChange}
+            options={{
+              pageSize: 7,
+              pageSizeOptions: [7, 14, 28],
+              selection: true,
+              rowStyle: rowData => ({
+                backgroundColor:
+                  rowData.ingredients.length ===
+                  Object.keys(rowData.mappings || {}).length
+                    ? green[100]
+                    : blue[50]
+              })
+            }}
+          ></MaterialTable>
         </Grid>
       </Grid>
       {selectedRecipe ? (
