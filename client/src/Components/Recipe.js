@@ -30,7 +30,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
 
   useEffect(() => {
     setEditOrAddRecipe(addRecipe)
-    if (ingredients.length > 0) {
+    if (ingredients.length > 0 && !selectedIngredient) {
       setSelectedIngredient(ingredients[0])
     }
   }, [selectedRecipe, ingredients, addRecipe])

@@ -16,5 +16,4 @@
 # Bugs
 
 - fix exceptions when trying to download unscrapable recipe (when Paprika download fails): 2
-- Select first ingredient when ignoring ingredient: 2
-- not all recipes appear green (Cottage pie)
+- 2 courgettes, dik --> dik

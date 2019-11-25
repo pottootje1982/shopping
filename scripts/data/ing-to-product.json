@@ -3103,6 +3103,51 @@
           "unitSize": "6 x 11 g"
         }
       }
+    },
+    {
+      "ingredient": "dik",
+      "product": {
+        "id": 185202,
+        "title": "AH Biologisch Courgette",
+        "price": {
+          "unitInfo": {
+            "price": 5.5,
+            "description": "KG"
+          },
+          "now": 1.65,
+          "unitSize": "per stuk"
+        }
+      }
+    },
+    {
+      "ingredient": "verse tijm",
+      "product": {
+        "id": 238974,
+        "title": "AH Tijm",
+        "price": {
+          "unitInfo": {
+            "price": 92.67,
+            "description": "KG"
+          },
+          "now": 1.39,
+          "unitSize": "15 g"
+        }
+      }
+    },
+    {
+      "ingredient": "gekookte linzen",
+      "product": {
+        "id": 235716,
+        "title": "Valle del sole Rode splitlinzen",
+        "price": {
+          "unitInfo": {
+            "price": 2.83,
+            "description": "KG"
+          },
+          "now": 0.99,
+          "unitSize": "350 g"
+        }
+      }
     }
   ]
 }

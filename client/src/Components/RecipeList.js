@@ -109,6 +109,19 @@ export default function RecipeList({ setRecipeTitle }) {
     { title: "Created", field: "created", type: "date" }
   ]
 
+  function determineRowColor(rowData) {
+    const selectedOffset =
+      rowData.uid === (selectedRecipe && selectedRecipe.uid) ? 100 : 0
+    return {
+      maxHeight: 10,
+      backgroundColor: rowData.ingredients.every(
+        i => rowData.mappings[i.ingredient] !== undefined
+      )
+        ? green[100 + selectedOffset]
+        : blue[50 + selectedOffset]
+    }
+  }
+
   return recipes === undefined ? (
     <div>Loading</div>
   ) : (
@@ -136,14 +149,7 @@ export default function RecipeList({ setRecipeTitle }) {
               pageSize: 7,
               pageSizeOptions: [7, 14, 28],
               selection: true,
-              rowStyle: rowData => ({
-                maxHeight: 10,
-                backgroundColor: rowData.ingredients.every(
-                  i => rowData.mappings[i.ingredient] !== undefined
-                )
-                  ? green[100]
-                  : blue[50]
-              })
+              rowStyle: determineRowColor
             }}
           ></MaterialTable>
         </Grid>
