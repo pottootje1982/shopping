@@ -92,15 +92,21 @@ export default function RecipeList({ setRecipeTitle }) {
     }
   }
 
-  function clickRow(event, row) {
+  function clickRow(_event, row) {
     const recipe = recipes.find(r => r.uid === row.uid)
     setSelectedRecipe(recipe)
   }
 
   const columns = [
     { field: "uid", hidden: true },
-    { title: "Name", field: "name" },
-    { title: "Created", field: "created" }
+    {
+      title: "Name",
+      field: "name",
+      cellStyle: {
+        maxHeight: 10
+      }
+    },
+    { title: "Created", field: "created", type: "date" }
   ]
 
   return recipes === undefined ? (
@@ -117,12 +123,12 @@ export default function RecipeList({ setRecipeTitle }) {
             <DeleteIcon />
           </Fab>
         </div>
-        <Grid item xs={12} style={{ minHeight: "75vh" }}>
+        <Grid item xs={12}>
           <MaterialTable
             dense={true}
             onRowClick={clickRow}
             title="Recipes"
-            style={{ maxHeight: "75vh", overflow: "auto" }}
+            style={{ maxHeight: "75vh", minHeight: "75vh", overflow: "auto" }}
             columns={columns}
             data={recipes}
             onSelectionChange={onSelectionChange}
@@ -131,11 +137,12 @@ export default function RecipeList({ setRecipeTitle }) {
               pageSizeOptions: [7, 14, 28],
               selection: true,
               rowStyle: rowData => ({
-                backgroundColor:
-                  rowData.ingredients.length ===
-                  Object.keys(rowData.mappings || {}).length
-                    ? green[100]
-                    : blue[50]
+                maxHeight: 10,
+                backgroundColor: rowData.ingredients.every(
+                  i => rowData.mappings[i.ingredient] !== undefined
+                )
+                  ? green[100]
+                  : blue[50]
               })
             }}
           ></MaterialTable>

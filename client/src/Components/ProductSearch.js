@@ -31,7 +31,7 @@ export default function ProductSearch({
   const classes = styles()
 
   const mappings = selectedRecipe.mappings
-  const bareIngredient = (selectedIngredient.ingredient || "").toLowerCase()
+  const bareIngredient = selectedIngredient.ingredient
   const product = mappings[bareIngredient] || {}
 
   useEffect(doSearch, [selectedIngredient])

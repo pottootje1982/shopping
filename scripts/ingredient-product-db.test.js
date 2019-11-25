@@ -34,19 +34,19 @@ describe("storeMapping()", () => {
 
     const mappings = db.getMappings(recipe)
     expect(mappings).toEqual({
-      prei: { id: 1273124, quantity: 1 },
-      dille: { id: 2, quantity: 1 },
-      zalm: { id: 1, quantity: 1 },
+      Prei: { id: 1273124, quantity: 1 },
+      Dille: { id: 2, quantity: 1 },
+      Zalm: { id: 1, quantity: 1 },
       tomaten: {
         quantity: 1
       },
-      aardappels: { id: 3, quantity: 1 }
+      Aardappels: { id: 3, quantity: 1 }
     })
   })
 
   it("picks order", () => {
     db.storeMapping("aubergines", { id: 1 })
-    db.storeMapping("lasagna", { id: 2 })
+    db.storeMapping("Lasagne", { id: 2 })
     db.storeMapping("ricotta", { id: 3 })
     db.storeMapping("egg", { id: 4 })
     db.storeMapping("egg", { id: 5 })

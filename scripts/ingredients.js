@@ -20,15 +20,15 @@ class Ingredients extends Array {
 
   static create(ingredients) {
     const list = ingredients
-      .split('\n')
-      .filter(line => line.trim() != '')
+      .split("\n")
+      .filter(line => line.trim() != "")
       .filter(line => ingredientsRemoval.every(r => !r.exec(line)))
     const ingredientsList = list.map(i => new Ingredient(i))
     return new Ingredients(...ingredientsList)
   }
 
   toString() {
-    return this.map(ing => ing.toString()).join('\n\n')
+    return this.map(ing => ing.toString()).join("\n\n")
   }
 }
 
@@ -38,28 +38,28 @@ const containers = [
   /tinned/,
   /packs?/,
   /pots?/, // otherwise it matches with potatoes
-  /bag/,
+  /bag/
 ]
 
 const measurements = [
-  'tbsp',
-  'tbs',
-  'tsp',
-  'ts',
-  'g',
-  'gr',
-  'kg',
-  'gram',
-  'ml',
-  'cl',
-  'dl',
-  'l',
-  'cm',
-  'el',
-  'el.',
-  'tl',
-  'tl.',
-  'ons',
+  "tbsp",
+  "tbs",
+  "tsp",
+  "ts",
+  "g",
+  "gr",
+  "kg",
+  "gram",
+  "ml",
+  "cl",
+  "dl",
+  "l",
+  "cm",
+  "el",
+  "el.",
+  "tl",
+  "tl.",
+  "ons"
 ]
 
 let units = [
@@ -108,38 +108,38 @@ let units = [
   /stukje/,
   /snufje/,
   /takje/,
-  /vel/,
+  /vel/
 ]
 
 const unitsWithNumber = [/.*ounce/]
 
 const quantExp = /([\d-¼½–.,/ ]*)\s*x?\s*/.source
-const quantExpNoSpace = quantExp.replace(' ', '')
+const quantExpNoSpace = quantExp.replace(" ", "")
 const ingrExp = /([^,]*)/.source
 
 units = [
   ...containers.map(
-    unit => new RegExp(`^(.*)\\s*(${unit.source})\\s+${ingrExp}`, 'i')
+    unit => new RegExp(`^(.*)\\s*(${unit.source})\\s+${ingrExp}`, "i")
   ),
   ...units.map(
-    unit => new RegExp(`^(.*)\\s*(${unit.source}[^\\s,]*)${ingrExp}`, 'i')
+    unit => new RegExp(`^(.*)\\s*(${unit.source}[^\\s,]*)${ingrExp}`, "i")
   ),
   ...measurements.map(
-    unit => new RegExp(`^${quantExp}\\s*(${unit})\\s+${ingrExp}`, 'i')
+    unit => new RegExp(`^${quantExp}\\s*(${unit})\\s+${ingrExp}`, "i")
   ),
   ...unitsWithNumber.map(
     unit => new RegExp(`${quantExpNoSpace}\\s*(${unit.source})\\s*${ingrExp}`)
-  ),
+  )
 ]
 
 const ingLineReplacements = [
-  [/(.+)(\(.*\))$/, '$1'], // removal of parentheses
+  [/(.+)(\(.*\))$/, "$1"] // removal of parentheses
 ]
 
 const ingReplacements = [
-  [/,.*$/, ''], // removal of comma
-  [/(.+)(\(.*\))$/, '$1'], // removal of parentheses
-  [/(\(.*\)\s+)(.+)$/, '$2'], // removal of parentheses
+  [/,.*$/, ""], // removal of comma
+  [/(.+)(\(.*\))$/, "$1"], // removal of parentheses
+  [/(\(.*\)\s+)(.+)$/, "$2"] // removal of parentheses
 ]
 
 class Ingredient {
@@ -151,7 +151,7 @@ class Ingredient {
       const parsed = this.parse(ingredientLine)
       if (parsed) {
         ;[quant, unit, ingr] = parsed
-        const quantRest = new RegExp(`${quantExp}(.*)`, 'g').exec(quant)
+        const quantRest = new RegExp(`${quantExp}(.*)`, "g").exec(quant)
         if (quantRest) {
           ;[_all, quant, not_quant] = quantRest
           if (!ingr) {
@@ -161,14 +161,14 @@ class Ingredient {
           }
         }
       } else {
-        ;[_all, quant, ingr] = new RegExp(`${quantExp}${ingrExp}`, 'g').exec(
+        ;[_all, quant, ingr] = new RegExp(`${quantExp}${ingrExp}`, "g").exec(
           ingredientLine
         )
       }
     }
     this.ingredient = this.filterIng(ingr)
     quant = quant && quant.trim()
-    quant = quant === '' ? undefined : quant
+    quant = quant === "" ? undefined : quant
     this.quantity = !isNaN(quant) ? parseFloat(quant) : quant
     this.unit = unit && unit.trim()
     this.all = [this.quantity, this.unit, this.ingredient]
@@ -179,7 +179,7 @@ class Ingredient {
     let elems = parsed.find(u => u != null)
     if (!elems) return null
     let ing = elems[3].trim()
-    ing = ing === '' ? undefined : ing
+    ing = ing === "" ? undefined : ing
     return elems ? [elems[1], elems[2], ing] : null
   }
 
@@ -196,7 +196,7 @@ class Ingredient {
       this.ingredient = ingredient
       this.full = [this.quantity, this.unit, this.ingredient]
         .filter(s => s)
-        .join(' ')
+        .join(" ")
     }
   }
 

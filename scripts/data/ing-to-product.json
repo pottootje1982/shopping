@@ -2705,6 +2705,404 @@
           "unitSize": "125 ml"
         }
       }
+    },
+    {
+      "ingredient": "voor de pesto:",
+      "product": {
+        "ignore": true
+      }
+    },
+    {
+      "ingredient": "voor de dressing",
+      "product": {
+        "ignore": true
+      }
+    },
+    {
+      "ingredient": "amandelmeel",
+      "product": {
+        "id": 420734,
+        "title": "Molensteen Amandelmeel",
+        "price": {
+          "unitInfo": {
+            "price": 15.35,
+            "description": "KG"
+          },
+          "now": 3.07,
+          "unitSize": "200 g"
+        }
+      }
+    },
+    {
+      "ingredient": "geraspte kokos",
+      "product": {
+        "id": 54148,
+        "title": "Conimex Geraspte kokos",
+        "price": {
+          "unitInfo": {
+            "price": 9.39,
+            "description": "KG"
+          },
+          "now": 0.92,
+          "unitSize": "98 g"
+        }
+      }
+    },
+    {
+      "ingredient": "citroensap",
+      "product": {
+        "id": 398477,
+        "title": "AH Biologisch Citroensap",
+        "price": {
+          "unitInfo": {
+            "price": 5.32,
+            "description": "LT"
+          },
+          "now": 1.33,
+          "unitSize": "250 ml"
+        }
+      }
+    },
+    {
+      "ingredient": "vanillestokje",
+      "product": {
+        "id": 452177,
+        "title": "Cookcook Vanille",
+        "price": {
+          "now": 2.29,
+          "unitSize": "1 g"
+        }
+      }
+    },
+    {
+      "ingredient": "manuka honing",
+      "product": {
+        "id": 410389,
+        "title": "AH Biologisch Bloemenhoning",
+        "price": {
+          "unitInfo": {
+            "price": 7.69,
+            "description": "KG"
+          },
+          "now": 2.69,
+          "unitSize": "350 g"
+        }
+      }
+    },
+    {
+      "ingredient": "creamed coconut",
+      "product": {
+        "id": 199040,
+        "title": "Go-Tan Cocos crème santen",
+        "price": {
+          "unitInfo": {
+            "price": 10.93,
+            "description": "KG"
+          },
+          "now": 1.64,
+          "unitSize": "3 x 50 g"
+        }
+      }
+    },
+    {
+      "ingredient": "baking soda",
+      "product": {
+        "id": 52896,
+        "title": "Dr. Oetker Backin bakpoeder",
+        "price": {
+          "unitInfo": {
+            "price": 7.63,
+            "description": "KG"
+          },
+          "now": 0.61,
+          "unitSize": "5 x 16 g"
+        }
+      }
+    },
+    {
+      "ingredient": "worcestershire saus",
+      "product": {
+        "id": 103,
+        "title": "Lea & Perrins Worcestershire sauce",
+        "price": {
+          "unitInfo": {
+            "price": 11.27,
+            "description": "LT"
+          },
+          "now": 1.69,
+          "unitSize": "150 ml"
+        }
+      }
+    },
+    {
+      "ingredient": "tijm takjes",
+      "product": {
+        "id": 238974,
+        "title": "AH Tijm",
+        "price": {
+          "unitInfo": {
+            "price": 92.67,
+            "description": "KG"
+          },
+          "now": 1.39,
+          "unitSize": "15 g"
+        }
+      }
+    },
+    {
+      "ingredient": "voor de puree",
+      "product": {
+        "ignore": true
+      }
+    },
+    {
+      "ingredient": "aardappelen",
+      "product": {
+        "id": 96049,
+        "title": "AH Iets kruimige aardappelen",
+        "price": {
+          "unitInfo": {
+            "price": 1.33,
+            "description": "KG"
+          },
+          "now": 3.99,
+          "unitSize": "3 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "sterke cheddar",
+      "product": {
+        "id": 104460,
+        "title": "AH Cheddar tophat 48+",
+        "price": {
+          "unitInfo": {
+            "price": 16.09,
+            "description": "KG"
+          },
+          "now": 3.38,
+          "unitSize": "ca. 210 g"
+        }
+      }
+    },
+    {
+      "ingredient": "vers geraspte nootmuskaat",
+      "product": {
+        "id": 414968,
+        "title": "Verstegen Zakje nootmuskaat heel",
+        "price": {
+          "unitInfo": {
+            "price": 71.5,
+            "description": "KG"
+          },
+          "now": 1.43,
+          "unitSize": "20 g"
+        }
+      }
+    },
+    {
+      "ingredient": "rode wijn",
+      "product": {
+        "id": 99219,
+        "title": "Lindeman's Bin 40 Merlot",
+        "price": {
+          "unitInfo": {
+            "price": 9.32,
+            "description": "LT"
+          },
+          "theme": "bonus",
+          "now": 5.24,
+          "was": 6.99,
+          "unitSize": "0,75 l"
+        }
+      }
+    },
+    {
+      "ingredient": "runderbouillon",
+      "product": {
+        "id": 160958,
+        "title": "Maggi Minder zout bouillon rundvlees",
+        "price": {
+          "unitInfo": {
+            "price": 15.14,
+            "description": "KG"
+          },
+          "now": 1.09,
+          "unitSize": "72 g"
+        }
+      }
+    },
+    {
+      "ingredient": "wortels",
+      "product": {
+        "id": 165408,
+        "title": "AH Biologisch Winterpeen",
+        "price": {
+          "unitInfo": {
+            "price": 1.49,
+            "description": "KG"
+          },
+          "now": 1.49,
+          "unitSize": "1 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "smoked paprika",
+      "product": {
+        "id": 375989,
+        "title": "La Chinata gerookte paprikapoeder zoet",
+        "price": {
+          "unitInfo": {
+            "price": 42.43,
+            "description": "KG"
+          },
+          "now": 2.97,
+          "unitSize": "70 g"
+        }
+      }
+    },
+    {
+      "ingredient": "olijf- of koolzaadolie",
+      "product": {
+        "id": 58055,
+        "title": "AH Olijfolie traditioneel",
+        "price": {
+          "unitInfo": {
+            "price": 6.53,
+            "description": "LT"
+          },
+          "now": 6.53,
+          "unitSize": "1 l"
+        }
+      }
+    },
+    {
+      "ingredient": "gerookte paprika",
+      "product": {
+        "id": 375990,
+        "title": "La Chinata Gerookte paprikapoeder hot",
+        "price": {
+          "unitInfo": {
+            "price": 42.43,
+            "description": "KG"
+          },
+          "now": 2.97,
+          "unitSize": "70 g"
+        }
+      }
+    },
+    {
+      "ingredient": "komijn",
+      "product": {
+        "id": 216641,
+        "title": "Verstegen Strooier komijnzaad gemalen",
+        "price": {
+          "unitInfo": {
+            "price": 56.49,
+            "description": "KG"
+          },
+          "now": 2.09,
+          "unitSize": "37 g"
+        }
+      }
+    },
+    {
+      "ingredient": "gedroogde tijm",
+      "product": {
+        "id": 216629,
+        "title": "Verstegen Strooier tijm",
+        "price": {
+          "unitInfo": {
+            "price": 149.29,
+            "description": "KG"
+          },
+          "now": 2.09,
+          "unitSize": "14 g"
+        }
+      }
+    },
+    {
+      "ingredient": "middelgrote wortelen",
+      "product": {
+        "id": 4076,
+        "title": "AH Winterpeen verpakt voordeel",
+        "price": {
+          "unitInfo": {
+            "price": 0.69,
+            "description": "KG"
+          },
+          "now": 0.69,
+          "unitSize": "1 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "medium sticks selderij",
+      "product": {
+        "id": 4178,
+        "title": "AH Bleekselderij",
+        "price": {
+          "now": 1.05,
+          "unitSize": "per stuk"
+        }
+      }
+    },
+    {
+      "ingredient": "rode peper",
+      "product": {
+        "id": 4117,
+        "title": "AH Rode paprika",
+        "price": {
+          "unitInfo": {
+            "price": 3.96,
+            "description": "KG"
+          },
+          "now": 0.99,
+          "unitSize": "per stuk"
+        }
+      }
+    },
+    {
+      "ingredient": "gele paprika",
+      "product": {
+        "id": 368705,
+        "title": "AH Paprika geel",
+        "price": {
+          "now": 0.99,
+          "unitSize": "per stuk"
+        }
+      }
+    },
+    {
+      "ingredient": "tomaten of gepelde cherrytomaten",
+      "product": {
+        "id": 395307,
+        "title": "AH Biologisch Tomatenblokjes",
+        "price": {
+          "unitInfo": {
+            "price": 3.13,
+            "description": "KG"
+          },
+          "now": 1.25,
+          "unitSize": "400 g"
+        }
+      }
+    },
+    {
+      "ingredient": "groentebouillonblokje",
+      "product": {
+        "id": 388343,
+        "title": "Knorr Biologisch bouillon blokje groenten",
+        "price": {
+          "unitInfo": {
+            "price": 17.88,
+            "description": "KG"
+          },
+          "now": 1.18,
+          "unitSize": "6 x 11 g"
+        }
+      }
     }
   ]
 }

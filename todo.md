@@ -1,11 +1,20 @@
+# Features
+
 - spinner to control quantity in recipe ingredients: 8
 
--- group recipes in recipe list: 4
+- Table
+
+  - group recipes in recipe list: 4
+  - replace add/delete button with onRowAdd/onRowDelete (from material-table): 2
 
 - MongoDb: 16
 
 - distill list of recipes that were ordered (by storing ordered recipes): 8
 
-- fix exceptions when trying to download unscrapable recipe (when Paprika download fails)
+* add translations for quantities: 4
 
-- add translations for quantities: 4
+# Bugs
+
+- fix exceptions when trying to download unscrapable recipe (when Paprika download fails): 2
+- Select first ingredient when ignoring ingredient: 2
+- not all recipes appear green (Cottage pie)

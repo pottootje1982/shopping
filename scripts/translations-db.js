@@ -6,7 +6,7 @@ const path = require("path")
 function getTranslation(db, key) {
   let result = db
     .get("translations")
-    .find({ original: key })
+    .find({ original: key.toLowerCase() })
     .value()
   if (!result) {
     const reverse = db
@@ -30,7 +30,8 @@ class TranslationsDb {
   }
 
   storeTranslations(originals, translations) {
-    for (const [i, original] of originals.entries()) {
+    for (let [i, original] of originals.entries()) {
+      original = original.toLowerCase()
       this.db
         .get("translations")
         .push({ original, translation: translations[i] })

@@ -53,7 +53,7 @@ class IngredientProductDb {
       if (mapping) {
         const product = mapping.product
         const quantity = (i.unit ? 1 : i.quantity) || 1
-        result[mapping.ingredient] = {
+        result[i.ingredient] = {
           ...product,
           quantity
         }

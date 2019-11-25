@@ -65,11 +65,11 @@
       "translation": "ei"
     },
     {
-      "original": "Lasagna",
+      "original": "lasagna",
       "translation": "lasagne"
     },
     {
-      "original": "Ricotta",
+      "original": "ricotta",
       "translation": "ricotta"
     },
     {
@@ -133,7 +133,7 @@
       "translation": "halfvolle melk"
     },
     {
-      "original": "Keukenspullen",
+      "original": "keukenspullen",
       "translation": "Keukenspullen"
     },
     {
@@ -145,7 +145,7 @@
       "translation": "baby nieuwe aardappel"
     },
     {
-      "original": "New potatoes",
+      "original": "new potatoes",
       "translation": "Nieuwe aardappelen"
     },
     {
@@ -189,7 +189,7 @@
       "translation": "boter"
     },
     {
-      "original": "0% fat Greek yogurt",
+      "original": "0% fat greek yogurt",
       "translation": "0% dikke Griekse yoghurt"
     },
     {
@@ -201,7 +201,7 @@
       "translation": "meel"
     },
     {
-      "original": "English mustard",
+      "original": "english mustard",
       "translation": "Engelse mosterd"
     },
     {
@@ -253,7 +253,7 @@
       "translation": "rode Chili"
     },
     {
-      "original": "Thai basil leaves or coriander leaves",
+      "original": "thai basil leaves or coriander leaves",
       "translation": "Thaise basilicumbladeren of korianderbladeren"
     },
     {
@@ -293,7 +293,7 @@
       "translation": "rode Chili"
     },
     {
-      "original": "Thai basil leaves or coriander leaves",
+      "original": "thai basil leaves or coriander leaves",
       "translation": "Thaise basilicumbladeren of korianderbladeren"
     },
     {
@@ -325,7 +325,7 @@
       "translation": "knapperig brood"
     },
     {
-      "original": "For the dressing",
+      "original": "for the dressing",
       "translation": "Voor de dressing"
     },
     {
@@ -333,7 +333,7 @@
       "translation": "sjalot"
     },
     {
-      "original": "English mustard powder",
+      "original": "english mustard powder",
       "translation": "Engels mosterdpoeder"
     },
     {
@@ -349,7 +349,7 @@
       "translation": "van suiker"
     },
     {
-      "original": "For the egg curry",
+      "original": "for the egg curry",
       "translation": "Voor de eiercurry"
     },
     {
@@ -389,7 +389,7 @@
       "translation": "koriander"
     },
     {
-      "original": "For the rice and lentils",
+      "original": "for the rice and lentils",
       "translation": "Voor de rijst en linzen"
     },
     {
@@ -465,7 +465,7 @@
       "translation": "middelgrote wortel"
     },
     {
-      "original": "Carrot",
+      "original": "carrot",
       "translation": "Wortel"
     },
     {
@@ -489,7 +489,7 @@
       "translation": "bal mozzarella"
     },
     {
-      "original": "freshly grated Parmesan",
+      "original": "freshly grated parmesan",
       "translation": "vers geraspte Parmezaanse kaas"
     },
     {
@@ -529,7 +529,7 @@
       "translation": "extra vergine olijfolie"
     },
     {
-      "original": "Quick garlic mayonnaise",
+      "original": "quick garlic mayonnaise",
       "translation": "Snelle knoflookmayonaise"
     },
     {
@@ -537,11 +537,11 @@
       "translation": "hoofd van bloemkool"
     },
     {
-      "original": "Cauliflower",
+      "original": "cauliflower",
       "translation": "Bloemkool"
     },
     {
-      "original": "Onion",
+      "original": "onion",
       "translation": "Ui"
     },
     {
@@ -581,11 +581,11 @@
       "translation": "bevroren zeevruchtenmix"
     },
     {
-      "original": "Paprika",
+      "original": "paprika",
       "translation": "Paprika"
     },
     {
-      "original": "Saffraan",
+      "original": "saffraan",
       "translation": "Saffraan"
     },
     {
@@ -601,7 +601,7 @@
       "translation": "runderbouillon"
     },
     {
-      "original": "Worcestershire sauce",
+      "original": "worcestershire sauce",
       "translation": "Worcestershire saus"
     },
     {
@@ -609,7 +609,7 @@
       "translation": "tijm takjes"
     },
     {
-      "original": "For the mash",
+      "original": "for the mash",
       "translation": "Voor de puree"
     },
     {
@@ -621,7 +621,7 @@
       "translation": "melk"
     },
     {
-      "original": "Butter",
+      "original": "butter",
       "translation": "Boter"
     },
     {
@@ -631,6 +631,58 @@
     {
       "original": "freshly grated nutmeg",
       "translation": "vers geraspte nootmuskaat"
+    },
+    {
+      "original": "olive or rapeseed oil",
+      "translation": "olijf- of koolzaadolie"
+    },
+    {
+      "original": "smoked paprika",
+      "translation": "gerookte paprika"
+    },
+    {
+      "original": "cumin",
+      "translation": "komijn"
+    },
+    {
+      "original": "dried thyme",
+      "translation": "gedroogde tijm"
+    },
+    {
+      "original": "medium carrots",
+      "translation": "middelgrote wortelen"
+    },
+    {
+      "original": "medium sticks celery",
+      "translation": "medium sticks selderij"
+    },
+    {
+      "original": "red pepper",
+      "translation": "rode peper"
+    },
+    {
+      "original": "yellow pepper",
+      "translation": "Gele paprika"
+    },
+    {
+      "original": "tomatoes or peeled cherry tomatoes",
+      "translation": "tomaten of gepelde cherrytomaten"
+    },
+    {
+      "original": "vegetable stock cube",
+      "translation": "groentebouillonblokje"
+    },
+    {
+      "original": "thickly",
+      "translation": "dik"
+    },
+    {
+      "original": "fresh thyme",
+      "translation": "verse tijm"
+    },
+    {
+      "original": "cooked lentils",
+      "translation": "gekookte linzen"
     }
   ]
 }

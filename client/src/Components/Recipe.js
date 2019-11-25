@@ -26,9 +26,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   const mappings = selectedRecipe.mappings
   const ingredients = selectedRecipe.ingredients
 
-  const productInfo = ingredients.map(
-    i => mappings[i.ingredient.toLowerCase()] || {}
-  )
+  const productInfo = ingredients.map(i => mappings[i.ingredient] || {})
 
   useEffect(() => {
     setEditOrAddRecipe(addRecipe)
