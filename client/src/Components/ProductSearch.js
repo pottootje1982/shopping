@@ -68,33 +68,36 @@ export default function ProductSearch({
   }
 
   return (
-    <Grid container item xs={6} key={bareIngredient} alignItems="stretch">
-      <Grid container item xs={12}>
-        <div>
-          {bareIngredient.split(" ").map(item => (
-            <Button key={item} variant="outlined" onClick={() => search(item)}>
-              {item}
-            </Button>
-          ))}
-          <TextField
-            InputProps={{
-              className: classes.input
-            }}
-            defaultValue={bareIngredient}
-            onKeyDown={e => textFieldSearch(e)}
-            variant="outlined"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                onChange={(e, checked) => ignoreIngredient(checked)}
-                checked={product.ignore}
-              ></Checkbox>
-            }
-            label="Ignore ingredient"
-          />
-        </div>
-      </Grid>
+    <Grid
+      container
+      item
+      xs={6}
+      key={bareIngredient}
+      alignItems="stretch"
+      spacing={1}
+    >
+      {bareIngredient.split(" ").map(item => (
+        <Button key={item} variant="outlined" onClick={() => search(item)}>
+          {item}
+        </Button>
+      ))}
+      <TextField
+        InputProps={{
+          className: classes.input
+        }}
+        defaultValue={bareIngredient}
+        onKeyDown={e => textFieldSearch(e)}
+        variant="outlined"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            onChange={(_e, checked) => ignoreIngredient(checked)}
+            checked={product.ignore}
+          ></Checkbox>
+        }
+        label="Ignore ingredient"
+      />
       <Grid item xs={12}>
         {products.length === 0 ? (
           <Typography color="secondary" style={{ paddingTop: 20 }}>

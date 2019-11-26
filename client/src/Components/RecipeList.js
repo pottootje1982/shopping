@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react"
 import server from "./server"
 import { Grid } from "@material-ui/core"
 import AddIcon from "@material-ui/icons/Add"
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
 import DeleteIcon from "@material-ui/icons/Delete"
-import blue from "@material-ui/core/colors/blue"
-import green from "@material-ui/core/colors/green"
+
 import Recipe from "./Recipe"
-import { Button, Fab } from "./Styled"
+import Recipes from "./Recipes"
+import { Fab } from "./Styled"
 import getDateString from "./date"
-import MaterialTable from "material-table"
 
 export default function RecipeList({ setRecipeTitle }) {
   let [selectedRecipes, setSelectedRecipes] = useState(() => [])
@@ -55,10 +55,6 @@ export default function RecipeList({ setRecipeTitle }) {
     }
   }
 
-  function onSelectionChange(selRecipes) {
-    setSelectedRecipes(selRecipes)
-  }
-
   function order() {
     server.post("products/order", { recipes: selectedRecipes.map(r => r.uid) })
   }
@@ -92,66 +88,27 @@ export default function RecipeList({ setRecipeTitle }) {
     }
   }
 
-  function clickRow(_event, row) {
-    const recipe = recipes.find(r => r.uid === row.uid)
-    setSelectedRecipe(recipe)
-  }
-
-  const columns = [
-    { field: "uid", hidden: true },
-    {
-      title: "Name",
-      field: "name",
-      cellStyle: {
-        maxHeight: 10
-      }
-    },
-    { title: "Created", field: "created", type: "date" }
-  ]
-
-  function determineRowColor(rowData) {
-    const selectedOffset =
-      rowData.uid === (selectedRecipe && selectedRecipe.uid) ? 100 : 0
-    return {
-      maxHeight: 10,
-      backgroundColor: rowData.ingredients.every(
-        i => rowData.mappings && rowData.mappings[i.ingredient] !== undefined
-      )
-        ? green[100 + selectedOffset]
-        : blue[50 + selectedOffset]
-    }
-  }
-
   return recipes === undefined ? (
     <div>Loading</div>
   ) : (
     <Grid container spacing={1} style={{ padding: 10 }} alignItems="flex-start">
-      <Grid container item xs={4}>
-        <div>
-          <Button onClick={order}>Order</Button>
-          <Fab onClick={addRecipe}>
-            <AddIcon />
-          </Fab>
-          <Fab onClick={removeRecipe}>
-            <DeleteIcon />
-          </Fab>
-        </div>
+      <Grid container item xs={4} spacing={1}>
+        <Fab onClick={order}>
+          <ShoppingCartIcon />
+        </Fab>
+        <Fab onClick={addRecipe}>
+          <AddIcon />
+        </Fab>
+        <Fab onClick={removeRecipe}>
+          <DeleteIcon />
+        </Fab>
         <Grid item xs={12}>
-          <MaterialTable
-            dense={true}
-            onRowClick={clickRow}
-            title="Recipes"
-            style={{ maxHeight: "75vh", minHeight: "75vh", overflow: "auto" }}
-            columns={columns}
-            data={recipes}
-            onSelectionChange={onSelectionChange}
-            options={{
-              pageSize: 7,
-              pageSizeOptions: [7, 14, 28],
-              selection: true,
-              rowStyle: determineRowColor
-            }}
-          ></MaterialTable>
+          <Recipes
+            recipes={recipes}
+            setRecipes={setRecipes}
+            setSelectedRecipe={setSelectedRecipe}
+            setSelectedRecipes={setSelectedRecipes}
+          />
         </Grid>
       </Grid>
       {selectedRecipe ? (

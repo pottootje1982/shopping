@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button"
 export default styled(({ ...otherProps }) => (
   <Button
     variant="contained"
-    color="secondary"
+    color="primary"
     {...otherProps}
     style={{ marginRight: 5, textTransform: "none" }}
   />

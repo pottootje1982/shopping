@@ -8,6 +8,7 @@ import {
   Typography
 } from "@material-ui/core"
 import EditIcon from "@material-ui/icons/Edit"
+import TranslateIcon from "@material-ui/icons/Translate"
 import ProductSearch from "./ProductSearch"
 import EditAddRecipe from "./EditAddRecipe"
 import blue from "@material-ui/core/colors/blue"
@@ -55,13 +56,13 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
 
   return (
     <Fragment>
-      <Grid container item xs={2}>
-        <div>
-          <Button onClick={e => translate(recipeId)}>Translate</Button>
-          <Fab onClick={editRecipeClick}>
-            <EditIcon />
-          </Fab>
-        </div>
+      <Grid container item xs={2} spacing={1}>
+        <Fab onClick={e => translate(recipeId)}>
+          <TranslateIcon />
+        </Fab>
+        <Fab onClick={editRecipeClick}>
+          <EditIcon />
+        </Fab>
         <Grid item xs={12} style={{ minHeight: "75vh" }}>
           <Paper style={{ backgroundColor: blue[50] }}>
             <List dense style={{ maxHeight: "75vh", overflow: "auto" }}>
