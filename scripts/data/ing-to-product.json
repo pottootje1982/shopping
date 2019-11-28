@@ -4392,6 +4392,131 @@
           "unitSize": "2 stuks"
         }
       }
+    },
+    {
+      "ingredient": "verse spinazie",
+      "product": {
+        "id": 409997,
+        "title": "AH Biologisch Bladspinazie",
+        "price": {
+          "unitInfo": {
+            "price": 3.31,
+            "description": "KG"
+          },
+          "now": 1.49,
+          "unitSize": "450 g"
+        }
+      }
+    },
+    {
+      "ingredient": "grofgesneden uien",
+      "product": {
+        "id": 4083,
+        "title": "AH Middelgrote uien",
+        "price": {
+          "unitInfo": {
+            "price": 1.09,
+            "description": "KG"
+          },
+          "theme": "ah",
+          "now": 1.09,
+          "unitSize": "1 kg"
+        }
+      }
+    },
+    {
+      "ingredient": "geschilde gemberwortel",
+      "product": {
+        "id": 104818,
+        "title": "AH Biologisch Gember (verse gemberwortel)",
+        "price": {
+          "unitInfo": {
+            "price": 13.27,
+            "description": "KG"
+          },
+          "now": 1.99,
+          "unitSize": "150 g"
+        }
+      }
+    },
+    {
+      "ingredient": "olie of 100 gr ghee",
+      "product": {
+        "id": 67845,
+        "title": "AH Biologisch Zonnebloemolie",
+        "price": {
+          "unitInfo": {
+            "price": 2.65,
+            "description": "LT"
+          },
+          "now": 2.65,
+          "unitSize": "1 l"
+        }
+      }
+    },
+    {
+      "ingredient": "paneer *",
+      "product": {
+        "id": 439392,
+        "title": "Apetina Paneer",
+        "price": {
+          "unitInfo": {
+            "price": 13.29,
+            "description": "KG"
+          },
+          "now": 2.99,
+          "unitSize": "225 g"
+        }
+      }
+    },
+    {
+      "ingredient": "grof gesneden vleestomaten",
+      "product": {
+        "id": 4090,
+        "title": "AH Vleestomaten",
+        "price": {
+          "unitInfo": {
+            "price": 2.98,
+            "description": "KG"
+          },
+          "now": 0.6,
+          "unitSize": "per stuk"
+        }
+      }
+    },
+    {
+      "ingredient": "fijngesneden groene pepers",
+      "product": {
+        "id": 415244,
+        "title": "AH Jalapeño peper groen",
+        "price": {
+          "now": 0.4,
+          "unitSize": "Per stuk"
+        }
+      }
+    },
+    {
+      "ingredient": "zout",
+      "product": {
+        "ignore": true
+      }
+    },
+    {
+      "ingredient": "garam masala",
+      "product": {
+        "id": 216644,
+        "title": "Euroma Jonnie boer garam masala",
+        "price": {
+          "unitInfo": {
+            "price": 53.2,
+            "description": "KG"
+          },
+          "theme": "bonus",
+          "now": 2.79,
+          "was": 3.99,
+          "unitSize": "75 g"
+        }
+      }
     }
   ]
 }

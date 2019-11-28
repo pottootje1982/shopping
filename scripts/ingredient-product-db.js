@@ -1,7 +1,8 @@
 const createDb = require("./file-db")
 
 class IngredientProductDb {
-  constructor(db) {
+  constructor(db, tableName) {
+    this.tableName = tableName || "mapping"
     this.db = db
     this.db
       .defaults({
@@ -12,7 +13,7 @@ class IngredientProductDb {
 
   storeMapping(ingredient, product) {
     ingredient = ingredient.toLowerCase()
-    const table = this.db.get("mapping")
+    const table = this.db.get(this.tableName)
     const mapping = table.find({
       ingredient
     })
@@ -35,7 +36,7 @@ class IngredientProductDb {
   getMapping(ingredient) {
     ingredient = ingredient.toLowerCase()
     return this.db
-      .get("mapping")
+      .get(this.tableName)
       .find({
         ingredient
       })
@@ -43,7 +44,7 @@ class IngredientProductDb {
   }
 
   getAllMappings() {
-    return this.db.get("mapping").value()
+    return this.db.get(this.tableName).value()
   }
 
   getMappings(recipe) {
