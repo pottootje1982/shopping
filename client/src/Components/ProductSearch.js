@@ -1,5 +1,5 @@
 import server from "./server"
-import React, { useEffect } from "react"
+import React, { useEffect, useRef } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import {
   Grid,
@@ -29,7 +29,7 @@ export default function ProductSearch({
   products
 }) {
   const classes = styles()
-
+  const searchRef = useRef(null)
   const mappings = selectedRecipe.mappings
   const bareIngredient = selectedIngredient.ingredient
   const product = mappings[bareIngredient] || {}
@@ -59,6 +59,7 @@ export default function ProductSearch({
   }
 
   function search(value) {
+    searchRef.current.value = value
     searchProducts(undefined, value)
   }
 
@@ -85,6 +86,7 @@ export default function ProductSearch({
         InputProps={{
           className: classes.input
         }}
+        inputRef={searchRef}
         defaultValue={bareIngredient}
         onKeyDown={e => textFieldSearch(e)}
         variant="outlined"
@@ -92,6 +94,7 @@ export default function ProductSearch({
       <FormControlLabel
         control={
           <Checkbox
+            color="primary"
             onChange={(_e, checked) => ignoreIngredient(checked)}
             checked={product.ignore}
           ></Checkbox>

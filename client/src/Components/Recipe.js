@@ -5,7 +5,8 @@ import {
   List,
   ListItem,
   ListItemText,
-  Typography
+  Typography,
+  TextField
 } from "@material-ui/core"
 import EditIcon from "@material-ui/icons/Edit"
 import TranslateIcon from "@material-ui/icons/Translate"
@@ -15,7 +16,7 @@ import blue from "@material-ui/core/colors/blue"
 import green from "@material-ui/core/colors/green"
 import grey from "@material-ui/core/colors/grey"
 import server from "./server"
-import { Button, Fab } from "./Styled"
+import { Fab } from "./Styled"
 
 export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   let [products, setProducts] = useState([])
@@ -34,7 +35,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
     if (ingredients.length > 0 && !selectedIngredient) {
       setSelectedIngredient(ingredients[0])
     }
-  }, [selectedRecipe, ingredients, addRecipe])
+  }, [selectedRecipe, ingredients, addRecipe, selectedIngredient])
 
   async function search(item, customSearch) {
     const query = customSearch ? customSearch : item.ingredient
@@ -96,6 +97,16 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
                       ) : null
                     }
                   ></ListItemText>
+                  <TextField
+                    type="number"
+                    defaultValue="1"
+                    inputProps={{
+                      min: 0,
+                      max: 99,
+                      step: 1
+                    }}
+                    style={{ width: 40, height: 40 }}
+                  />
                 </ListItem>
               ))}
             </List>
