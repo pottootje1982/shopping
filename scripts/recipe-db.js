@@ -29,8 +29,8 @@ class RecipeDb {
     return recipe
   }
 
-  getRecipes() {
-    const recipes = this.db
+  async getRecipes() {
+    const recipes = await this.db
       .get("recipes")
       .cloneDeep()
       .value()
@@ -40,20 +40,20 @@ class RecipeDb {
     return recipes
   }
 
-  getRecipesRaw() {
-    return this.db.get("recipes").value()
+  async getRecipesRaw() {
+    return await this.db.get("recipes").value()
   }
 
-  getRecipeRaw(uid) {
-    return this.db
+  async getRecipeRaw(uid) {
+    return await this.db
       .get("recipes")
       .find({ uid })
       .cloneDeep()
       .value()
   }
 
-  getRecipe(uid) {
-    const recipe = this.getRecipeRaw(uid)
+  async getRecipe(uid) {
+    const recipe = await this.getRecipeRaw(uid)
     return this.translateRecipe(recipe)
   }
 
@@ -65,11 +65,11 @@ class RecipeDb {
       .digest("hex")
   }
 
-  editRecipe(recipe) {
-    const oldRecipe = this.getRecipeRaw(recipe.uid)
+  async editRecipe(recipe) {
+    const oldRecipe = await this.getRecipeRaw(recipe.uid)
     const newRecipe = { ...oldRecipe, ...recipe }
     this.setHash(newRecipe)
-    this.db
+    await this.db
       .get("recipes")
       .find({
         uid: recipe.uid
@@ -77,7 +77,7 @@ class RecipeDb {
       .assign(newRecipe)
       .unset("mappings")
       .write()
-    return this.getRecipeRaw(recipe.uid)
+    return await this.getRecipeRaw(recipe.uid)
   }
 
   addRecipe(recipe) {

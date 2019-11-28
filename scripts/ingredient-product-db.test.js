@@ -25,8 +25,10 @@ describe("storeMapping()", () => {
     expect(db.getMapping("prei").product).toEqual({ id: 4, title: "AH prei" })
   })
 
-  it("retrieves stored translations for recipe", () => {
-    const recipe = recipeDb.getRecipe("3fe04f98-8d73-4e9d-a7da-f4c1241aa3c4")
+  it("retrieves stored translations for recipe", async () => {
+    const recipe = await recipeDb.getRecipe(
+      "3fe04f98-8d73-4e9d-a7da-f4c1241aa3c4"
+    )
     db.storeMapping("Prei", { id: 1273124 })
     db.storeMapping("zalm", { id: 1 })
     db.storeMapping("dille", { id: 2 })
@@ -44,15 +46,17 @@ describe("storeMapping()", () => {
     })
   })
 
-  it("picks order", () => {
+  it("picks order", async () => {
     db.storeMapping("aubergines", { id: 1 })
     db.storeMapping("Lasagne", { id: 2 })
     db.storeMapping("ricotta", { id: 3 })
     db.storeMapping("egg", { id: 4 })
     db.storeMapping("egg", { id: 5 })
 
-    const recipe = recipeDb.getRecipe("94ca1528-93ae-4b26-9576-a2dc1ada36c3")
-    const order = db.pickOrder(recipe)
+    const recipe = await recipeDb.getRecipe(
+      "94ca1528-93ae-4b26-9576-a2dc1ada36c3"
+    )
+    const order = await db.pickOrder(recipe)
     expect(order).toEqual({
       items: [
         {
@@ -78,14 +82,16 @@ describe("storeMapping()", () => {
     ).toBe(1)
   })
 
-  it("does not order ignored items", () => {
+  it("does not order ignored items", async () => {
     db.storeMapping("pastinaak", { id: 3 })
     db.storeMapping("wortel", { id: 2 })
     db.storeMapping("kruimige aardappels", { ignore: true })
     db.storeMapping("zout en peper", { id: 1, ignore: true })
 
-    const recipe = recipeDb.getRecipe("2ce31202-4560-4273-bdfa-06c20ae46084")
-    let order = db.pickOrder(recipe)
+    const recipe = await recipeDb.getRecipe(
+      "2ce31202-4560-4273-bdfa-06c20ae46084"
+    )
+    let order = await db.pickOrder(recipe)
     expect(order).toEqual({
       items: [
         {
@@ -100,7 +106,7 @@ describe("storeMapping()", () => {
     })
     db.storeMapping("kruimige aardappels", {})
     db.storeMapping("zout en peper", { id: 1, ignore: false })
-    order = db.pickOrder(recipe)
+    order = await db.pickOrder(recipe)
     expect(order).toEqual({
       items: [
         {

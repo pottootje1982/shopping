@@ -1,12 +1,22 @@
 const createDb = require("./mongo-client")
 
-describe("recipes()", () => {
-  it.skip("gets recipes", async () => {
-    const db = await createDb()
-    let collection = db.collection("recipes")
+describe.skip("recipes()", () => {
+  let db
 
-    const recipe = await collection.findOne({ name: "Zalm met prei" })
+  beforeAll(async () => {
+    db = await createDb()
+  })
 
-    console.log(recipe)
+  it("find recipe", async done => {
+    let recipe = await db
+      .get("recipes")
+      .find({ name: "Zalm met prei" })
+      .value()
+
+    done()
+  })
+
+  afterAll(done => {
+    db.close()
   })
 })

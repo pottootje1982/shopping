@@ -63,8 +63,8 @@ class IngredientProductDb {
     return result
   }
 
-  pickOrder(recipe) {
-    const mappings = this.getMappings(recipe)
+  async pickOrder(recipe) {
+    const mappings = await this.getMappings(recipe)
     return {
       items: Object.values(mappings).filter(
         mapping => !mapping.ignore && mapping.id

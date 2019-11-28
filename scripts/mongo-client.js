@@ -1,14 +1,15 @@
 const { dbConnectionString } = require("../config")
+const MongoWrapper = require("./mongo-wrapper")
 
-const MongoClient = require("mongodb").MongoClient
+const { MongoClient } = require("mongodb")
 
-const url = dbConnectionString
 let db
 
 async function createDb() {
   if (db) return db
-  const client = await MongoClient.connect(url, {
-    useNewUrlParser: true
+  const client = await MongoClient.connect(dbConnectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
   }).catch(err => {
     console.log(err)
   })
@@ -18,7 +19,7 @@ async function createDb() {
   }
 
   try {
-    db = client.db()
+    db = new MongoWrapper(client)
     return db
   } catch (err) {
     console.log(err)

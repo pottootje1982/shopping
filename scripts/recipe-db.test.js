@@ -1,15 +1,15 @@
 const getDb = require("./recipe-db.stub")
 
 describe("storeRecipe()", () => {
-  it("get recipes", () => {
+  it("get recipes", async () => {
     const recipeDb = getDb()
-    const recipes = recipeDb.getRecipes()
+    const recipes = await recipeDb.getRecipes()
     expect(recipes.length).toEqual(12)
   })
 
-  it("mappings are set", () => {
+  it("mappings are set", async () => {
     const recipeDb = getDb()
-    const recipes = recipeDb.getRecipes()
+    const recipes = await recipeDb.getRecipes()
     const recipe = recipes[3]
     expect(recipe.uid).toBe("a4623ba1-8bf2-439d-b8bb-4c95c4aa8b18")
     // Not for all translated ingredients there are mappings
@@ -18,10 +18,10 @@ describe("storeRecipe()", () => {
     expect(recipe.ingredients.length).toBe(8)
   })
 
-  it("get recipe", () => {
+  it("get recipe", async () => {
     const recipeDb = getDb()
     const uid = "a4623ba1-8bf2-439d-b8bb-4c95c4aa8b18"
-    const recipe = recipeDb.getRecipe(uid)
+    const recipe = await recipeDb.getRecipe(uid)
     expect(recipe.uid).toBe(uid)
     const dutchIngredients = recipe.ingredients.map(i => i.ingredient)
 
@@ -38,12 +38,12 @@ describe("storeRecipe()", () => {
     expect(recipe.ingredients[0].full).toBe("1 tbsp plantaardige olie")
   })
 
-  it("edits recipe", () => {
+  it("edits recipe", async () => {
     const recipeDb = getDb()
     const uid = "a4623ba1-8bf2-439d-b8bb-4c95c4aa8b18"
-    const recipe = recipeDb.getRecipeRaw(uid)
+    const recipe = await recipeDb.getRecipeRaw(uid)
 
-    const newRecipe = recipeDb.editRecipe({
+    const newRecipe = await recipeDb.editRecipe({
       uid: "a4623ba1-8bf2-439d-b8bb-4c95c4aa8b18",
       name: "Super-quick fish curry 2"
     })

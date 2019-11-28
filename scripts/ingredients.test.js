@@ -2,7 +2,11 @@ const { Ingredient, Ingredients } = require("./ingredients")
 const recipeDb = require("./recipe-db.stub")()
 
 describe("Ingredient", () => {
-  const recipes = recipeDb.getRecipes()
+  let recipes
+
+  beforeAll(async () => {
+    recipes = await recipeDb.getRecipes()
+  })
 
   it("divides into quantity, unit & ingredient", () => {
     const i = new Ingredient("1 tbsp sugar")
@@ -300,7 +304,7 @@ describe("Ingredient", () => {
     expect(ingredients[0].all).toEqual([2, "theelepel", "suiker"])
   })
 
-  it("all ingredients from Paprika can be parsed", () => {
+  it("all ingredients from Paprika can be parsed", async () => {
     const parsedIngredients = recipes
       .slice(0, 12)
       .map(recipe => recipe.ingredients)
