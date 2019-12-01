@@ -3,17 +3,17 @@ request = request.defaults({
   jar: true
 })
 var FileCookieStore = require("tough-cookie-filestore")
-const { ingToProduct } = require("../scripts/ingredient-product-db")
 const path = require("path")
 
 class AhApi {
-  constructor(username, password) {
+  constructor(username, password, ingToProduct) {
     this.body = {
       username,
       password
     }
     const file = path.resolve(__dirname, "cookie.json")
     this.jar = request.jar(new FileCookieStore(file))
+    this.ingToProduct = ingToProduct
   }
 
   login() {
@@ -32,7 +32,7 @@ class AhApi {
     if (!full) {
       return products
     }
-    const mapping = ingToProduct.getMapping(full)
+    const mapping = await this.ingToProduct.getMapping(full)
     if (mapping && !mapping.product.ignore) {
       const id = mapping.product.id
       let selectedProduct = products.find(p => p.id === id)

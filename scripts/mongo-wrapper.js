@@ -7,7 +7,7 @@ class MongoWrapper {
   }
 
   close() {
-    client.close()
+    this.client.close()
   }
 
   get(table) {
@@ -42,12 +42,22 @@ class MongoTableWrapper {
   }
 
   assign(value) {
-    this.newValue = value
+    this.valueToUpdate = value
+    return this
+  }
+
+  push(value) {
+    this.valueToAdd = value
+    return this
+  }
+
+  remove(query) {
+    this.queryToDelete = query
     return this
   }
 
   unset(key) {
-    delete this.newValue[key]
+    delete this.valueToUpdate[key]
     return this
   }
 
@@ -58,7 +68,11 @@ class MongoTableWrapper {
 
   async write() {
     if (this.query) {
-      await this.table.findOneAndReplace(this.query, this.newValue)
+      await this.table.findOneAndReplace(this.query, this.valueToUpdate)
+    } else if (this.valueToAdd) {
+      await this.table.insertOne(this.valueToAdd)
+    } else if (this.queryToDelete) {
+      await this.table.deleteOne(this.queryToDelete)
     }
   }
 }

@@ -1,9 +1,37 @@
 const { Translator } = require("./translator")
-var { TranslationsDb } = require("./translations-db")
+const createDb = require("./recipe-db")
 
 describe("translates", () => {
-  const db = new TranslationsDb("data/db.test.json")
-  const translator = new Translator(db, 1)
+  let translationsDb, translator
+
+  beforeAll(async () => {
+    ;({ translationsDb } = await createDb("./memory-db", "data/db.test.json"))
+    translationsDb.storeTranslations(
+      [
+        "vegetable oil",
+        "large onion",
+        "garlic clove",
+        "madras curry paste",
+        "can tomatoes",
+        "vegetable stock",
+        "sustainable white fish fillets",
+        "rice or naan bread",
+        "leek"
+      ],
+      [
+        "plantaardige olie",
+        "grote ui",
+        "teentje knoflook",
+        "Madras curry pasta",
+        "kunnen tomaten",
+        "groentebouillon",
+        "duurzame witte visfilets",
+        "rijst of naanbrood",
+        "leek" // for some reason it cannot translate leek whereas the web ui can do this
+      ]
+    )
+    translator = new Translator(translationsDb, 1)
+  })
 
   it("retrieves from cache first", async () => {
     const dutch = await translator.translate([
@@ -38,7 +66,7 @@ describe("translates", () => {
 
   it("translates with translator service", async () => {
     const translator = new Translator(
-      db,
+      translationsDb,
       new TranslatorServiceStub(orig => ["baby nieuwe aardappelen"])
     )
     expect(await translator.translate(["baby new potatoes"])).toEqual([
@@ -47,7 +75,8 @@ describe("translates", () => {
   })
 
   it("does not translate already translated strings", async () => {
-    const translationsDb = new TranslationsDb()
+    const { translationsDb } = await createDb("./memory-db", null)
+
     translationsDb.storeTranslations(
       ["baby new potatoes"],
       ["baby nieuwe aardappelen"]

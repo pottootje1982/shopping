@@ -1,10 +1,11 @@
 const { Ingredient, Ingredients } = require("./ingredients")
-const recipeDb = require("./recipe-db.stub")()
+const createDb = require("./recipe-db")
 
 describe("Ingredient", () => {
   let recipes
 
   beforeAll(async () => {
+    const { recipeDb } = await createDb("./memory-db", "./data/db.test.json")
     recipes = await recipeDb.getRecipes()
   })
 

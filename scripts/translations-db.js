@@ -1,15 +1,10 @@
-const low = require("lowdb")
-const FileSync = require("lowdb/adapters/FileSync")
-const Memory = require("lowdb/adapters/Memory")
-const path = require("path")
-
-function getTranslation(db, key) {
-  let result = db
+async function getTranslation(db, key) {
+  let result = await db
     .get("translations")
     .find({ original: key.toLowerCase() })
     .value()
   if (!result) {
-    const reverse = db
+    const reverse = await db
       .get("translations")
       .find({ translation: key })
       .value()
@@ -22,30 +17,29 @@ function getTranslation(db, key) {
 }
 
 class TranslationsDb {
-  constructor(file) {
-    file = file && path.resolve(__dirname, file)
-    const adapter = file ? new FileSync(file) : new Memory()
-    this.db = low(adapter)
+  constructor(db) {
+    this.db = db
     this.db.defaults({ translations: [] }).write()
   }
 
-  storeTranslations(originals, translations) {
+  async storeTranslations(originals, translations) {
     for (let [i, original] of originals.entries()) {
       original = original.toLowerCase()
-      this.db
+      await this.db
         .get("translations")
         .push({ original, translation: translations[i] })
         .write()
     }
   }
 
-  getTranslation(key) {
-    const result = getTranslation(this.db, key)
+  async getTranslation(key) {
+    const result = await getTranslation(this.db, key)
     return result.translation
   }
 
-  getTranslations(keys) {
-    const translations = keys.map(key => getTranslation(this.db, key))
+  async getTranslations(keys) {
+    let translations = keys.map(key => getTranslation(this.db, key))
+    translations = await Promise.all(translations)
     const untranslated = translations
       .filter(t => !t.translation)
       .map(t => t.original)
@@ -56,13 +50,11 @@ class TranslationsDb {
     }
   }
 
-  translateRecipe(ingredients) {
+  async translateRecipe(ingredients) {
     const products = ingredients.getProducts()
-    const { translations } = this.getTranslations(products)
+    const { translations } = await this.getTranslations(products)
     ingredients.setProducts(translations)
   }
 }
 
-const translationsDb = new TranslationsDb("data/translations.json")
-
-module.exports = { TranslationsDb, translationsDb }
+module.exports = TranslationsDb

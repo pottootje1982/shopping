@@ -19,8 +19,7 @@ class Ingredients extends Array {
   }
 
   static create(ingredients) {
-    const list = ingredients
-      .split("\n")
+    const list = (ingredients ? ingredients.split("\n") : [])
       .filter(line => line.trim() != "")
       .filter(line => ingredientsRemoval.every(r => !r.exec(line)))
     const ingredientsList = list.map(i => new Ingredient(i))

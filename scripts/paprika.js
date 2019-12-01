@@ -1,6 +1,5 @@
 const { PaprikaApi } = require("paprika-api")
 const { paprikaUser, paprikaPass } = require("../config")
-const { recipeDb } = require("../scripts/recipe-db")
 
 const fs = require("fs")
 const zlib = require("zlib")

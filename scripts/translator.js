@@ -1,6 +1,6 @@
-const { googleApiKey } = require('../config')
-const { Translate } = require('@google-cloud/translate')
-const { translationsDb } = require('../scripts/translations-db')
+const { googleApiKey } = require("../config")
+const { Translate } = require("@google-cloud/translate")
+const { translationsDb } = require("../scripts/translations-db")
 
 class Translator {
   constructor(cache, translateService) {
@@ -9,21 +9,25 @@ class Translator {
   }
 
   async translate(itemsToTranslate, source, target) {
-    let { success, translations, untranslated } = this.cache.getTranslations(
-      itemsToTranslate
-    )
+    let {
+      success,
+      translations,
+      untranslated
+    } = await this.cache.getTranslations(itemsToTranslate)
 
-    source = source || 'en'
-    target = target || 'nl'
+    source = source || "en"
+    target = target || "nl"
 
     if (!success) {
       ;[translations] = await this.service.translate(untranslated, target)
-      this.cache.storeTranslations(untranslated, translations)
+      await this.cache.storeTranslations(untranslated, translations)
     }
 
-    ;({ success, translations, untranslated } = this.cache.getTranslations(
-      itemsToTranslate
-    ))
+    ;({
+      success,
+      translations,
+      untranslated
+    } = await this.cache.getTranslations(itemsToTranslate))
 
     return translations
   }

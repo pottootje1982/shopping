@@ -1,7 +1,6 @@
 const { Ingredients } = require("./ingredients")
-const { ingToProduct } = require("./ingredient-product-db")
-const { translationsDb } = require("./translations-db")
-const createDb = require("./file-db")
+const IngredientProductDb = require("./ingredient-product-db")
+const TranslationsDb = require("./translations-db")
 var crypto = require("crypto")
 
 class RecipeDb {
@@ -12,6 +11,10 @@ class RecipeDb {
     this.ingToProduct = ingToProduct
   }
 
+  close() {
+    this.db.close()
+  }
+
   storeRecipes(recipes) {
     recipes.forEach(recipe => {
       db.get("recipes")
@@ -20,12 +23,12 @@ class RecipeDb {
     })
   }
 
-  translateRecipe(recipe) {
+  async translateRecipe(recipe) {
     if (typeof recipe.ingredients !== "object") {
       recipe.ingredients = Ingredients.create(recipe.ingredients)
     }
-    this.translationDb.translateRecipe(recipe.ingredients)
-    recipe.mappings = this.ingToProduct.getMappings(recipe)
+    await this.translationDb.translateRecipe(recipe.ingredients)
+    recipe.mappings = await this.ingToProduct.getMappings(recipe)
     return recipe
   }
 
@@ -35,17 +38,17 @@ class RecipeDb {
       .cloneDeep()
       .value()
     for (const recipe of recipes) {
-      this.translateRecipe(recipe)
+      await this.translateRecipe(recipe)
     }
     return recipes
   }
 
-  async getRecipesRaw() {
-    return await this.db.get("recipes").value()
+  getRecipesRaw() {
+    return this.db.get("recipes").value()
   }
 
-  async getRecipeRaw(uid) {
-    return await this.db
+  getRecipeRaw(uid) {
+    return this.db
       .get("recipes")
       .find({ uid })
       .cloneDeep()
@@ -99,10 +102,16 @@ class RecipeDb {
   }
 }
 
-const recipeDb = new RecipeDb(
-  createDb("./data/recipes.json"),
-  translationsDb,
-  ingToProduct
-)
+async function createRecipeDb(connector, file) {
+  const createDb = require(connector)
 
-module.exports = { RecipeDb, recipeDb }
+  file = file === undefined ? "data/db.json" : file
+  const db = await createDb(file)
+  const translationsDb = new TranslationsDb(db)
+  const ingToProduct = new IngredientProductDb(db)
+
+  const recipeDb = new RecipeDb(db, translationsDb, ingToProduct)
+  return { recipeDb, ingToProduct, translationsDb }
+}
+
+module.exports = createRecipeDb

@@ -2,7 +2,7 @@ const createDb = require("./file-db")
 
 class IngredientProductDb {
   constructor(db, tableName) {
-    this.tableName = tableName || "mapping"
+    this.tableName = tableName || "ing-to-product"
     this.db = db
     this.db
       .defaults({
@@ -47,10 +47,10 @@ class IngredientProductDb {
     return this.db.get(this.tableName).value()
   }
 
-  getMappings(recipe) {
+  async getMappings(recipe) {
     const result = {}
-    recipe.ingredients.forEach(i => {
-      const mapping = this.getMapping(i.ingredient)
+    recipe.ingredients.forEach(async i => {
+      const mapping = await this.getMapping(i.ingredient)
       if (mapping) {
         const product = mapping.product
         const quantity = (i.unit ? 1 : i.quantity) || 1
@@ -73,7 +73,4 @@ class IngredientProductDb {
   }
 }
 
-const ingToProduct = new IngredientProductDb(
-  createDb("data/ing-to-product.json")
-)
-module.exports = { IngredientProductDb, ingToProduct }
+module.exports = IngredientProductDb

@@ -1,14 +1,18 @@
-const getDb = require("./recipe-db.stub")
+const createDb = require("./recipe-db")
 
 describe("storeRecipe()", () => {
+  let recipeDb
+
+  beforeAll(async () => {
+    ;({ recipeDb } = await createDb("./memory-db", "./data/db.test.json"))
+  })
+
   it("get recipes", async () => {
-    const recipeDb = getDb()
     const recipes = await recipeDb.getRecipes()
     expect(recipes.length).toEqual(12)
   })
 
   it("mappings are set", async () => {
-    const recipeDb = getDb()
     const recipes = await recipeDb.getRecipes()
     const recipe = recipes[3]
     expect(recipe.uid).toBe("a4623ba1-8bf2-439d-b8bb-4c95c4aa8b18")
@@ -19,7 +23,6 @@ describe("storeRecipe()", () => {
   })
 
   it("get recipe", async () => {
-    const recipeDb = getDb()
     const uid = "a4623ba1-8bf2-439d-b8bb-4c95c4aa8b18"
     const recipe = await recipeDb.getRecipe(uid)
     expect(recipe.uid).toBe(uid)
@@ -39,7 +42,6 @@ describe("storeRecipe()", () => {
   })
 
   it("edits recipe", async () => {
-    const recipeDb = getDb()
     const uid = "a4623ba1-8bf2-439d-b8bb-4c95c4aa8b18"
     const recipe = await recipeDb.getRecipeRaw(uid)
 

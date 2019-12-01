@@ -1,10 +1,16 @@
 const Paprika = require("./paprika.js")
 const PaprikaApiStub = require("./paprika.stub")
-const recipeDb = require("./recipe-db.stub")("./data/small-db.test.json")
+const createDb = require("./recipe-db")
 
 describe("Index", () => {
   const apiStub = new PaprikaApiStub()
-  const paprika = new Paprika(apiStub, recipeDb)
+  let recipeDb, paprika
+
+  beforeAll(async () => {
+    ;({ recipeDb } = await createDb("./memory-db", "./data/small-db.test.json"))
+    recipes = await recipeDb.getRecipes()
+    paprika = new Paprika(apiStub, recipeDb)
+  })
 
   it("Download recipes", async () => {
     const recipes = await paprika.getRecipes()
@@ -71,7 +77,7 @@ describe("Index", () => {
   })
 
   it.skip("Saves recipes to paprika", async () => {
-    const paprika = new Paprika()
+    const paprika = new Paprika(null, recipeDb)
     const recipe = require("./data/db.test.json").recipes[0]
     recipe.name = "Zalm met prei 9"
     await paprika.upsertRecipe(recipe)
@@ -79,7 +85,7 @@ describe("Index", () => {
 
   it.skip("Downloads recipe from url with paprika", async () => {
     jest.setTimeout(15000)
-    const paprika = new Paprika()
+    const paprika = new Paprika(null, recipeDb)
     const recipe = await paprika.downloadRecipe(
       "https://www.bbcgoodfood.com/recipes/10033/aubergine-tomato-and-parmesan-bake-melanzane-alla-"
     )

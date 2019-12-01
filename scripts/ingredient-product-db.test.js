@@ -1,40 +1,48 @@
-const { IngredientProductDb, ingToProduct } = require("./ingredient-product-db")
-const createDb = require("./memory-db")
-const recipeDb = require("./recipe-db.stub")()
+const createDb = require("./recipe-db")
 const { ahUser, ahPass } = require("../config")
 
 describe("storeMapping()", () => {
-  const db = new IngredientProductDb(createDb("./data/db.test.json"))
+  let ingToProduct, recipeDb
+
+  beforeAll(async () => {
+    ;({ recipeDb, ingToProduct } = await createDb(
+      "./memory-db",
+      "./data/db.test.json"
+    ))
+  })
 
   it("retrieves stored translations", () => {
-    db.storeMapping("Prei", { id: 1273124, title: "prei" })
-    expect(db.getMapping("pRei").product).toEqual({
+    ingToProduct.storeMapping("Prei", { id: 1273124, title: "prei" })
+    expect(ingToProduct.getMapping("pRei").product).toEqual({
       id: 1273124,
       title: "prei"
     })
   })
 
   it("updates stored translations", () => {
-    db.storeMapping("prei", { id: 1273124, title: "prei" })
-    expect(db.getMapping("prei").product).toEqual({
+    ingToProduct.storeMapping("prei", { id: 1273124, title: "prei" })
+    expect(ingToProduct.getMapping("prei").product).toEqual({
       id: 1273124,
       title: "prei"
     })
 
-    db.storeMapping("prei", { id: 4, title: "AH prei" })
-    expect(db.getMapping("prei").product).toEqual({ id: 4, title: "AH prei" })
+    ingToProduct.storeMapping("prei", { id: 4, title: "AH prei" })
+    expect(ingToProduct.getMapping("prei").product).toEqual({
+      id: 4,
+      title: "AH prei"
+    })
   })
 
   it("retrieves stored translations for recipe", async () => {
     const recipe = await recipeDb.getRecipe(
       "3fe04f98-8d73-4e9d-a7da-f4c1241aa3c4"
     )
-    db.storeMapping("Prei", { id: 1273124 })
-    db.storeMapping("zalm", { id: 1 })
-    db.storeMapping("dille", { id: 2 })
-    db.storeMapping("aardappels", { id: 3 })
+    ingToProduct.storeMapping("Prei", { id: 1273124 })
+    ingToProduct.storeMapping("zalm", { id: 1 })
+    ingToProduct.storeMapping("dille", { id: 2 })
+    ingToProduct.storeMapping("aardappels", { id: 3 })
 
-    const mappings = db.getMappings(recipe)
+    const mappings = await ingToProduct.getMappings(recipe)
     expect(mappings).toEqual({
       Prei: { id: 1273124, quantity: 1 },
       Dille: { id: 2, quantity: 1 },
@@ -47,16 +55,16 @@ describe("storeMapping()", () => {
   })
 
   it("picks order", async () => {
-    db.storeMapping("aubergines", { id: 1 })
-    db.storeMapping("Lasagne", { id: 2 })
-    db.storeMapping("ricotta", { id: 3 })
-    db.storeMapping("egg", { id: 4 })
-    db.storeMapping("egg", { id: 5 })
+    ingToProduct.storeMapping("aubergines", { id: 1 })
+    ingToProduct.storeMapping("Lasagne", { id: 2 })
+    ingToProduct.storeMapping("ricotta", { id: 3 })
+    ingToProduct.storeMapping("egg", { id: 4 })
+    ingToProduct.storeMapping("egg", { id: 5 })
 
     const recipe = await recipeDb.getRecipe(
       "94ca1528-93ae-4b26-9576-a2dc1ada36c3"
     )
-    const order = await db.pickOrder(recipe)
+    const order = await ingToProduct.pickOrder(recipe)
     expect(order).toEqual({
       items: [
         {
@@ -78,20 +86,22 @@ describe("storeMapping()", () => {
       ]
     })
     expect(
-      db.getAllMappings().filter(map => map.ingredient === "egg").length
+      await ingToProduct
+        .getAllMappings()
+        .filter(map => map.ingredient === "egg").length
     ).toBe(1)
   })
 
   it("does not order ignored items", async () => {
-    db.storeMapping("pastinaak", { id: 3 })
-    db.storeMapping("wortel", { id: 2 })
-    db.storeMapping("kruimige aardappels", { ignore: true })
-    db.storeMapping("zout en peper", { id: 1, ignore: true })
+    ingToProduct.storeMapping("pastinaak", { id: 3 })
+    ingToProduct.storeMapping("wortel", { id: 2 })
+    ingToProduct.storeMapping("kruimige aardappels", { ignore: true })
+    ingToProduct.storeMapping("zout en peper", { id: 1, ignore: true })
 
     const recipe = await recipeDb.getRecipe(
       "2ce31202-4560-4273-bdfa-06c20ae46084"
     )
-    let order = await db.pickOrder(recipe)
+    let order = await ingToProduct.pickOrder(recipe)
     expect(order).toEqual({
       items: [
         {
@@ -104,9 +114,9 @@ describe("storeMapping()", () => {
         }
       ]
     })
-    db.storeMapping("kruimige aardappels", {})
-    db.storeMapping("zout en peper", { id: 1, ignore: false })
-    order = await db.pickOrder(recipe)
+    ingToProduct.storeMapping("kruimige aardappels", {})
+    ingToProduct.storeMapping("zout en peper", { id: 1, ignore: false })
+    order = await ingToProduct.pickOrder(recipe)
     expect(order).toEqual({
       items: [
         {
@@ -129,12 +139,12 @@ describe("storeMapping()", () => {
   it.skip("hydrates ingredient product maps", async () => {
     const AhApi = require("./ah-api")
     const ahApi = new AhApi(ahUser, ahPass)
-    const mappings = ingToProduct.getAllMappings()
+    const mappings = await ingToProduct.getAllMappings()
     for (const mapping of mappings) {
       if (typeof mapping.product === "number") {
         const { id, title, price } = await ahApi.getProduct(mapping.product)
         if (id) {
-          db.storeMapping(mapping.ingredient, { id, title, price })
+          ingToProduct.storeMapping(mapping.ingredient, { id, title, price })
         }
       }
     }
