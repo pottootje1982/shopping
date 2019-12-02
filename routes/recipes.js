@@ -65,7 +65,7 @@ router.post("/download", async (req, res) => {
   const url = req.body.url
   let recipe = await paprika.downloadRecipe(url)
   if (recipe) {
-    recipe = await recipeDb.translateRecipe(recipe)
+    await recipeDb.translateRecipes(recipe)
     recipe.source_url = url
   }
   res.send(recipe)
@@ -75,7 +75,7 @@ router.post("/translate", async function(req, res) {
   const recipe = await recipeDb.getRecipe(req.body.recipeId)
   await Translator.create().translate(recipe.ingredients.map(i => i.ingredient))
   // update recipe with values from cache
-  await translationsDb.translateRecipe(recipe.ingredients)
+  await translationsDb.translateRecipes(recipe)
   const mapping = await ingToProduct.getMappings(recipe)
   res.send({ recipe, mapping })
 })

@@ -1,19 +1,25 @@
-async function getTranslation(db, key) {
-  let result = await db
-    .get("translations")
-    .find({ original: key.toLowerCase() })
-    .value()
+function getTranslation(translations, key) {
+  let result = translations.find(t => t.original === key.toLowerCase())
   if (!result) {
-    const reverse = await db
-      .get("translations")
-      .find({ translation: key })
-      .value()
+    const reverse = translations.find(t => t.translation === key)
     result = reverse && {
       original: reverse.translation,
       translation: reverse.translation
     }
   }
   return result || { original: key }
+}
+
+function getTranslations(translations, keys) {
+  translations = keys.map(key => getTranslation(translations, key))
+  const untranslated = translations
+    .filter(t => !t.translation)
+    .map(t => t.original)
+  return {
+    success: translations.every(t => t.translation),
+    translations: translations.map(t => t.translation),
+    untranslated
+  }
 }
 
 class TranslationsDb {
@@ -32,28 +38,27 @@ class TranslationsDb {
     }
   }
 
+  get translations() {
+    return this.db.get("translations").value()
+  }
+
   async getTranslation(key) {
-    const result = await getTranslation(this.db, key)
+    const result = getTranslation(await this.translations, key)
     return result.translation
   }
 
   async getTranslations(keys) {
-    let translations = keys.map(key => getTranslation(this.db, key))
-    translations = await Promise.all(translations)
-    const untranslated = translations
-      .filter(t => !t.translation)
-      .map(t => t.original)
-    return {
-      success: translations.every(t => t.translation),
-      translations: translations.map(t => t.translation),
-      untranslated
-    }
+    return getTranslations(await this.translations, keys)
   }
 
-  async translateRecipe(ingredients) {
-    const products = ingredients.getProducts()
-    const { translations } = await this.getTranslations(products)
-    ingredients.setProducts(translations)
+  async translateRecipes(...recipes) {
+    const allTranslations = await this.translations
+    recipes.forEach(recipe => {
+      const ingredients = recipe.ingredients
+      const products = ingredients.getProducts()
+      const { translations } = getTranslations(allTranslations, products)
+      ingredients.setProducts(translations)
+    })
   }
 }
 

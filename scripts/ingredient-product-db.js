@@ -1,5 +1,3 @@
-const createDb = require("./file-db")
-
 class IngredientProductDb {
   constructor(db, tableName) {
     this.tableName = tableName || "ing-to-product"
@@ -44,29 +42,34 @@ class IngredientProductDb {
   }
 
   getAllMappings() {
-    return this.db.get(this.tableName).value()
+    return this.db.get(this.tableName).value() || []
   }
 
-  async getMappings(recipe) {
-    const result = {}
-    recipe.ingredients.forEach(async i => {
-      const mapping = await this.getMapping(i.ingredient)
-      if (mapping) {
-        const product = mapping.product
-        const quantity = (i.unit ? 1 : i.quantity) || 1
-        result[i.ingredient] = {
-          ...product,
-          quantity
+  async getMappings(...recipes) {
+    const mappings = await this.getAllMappings()
+    recipes.forEach(recipe => {
+      const result = {}
+      recipe.ingredients.forEach(i => {
+        const mapping = mappings.find(
+          m => m.ingredient === i.ingredient.toLowerCase()
+        )
+        if (mapping) {
+          const product = mapping.product
+          const quantity = (i.unit ? 1 : i.quantity) || 1
+          result[i.ingredient] = {
+            ...product,
+            quantity
+          }
         }
-      }
+      })
+      recipe.mappings = result
     })
-    return result
   }
 
   async pickOrder(recipe) {
-    const mappings = await this.getMappings(recipe)
+    await this.getMappings(recipe)
     return {
-      items: Object.values(mappings).filter(
+      items: Object.values(recipe.mappings).filter(
         mapping => !mapping.ignore && mapping.id
       )
     }
