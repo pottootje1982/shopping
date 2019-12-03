@@ -18,7 +18,11 @@ router.get("/", async function(req, res) {
 })
 
 router.post("/choose", async function(req, res) {
-  ingToProduct.storeMapping(req.body.ingredient, req.body.product)
+  ingToProduct
+    .storeMapping(req.body.ingredient, req.body.product)
+    .catch(err => {
+      console.log(err)
+    })
   res.send()
 })
 

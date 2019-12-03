@@ -11,24 +11,13 @@ class IngredientProductDb {
 
   storeMapping(ingredient, product) {
     ingredient = ingredient.toLowerCase()
-    const table = this.db.get(this.tableName)
-    const mapping = table.find({
-      ingredient
-    })
-    if (mapping.value()) {
-      mapping
-        .assign({
-          product
-        })
-        .write()
-    } else {
-      table
-        .push({
-          ingredient,
-          product
-        })
-        .write()
-    }
+    return this.db
+      .get(this.tableName)
+      .find({
+        ingredient
+      })
+      .upsert({ ingredient, product })
+      .write()
   }
 
   getMapping(ingredient) {

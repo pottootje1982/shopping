@@ -4,7 +4,7 @@ describe("storeTranslations()", () => {
   let translationsDb
 
   beforeEach(async () => {
-    ;({ translationsDb } = await createDb("./memory-db"))
+    ;({ translationsDb } = await createDb("./memory-db", "data/db.test.json"))
     translationsDb.storeTranslations(
       [
         "vegetable oil",
@@ -50,7 +50,7 @@ describe("storeTranslations()", () => {
       "plantaardige olie",
       "grote ui",
       "teentje knoflook",
-      "leek"
+      "prei"
     ])
   })
 

@@ -55,6 +55,17 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
     setEditOrAddRecipe(true)
   }
 
+  function adjustProductQuantity(productInfo, event) {
+    const target = event.target
+    const value = parseInt(target.value)
+    if (event.deltaY < 0) {
+      target.value = value + 1
+    } else {
+      target.value = Math.max(value - 1, 0)
+    }
+    productInfo.quantity = target.value
+  }
+
   return (
     <Fragment>
       <Grid container item xs={2} spacing={1}>
@@ -92,20 +103,21 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
                           variant="subtitle2"
                           style={{ color: green[500], fontSize: 9 }}
                         >
-                          {productInfo[i].quantity} {productInfo[i].title}
+                          {productInfo[i].title}
                         </Typography>
                       ) : null
                     }
                   ></ListItemText>
                   <TextField
                     type="number"
-                    defaultValue="1"
+                    defaultValue={productInfo[i].quantity}
                     inputProps={{
                       min: 0,
                       max: 99,
                       step: 1
                     }}
                     style={{ width: 40, height: 40 }}
+                    onWheel={e => adjustProductQuantity(productInfo[i], e)}
                   />
                 </ListItem>
               ))}

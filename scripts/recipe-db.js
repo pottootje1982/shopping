@@ -30,7 +30,7 @@ class RecipeDb {
       }
     })
     await this.translationDb.translateRecipes(...recipes)
-    await this.ingToProduct.getMappings(...recipes)
+    return this.ingToProduct.getMappings(...recipes)
   }
 
   async getRecipes() {

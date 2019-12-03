@@ -1,4 +1,5 @@
 const Memory = require("lowdb/adapters/Memory")
+const FileDbWrapper = require("./file-db-wrapper")
 const low = require("lowdb")
 const path = require("path")
 
@@ -10,5 +11,5 @@ module.exports = function(file) {
     const contents = require(file)
     db.defaults(contents).write()
   }
-  return db
+  return new FileDbWrapper(db)
 }

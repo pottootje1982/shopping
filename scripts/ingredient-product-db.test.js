@@ -11,17 +11,19 @@ describe("storeMapping()", () => {
     ))
   })
 
-  it("retrieves stored translations", () => {
+  it("retrieves stored translations", async () => {
     ingToProduct.storeMapping("Prei", { id: 1273124, title: "prei" })
-    expect(ingToProduct.getMapping("pRei").product).toEqual({
+    const mapping = await ingToProduct.getMapping("pRei")
+    expect(mapping.product).toEqual({
       id: 1273124,
       title: "prei"
     })
   })
 
-  it("updates stored translations", () => {
+  it("updates stored translations", async () => {
     ingToProduct.storeMapping("prei", { id: 1273124, title: "prei" })
-    expect(ingToProduct.getMapping("prei").product).toEqual({
+    const mapping = ingToProduct.getMapping("prei")
+    expect(mapping.product).toEqual({
       id: 1273124,
       title: "prei"
     })
@@ -37,10 +39,10 @@ describe("storeMapping()", () => {
     const recipe = await recipeDb.getRecipe(
       "3fe04f98-8d73-4e9d-a7da-f4c1241aa3c4"
     )
-    await ingToProduct.storeMapping("Prei", { id: 1273124 })
-    await ingToProduct.storeMapping("zalm", { id: 1 })
-    await ingToProduct.storeMapping("dille", { id: 2 })
-    await ingToProduct.storeMapping("aardappels", { id: 3 })
+    ingToProduct.storeMapping("Prei", { id: 1273124 })
+    ingToProduct.storeMapping("zalm", { id: 1 })
+    ingToProduct.storeMapping("dille", { id: 2 })
+    ingToProduct.storeMapping("aardappels", { id: 3 })
 
     await ingToProduct.getMappings(recipe)
     const mappings = recipe.mappings
@@ -56,15 +58,16 @@ describe("storeMapping()", () => {
   })
 
   it("picks order", async () => {
-    await ingToProduct.storeMapping("aubergines", { id: 1 })
-    await ingToProduct.storeMapping("Lasagne", { id: 2 })
-    await ingToProduct.storeMapping("ricotta", { id: 3 })
-    await ingToProduct.storeMapping("egg", { id: 4 })
-    await ingToProduct.storeMapping("egg", { id: 5 })
+    ingToProduct.storeMapping("aubergines", { id: 1 })
+    ingToProduct.storeMapping("Lasagne", { id: 2 })
+    ingToProduct.storeMapping("ricotta", { id: 3 })
+    ingToProduct.storeMapping("egg", { id: 4 })
+    ingToProduct.storeMapping("egg", { id: 5 })
 
     const recipe = await recipeDb.getRecipe(
       "94ca1528-93ae-4b26-9576-a2dc1ada36c3"
     )
+
     const order = await ingToProduct.pickOrder(recipe)
     expect(order).toEqual({
       items: [
@@ -86,11 +89,8 @@ describe("storeMapping()", () => {
         }
       ]
     })
-    expect(
-      await ingToProduct
-        .getAllMappings()
-        .filter(map => map.ingredient === "egg").length
-    ).toBe(1)
+    const mappings = await ingToProduct.getAllMappings()
+    expect(mappings.filter(map => map.ingredient === "egg").length).toBe(1)
   })
 
   it("does not order ignored items", async () => {
