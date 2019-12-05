@@ -1,6 +1,5 @@
 # Features
 
-- spinner to control quantity in recipe ingredients: 8
 - distill list of recipes that were ordered (by storing ordered recipes): 8
 - Table
 
@@ -8,10 +7,14 @@
   - Replace delete button with onRowDelete (from material-table): 2
 
 * add translations for quantities: 4
-* Make it possible to flag product as 'not available'
+* Order only 1 ingredient
+* Click on AH product goes to AH page
+* Show products that were unordered (mostly due to undefined quantity)
 
 # Bugs
 
-# Data
+- after translation, some quantities are still undefined (this is because there is no mapping to set quantity in, also goes for newly added products)
 
-- egg curry: curry bladeren not available
+# Refactor
+
+- show unparsed ingredients when editing recipe, store parsed ingredients in recipe as recipe.parsedIngredients

@@ -1,6 +1,5 @@
 const { googleApiKey } = require("../config")
 const { Translate } = require("@google-cloud/translate")
-const { translationsDb } = require("../scripts/translations-db")
 
 class Translator {
   constructor(cache, translateService) {
@@ -33,8 +32,4 @@ class Translator {
   }
 }
 
-function create() {
-  return new Translator(translationsDb)
-}
-
-module.exports = { Translator, create }
+module.exports = Translator

@@ -4,7 +4,7 @@ const { ahUser, ahPass } = require("../config")
 describe("storeMapping()", () => {
   let ingToProduct, recipeDb
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     ;({ recipeDb, ingToProduct } = await createDb(
       "./memory-db",
       "./data/db.test.json"
@@ -63,12 +63,16 @@ describe("storeMapping()", () => {
     ingToProduct.storeMapping("ricotta", { id: 3 })
     ingToProduct.storeMapping("egg", { id: 4 })
     ingToProduct.storeMapping("egg", { id: 5 })
+    ingToProduct.storeMapping("pastinaak", { id: 6 })
 
     const recipe = await recipeDb.getRecipe(
       "94ca1528-93ae-4b26-9576-a2dc1ada36c3"
     )
+    const recipe2 = await recipeDb.getRecipe(
+      "2ce31202-4560-4273-bdfa-06c20ae46084"
+    )
 
-    const order = await ingToProduct.pickOrder(recipe)
+    const order = await ingToProduct.pickOrder(recipe, recipe2)
     expect(order).toEqual({
       items: [
         {
@@ -85,6 +89,10 @@ describe("storeMapping()", () => {
         },
         {
           id: 3,
+          quantity: 1
+        },
+        {
+          id: 6,
           quantity: 1
         }
       ]
@@ -117,6 +125,7 @@ describe("storeMapping()", () => {
     })
     ingToProduct.storeMapping("kruimige aardappels", {})
     ingToProduct.storeMapping("zout en peper", { id: 1, ignore: false })
+    await ingToProduct.getMappings(recipe)
     order = await ingToProduct.pickOrder(recipe)
     expect(order).toEqual({
       items: [

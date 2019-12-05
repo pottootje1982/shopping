@@ -44,7 +44,8 @@ class IngredientProductDb {
         )
         if (mapping) {
           const product = mapping.product
-          const quantity = (i.unit ? 1 : i.quantity) || 1
+          let quantity = i.unit ? 1 : parseInt(i.quantity)
+          quantity = quantity === undefined || isNaN(quantity) ? 1 : quantity
           result[i.ingredient] = {
             ...product,
             quantity
@@ -55,13 +56,15 @@ class IngredientProductDb {
     })
   }
 
-  async pickOrder(recipe) {
-    await this.getMappings(recipe)
-    return {
-      items: Object.values(recipe.mappings).filter(
-        mapping => !mapping.ignore && mapping.id
+  async pickOrder(...recipes) {
+    let mappings = recipes.map(recipe =>
+      Object.values(recipe.mappings).filter(
+        mapping => !mapping.ignore && !mapping.notAvailable && mapping.id
       )
-    }
+    )
+    const items = [].concat(...mappings)
+
+    return { items }
   }
 }
 

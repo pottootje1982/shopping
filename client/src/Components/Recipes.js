@@ -15,7 +15,7 @@ export default function Recipes({
 
   useEffect(() => {
     const filtered = showSelectedRecipes
-      ? recipes.filter(r => r.tableData.checked)
+      ? recipes.filter(r => r.tableData && r.tableData.checked)
       : recipes
     setVisibleRecipes(filtered)
   }, [showSelectedRecipes, recipes])

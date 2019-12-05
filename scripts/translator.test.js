@@ -1,4 +1,4 @@
-const { Translator } = require("./translator")
+const Translator = require("./translator")
 const createDb = require("./recipe-db")
 
 describe("translates", () => {

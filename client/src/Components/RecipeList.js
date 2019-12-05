@@ -56,7 +56,7 @@ export default function RecipeList({ setRecipeTitle }) {
   }
 
   function order() {
-    server.post("products/order", { recipes: selectedRecipes.map(r => r.uid) })
+    server.post("products/order", { recipes: selectedRecipes })
   }
 
   function addRecipe() {

@@ -91,14 +91,17 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
                     primary={
                       <Typography
                         style={{
-                          color: productInfo[i].ignore ? grey[500] : undefined
+                          color:
+                            productInfo[i].ignore || productInfo[i].notAvailable
+                              ? grey[500]
+                              : undefined
                         }}
                       >
                         {item.full}
                       </Typography>
                     }
                     secondary={
-                      !productInfo[i].ignore ? (
+                      !productInfo[i].ignore && !productInfo[i].notAvailable ? (
                         <Typography
                           variant="subtitle2"
                           style={{ color: green[500], fontSize: 9 }}

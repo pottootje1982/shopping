@@ -11,8 +11,8 @@ require("../scripts/recipe-db")("./mongo-client").then(dbs => {
 router.get("/", async function(req, res) {
   const products = await api
     .search(req.query.query, req.query.full)
-    .catch(res => {
-      console.log(res.message, res.error)
+    .catch(err => {
+      console.log(err.message, err.error, err.stack)
     })
   res.send(products)
 })
@@ -34,13 +34,10 @@ router.get("/mappings", async function(req, res) {
 
 router.post("/order", async function(req, res) {
   await api.login()
-  req.body.recipes.forEach(async function(id) {
-    const recipe = recipeDb.getRecipe(id)
-    const order = ingToProduct.pickOrder(recipe)
-    await api.addToShoppingList(order).catch(err => {
-      console.log(err)
-      res.send(err)
-    })
+  const order = await ingToProduct.pickOrder(...req.body.recipes)
+  await api.addToShoppingList(order).catch(err => {
+    console.log(err)
+    res.send(err)
   })
   res.send()
 })

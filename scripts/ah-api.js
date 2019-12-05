@@ -33,7 +33,7 @@ class AhApi {
       return products
     }
     const mapping = await this.ingToProduct.getMapping(full)
-    if (mapping && !mapping.product.ignore) {
+    if (mapping && !mapping.product.ignore && !mapping.product.notAvailable) {
       const id = mapping.product.id
       let selectedProduct = products.find(p => p.id === id)
       const withoutSelected = products.filter(p => p.id !== id)
@@ -72,6 +72,7 @@ class AhApi {
       "https://www.ah.nl/common/api/basket/v2/add",
       this.options(items)
     )
+    console.log(`Items not ordered: ${resp.failed}`)
     return resp
   }
 

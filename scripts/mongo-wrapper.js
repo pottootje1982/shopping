@@ -51,6 +51,12 @@ class MongoTableWrapper {
     return this
   }
 
+  upsert(value) {
+    this.upsert = true
+    this.valueToUpdate = value
+    return this
+  }
+
   remove(query) {
     this.queryToDelete = query
     return this
@@ -70,7 +76,9 @@ class MongoTableWrapper {
     if (this.valueToAdd) {
       await this.table.insertOne(this.valueToAdd)
     } else if (this.query && this.valueToUpdate) {
-      await this.table.findOneAndReplace(this.query, this.valueToUpdate)
+      await this.table.findOneAndReplace(this.query, this.valueToUpdate, {
+        upsert: this.upsert
+      })
     } else if (this.queryToDelete) {
       await this.table.deleteOne(this.queryToDelete)
     }

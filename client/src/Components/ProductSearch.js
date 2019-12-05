@@ -41,8 +41,8 @@ export default function ProductSearch({
   }
 
   function selectProduct(completeProduct) {
-    const { id, title, price, ignore } = completeProduct
-    const product = { id, title, price, ignore }
+    const { id, title, price, ignore, notAvailable } = completeProduct
+    const product = { id, title, price, ignore, notAvailable }
     mappings[bareIngredient] = product
     setSelectedRecipe({ ...selectedRecipe, mappings })
 
@@ -65,6 +65,13 @@ export default function ProductSearch({
 
   function ignoreIngredient(checked) {
     product.ignore = checked
+    product.notAvailable = false
+    selectProduct(product)
+  }
+
+  function notAvailableIngredient(checked) {
+    product.notAvailable = checked
+    product.ignore = false
     selectProduct(product)
   }
 
@@ -101,6 +108,17 @@ export default function ProductSearch({
         }
         label="Ignore ingredient"
       />
+      <FormControlLabel
+        control={
+          <Checkbox
+            color="primary"
+            onChange={(_e, checked) => notAvailableIngredient(checked)}
+            checked={product.notAvailable}
+          ></Checkbox>
+        }
+        label="Not available"
+      />
+
       <Grid item xs={12}>
         {products.length === 0 ? (
           <Typography color="secondary" style={{ paddingTop: 20 }}>
