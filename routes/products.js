@@ -26,20 +26,26 @@ router.post("/choose", async function(req, res) {
   res.send()
 })
 
+router.get("/:productId/product", async function(req, res) {
+  const product = await api.getProduct(parseInt(req.params.productId))
+  res.send(product)
+})
+
 router.get("/mappings", async function(req, res) {
   const recipe = await recipeDb.getRecipe(req.query.uid)
-  const mappings = await ingToProduct.getMappings(recipe)
-  res.send(mappings)
+  await ingToProduct.getMappings(recipe)
+  res.send(recipe.mappings)
 })
 
 router.post("/order", async function(req, res) {
   await api.login()
   const order = await ingToProduct.pickOrder(...req.body.recipes)
-  await api.addToShoppingList(order).catch(err => {
-    console.log(err)
-    res.send(err)
+  const failed = await api.addToShoppingList(order).catch(error => {
+    res.send({ error })
   })
-  res.send()
+  if (failed) {
+    res.send({ failed })
+  }
 })
 
 module.exports = router

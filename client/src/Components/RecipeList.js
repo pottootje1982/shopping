@@ -55,8 +55,17 @@ export default function RecipeList({ setRecipeTitle }) {
     }
   }
 
-  function order() {
-    server.post("products/order", { recipes: selectedRecipes })
+  async function order() {
+    const { data } = await server.post("products/order", {
+      recipes: selectedRecipes
+    })
+    let message = data.failed
+      ? `Following items were not ordered: ${data.failed}`
+      : "All products were successfully ordered"
+    message = data.error
+      ? `Error when ordering recipes: ${data.error}`
+      : message
+    alert(message)
   }
 
   function addRecipe() {

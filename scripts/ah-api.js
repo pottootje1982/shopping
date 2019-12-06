@@ -47,37 +47,44 @@ class AhApi {
     return products
   }
 
-  async mijnLijst() {
-    return await request.get("https://www.ah.nl/mijnlijst", this.options())
+  mijnLijst() {
+    return request.get("https://www.ah.nl/mijnlijst", this.options())
   }
 
-  async getList() {
-    const resp = await request.get(
+  getList() {
+    return request.get(
       "https://www.ah.nl/service/rest/shoppinglists/0",
       this.options()
     )
-    return resp
   }
 
-  async getProduct(id) {
-    const resp = await request.get(
-      `https://www.ah.nl/zoeken/api/products/product?webshopId=${id}`
-    )
-    const parsed = JSON.parse(resp)
-    return parsed.card.products.find(p => p.id === id)
+  getProduct(id) {
+    return request
+      .get(`https://www.ah.nl/zoeken/api/products/product?webshopId=${id}`)
+      .then(resp => {
+        const parsed = JSON.parse(resp)
+        return parsed.card.products.find(p => p.id === id)
+      })
   }
 
   async addToShoppingList(items) {
-    const resp = await request.post(
-      "https://www.ah.nl/common/api/basket/v2/add",
-      this.options(items)
-    )
-    console.log(`Items not ordered: ${resp.failed}`)
-    return resp
+    const resp = await request
+      .post("https://www.ah.nl/common/api/basket/v2/add", this.options(items))
+      .catch(err => {
+        const error = JSON.parse(err.message.match(/\d+ - (.*)/)[1])
+        throw error.message
+      })
+
+    if (resp.failed.length > 0) {
+      const failedInfos = resp.failed.map(fail => this.getProduct(fail.id))
+      return Promise.all(failedInfos).then(infos =>
+        infos.map(info => info.title).join(", ")
+      )
+    }
   }
 
-  async addRecipeToShoppingList(recipeId, name, ingredients) {
-    return await request.post(
+  addRecipeToShoppingList(recipeId, name, ingredients) {
+    return request.post(
       "https://www.ah.nl/common/api/basket/v2/add",
       this.options({
         recipeId,
