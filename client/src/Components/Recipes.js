@@ -57,9 +57,12 @@ export default function Recipes({
       rowData.uid === (selectedRecipe && selectedRecipe.uid) ? 100 : 0
     return {
       maxHeight: 10,
-      backgroundColor: rowData.ingredients.every(
-        i => rowData.mappings && rowData.mappings[i.ingredient] !== undefined
-      )
+      backgroundColor: rowData.ingredients.every(i => {
+        const mapping = rowData.mappings && rowData.mappings[i.ingredient]
+        return (
+          mapping.id !== undefined || mapping.notAvailable || mapping.ignore
+        )
+      })
         ? green[100 + selectedOffset]
         : blue[50 + selectedOffset]
     }

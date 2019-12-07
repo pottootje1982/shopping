@@ -49,7 +49,16 @@ describe("storeMapping()", () => {
     expect(mappings).toEqual({
       Prei: { id: 1273124, quantity: 1 },
       Dille: { id: 2, quantity: 1 },
+      Honing: {
+        quantity: 1
+      },
+      Wijn: {
+        quantity: 1
+      },
       Zalm: { id: 1, quantity: 1 },
+      "koriander poeder": {
+        quantity: 1
+      },
       tomaten: {
         quantity: 1
       },

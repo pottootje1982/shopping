@@ -13,7 +13,6 @@
 
 # Bugs
 
-- after translation, some quantities are still undefined (this is because there is no mapping to set quantity in, also goes for newly added products)
 - Ingredienten: '200g gehalveerde, gewelde pruimen zonder pit'
 
 # Refactor

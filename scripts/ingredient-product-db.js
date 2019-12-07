@@ -42,14 +42,12 @@ class IngredientProductDb {
         const mapping = mappings.find(
           m => m.ingredient === i.ingredient.toLowerCase()
         )
-        if (mapping) {
-          const product = mapping.product
-          let quantity = i.unit ? 1 : parseInt(i.quantity)
-          quantity = quantity === undefined || isNaN(quantity) ? 1 : quantity
-          result[i.ingredient] = {
-            ...product,
-            quantity
-          }
+        const product = (mapping && mapping.product) || {}
+        let quantity = i.unit ? 1 : parseInt(i.quantity)
+        quantity = quantity === undefined || isNaN(quantity) ? 1 : quantity
+        result[i.ingredient] = {
+          ...product,
+          quantity
         }
       })
       recipe.mappings = result

@@ -81,6 +81,7 @@ class AhApi {
         infos.map(info => info.title).join(", ")
       )
     }
+    return []
   }
 
   addRecipeToShoppingList(recipeId, name, ingredients) {

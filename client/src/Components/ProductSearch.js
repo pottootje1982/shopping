@@ -32,7 +32,7 @@ export default function ProductSearch({
   const searchRef = useRef(null)
   const mappings = selectedRecipe.mappings
   const bareIngredient = selectedIngredient.ingredient
-  const product = mappings[bareIngredient] || {}
+  const product = mappings[bareIngredient]
 
   useEffect(doSearch, [selectedIngredient])
 
@@ -43,7 +43,8 @@ export default function ProductSearch({
   function selectProduct(completeProduct) {
     const { id, title, price, ignore, notAvailable } = completeProduct
     const product = { id, title, price, ignore, notAvailable }
-    mappings[bareIngredient] = product
+    const oldProduct = mappings[bareIngredient]
+    mappings[bareIngredient] = { ...oldProduct, ...product }
     setSelectedRecipe({ ...selectedRecipe, mappings })
 
     server.post("products/choose", {

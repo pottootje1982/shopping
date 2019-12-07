@@ -43,8 +43,11 @@ router.post("/order", async function(req, res) {
   const failed = await api.addToShoppingList(order).catch(error => {
     res.send({ error })
   })
-  if (failed) {
+  if (!failed) return
+  if (failed.length > 0) {
     res.send({ failed })
+  } else {
+    res.sendStatus(200)
   }
 })
 
