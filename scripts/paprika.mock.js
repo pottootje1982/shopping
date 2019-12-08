@@ -163,6 +163,44 @@ class PaprikaApiStub {
         servings: "",
         nutritional_info:
           "Voedingswaarden\n(per stuk)\nenergie 95 kcal\neiwit 3 g\nkoolhydraten 13 g\nvet 3 g\nwaarvan verzadigd 0 g\nnatrium 50 mg\nvezels 1 g"
+      },
+      {
+        rating: 0,
+        photo_hash:
+          "132cf515a905b43cbded8cf274f0afbb5e09e50b63527fa97f9019e06a7959d1",
+        on_favorites: false,
+        photo: "2b9fb715-b29c-478a-a5ae-6f20f63a0fc7.jpg",
+        uid: "3a2a1716-208c-4521-910b-db9add55c83b",
+        scale: null,
+        ingredients:
+          "1 tbsp sesame oil\n1 red onion, finely chopped\n1 garlic clove, crushed\nthumb-sized piece ginger, peeled and finely chopped\n1 red chilli, finely chopped\n1 ½ tsp ground turmeric\n1 ½ tsp ground cumin\n2 sweet potatoes (about 400g/14oz), cut into even chunks\n250g red split lentils\n600ml vegetable stock\n80g bag of spinach\n4 spring onions, sliced on the diagonal, to serve\n½ small pack of Thai basil, leaves torn, to serve",
+        is_pinned: null,
+        source: "Bbcgoodfood.com",
+        total_time: null,
+        hash:
+          "b188913399563904545b4adc688794c9a6791cd6de313e901aae451e9815ca16",
+        description: null,
+        source_url:
+          "https://www.bbcgoodfood.com/recipes/spinach-sweet-potato-lentil-dhal",
+        difficulty: "Easy",
+        on_grocery_list: null,
+        in_trash: true,
+        directions:
+          "Heat the oil in a wide-based pan with a tight-fitting lid. Add the onion and cook over a low heat for 10 mins, stirring occasionally, until softened. Add the garlic, ginger and chilli, cook for 1 min, then add the spices and cook for 1 min more.\n\nTurn up the heat to medium, add the sweet potato and stir everything together so the potato is coated in the spice mixture. Tip in the lentils, stock and some seasoning. Bring the liquid to the boil, then reduce the heat, cover and cook for 20 mins until the lentils are tender and the potato is just holding its shape\n\nTaste and adjust the seasoning, then gently stir in the spinach. Once wilted, top with the spring onions and basil to serve. Or allow to cool completely, then divide between airtight containers and store in the fridge for a healthy lunchbox (see tip below).",
+        categories: ["46ae00bb-ae88-4c3e-b4b4-9920454f6c61"],
+        photo_url:
+          "http://uploads.paprikaapp.com.s3.amazonaws.com/150068/2b9fb715-b29c-478a-a5ae-6f20f63a0fc7.jpg?Signature=gwURtwvSaRdCkHa%2BB1n4xkPfmT0%3D&Expires=1574783515&AWSAccessKeyId=AKIAJA4A42FBJBMX5ARA",
+        cook_time: "35 mins",
+        name: "Spinach, Sweet Potato & Lentil Dhal",
+        created: "2017-03-30 09:44:21",
+        notes: "",
+        photo_large: null,
+        image_url:
+          "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2016/03/spinach-sweet-potato-lentil-dhal.jpg?itok=AHK2IyWx",
+        prep_time: "10 mins",
+        servings: "Serves 4",
+        nutritional_info:
+          "Calories: 397\nTotal Carbohydrates: 65g\nTotal Fat: 5g\nDietary fiber: 11g\nProtein: 18g\nSaturated fat: 1g\nSodium: 0.6g\nSugar: 19g"
       }
     ]
   }

@@ -1,5 +1,5 @@
 const Paprika = require("./paprika.js")
-const PaprikaApiStub = require("./paprika.stub")
+const PaprikaApiStub = require("./paprika.mock")
 const createDb = require("./recipe-db")
 
 describe("Index", () => {
@@ -14,7 +14,7 @@ describe("Index", () => {
 
   it("Download recipes", async () => {
     const recipes = await paprika.getRecipes()
-    expect(recipes.length).toBe(4)
+    expect(recipes.length).toBe(5)
     expect(recipes[0].name).toEqual("Zalm met prei 2")
     expect(recipes[1].name).toEqual(
       "Aubergine, tomato & Parmesan bake (Melanzane alla Parmigiana)"
@@ -25,7 +25,7 @@ describe("Index", () => {
     const localRecipes = await recipeDb.getRecipes()
     const newRecipes = await paprika.synchronize(localRecipes)
     const recipes = await paprika.getRecipes()
-    expect(recipes.length).toBe(5)
+    expect(recipes.length).toBe(6)
     expect(newRecipes.length).toBe(5)
     expect(newRecipes[0].name).toEqual("Zalm met prei 2")
     expect(newRecipes[0].created).toEqual("2019-08-29 11:30:47")
@@ -34,8 +34,10 @@ describe("Index", () => {
     )
     expect(recipes[1].created).toEqual("2016-08-29 11:37:51")
 
-    expect(recipes[4].name).toEqual("Pastinaak wortelstamppot met worst")
-    expect(recipes[4].created).toEqual("2015-08-01 08:55:22")
+    expect(recipes[4].name).toEqual("Spinach, Sweet Potato & Lentil Dhal")
+    expect(recipes[4].created).toEqual("2017-03-30 09:44:21")
+    expect(recipes[5].name).toEqual("Pastinaak wortelstamppot met worst")
+    expect(recipes[5].created).toEqual("2015-08-01 08:55:22")
 
     // Fourth recipe should remain untouched, because hashes are the same
     expect(newRecipes[3].name).toEqual("Super-quick fish curry")

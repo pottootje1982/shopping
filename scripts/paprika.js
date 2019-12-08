@@ -116,10 +116,12 @@ class Paprika {
     })
     for (let remote of insertToLocal) {
       remote = await this.paprikaApi.recipe(remote.uid)
-      console.log(
-        `Get new version of recipe '${remote.name}' from Paprika to local`
-      )
-      this.recipeDb.addRecipe(remote)
+      if (!remote.in_trash) {
+        console.log(
+          `Get new version of recipe '${remote.name}' from Paprika to local`
+        )
+        this.recipeDb.addRecipe(remote)
+      }
     }
     return insertToLocal.length > 0 ? this.recipeDb.getRecipes() : null
   }
