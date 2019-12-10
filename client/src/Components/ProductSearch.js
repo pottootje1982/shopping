@@ -104,7 +104,7 @@ export default function ProductSearch({
           <Checkbox
             color="primary"
             onChange={(_e, checked) => ignoreIngredient(checked)}
-            checked={product.ignore}
+            checked={product && product.ignore}
           ></Checkbox>
         }
         label="Ignore ingredient"
@@ -114,7 +114,7 @@ export default function ProductSearch({
           <Checkbox
             color="primary"
             onChange={(_e, checked) => notAvailableIngredient(checked)}
-            checked={product.notAvailable}
+            checked={product && product.notAvailable}
           ></Checkbox>
         }
         label="Not available"

@@ -17,4 +17,4 @@
 
 # Refactor
 
-- show unparsed ingredients when editing recipe, store parsed ingredients in recipe as recipe.parsedIngredients
+- show unparsed ingredients when editing recipe, store parsed ingredients in recipe as recipe.parsedIngredients (then getRecipeRaw is not necessary anymore in editRecipe & deleteRecipe)

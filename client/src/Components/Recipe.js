@@ -48,7 +48,10 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
 
   async function translate(uid) {
     const res = await server.post("recipes/translate", { recipeId: uid })
-    setSelectedRecipe(res.data.recipe)
+    const ingredientIndex = ingredients.indexOf(selectedIngredient)
+    const recipe = res.data.recipe
+    setSelectedRecipe(recipe)
+    setSelectedIngredient(recipe.ingredients[ingredientIndex])
   }
 
   function editRecipeClick() {
@@ -138,6 +141,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
         />
       ) : selectedIngredient ? (
         <ProductSearch
+          key={selectedIngredient}
           products={products}
           selectedIngredient={selectedIngredient}
           searchProducts={search}

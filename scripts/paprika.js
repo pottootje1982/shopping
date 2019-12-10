@@ -65,8 +65,8 @@ class Paprika {
     this.recipeDb = db || recipeDb
   }
 
-  async getRecipe(uid) {
-    return await this.paprikaApi.recipe(uid)
+  getRecipe(uid) {
+    return this.paprikaApi.recipe(uid)
   }
 
   async getRecipes() {
@@ -79,12 +79,17 @@ class Paprika {
     return recipes
   }
 
-  async updateRecipe(recipe) {
-    await this.paprikaApi.upsertRecipe(recipe)
+  updateRecipe(recipe) {
+    return this.paprikaApi.upsertRecipe(recipe)
   }
 
-  async downloadRecipe(url) {
-    return await this.paprikaApi.downloadRecipe(url)
+  deleteRecipe(recipe) {
+    recipe.in_trash = true
+    return this.paprikaApi.upsertRecipe(recipe)
+  }
+
+  downloadRecipe(url) {
+    return this.paprikaApi.downloadRecipe(url)
   }
 
   async synchronize(localRecipes) {

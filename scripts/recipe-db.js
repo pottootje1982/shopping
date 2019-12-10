@@ -92,13 +92,15 @@ class RecipeDb {
     return this.getRecipeRaw(recipe.uid)
   }
 
-  removeRecipe(recipe) {
-    return this.db
+  async removeRecipe(recipe) {
+    const oldRecipe = await this.getRecipeRaw(recipe.uid)
+    const success = await this.db
       .get("recipes")
       .remove({
         uid: recipe.uid
       })
       .write()
+    return { success, oldRecipe }
   }
 }
 
