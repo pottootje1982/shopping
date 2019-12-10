@@ -1,10 +1,10 @@
-const createDb = require("./recipe-db")
+const createDb = require("../tables")
 
 describe.skip("storeMapping()", () => {
   let ingToProduct
 
   beforeEach(async () => {
-    ;({ recipeDb, ingToProduct } = await createDb("./mongo-client"))
+    ;({ recipeDb, ingToProduct } = await createDb("../mongo-client"))
   })
 
   it("retrieves stored translations", async () => {

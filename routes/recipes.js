@@ -1,9 +1,10 @@
 var express = require("express")
 const router = express.Router()
+const uuidv1 = require("uuid/v1")
 
 const Paprika = require("../scripts/paprika")
 let recipeDb, translationsDb, ingToProduct, paprika
-require("../scripts/recipe-db")("./mongo-client").then(dbs => {
+require("../scripts/db/tables")("./mongo-client").then(dbs => {
   ;({ recipeDb, ingToProduct, translationsDb } = dbs)
   paprika = new Paprika(null, recipeDb)
 })
@@ -45,8 +46,9 @@ const defaultRecipe = {
 
 router.post("/", async function(req, res) {
   let recipe = { ...defaultRecipe, ...req.body }
+  recipe.uid = recipe.uid || uuidv1()
   recipe = await recipeDb.addRecipe(recipe)
-  console.log("Adding recipe to Paprika:", recipe)
+  console.log("Adding recipe to Paprika:", recipe.name)
   await paprika.updateRecipe(recipe)
   res.send(await recipeDb.getRecipe(recipe.uid))
 })

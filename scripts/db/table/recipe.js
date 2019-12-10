@@ -1,6 +1,4 @@
-const { Ingredients } = require("./ingredients")
-const IngredientProductDb = require("./ingredient-product-db")
-const TranslationsDb = require("./translations-db")
+const { Ingredients } = require("../../ingredients")
 var crypto = require("crypto")
 
 class RecipeDb {
@@ -104,16 +102,4 @@ class RecipeDb {
   }
 }
 
-async function createRecipeDb(connector, file) {
-  const createDb = require(connector)
-
-  file = file === undefined ? "data/db.json" : file
-  const db = await createDb(file)
-  const translationsDb = new TranslationsDb(db)
-  const ingToProduct = new IngredientProductDb(db)
-
-  const recipeDb = new RecipeDb(db, translationsDb, ingToProduct)
-  return { recipeDb, ingToProduct, translationsDb }
-}
-
-module.exports = createRecipeDb
+module.exports = RecipeDb

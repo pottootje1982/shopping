@@ -1,4 +1,4 @@
-const createDb = require("./recipe-db")
+const createDb = require("../tables")
 
 describe("storeTranslations()", () => {
   let translationsDb

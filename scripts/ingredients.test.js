@@ -1,5 +1,5 @@
 const { Ingredient, Ingredients } = require("./ingredients")
-const createDb = require("./recipe-db")
+const createDb = require("./db/tables")
 
 describe("Ingredient", () => {
   let recipes

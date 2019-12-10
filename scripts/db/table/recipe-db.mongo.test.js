@@ -1,10 +1,10 @@
-const createRecipeDb = require("./recipe-db")
+const createRecipeDb = require("../tables")
 
 describe.skip("recipes()", () => {
   let recipeDb
 
   beforeEach(async () => {
-    ;({ recipeDb } = await createRecipeDb("./mongo-client"))
+    ;({ recipeDb } = await createRecipeDb("../mongo-client"))
   })
 
   afterEach(() => {

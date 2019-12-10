@@ -1,4 +1,4 @@
-const { dbConnectionString } = require("../config")
+const { dbConnectionString } = require("../../config")
 const MongoWrapper = require("./mongo-wrapper")
 
 const { MongoClient } = require("mongodb")

@@ -1,6 +1,6 @@
 const Paprika = require("./paprika.js")
 const PaprikaApiStub = require("./paprika.mock")
-const createDb = require("./recipe-db")
+const createDb = require("./db/tables")
 
 describe("Index", () => {
   const apiStub = new PaprikaApiStub()

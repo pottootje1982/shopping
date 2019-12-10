@@ -1,5 +1,5 @@
 const Translator = require("./translator")
-const createDb = require("./recipe-db")
+const createDb = require("./db/tables")
 
 describe("translates", () => {
   let translationsDb, translator
