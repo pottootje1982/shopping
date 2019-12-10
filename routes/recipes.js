@@ -54,8 +54,8 @@ router.post("/", async function(req, res) {
 })
 
 router.delete("/", async function(req, res) {
-  const { success, recipe } = await recipeDb.removeRecipe(req.body)
-  paprika.deleteRecipe(recipe)
+  const { success, oldRecipe } = await recipeDb.removeRecipe(req.body)
+  paprika.deleteRecipe(oldRecipe)
   res.send(success)
 })
 
