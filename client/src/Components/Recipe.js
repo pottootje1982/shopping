@@ -58,15 +58,24 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
     setEditOrAddRecipe(true)
   }
 
-  function adjustProductQuantity(productInfo, event) {
+  function onAdjustQuantity(productInfo, event) {
     const target = event.target
     const value = parseInt(target.value)
+    productInfo.quantity = value
+    setSelectedRecipe({ ...selectedRecipe })
+  }
+
+  function onAdjustQuantityWheel(productInfo, event) {
+    const target = event.target
+    let value = parseInt(target.value)
     if (event.deltaY < 0) {
-      target.value = value + 1
+      value = value + 1
     } else {
-      target.value = Math.max(value - 1, 0)
+      value = Math.max(value - 1, 0)
     }
-    productInfo.quantity = target.value
+    target.value = value
+    productInfo.quantity = value
+    setSelectedRecipe({ ...selectedRecipe })
   }
 
   return (
@@ -123,7 +132,8 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
                       step: 1
                     }}
                     style={{ width: 40, height: 40 }}
-                    onWheel={e => adjustProductQuantity(productInfo[i], e)}
+                    onChange={e => onAdjustQuantity(productInfo[i], e)}
+                    onWheel={e => onAdjustQuantityWheel(productInfo[i], e)}
                   />
                 </ListItem>
               ))}
