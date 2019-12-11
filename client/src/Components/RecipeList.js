@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react"
 import server from "./server"
-import { Grid } from "@material-ui/core"
+import {
+  Grid,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel
+} from "@material-ui/core"
 import AddIcon from "@material-ui/icons/Add"
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
 import DeleteIcon from "@material-ui/icons/Delete"
@@ -15,6 +21,7 @@ export default function RecipeList({ setRecipeTitle }) {
   let [recipes, setRecipes] = useState([])
   let [, setRecipeReadyToOrder] = useState()
   let [selectedRecipe, setSelectedRecipe] = useState()
+  const [orders, setOrders] = useState()
 
   function selectedFirstRecipe() {
     server.get("recipes").then(function(result) {
@@ -25,6 +32,9 @@ export default function RecipeList({ setRecipeTitle }) {
         setSelectedRecipe(recipe)
         sync()
       }
+    })
+    server.get("orders").then(result => {
+      setOrders(result.data)
     })
   }
 
@@ -56,7 +66,7 @@ export default function RecipeList({ setRecipeTitle }) {
   }
 
   async function order() {
-    const { data } = await server.post("products/order", {
+    const { data } = await server.post("orders/", {
       recipes: selectedRecipes
     })
     let message = data.failed
@@ -66,6 +76,10 @@ export default function RecipeList({ setRecipeTitle }) {
       ? `Error when ordering recipes: ${data.error}`
       : message
     alert(message)
+  }
+
+  function selectOrder(event) {
+    //setRecipes(event.target.value.recipes)
   }
 
   function addRecipe() {
@@ -111,6 +125,17 @@ export default function RecipeList({ setRecipeTitle }) {
         <Fab onClick={removeRecipe}>
           <DeleteIcon />
         </Fab>
+        <FormControl style={{ minWidth: 100 }}>
+          <InputLabel id="demo-simple-select-label">Orders</InputLabel>
+          <Select onChange={selectOrder} value="">
+            <MenuItem key="Orders">Orders</MenuItem>
+            {(orders || []).map(order => (
+              <MenuItem key={order.date} value={order}>
+                {order.date}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         <Grid item xs={12}>
           <Recipes
             recipes={recipes}

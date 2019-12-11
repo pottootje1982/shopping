@@ -1,0 +1,24 @@
+module.exports = class Table {
+  constructor(db, tableName) {
+    this.db = db
+    this.tableName = tableName
+  }
+
+  table() {
+    return this.db.get(this.tableName)
+  }
+
+  get(query) {
+    return query
+      ? this.table()
+          .find(query)
+          .value()
+      : this.table().value()
+  }
+
+  store(item) {
+    return this.table()
+      .push(item)
+      .write()
+  }
+}

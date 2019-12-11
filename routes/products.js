@@ -37,18 +37,4 @@ router.get("/mappings", async function(req, res) {
   res.send(recipe.mappings)
 })
 
-router.post("/order", async function(req, res) {
-  await api.login()
-  const order = await ingToProduct.pickOrder(...req.body.recipes)
-  const failed = await api.addToShoppingList(order).catch(error => {
-    res.send({ error })
-  })
-  if (!failed) return
-  if (failed.length > 0) {
-    res.send({ failed })
-  } else {
-    res.sendStatus(200)
-  }
-})
-
 module.exports = router

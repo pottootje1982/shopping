@@ -14,6 +14,7 @@
 # Bugs
 
 - Ingredienten: '200g gehalveerde, gewelde pruimen zonder pit'
+- don't scroll recipe list when adjusting quantity with mouse wheel
 
 # Refactor
 

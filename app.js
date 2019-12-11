@@ -5,6 +5,7 @@ var logger = require("morgan")
 
 var recipesRouter = require("./routes/recipes")
 var productsRouter = require("./routes/products")
+var ordersRouter = require("./routes/orders")
 
 var app = express()
 
@@ -28,6 +29,7 @@ app.use(cors())
 
 app.use("/recipes", recipesRouter)
 app.use("/products", productsRouter)
+app.use("/orders", ordersRouter)
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
