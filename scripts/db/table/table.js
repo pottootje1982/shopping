@@ -16,6 +16,12 @@ module.exports = class Table {
       : this.table().value()
   }
 
+  remove(query) {
+    return this.table()
+      .remove(query)
+      .write()
+  }
+
   store(item) {
     return this.table()
       .push(item)

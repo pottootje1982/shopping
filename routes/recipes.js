@@ -5,18 +5,16 @@ const uuidv1 = require("uuid/v1")
 const Paprika = require("../scripts/paprika")
 let recipeDb, translationsDb, ingToProduct, paprika
 require("../scripts/db/tables")("./mongo-client").then(dbs => {
-  ;({ recipeDb, ingToProduct, translationsDb } = dbs)
+  ;({ recipeDb, ingToProduct, translationsDb, orderDb } = dbs)
   paprika = new Paprika(null, recipeDb)
 })
 
 const Translator = require("../scripts/translator")
 
 router.get("/", async function(req, res) {
-  const uid = req.query.uid
-  const result = uid
-    ? await recipeDb.getRecipe(uid)
-    : await recipeDb.getRecipes()
-  res.send(result)
+  const recipes = await recipeDb.getRecipes()
+  const orders = await orderDb.getHydrated(recipes)
+  res.send({ recipes, orders })
 })
 
 router.put("/", async function(req, res) {

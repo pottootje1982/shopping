@@ -15,9 +15,9 @@ router.get("/", async function(req, res) {
 
 router.post("/", async function(req, res) {
   await api.login()
-  const recipes = req.body.recipes
-  const order = await ingToProduct.pickOrder(...recipes)
-  orderDb.storeRecipes(recipes)
+  const order = req.body.recipes
+  const order = await ingToProduct.pickOrder(...order)
+  orderDb.storeOrder(order)
   const failed = await api.addToShoppingList(order).catch(error => {
     res.send({ error })
   })

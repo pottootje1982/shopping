@@ -13,7 +13,7 @@ class RecipeDb {
     this.db.close()
   }
 
-  storeRecipes(recipes) {
+  storeOrder(recipes) {
     recipes.forEach(recipe => {
       db.get("recipes")
         .push(recipe)

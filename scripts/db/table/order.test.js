@@ -3,8 +3,11 @@ const createDb = require("../tables")
 describe("storeRecipe()", () => {
   let orderDb
 
-  beforeAll(async () => {
-    ;({ orderDb } = await createDb("./memory-db", "./data/db.test.json"))
+  beforeEach(async () => {
+    ;({ orderDb, recipeDb } = await createDb(
+      "./memory-db",
+      "./data/db.test.json"
+    ))
   })
 
   it("get orders", async () => {
@@ -12,8 +15,37 @@ describe("storeRecipe()", () => {
     expect(orders.length).toEqual(0)
   })
 
+  it("get hydrated", async () => {
+    const recipes = await recipeDb.getRecipes()
+    let order = [
+      {
+        uid: "3fe04f98-8d73-4e9d-a7da-f4c1241aa3c4",
+        mappings: {
+          prei: {
+            id: 171425,
+            quantity: 1
+          }
+        }
+      }
+    ]
+    orderDb.storeOrder(order)
+    const orders = await orderDb.getHydrated(recipes)
+    expect(orders.length).toBe(1)
+    order = orders[0]
+    expect(order.date).toBeDefined()
+    expect(order.recipes.length).toBe(1)
+    const recipe = order.recipes[0]
+
+    expect(recipe.name).toEqual("Zalm met prei")
+    expect(recipe.ingredients.length).toBe(8)
+    expect(recipe.mappings.prei.id).toBe(171425)
+
+    // Removing shouldn't be necessary since we want to start with empty db before each test
+    orderDb.remove({ date: order.date })
+  })
+
   it("store order", async () => {
-    const recipes = [
+    let order = [
       {
         uid: "5134b9ac-32fd-4e5c-a6da-681d33cd007f",
         mappings: {
@@ -49,13 +81,13 @@ describe("storeRecipe()", () => {
         }
       }
     ]
-    await orderDb.storeRecipes(recipes)
+    await orderDb.storeOrder(order)
     const orders = await orderDb.get()
     expect(orders.length).toEqual(1)
-    const order = orders[0]
+    order = orders[0]
     expect(order.recipes.length).toEqual(1)
     const recipe = order.recipes[0]
-    expect(Object.keys(recipe.products)).toEqual([
+    expect(Object.keys(recipe.mappings)).toEqual([
       "slagroom",
       "dille",
       "witte wijn",

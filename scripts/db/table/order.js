@@ -8,10 +8,22 @@ class OrderDb extends Table {
     this.db.defaults({ orders: [] }).write()
   }
 
-  storeRecipes(recipes) {
+  storeOrder(recipes) {
     const date = getDateStr()
-    recipes = recipes.map(r => ({ uid: r.uid, products: r.mappings }))
+    recipes = recipes.map(r => ({ uid: r.uid, mappings: r.mappings }))
     return this.store({ date, recipes })
+  }
+
+  async getHydrated(recipes) {
+    const orders = await this.get()
+    for (const order of orders) {
+      for (const recipeOrder of order.recipes) {
+        const recipe = recipes.find(r => r.uid === recipeOrder.uid)
+        recipeOrder.ingredients = recipe && recipe.ingredients
+        recipeOrder.name = recipe && recipe.name
+      }
+    }
+    return orders
   }
 }
 

@@ -1,6 +1,5 @@
 # Features
 
-- distill list of recipes that were ordered (by storing ordered recipes): 8
 - Table
 
   - Group recipes in recipe list: 4

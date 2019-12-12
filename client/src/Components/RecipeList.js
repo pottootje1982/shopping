@@ -21,20 +21,20 @@ export default function RecipeList({ setRecipeTitle }) {
   let [recipes, setRecipes] = useState([])
   let [, setRecipeReadyToOrder] = useState()
   let [selectedRecipe, setSelectedRecipe] = useState()
+  const [selectedOrder, setSelectedOrder] = useState("")
   const [orders, setOrders] = useState()
 
   function selectedFirstRecipe() {
     server.get("recipes").then(function(result) {
-      recipes = result.data
+      const data = result.data
+      recipes = data.recipes
       setRecipes(recipes)
       if (recipes.length > 0) {
         const recipe = recipes[0]
         setSelectedRecipe(recipe)
         sync()
       }
-    })
-    server.get("orders").then(result => {
-      setOrders(result.data)
+      setOrders(data.orders)
     })
   }
 
@@ -79,7 +79,7 @@ export default function RecipeList({ setRecipeTitle }) {
   }
 
   function selectOrder(event) {
-    //setRecipes(event.target.value.recipes)
+    setSelectedOrder(event.target.value)
   }
 
   function addRecipe() {
@@ -125,10 +125,12 @@ export default function RecipeList({ setRecipeTitle }) {
         <Fab onClick={removeRecipe}>
           <DeleteIcon />
         </Fab>
-        <FormControl style={{ minWidth: 100 }}>
+        <FormControl style={{ minWidth: 200 }} variant="filled">
           <InputLabel id="demo-simple-select-label">Orders</InputLabel>
-          <Select onChange={selectOrder} value="">
-            <MenuItem key="Orders">Orders</MenuItem>
+          <Select onChange={selectOrder} value={selectedOrder}>
+            <MenuItem key="Orders" value="">
+              Orders
+            </MenuItem>
             {(orders || []).map(order => (
               <MenuItem key={order.date} value={order}>
                 {order.date}
@@ -138,7 +140,7 @@ export default function RecipeList({ setRecipeTitle }) {
         </FormControl>
         <Grid item xs={12}>
           <Recipes
-            recipes={recipes}
+            recipes={(selectedOrder && selectedOrder.recipes) || recipes}
             setRecipes={setRecipes}
             setSelectedRecipe={setSelectedRecipe}
             setSelectedRecipes={setSelectedRecipes}
