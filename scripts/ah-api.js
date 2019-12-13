@@ -2,8 +2,6 @@ var request = require("request-promise")
 request = request.defaults({
   jar: true
 })
-var FileCookieStore = require("tough-cookie-filestore")
-const path = require("path")
 
 class AhApi {
   constructor(username, password, ingToProduct) {
@@ -11,8 +9,6 @@ class AhApi {
       username,
       password
     }
-    const file = path.resolve(__dirname, "cookie.json")
-    this.jar = request.jar(new FileCookieStore(file))
     this.ingToProduct = ingToProduct
   }
 

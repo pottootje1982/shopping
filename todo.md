@@ -1,19 +1,18 @@
 # Features
 
-- Table
+- Order only 1 ingredient: 2
+- Click on AH product goes to AH page: 2
+- add translations for quantities: 4
+- recipe link
 
-  - Group recipes in recipe list: 4
+* Table
+
   - Replace delete button with onRowDelete (from material-table): 2
-
-* add translations for quantities: 4
-* Order only 1 ingredient
-* Click on AH product goes to AH page
-* Show products that were unordered (mostly due to undefined quantity)
 
 # Bugs
 
-- Ingredienten: '200g gehalveerde, gewelde pruimen zonder pit'
-- don't scroll recipe list when adjusting quantity with mouse wheel
+- Ingredienten: '200g gehalveerde, gewelde pruimen zonder pit': 1
+- don't scroll recipe list when adjusting quantity with mouse wheel: ?
 
 # Refactor
 
