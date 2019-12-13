@@ -14,7 +14,8 @@ const Translator = require("../scripts/translator")
 router.get("/", async function(req, res) {
   const recipes = await recipeDb.getRecipes()
   const orders = await orderDb.getHydrated(recipes)
-  res.send({ recipes, orders })
+  const categories = await paprika.categories()
+  res.send({ recipes, orders, categories })
 })
 
 router.put("/", async function(req, res) {

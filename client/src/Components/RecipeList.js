@@ -23,6 +23,9 @@ export default function RecipeList({ setRecipeTitle }) {
   let [selectedRecipe, setSelectedRecipe] = useState()
   const [selectedOrder, setSelectedOrder] = useState("")
   const [orders, setOrders] = useState()
+  const [selectedCategory, setSelectedCategory] = useState("")
+  const [categoryRecipes, setCategoryRecipes] = useState()
+  const [categories, setCategories] = useState()
 
   function selectedFirstRecipe() {
     server.get("recipes").then(function(result) {
@@ -35,12 +38,19 @@ export default function RecipeList({ setRecipeTitle }) {
         sync()
       }
       setOrders(data.orders)
+      setCategories(data.categories)
     })
   }
 
   useEffect(selectedFirstRecipe, [])
 
   useEffect(selectRecipe, [selectedRecipe])
+
+  useEffect(() => {
+    setCategoryRecipes(
+      recipes.filter(r => r.categories.includes(selectedCategory.uid))
+    )
+  }, [selectedCategory, recipes])
 
   function selectRecipe() {
     if (!selectedRecipe) return
@@ -79,7 +89,13 @@ export default function RecipeList({ setRecipeTitle }) {
   }
 
   function selectOrder(event) {
+    setSelectedCategory("")
     setSelectedOrder(event.target.value)
+  }
+
+  function selectCategory(event) {
+    setSelectedOrder("")
+    setSelectedCategory(event.target.value)
   }
 
   function addRecipe() {
@@ -125,11 +141,20 @@ export default function RecipeList({ setRecipeTitle }) {
         <Fab onClick={removeRecipe}>
           <DeleteIcon />
         </Fab>
-        <FormControl style={{ minWidth: 200 }} variant="filled">
+        <FormControl
+          style={{ minWidth: 100, marginTop: -7 }}
+          hiddenLabel
+          margin="dense"
+        >
           <InputLabel id="demo-simple-select-label">Orders</InputLabel>
-          <Select onChange={selectOrder} value={selectedOrder}>
+
+          <Select
+            onChange={selectOrder}
+            value={selectedOrder}
+            style={{ marginLeft: 5 }}
+          >
             <MenuItem key="Orders" value="">
-              Orders
+              <em>None</em>
             </MenuItem>
             {(orders || []).map(order => (
               <MenuItem key={order.date} value={order}>
@@ -138,9 +163,35 @@ export default function RecipeList({ setRecipeTitle }) {
             ))}
           </Select>
         </FormControl>
+
+        <FormControl
+          style={{ minWidth: 150, marginTop: -7 }}
+          hiddenLabel
+          margin="dense"
+        >
+          <InputLabel id="demo-simple-select-label">Categories</InputLabel>
+          <Select
+            onChange={selectCategory}
+            value={selectedCategory}
+            style={{ marginLeft: 5 }}
+          >
+            <MenuItem key="Categories" value="">
+              <em>None</em>
+            </MenuItem>
+            {(categories || []).map(category => (
+              <MenuItem key={category.name} value={category}>
+                {category.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         <Grid item xs={12}>
           <Recipes
-            recipes={(selectedOrder && selectedOrder.recipes) || recipes}
+            recipes={
+              (selectedOrder && selectedOrder.recipes) ||
+              (selectedCategory && categoryRecipes) ||
+              recipes
+            }
             setRecipes={setRecipes}
             setSelectedRecipe={setSelectedRecipe}
             setSelectedRecipes={setSelectedRecipes}

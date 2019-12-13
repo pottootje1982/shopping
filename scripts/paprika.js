@@ -59,6 +59,18 @@ PaprikaApi.prototype.downloadRecipe = async function(url) {
   return res.result
 }
 
+function compare(cat1, cat2) {
+  const name1 = cat1.name.toLowerCase()
+  const name2 = cat2.name.toLowerCase()
+  if (name1 < name2) {
+    return -1
+  } else if (name1 > name2) {
+    return 1
+  } else {
+    return 0
+  }
+}
+
 class Paprika {
   constructor(paprikaApi, db) {
     this.paprikaApi = paprikaApi || new PaprikaApi(paprikaUser, paprikaPass)
@@ -77,6 +89,12 @@ class Paprika {
       recipes.push(recipe)
     }
     return recipes
+  }
+
+  categories() {
+    return this.paprikaApi.categories().then(categories => {
+      return categories.sort(compare)
+    })
   }
 
   updateRecipe(recipe) {
