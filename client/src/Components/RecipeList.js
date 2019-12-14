@@ -48,7 +48,9 @@ export default function RecipeList({ setRecipeTitle }) {
 
   useEffect(() => {
     setCategoryRecipes(
-      recipes.filter(r => r.categories.includes(selectedCategory.uid))
+      recipes.filter(
+        r => !r.categories || r.categories.includes(selectedCategory.uid)
+      )
     )
   }, [selectedCategory, recipes])
 

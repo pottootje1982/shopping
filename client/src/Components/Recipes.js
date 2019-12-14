@@ -60,7 +60,8 @@ export default function Recipes({
       backgroundColor: rowData.ingredients.every(i => {
         const mapping = rowData.mappings && rowData.mappings[i.ingredient]
         return (
-          mapping.id !== undefined || mapping.notAvailable || mapping.ignore
+          mapping &&
+          (mapping.id !== undefined || mapping.notAvailable || mapping.ignore)
         )
       })
         ? green[100 + selectedOffset]
