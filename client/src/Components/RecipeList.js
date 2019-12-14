@@ -16,6 +16,8 @@ import Recipes from "./Recipes"
 import { Fab } from "./Styled"
 import getDateString from "./date"
 
+const DEBUG = process.env.NODE_ENV === "development"
+
 export default function RecipeList({ setRecipeTitle }) {
   let [selectedRecipes, setSelectedRecipes] = useState(() => [])
   let [recipes, setRecipes] = useState([])
@@ -28,18 +30,26 @@ export default function RecipeList({ setRecipeTitle }) {
   const [categories, setCategories] = useState()
 
   function selectedFirstRecipe() {
-    server.get("recipes").then(function(result) {
-      const data = result.data
-      recipes = data.recipes
-      setRecipes(recipes)
-      if (recipes.length > 0) {
-        const recipe = recipes[0]
-        setSelectedRecipe(recipe)
-        sync()
-      }
-      setOrders(data.orders)
-      setCategories(data.categories)
-    })
+    if (!DEBUG) {
+      server.get("recipes").then(initialize)
+    } else {
+      const db = require("./stub/db.test.json")
+      const result = { data: { ...db } }
+      initialize(result)
+    }
+  }
+
+  function initialize(result) {
+    const data = result.data
+    recipes = data.recipes
+    setRecipes(recipes)
+    if (recipes.length > 0) {
+      const recipe = recipes[0]
+      setSelectedRecipe(recipe)
+      if (!DEBUG) sync()
+    }
+    setOrders(data.orders)
+    setCategories(data.categories)
   }
 
   useEffect(selectedFirstRecipe, [])

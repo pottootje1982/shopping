@@ -15,6 +15,11 @@ router.get("/", async function(req, res) {
   res.send(orders)
 })
 
+router.post("/product", async function(req, res) {
+  const result = await api.addToShoppingList(req.body)
+  res.send(result)
+})
+
 router.post("/", async function(req, res) {
   await api.login()
   let recipes = req.body.recipes

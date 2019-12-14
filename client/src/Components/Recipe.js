@@ -6,10 +6,12 @@ import {
   ListItem,
   ListItemText,
   Typography,
-  TextField
+  TextField,
+  IconButton
 } from "@material-ui/core"
 import EditIcon from "@material-ui/icons/Edit"
 import TranslateIcon from "@material-ui/icons/Translate"
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
 import ProductSearch from "./ProductSearch"
 import EditAddRecipe from "./EditAddRecipe"
 import blue from "@material-ui/core/colors/blue"
@@ -78,6 +80,10 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
     setSelectedRecipe({ ...selectedRecipe })
   }
 
+  function order(item) {
+    server.post("orders/product", { items: [item] })
+  }
+
   return (
     <Fragment>
       <Grid container item xs={2} spacing={1}>
@@ -135,6 +141,12 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
                     onChange={e => onAdjustQuantity(productInfo[i], e)}
                     onWheel={e => onAdjustQuantityWheel(productInfo[i], e)}
                   />
+                  <IconButton
+                    onClick={e => order(productInfo[i])}
+                    style={{ margin: -15, transform: "scale(.7)" }}
+                  >
+                    <ShoppingCartIcon />
+                  </IconButton>
                 </ListItem>
               ))}
             </List>
