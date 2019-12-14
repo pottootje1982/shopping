@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import blue from "@material-ui/core/colors/blue"
 import green from "@material-ui/core/colors/green"
 import MaterialTable, { MTableToolbar } from "material-table"
-import { Checkbox, FormControlLabel, Grid } from "@material-ui/core"
+import { Checkbox, FormControlLabel, Grid, Link } from "@material-ui/core"
 
 export default function Recipes({
   recipes,
@@ -47,7 +47,15 @@ export default function Recipes({
       field: "name",
       cellStyle: {
         maxHeight: 10
-      }
+      },
+      render: rowData =>
+        rowData.source_url ? (
+          <Link href={rowData.source_url} target="_blank">
+            {rowData.name}
+          </Link>
+        ) : (
+          rowData.name
+        )
     },
     { title: "Created", field: "created", type: "date" }
   ]

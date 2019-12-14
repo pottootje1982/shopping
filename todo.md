@@ -1,7 +1,5 @@
 # Features
 
-- Order only 1 ingredient: 2
-- Click on AH product goes to AH page: 2
 - add translations for quantities: 4
 - recipe link
 
