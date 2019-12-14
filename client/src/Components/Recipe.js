@@ -28,7 +28,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
 
   const recipeId = selectedRecipe.uid
   const mappings = selectedRecipe.mappings
-  const ingredients = selectedRecipe.ingredients
+  const ingredients = selectedRecipe.parsedIngredients
 
   const productInfo = ingredients.map(i => mappings && mappings[i.ingredient])
 
@@ -53,7 +53,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
     const ingredientIndex = ingredients.indexOf(selectedIngredient)
     const recipe = res.data.recipe
     setSelectedRecipe(recipe)
-    setSelectedIngredient(recipe.ingredients[ingredientIndex])
+    setSelectedIngredient(recipe.parsedIngredients[ingredientIndex])
   }
 
   function editRecipeClick() {

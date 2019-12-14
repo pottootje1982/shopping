@@ -65,7 +65,7 @@ export default function Recipes({
       rowData.uid === (selectedRecipe && selectedRecipe.uid) ? 100 : 0
     return {
       maxHeight: 10,
-      backgroundColor: rowData.ingredients.every(i => {
+      backgroundColor: rowData.parsedIngredients.every(i => {
         const mapping = rowData.mappings && rowData.mappings[i.ingredient]
         return (
           mapping &&

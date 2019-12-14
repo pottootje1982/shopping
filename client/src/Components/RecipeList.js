@@ -16,7 +16,8 @@ import Recipes from "./Recipes"
 import { Fab } from "./Styled"
 import getDateString from "./date"
 
-const DEBUG = process.env.NODE_ENV === "development"
+const DEBUG = false
+//const DEBUG = process.env.NODE_ENV === "development"
 
 export default function RecipeList({ setRecipeTitle }) {
   let [selectedRecipes, setSelectedRecipes] = useState(() => [])
@@ -68,7 +69,7 @@ export default function RecipeList({ setRecipeTitle }) {
     if (!selectedRecipe) return
     setRecipeTitle(selectedRecipe.name)
     setRecipeReadyToOrder(
-      selectedRecipe.ingredients.length ===
+      selectedRecipe.parsedIngredients.length ===
         Object.keys(selectedRecipe.mappings || {}).length
     )
     if (!recipes.includes(selectedRecipe)) {
@@ -113,7 +114,7 @@ export default function RecipeList({ setRecipeTitle }) {
   function addRecipe() {
     const created = getDateString()
     setSelectedRecipe({
-      ingredients: [],
+      parsedIngredients: [],
       mappings: [],
       created
     })

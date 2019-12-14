@@ -34,10 +34,14 @@ export default function EditAddRecipe({
     if (!edit) {
       recipe.created = getDateString()
     }
-    delete selectedRecipe.mappings
-    const res = edit
-      ? await server.put("recipes", recipe)
-      : await server.post("recipes", { ...selectedRecipe, ...recipe })
+    let res
+    if (edit) {
+      res = await server.put("recipes", recipe)
+    } else {
+      recipe = { ...selectedRecipe, ...recipe }
+      delete recipe.parsedIngredients
+      res = await server.post("recipes", recipe)
+    }
     setSelectedRecipe(res.data)
   }
 
@@ -76,7 +80,7 @@ export default function EditAddRecipe({
         </ListItem>
         <ListItem>
           <Link href={selectedRecipe.source_url}>
-            {selectedRecipe.source_url}
+            {selectedRecipe.source_url || ""}
           </Link>
         </ListItem>
         <ListItem>
@@ -100,9 +104,7 @@ export default function EditAddRecipe({
           <TextField
             label="Ingredients"
             multiline
-            defaultValue={selectedRecipe.ingredients
-              .map(i => i.full)
-              .join("\n")}
+            defaultValue={selectedRecipe.ingredients}
             inputRef={ingredientsRef}
           />
         </ListItem>

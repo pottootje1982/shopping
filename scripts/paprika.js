@@ -23,6 +23,8 @@ function createZip(recipe, fn) {
 }
 
 PaprikaApi.prototype.upsertRecipe = async function(recipe) {
+  delete recipe.mappings
+  delete recipe.parsedIngredients
   const request = require("request-promise")
   await createZip(JSON.stringify(recipe), "./file.gz")
   const res = await request.post(

@@ -38,7 +38,7 @@ class IngredientProductDb {
     const mappings = await this.getAllMappings()
     recipes.forEach(recipe => {
       const result = {}
-      recipe.ingredients.forEach(i => {
+      recipe.parsedIngredients.forEach(i => {
         const mapping = mappings.find(
           m => m.ingredient === i.ingredient.toLowerCase()
         )

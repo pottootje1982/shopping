@@ -37,7 +37,7 @@ describe("storeRecipe()", () => {
     const recipe = order.recipes[0]
 
     expect(recipe.name).toEqual("Zalm met prei")
-    expect(recipe.ingredients.length).toBe(8)
+    expect(recipe.parsedIngredients.length).toBe(8)
     expect(recipe.mappings.prei.id).toBe(171425)
 
     // Removing shouldn't be necessary since we want to start with empty db before each test

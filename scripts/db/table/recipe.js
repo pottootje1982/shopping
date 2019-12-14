@@ -23,8 +23,8 @@ class RecipeDb {
 
   async translateRecipes(...recipes) {
     recipes.forEach(recipe => {
-      if (typeof recipe.ingredients !== "object") {
-        recipe.ingredients = Ingredients.create(recipe.ingredients)
+      if (!recipe.parsedIngredients) {
+        recipe.parsedIngredients = Ingredients.create(recipe.ingredients)
       }
     })
     await this.translationDb.translateRecipes(...recipes)
@@ -69,6 +69,8 @@ class RecipeDb {
   async editRecipe(recipe) {
     const oldRecipe = await this.getRecipeRaw(recipe.uid)
     const newRecipe = { ...oldRecipe, ...recipe }
+    delete newRecipe.mappings
+    delete newRecipe.parsedIngredients
     this.setHash(newRecipe)
     await this.db
       .get("recipes")
@@ -76,29 +78,25 @@ class RecipeDb {
         uid: recipe.uid
       })
       .assign(newRecipe)
-      .unset("mappings")
       .write()
-    return await this.getRecipeRaw(recipe.uid)
+    return newRecipe
   }
 
   addRecipe(recipe) {
     this.setHash(recipe)
-    this.db
+    return this.db
       .get("recipes")
       .push(recipe)
       .write()
-    return this.getRecipeRaw(recipe.uid)
   }
 
-  async removeRecipe(recipe) {
-    const oldRecipe = await this.getRecipeRaw(recipe.uid)
-    const success = await this.db
+  removeRecipe(recipe) {
+    return this.db
       .get("recipes")
       .remove({
         uid: recipe.uid
       })
       .write()
-    return { success, oldRecipe }
   }
 }
 

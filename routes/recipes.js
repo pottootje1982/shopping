@@ -19,8 +19,9 @@ router.get("/", async function(req, res) {
 })
 
 router.put("/", async function(req, res) {
-  const recipe = await recipeDb.editRecipe(req.body)
-  console.log("Updating Paprika recipe:")
+  let recipe = req.body
+  recipe = await recipeDb.editRecipe(recipe)
+  console.log(`Updating Paprika recipe: ${recipe.name}`)
   paprika.updateRecipe(recipe)
   res.send(await recipeDb.getRecipe(recipe.uid))
 })
@@ -44,17 +45,17 @@ const defaultRecipe = {
 }
 
 router.post("/", async function(req, res) {
-  let recipe = { ...defaultRecipe, ...req.body }
+  const recipe = { ...defaultRecipe, ...req.body }
   recipe.uid = recipe.uid || uuidv1()
-  recipe = await recipeDb.addRecipe(recipe)
+  await recipeDb.addRecipe(recipe)
   console.log("Adding recipe to Paprika:", recipe.name)
   await paprika.updateRecipe(recipe)
   res.send(await recipeDb.getRecipe(recipe.uid))
 })
 
 router.delete("/", async function(req, res) {
-  const { success, oldRecipe } = await recipeDb.removeRecipe(req.body)
-  paprika.deleteRecipe(oldRecipe)
+  const success = await recipeDb.removeRecipe(req.body)
+  paprika.deleteRecipe(req.body)
   res.send(success)
 })
 
@@ -76,7 +77,7 @@ router.post("/download", async (req, res) => {
 router.post("/translate", async function(req, res) {
   const recipe = await recipeDb.getRecipe(req.body.recipeId)
   const translator = new Translator(translationsDb)
-  await translator.translate(recipe.ingredients.map(i => i.ingredient))
+  await translator.translate(recipe.parsedIngredients.map(i => i.ingredient))
   // update recipe with values from cache
   await translationsDb.translateRecipes(recipe)
   const mapping = await ingToProduct.getMappings(recipe)

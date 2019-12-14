@@ -308,7 +308,7 @@ describe("Ingredient", () => {
   it("all ingredients from Paprika can be parsed", async () => {
     const parsedIngredients = recipes
       .slice(0, 12)
-      .map(recipe => recipe.ingredients)
+      .map(recipe => recipe.parsedIngredients)
 
     // const fs = require('fs')
     // fs.writeFile('Output.json', JSON.stringify(parsedIngredients))

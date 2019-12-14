@@ -19,7 +19,7 @@ class OrderDb extends Table {
     for (const order of orders) {
       for (const recipeOrder of order.recipes) {
         const recipe = recipes.find(r => r.uid === recipeOrder.uid)
-        recipeOrder.ingredients = recipe && recipe.ingredients
+        recipeOrder.parsedIngredients = recipe && recipe.parsedIngredients
         recipeOrder.name = recipe && recipe.name
       }
     }
