@@ -9,7 +9,8 @@ import {
   Typography,
   FormControlLabel,
   Checkbox,
-  Button as MuiButton
+  Button as MuiButton,
+  Link
 } from "@material-ui/core"
 import { Button } from "./Styled"
 
@@ -152,10 +153,13 @@ export default function ProductSearch({
                       }
                       alt={item.title}
                     />
-                    <div>
+                    <Link
+                      href={`https://www.ah.nl${item.link}`}
+                      target="_blank"
+                    >
                       {item.title} ({item.price.unitSize}) €
                       {item.price.now.toFixed(2)}
-                    </div>
+                    </Link>
                   </div>
                 </MuiButton>
               </GridListTile>

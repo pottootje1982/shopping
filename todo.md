@@ -1,7 +1,6 @@
 # Features
 
 - add translations for quantities: 4
-- recipe link
 
 * Table
 
