@@ -8,7 +8,7 @@
       "photo": null,
       "uid": "5134b9ac-32fd-4e5c-a6da-681d33cd007f",
       "scale": null,
-      "ingredients": [
+      "parsedIngredients": [
           {
               "full": "slagroom",
               "ingredient": "slagroom",
@@ -224,7 +224,7 @@
       "cook_time": "25 min",
       "prep_time": "15 min",
       "name": "Easy spiced salmon kedgeree",
-      "ingredients": [
+      "parsedIngredients": [
           {
               "full": "300 g Basmati rijst",
               "ingredient": "Basmati rijst",

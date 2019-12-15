@@ -12,6 +12,7 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
 import DeleteIcon from "@material-ui/icons/Delete"
 
 import Recipe from "./Recipe"
+import OrderDialog from "./OrderDialog"
 import Recipes from "./Recipes"
 import { Fab } from "./Styled"
 import getDateString from "./date"
@@ -29,6 +30,7 @@ export default function RecipeList({ setRecipeTitle }) {
   const [selectedCategory, setSelectedCategory] = useState("")
   const [categoryRecipes, setCategoryRecipes] = useState()
   const [categories, setCategories] = useState()
+  const [open, setOpen] = React.useState(false)
 
   function selectedFirstRecipe() {
     if (!DEBUG) {
@@ -88,17 +90,21 @@ export default function RecipeList({ setRecipeTitle }) {
     }
   }
 
-  async function order() {
-    const { data } = await server.post("orders/", {
-      recipes: selectedRecipes
-    })
-    let message = data.failed
-      ? `Following items were not ordered: ${data.failed}`
-      : "All products were successfully ordered"
-    message = data.error
-      ? `Error when ordering recipes: ${data.error}`
-      : message
-    alert(message)
+  async function closeOrderDialog(event, isOk) {
+    setOpen(false)
+
+    if (isOk && event.nativeEvent.key !== "Escape") {
+      const { data } = await server.post("orders/", {
+        recipes: selectedRecipes
+      })
+      let message = data.failed
+        ? `Following items were not ordered: ${data.failed}`
+        : "All products were successfully ordered"
+      message = data.error
+        ? `Error when ordering recipes: ${data.error}`
+        : message
+      alert(message)
+    }
   }
 
   function selectOrder(event) {
@@ -140,12 +146,20 @@ export default function RecipeList({ setRecipeTitle }) {
     }
   }
 
+  function showOrderDialog() {
+    if (selectedRecipes.length === 0) {
+      alert("Please select recipes before ordering")
+      return
+    }
+    setOpen(true)
+  }
+
   return recipes === undefined ? (
     <div>Loading</div>
   ) : (
     <Grid container spacing={1} style={{ padding: 10 }} alignItems="flex-start">
       <Grid container item xs={4} spacing={1}>
-        <Fab onClick={order}>
+        <Fab onClick={showOrderDialog}>
           <ShoppingCartIcon />
         </Fab>
         <Fab onClick={addRecipe}>
@@ -218,6 +232,11 @@ export default function RecipeList({ setRecipeTitle }) {
           setSelectedRecipe={setSelectedRecipe}
         />
       ) : null}
+      <OrderDialog
+        open={open}
+        handleClose={closeOrderDialog}
+        selectedRecipes={selectedRecipes}
+      />
     </Grid>
   )
 }
