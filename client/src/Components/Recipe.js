@@ -30,7 +30,9 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   const mappings = selectedRecipe.mappings
   const ingredients = selectedRecipe.parsedIngredients
 
-  const productInfo = ingredients.map(i => mappings && mappings[i.ingredient])
+  const productInfo = ingredients.map(
+    i => (mappings && mappings[i.ingredient]) || {}
+  )
 
   useEffect(() => {
     setEditOrAddRecipe(addRecipe)
