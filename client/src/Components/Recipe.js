@@ -145,7 +145,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
                   />
                   <IconButton
                     onClick={e => order(productInfo[i])}
-                    style={{ margin: -15, transform: "scale(.7)" }}
+                    style={{ marginRight: -20, marginTop:-20, marginBottom:-20, transform: "scale(.7)" }}
                   >
                     <ShoppingCartIcon />
                   </IconButton>

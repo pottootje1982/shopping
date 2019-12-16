@@ -45,27 +45,25 @@ export default function OrderDialog({ open, handleClose, selectedRecipes }) {
       <DialogContent style={{ minWidth: 900 }}>
         <DialogContentText id="alert-dialog-description">
           <Grid container>
-            <Grid item xs={4}>
+            <Grid item xs={6}>
               <Box fontWeight="fontWeightBold">Ordered items</Box>
               {items.map((item, index) => (
                 <li key={index}>
-                  {item.ingredient}: {item.quantity}{" "}
+                  {item.title || item.ingredient}: {item.quantity}{" "}
                 </li>
               ))}
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={6}>
               <Box fontWeight="fontWeightBold">Unavailable items</Box>
               {notAvailable.map((item, index) => (
                 <li key={index}>
-                  {item.ingredient}: {item.quantity}{" "}
+                  {item.title || item.ingredient}: {item.quantity}{" "}
                 </li>
               ))}
-            </Grid>
-            <Grid item xs={4}>
               <Box fontWeight="fontWeightBold">Ignored items</Box>
               {ignored.map((item, index) => (
                 <li key={index}>
-                  {item.ingredient}: {item.quantity}{" "}
+                  {item.title || item.ingredient}: {item.quantity}{" "}
                 </li>
               ))}
             </Grid>

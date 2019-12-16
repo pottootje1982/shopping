@@ -17,8 +17,7 @@ import Recipes from "./Recipes"
 import { Fab } from "./Styled"
 import getDateString from "./date"
 
-const DEBUG = false
-//const DEBUG = process.env.NODE_ENV === "development"
+const DEBUG = process.env.NODE_ENV === "development"
 
 export default function RecipeList({ setRecipeTitle }) {
   let [selectedRecipes, setSelectedRecipes] = useState(() => [])
@@ -51,7 +50,7 @@ export default function RecipeList({ setRecipeTitle }) {
       setSelectedRecipe(recipe)
       if (!DEBUG) sync()
     }
-    setOrders(data.orders)
+    setOrders(data.orders.sort((a, b) => b.date.localeCompare(a.date)))
     setCategories(data.categories)
   }
 
