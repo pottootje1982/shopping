@@ -36,8 +36,8 @@ export default function OrderDialog({ open, handleClose, selectedRecipes }) {
       onClose={handleClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
-      modal={true}
-      maxWidth={"md"}
+      modal="true"
+      maxWidth="md"
     >
       <DialogTitle id="alert-dialog-title">
         {"Order the following items?"}

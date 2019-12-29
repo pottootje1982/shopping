@@ -60,7 +60,8 @@ class IngredientProductDb {
         mapping => !mapping.ignore && !mapping.notAvailable && mapping.id
       )
     )
-    const items = [].concat(...mappings)
+    var items = [].concat(...mappings)
+    items = items.map(({ quantity, id }) => ({ id, quantity }))
 
     return { items }
   }

@@ -148,7 +148,6 @@ describe("storeMapping()", () => {
         },
         {
           id: 1,
-          ignore: false,
           quantity: 1
         }
       ]

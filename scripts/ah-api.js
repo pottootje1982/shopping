@@ -64,8 +64,10 @@ class AhApi {
   }
 
   async addToShoppingList(items) {
+    const options = this.options(items)
+    console.log(options)
     const resp = await request
-      .post("https://www.ah.nl/common/api/basket/v2/add", this.options(items))
+      .post("https://www.ah.nl/common/api/basket/v2/add", options)
       .catch(err => {
         const error = JSON.parse(err.message.match(/\d+ - (.*)/)[1])
         throw error.message
@@ -91,11 +93,18 @@ class AhApi {
     )
   }
 
+  setCookie(cookie) {
+    this.cookie = cookie
+  }
+
   options(body) {
     return {
       jar: this.jar,
       body,
-      json: true
+      json: true,
+      headers: {
+        Cookie: this.cookie
+      }
     }
   }
 }
