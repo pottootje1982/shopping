@@ -29,11 +29,13 @@ router.post("/", async function(req, res) {
   //await api.login()
   let recipes = req.body.recipes
   const order = await ingToProduct.pickOrder(...recipes)
-  const failed = await api.addToShoppingList(order).catch(error => {
-    res.send({ error })
-  })
-  if (!failed) return
-  if (failed.length > 0) {
+  const { success, error, failed } = await api
+    .addToShoppingList(order)
+    .catch(error => {
+      res.send({ error })
+    })
+  if (!success) res.send({ error })
+  if (failed) {
     res.send({ failed })
   } else {
     orderDb.storeOrder(recipes)

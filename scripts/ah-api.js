@@ -1,4 +1,8 @@
 var request = require("request-promise")
+const fs = require("fs")
+var path = require("path")
+const { ahTokenPresumed, ahToken, ahPresumedMemberNo } = require("../config")
+
 request = request.defaults({
   jar: true
 })
@@ -10,6 +14,7 @@ class AhApi {
       password
     }
     this.ingToProduct = ingToProduct
+    this.cookie = `ah_token_presumed=${ahTokenPresumed}; ah_token=${ahToken}; ahold_presumed_member_no=${ahPresumedMemberNo}`
   }
 
   login() {
@@ -65,21 +70,23 @@ class AhApi {
 
   async addToShoppingList(items) {
     const options = this.options(items)
-    console.log(options)
     const resp = await request
       .post("https://www.ah.nl/common/api/basket/v2/add", options)
       .catch(err => {
         const error = JSON.parse(err.message.match(/\d+ - (.*)/)[1])
         throw error.message
       })
-
+    if (!this.cookie) {
+      return { success: false, error: "No cookie was set" }
+    }
     if (resp.failed.length > 0) {
       const failedInfos = resp.failed.map(fail => this.getProduct(fail.id))
-      return Promise.all(failedInfos).then(infos =>
-        infos.map(info => info.title).join(", ")
-      )
+      return Promise.all(failedInfos).then(infos => ({
+        success: true,
+        failed: infos.map(info => info.title).join(", ")
+      }))
     }
-    return []
+    return { success: true }
   }
 
   addRecipeToShoppingList(recipeId, name, ingredients) {

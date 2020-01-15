@@ -1,5 +1,5 @@
-Number.prototype.pad = function(size) {
-  var s = String(this)
+function pad(s, size) {
+  s = s.toString()
   while (s.length < (size || 2)) {
     s = "0" + s
   }
@@ -8,9 +8,9 @@ Number.prototype.pad = function(size) {
 
 module.exports = function(date) {
   date = date || new Date()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  return `${date.getFullYear()}-${month.pad(2)}-${day.pad(
-    2
-  )} ${date.toLocaleTimeString("en-GB")}`
+  const month = pad(date.getMonth() + 1, 2)
+  const day = pad(date.getDate(), 2)
+  return `${date.getFullYear()}-${month}-${day} ${date.toLocaleTimeString(
+    "en-GB"
+  )}`
 }
