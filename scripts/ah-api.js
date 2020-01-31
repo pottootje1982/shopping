@@ -1,7 +1,7 @@
 var request = require("request-promise")
 const fs = require("fs")
 var path = require("path")
-const { ahTokenPresumed, ahToken, ahPresumedMemberNo } = require("../config")
+const { ahToken, ahPresumedMemberNo } = require("../config")
 
 request = request.defaults({
   jar: true
@@ -14,7 +14,7 @@ class AhApi {
       password
     }
     this.ingToProduct = ingToProduct
-    this.cookie = `ah_token_presumed=${ahTokenPresumed}; ah_token=${ahToken}; ahold_presumed_member_no=${ahPresumedMemberNo}`
+    this.cookie = `ah_token=${ahToken}; ahold_presumed_member_no=${ahPresumedMemberNo}`
   }
 
   login() {
