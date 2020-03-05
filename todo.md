@@ -11,6 +11,8 @@
 - Clicking add to cart button in ingredients list shouldn't look at quantity
 - adjust quantity buttons bigger
 - add AH-items together from different recipes on order
+- By default, recipe amount shouldn't translate directly to shopping cart amount (think of 4 potatoes that will translate to 4 sacks of potatoes). Maybe the Product
+- Make both general product - shopping item that applies to all recipes, or recipe specific mapping. To distinguish between recipe specific mappings & general mappings, we can just identify if a mapping exists for a certain ingredient, if and only if so, we should prompt the user: 'Do you want to use these product throughout all recipes?' 'Yes/No'?
 
 # Bugs
 
