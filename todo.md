@@ -13,6 +13,9 @@
 - add AH-items together from different recipes on order
 - By default, recipe amount shouldn't translate directly to shopping cart amount (think of 4 potatoes that will translate to 4 sacks of potatoes). Maybe the Product
 - Make both general product - shopping item that applies to all recipes, or recipe specific mapping. To distinguish between recipe specific mappings & general mappings, we can just identify if a mapping exists for a certain ingredient, if and only if so, we should prompt the user: 'Do you want to use these product throughout all recipes?' 'Yes/No'?
+- Deselect category or order if when starting to search for recipes
+- Create custom +/- control for Recipe (modifying quantities)
+- Delete order (just from database)
 
 # Bugs
 
@@ -20,3 +23,4 @@
 - Ingredienten: '200g gehalveerde, gewelde pruimen zonder pit': 1
 - don't scroll recipe list when adjusting quantity with mouse wheel: ?
 - kies eerst een order, daarna categorieen: dan komen order recepten bij de categorieen in
+- Don't translate from any language: for instance 'mirin' is now translated as 'dood', because it comes from 'Kurdish'
