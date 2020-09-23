@@ -5,7 +5,7 @@ import {
   Select,
   MenuItem,
   FormControl,
-  InputLabel
+  InputLabel,
 } from "@material-ui/core"
 import AddIcon from "@material-ui/icons/Add"
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
@@ -61,7 +61,7 @@ export default function RecipeList({ setRecipeTitle }) {
   useEffect(() => {
     setCategoryRecipes(
       recipes.filter(
-        r => !r.categories || r.categories.includes(selectedCategory.uid)
+        (r) => !r.categories || r.categories.includes(selectedCategory.uid)
       )
     )
   }, [selectedCategory, recipes])
@@ -75,7 +75,7 @@ export default function RecipeList({ setRecipeTitle }) {
     )
     if (!recipes.includes(selectedRecipe)) {
       const index = recipes.indexOf(
-        recipes.find(r => r.uid === selectedRecipe.uid)
+        recipes.find((r) => r.uid === selectedRecipe.uid)
       )
       const newRecipes = [...recipes]
       if (index >= 0) {
@@ -94,7 +94,7 @@ export default function RecipeList({ setRecipeTitle }) {
 
     if (isOk && event.nativeEvent.key !== "Escape") {
       const { data } = await server.post("orders/", {
-        recipes: selectedRecipes
+        recipes: selectedRecipes,
       })
       let message = data.failed
         ? `Following items were not ordered: ${data.failed}`
@@ -121,7 +121,7 @@ export default function RecipeList({ setRecipeTitle }) {
     setSelectedRecipe({
       parsedIngredients: [],
       mappings: [],
-      created
+      created,
     })
   }
 
@@ -182,7 +182,7 @@ export default function RecipeList({ setRecipeTitle }) {
             <MenuItem key="Orders" value="">
               <em>None</em>
             </MenuItem>
-            {(orders || []).map(order => (
+            {(orders || []).map((order) => (
               <MenuItem key={order.date} value={order}>
                 {order.date}
               </MenuItem>
@@ -204,7 +204,7 @@ export default function RecipeList({ setRecipeTitle }) {
             <MenuItem key="Categories" value="">
               <em>None</em>
             </MenuItem>
-            {(categories || []).map(category => (
+            {(categories || []).map((category) => (
               <MenuItem key={category.name} value={category}>
                 {category.name}
               </MenuItem>
