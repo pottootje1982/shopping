@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react"
+import React, { Fragment, useEffect, useState, useRef } from "react"
 import {
   Grid,
   Paper,
@@ -7,7 +7,7 @@ import {
   ListItemText,
   Typography,
   TextField,
-  IconButton
+  IconButton,
 } from "@material-ui/core"
 import EditIcon from "@material-ui/icons/Edit"
 import TranslateIcon from "@material-ui/icons/Translate"
@@ -21,18 +21,34 @@ import server from "./server"
 import { Fab } from "./Styled"
 
 export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
-  let [products, setProducts] = useState([])
-  let [selectedIngredient, setSelectedIngredient] = useState()
-  let [editOrAddRecipe, setEditOrAddRecipe] = useState()
+  const [products, setProducts] = useState([])
+  const [selectedIngredient, setSelectedIngredient] = useState()
+  const [editOrAddRecipe, setEditOrAddRecipe] = useState()
   const addRecipe = selectedRecipe.uid === undefined
+  const listRef = useRef(null)
 
   const recipeId = selectedRecipe.uid
   const mappings = selectedRecipe.mappings
   const ingredients = selectedRecipe.parsedIngredients
 
   const productInfo = ingredients.map(
-    i => (mappings && mappings[i.ingredient]) || {}
+    (i) => (mappings && mappings[i.ingredient]) || {}
   )
+
+  useEffect(addMouseWheel, [])
+
+  function addMouseWheel() {
+    listRef.current.addEventListener("mousewheel", listWheel, {
+      passive: false,
+    })
+    return removeMouseWheel
+  }
+
+  function removeMouseWheel() {
+    listRef.current.removeEventListener("mousewheel", listWheel, {
+      passive: false,
+    })
+  }
 
   useEffect(() => {
     setEditOrAddRecipe(addRecipe)
@@ -86,10 +102,18 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
     server.post("orders/product", { items: [item] })
   }
 
+  function listWheel(e) {
+    const { clientX, clientY } = e
+    const focusedElement = document.elementFromPoint(clientX, clientY)
+    if (focusedElement.nodeName === "INPUT") {
+      e.preventDefault(true)
+    }
+  }
+
   return (
     <Fragment>
       <Grid container item xs={2} spacing={1}>
-        <Fab onClick={e => translate(recipeId)}>
+        <Fab onClick={(e) => translate(recipeId)}>
           <TranslateIcon />
         </Fab>
         <Fab onClick={editRecipeClick}>
@@ -97,14 +121,18 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
         </Fab>
         <Grid item xs={12} style={{ minHeight: "75vh" }}>
           <Paper style={{ backgroundColor: blue[50] }}>
-            <List dense style={{ maxHeight: "75vh", overflow: "auto" }}>
+            <List
+              ref={listRef}
+              dense
+              style={{ maxHeight: "75vh", overflow: "auto" }}
+            >
               {(ingredients || []).map((item, i) => (
                 <ListItem
                   divider={true}
                   button
                   selected={item === selectedIngredient}
                   key={i}
-                  onClick={e => setSelectedIngredient(item)}
+                  onClick={(e) => setSelectedIngredient(item)}
                 >
                   <ListItemText
                     key={i}
@@ -114,7 +142,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
                           color:
                             productInfo[i].ignore || productInfo[i].notAvailable
                               ? grey[500]
-                              : undefined
+                              : undefined,
                         }}
                       >
                         {item.full}
@@ -137,15 +165,20 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
                     inputProps={{
                       min: 0,
                       max: 99,
-                      step: 1
+                      step: 1,
                     }}
                     style={{ width: 40, height: 40 }}
-                    onChange={e => onAdjustQuantity(productInfo[i], e)}
-                    onWheel={e => onAdjustQuantityWheel(productInfo[i], e)}
+                    onChange={(e) => onAdjustQuantity(productInfo[i], e)}
+                    onWheel={(e) => onAdjustQuantityWheel(productInfo[i], e)}
                   />
                   <IconButton
-                    onClick={e => order(productInfo[i])}
-                    style={{ marginRight: -20, marginTop:-20, marginBottom:-20, transform: "scale(.7)" }}
+                    onClick={(e) => order(productInfo[i])}
+                    style={{
+                      marginRight: -20,
+                      marginTop: -20,
+                      marginBottom: -20,
+                      transform: "scale(.7)",
+                    }}
                   >
                     <ShoppingCartIcon />
                   </IconButton>
