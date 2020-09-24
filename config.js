@@ -7,6 +7,5 @@ module.exports = {
   ahPass: process.env.AH_PASS,
   googleApiKey: process.env.GOOGLE_API_KEY,
   dbConnectionString: process.env.DB_CONNECTION_STRING,
-  ahToken: process.env.ah_token,
-  ahPresumedMemberNo: process.env.ahold_presumed_member_no
+  ah_token_presumed: process.env.ah_token_presumed,
 }

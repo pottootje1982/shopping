@@ -13,17 +13,28 @@ chrome.runtime.onInstalled.addListener(() => {
   console.log("onInstalled...", chrome.cookies)
 })
 
-// listen for sendMessage events
-chrome.runtime.onMessage.addListener(
-  // our event handler
-  function (request, _sender, sendResponse) {
-    const { name } = request
-    console.log(request)
-    if (name === "getCookie") {
-      const { cookieName, url } = request
-      chrome.cookies.get({ url, name: cookieName }, (e) => sendResponse(e))
-      //sendResponse(chrome.cookies.get({ name: "ah_token_presumed" }))
-      return true
-    }
+let tabId
+
+chrome.runtime.onMessage.addListener(function (request, _sender, sendResponse) {
+  const { name } = request
+  if (name === "getCookie") {
+    chrome.tabs.getSelected(null, (tab) => {
+      tabId = tab.id
+    })
+
+    const { cookieName, url } = request
+    chrome.cookies.get({ url, name: cookieName }, (e) => sendResponse(e))
+    return true
   }
-)
+})
+
+chrome.cookies.onChanged.addListener(function (changeInfo) {
+  const { domain, name } = changeInfo.cookie
+  if (
+    domain &&
+    domain.includes("www.ah.nl") &&
+    (name === "ah_token" || name === "ah_token_presumed")
+  ) {
+    chrome.tabs.sendMessage(tabId, changeInfo.cookie)
+  }
+})
