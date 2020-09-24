@@ -1,6 +1,8 @@
 # Features
 
 - add translations for quantities: 4
+- allow for pre-order mobile (when actually ordering on desktop make sure there won't be double orders)
+- name orders
 
 * Table
 
