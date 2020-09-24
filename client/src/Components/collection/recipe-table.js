@@ -4,24 +4,24 @@ import green from "@material-ui/core/colors/green"
 import MaterialTable, { MTableToolbar } from "material-table"
 import { Checkbox, FormControlLabel, Grid, Link } from "@material-ui/core"
 
-export default function Recipes({
+export default function RecipeTable({
   recipes,
   setSelectedRecipe,
   setSelectedRecipes,
-  selectedRecipe
+  selectedRecipe,
 }) {
   let [visibleRecipes, setVisibleRecipes] = useState(recipes)
   let [showSelectedRecipes, setShowSelectedRecipe] = useState(false)
 
   useEffect(() => {
     const filtered = showSelectedRecipes
-      ? recipes.filter(r => r.tableData && r.tableData.checked)
+      ? recipes.filter((r) => r.tableData && r.tableData.checked)
       : recipes
     setVisibleRecipes(filtered)
   }, [showSelectedRecipes, recipes])
 
   function clickRow(_event, row) {
-    const recipe = recipes.find(r => r.uid === row.uid)
+    const recipe = recipes.find((r) => r.uid === row.uid)
     setSelectedRecipe(recipe)
   }
 
@@ -33,31 +33,31 @@ export default function Recipes({
     { field: "uid", hidden: true },
     {
       field: "photo_url",
-      render: rowData =>
+      render: (rowData) =>
         rowData.photo_url && (
           <img
             src={rowData.photo_url && rowData.photo_url.split("?")[0]}
             alt={rowData.name}
             style={{ width: 50, backgroundColor: "#fff", padding: 2 }}
           />
-        )
+        ),
     },
     {
       title: "Name",
       field: "name",
       cellStyle: {
-        maxHeight: 10
+        maxHeight: 10,
       },
-      render: rowData =>
+      render: (rowData) =>
         rowData.source_url ? (
           <Link href={rowData.source_url} target="_blank">
             {rowData.name}
           </Link>
         ) : (
           rowData.name
-        )
+        ),
     },
-    { title: "Created", field: "created", type: "date" }
+    { title: "Created", field: "created", type: "date" },
   ]
 
   function determineRowColor(rowData) {
@@ -65,7 +65,7 @@ export default function Recipes({
       rowData.uid === (selectedRecipe && selectedRecipe.uid) ? 100 : 0
     return {
       maxHeight: 10,
-      backgroundColor: rowData.parsedIngredients.every(i => {
+      backgroundColor: rowData.parsedIngredients.every((i) => {
         const mapping = rowData.mappings && rowData.mappings[i.ingredient]
         return (
           mapping &&
@@ -73,7 +73,7 @@ export default function Recipes({
         )
       })
         ? green[100 + selectedOffset]
-        : blue[50 + selectedOffset]
+        : blue[50 + selectedOffset],
     }
   }
 
@@ -95,10 +95,10 @@ export default function Recipes({
           pageSize: 50,
           pageSizeOptions: [10, 50, 100, 200],
           selection: true,
-          rowStyle: determineRowColor
+          rowStyle: determineRowColor,
         }}
         components={{
-          Toolbar: props => (
+          Toolbar: (props) => (
             <Grid container alignItems="flex-start">
               <MTableToolbar {...props} />
               <FormControlLabel
@@ -109,7 +109,7 @@ export default function Recipes({
                 label="Show selected"
               />
             </Grid>
-          )
+          ),
         }}
       ></MaterialTable>
     )

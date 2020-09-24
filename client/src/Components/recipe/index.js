@@ -12,13 +12,13 @@ import {
 import EditIcon from "@material-ui/icons/Edit"
 import TranslateIcon from "@material-ui/icons/Translate"
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
-import ProductSearch from "./ProductSearch"
-import EditAddRecipe from "./EditAddRecipe"
+import ProductSearch from "../shopping-results"
+import EditAddRecipe from "./edit-add-recipe"
 import blue from "@material-ui/core/colors/blue"
 import green from "@material-ui/core/colors/green"
 import grey from "@material-ui/core/colors/grey"
-import server from "./server"
-import { Fab } from "./Styled"
+import server from "../server"
+import { Fab } from "../styled"
 
 export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   const [products, setProducts] = useState([])

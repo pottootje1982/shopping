@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import server from "./server"
+import server from "../server"
 import {
   Grid,
   Select,
@@ -11,15 +11,15 @@ import AddIcon from "@material-ui/icons/Add"
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
 import DeleteIcon from "@material-ui/icons/Delete"
 
-import Recipe from "./Recipe"
+import Recipe from "../recipe"
 import OrderDialog from "./OrderDialog"
-import Recipes from "./Recipes"
-import { Fab } from "./Styled"
-import getDateString from "./date"
+import RecipeTable from "./recipe-table"
+import { Fab } from "../styled"
+import getDateString from "../date"
 
 const DEBUG = process.env.NODE_ENV === "development"
 
-export default function RecipeList({ setRecipeTitle }) {
+export default function RecipeCollection({ setRecipeTitle }) {
   let [selectedRecipes, setSelectedRecipes] = useState(() => [])
   let [recipes, setRecipes] = useState([])
   let [, setRecipeReadyToOrder] = useState()
@@ -212,7 +212,7 @@ export default function RecipeList({ setRecipeTitle }) {
           </Select>
         </FormControl>
         <Grid item xs={12}>
-          <Recipes
+          <RecipeTable
             recipes={
               (selectedOrder && selectedOrder.recipes) ||
               (selectedCategory && categoryRecipes) ||
