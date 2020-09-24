@@ -3,17 +3,6 @@ const { ahUser, ahPass } = require("../config")
 
 describe("AhApi", () => {
   const ahApi = new AhApi(ahUser, ahPass)
-
-  it.skip("Signs in", async () => {
-    await ahApi.login()
-    await ahApi.mijnLijst()
-  })
-
-  it.skip("Retrieves list", async () => {
-    const list = await ahApi.getList()
-    console.log(list)
-  })
-
   it.skip("It adds item to shopping list", async () => {
     await ahApi.addToShoppingList("bier")
   })
@@ -30,13 +19,13 @@ describe("AhApi", () => {
       "20g pack basil, leaves torn",
       "1 egg, beaten",
       "Lasagna",
-      "Ricotta"
+      "Ricotta",
     ]
     const list = await ahApi.addRecipeToShoppingList(
       undefined,
       "Aubergine, tomato & Parmesan bake (Melanzane alla Parmigiana)",
-      ingredients.map(i => ({
-        name: i
+      ingredients.map((i) => ({
+        name: i,
       }))
     )
     console.log("New shopping list", list)

@@ -16,8 +16,10 @@ import OrderDialog from "./OrderDialog"
 import RecipeTable from "./recipe-table"
 import { Fab } from "../styled"
 import getDateString from "../date"
+import NoTokenDialog from "./no-token-dialog"
+import { getCookie } from "../../cookie"
 
-const DEBUG = process.env.NODE_ENV === "development"
+const DEBUG = false // process.env.NODE_ENV === "development"
 
 export default function RecipeCollection({ setRecipeTitle }) {
   let [selectedRecipes, setSelectedRecipes] = useState(() => [])
@@ -30,6 +32,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
   const [categoryRecipes, setCategoryRecipes] = useState()
   const [categories, setCategories] = useState()
   const [open, setOpen] = React.useState(false)
+  const [noTokenOpen, setNoTokenOpen] = React.useState(false)
 
   function selectedFirstRecipe() {
     if (!DEBUG) {
@@ -93,9 +96,14 @@ export default function RecipeCollection({ setRecipeTitle }) {
     setOpen(false)
 
     if (isOk && event.nativeEvent.key !== "Escape") {
-      const { data } = await server.post("orders/", {
-        recipes: selectedRecipes,
-      })
+      const ah_token = getCookie("ah_token") || ""
+      const { data } = await server.post(
+        "orders/",
+        {
+          recipes: selectedRecipes,
+        },
+        { headers: { ah_token } }
+      )
       let message = data.failed
         ? `Following items were not ordered: ${data.failed}`
         : "All products were successfully ordered"
@@ -146,11 +154,14 @@ export default function RecipeCollection({ setRecipeTitle }) {
   }
 
   function showOrderDialog() {
-    if (selectedRecipes.length === 0) {
+    /*if (!localStorage.getItem("ah_token")) {
+      setNoTokenOpen(true)
+    } else*/ if (
+      selectedRecipes.length === 0
+    ) {
       alert("Please select recipes before ordering")
       return
-    }
-    setOpen(true)
+    } else setOpen(true)
   }
 
   return recipes === undefined ? (
@@ -236,6 +247,10 @@ export default function RecipeCollection({ setRecipeTitle }) {
         handleClose={closeOrderDialog}
         selectedRecipes={selectedRecipes}
       />
+      <NoTokenDialog
+        dialogOpen={noTokenOpen}
+        setDialogOpen={setNoTokenOpen}
+      ></NoTokenDialog>
     </Grid>
   )
 }

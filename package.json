@@ -13,6 +13,7 @@
   "dependencies": {
     "@google-cloud/translate": "^4.2.1",
     "@material-ui/icons": "^4.5.1",
+    "axios": "^0.20.0",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",

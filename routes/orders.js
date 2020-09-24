@@ -9,6 +9,8 @@ require("../scripts/db/tables")("./mongo-client").then((dbs) => {
   ;({ ingToProduct, orderDb } = dbs)
   api = new AhApi(ahUser, ahPass, ingToProduct)
 })
+const config = require("../config")
+const { getCookie } = require("../scripts/cookie")
 
 router.get("/", async function (req, res) {
   const orders = await orderDb.get()
@@ -45,16 +47,23 @@ router.post("/cookie", async function (req, res) {
 })
 
 router.post("/", async function (req, res) {
-  //await api.login()
+  let { ah_token, ah_token_presumed } = req.headers
+  let loginResult
+  if (!ah_token) {
+    ah_token_presumed = ah_token_presumed || config.ah_token_presumed
+    loginResult = await api.login(ah_token_presumed)
+    ah_token = getCookie(loginResult.headers["set-cookie"], "ah_token")
+  }
+
   let recipes = req.body.recipes
   const order = await ingToProduct.pickOrder(...recipes)
   const { success, error, failed } = await api
-    .addToShoppingList(order)
+    .addToShoppingList(order, ah_token)
     .catch((error) => {
       res.send({ error })
     })
   if (!success) res.send({ error })
-  if (failed) {
+  else if (failed) {
     res.send({ failed })
   } else {
     orderDb.storeOrder(recipes)
