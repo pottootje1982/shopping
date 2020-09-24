@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import "./App.css"
-import RecipeList from "./Components/RecipeList"
+import RecipeCollection from "./Components/collection"
 import { Grid, Typography } from "@material-ui/core"
 import { ReactComponent as Hat } from "./hat.svg"
 import blue from "@material-ui/core/colors/blue"
@@ -35,7 +35,7 @@ function App() {
         </Grid>
       </div>
 
-      <RecipeList setRecipeTitle={setRecipeTitle}></RecipeList>
+      <RecipeCollection setRecipeTitle={setRecipeTitle}></RecipeCollection>
     </div>
   )
 }

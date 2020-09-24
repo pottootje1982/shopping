@@ -1,4 +1,4 @@
-import server from "./server"
+import server from "../server"
 import React, { useEffect, useRef } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import {
@@ -10,16 +10,16 @@ import {
   FormControlLabel,
   Checkbox,
   Button as MuiButton,
-  Link
+  Link,
 } from "@material-ui/core"
-import { Button } from "./Styled"
+import { Button } from "../styled"
 
-const styles = makeStyles(theme => ({
+const styles = makeStyles((theme) => ({
   input: {
     height: 36,
     marginRight: 4,
-    marginTop: 3
-  }
+    marginTop: 3,
+  },
 }))
 
 export default function ProductSearch({
@@ -27,7 +27,7 @@ export default function ProductSearch({
   selectedRecipe,
   setSelectedRecipe,
   searchProducts,
-  products
+  products,
 }) {
   const classes = styles()
   const searchRef = useRef(null)
@@ -50,7 +50,7 @@ export default function ProductSearch({
 
     server.post("products/choose", {
       ingredient: bareIngredient,
-      product: product
+      product: product,
     })
   }
 
@@ -86,18 +86,18 @@ export default function ProductSearch({
       alignItems="stretch"
       spacing={1}
     >
-      {bareIngredient.split(" ").map(item => (
+      {bareIngredient.split(" ").map((item) => (
         <Button key={item} variant="outlined" onClick={() => search(item)}>
           {item}
         </Button>
       ))}
       <TextField
         InputProps={{
-          className: classes.input
+          className: classes.input,
         }}
         inputRef={searchRef}
         defaultValue={bareIngredient}
-        onKeyDown={e => textFieldSearch(e)}
+        onKeyDown={(e) => textFieldSearch(e)}
         variant="outlined"
       />
       <FormControlLabel
@@ -142,7 +142,7 @@ export default function ProductSearch({
                     border:
                       (mappings[bareIngredient] || {}).id === item.id
                         ? "2px solid"
-                        : ""
+                        : "",
                   }}
                   title={item.title}
                 >

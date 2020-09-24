@@ -1,15 +1,15 @@
 import React, { useRef } from "react"
 import { Typography, Grid, Link, List, ListItem } from "@material-ui/core"
-import server from "./server"
-import getDateString from "./date"
-import { TextField, Button, Fab } from "./Styled"
+import server from "../server"
+import getDateString from "../date"
+import { TextField, Button, Fab } from "../styled"
 import DownloadIcon from "@material-ui/icons/GetApp"
 const uuidv1 = require("uuid/v1")
 
 export default function EditAddRecipe({
   selectedRecipe,
   setSelectedRecipe,
-  setEditOrAddRecipe
+  setEditOrAddRecipe,
 }) {
   const nameRef = useRef(null)
   const ingredientsRef = useRef(null)
@@ -29,7 +29,7 @@ export default function EditAddRecipe({
       uid,
       ingredients,
       directions,
-      source_url
+      source_url,
     }
     if (!edit) {
       recipe.created = getDateString()
@@ -93,7 +93,7 @@ export default function EditAddRecipe({
         <ListItem>
           <TextField
             InputProps={{
-              readOnly: true
+              readOnly: true,
             }}
             label="Created"
             readOnly
