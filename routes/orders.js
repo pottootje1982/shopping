@@ -17,6 +17,12 @@ router.get("/", async function (req, res) {
   res.send(orders)
 })
 
+router.delete("/:id", async function (req, res) {
+  const { id } = req.params
+  const orders = await orderDb.deleteOrder(id)
+  res.send(orders)
+})
+
 router.post("/product", async function (req, res) {
   const result = await api.addToShoppingList(req.body)
   res.send(result)

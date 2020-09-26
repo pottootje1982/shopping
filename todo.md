@@ -18,7 +18,6 @@
 - Store default recipe quantities (if recipe is unselected, modify default quantities, otherwise keep it local and don't store in database)
 - Deselect category or order if when starting to search for recipes
 - Create custom +/- control for Recipe (modifying quantities)
-- Delete order (just from database)
 
 # Bugs
 

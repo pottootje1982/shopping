@@ -61,11 +61,12 @@ export default function RecipeTable({
   ]
 
   function determineRowColor(rowData) {
+    const ingredients = rowData.parsedIngredients || []
     const selectedOffset =
       rowData.uid === (selectedRecipe && selectedRecipe.uid) ? 100 : 0
     return {
       maxHeight: 10,
-      backgroundColor: rowData.parsedIngredients.every((i) => {
+      backgroundColor: ingredients.every((i) => {
         const mapping = rowData.mappings && rowData.mappings[i.ingredient]
         return (
           mapping &&
