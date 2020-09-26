@@ -17,9 +17,10 @@ import RecipeTable from "./recipe-table"
 import { Fab } from "../styled"
 import getDateString from "../date"
 import NoTokenDialog from "./no-token-dialog"
+import ConfirmationDialog from "./confirmation-dialog"
 import { getCookie } from "../../cookie"
 
-const DEBUG = false // process.env.NODE_ENV === "development"
+const DEBUG = process.env.NODE_ENV === "development"
 
 export default function RecipeCollection({ setRecipeTitle }) {
   let [selectedRecipes, setSelectedRecipes] = useState(() => [])
@@ -31,8 +32,9 @@ export default function RecipeCollection({ setRecipeTitle }) {
   const [selectedCategory, setSelectedCategory] = useState("")
   const [categoryRecipes, setCategoryRecipes] = useState()
   const [categories, setCategories] = useState()
-  const [open, setOpen] = React.useState(false)
-  const [noTokenOpen, setNoTokenOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
+  const [deletionDialogOpen, setDeletionDialogOpen] = useState(false)
+  const [noTokenOpen, setNoTokenOpen] = useState(false)
 
   function selectedFirstRecipe() {
     if (!DEBUG) {
@@ -164,6 +166,19 @@ export default function RecipeCollection({ setRecipeTitle }) {
     } else setOpen(true)
   }
 
+  function deleteOrder() {
+    if (recipes.length > 0 && selectedOrder) {
+      server.delete(`orders/${selectedOrder._id}`)
+      const index = orders.indexOf(selectedOrder)
+      orders.splice(index, 1)
+      setOrders([...orders])
+      const newIndex = Math.min(index, orders.length - 1)
+      setSelectedOrder(orders[newIndex])
+    }
+  }
+
+  const { name } = selectedRecipe || {}
+
   return recipes === undefined ? (
     <div>Loading</div>
   ) : (
@@ -175,9 +190,19 @@ export default function RecipeCollection({ setRecipeTitle }) {
         <Fab onClick={addRecipe}>
           <AddIcon />
         </Fab>
-        <Fab onClick={removeRecipe}>
+        <Fab
+          onClick={() => setDeletionDialogOpen(true)}
+          disabled={!selectedRecipe}
+        >
           <DeleteIcon />
         </Fab>
+        <ConfirmationDialog
+          dialogOpen={deletionDialogOpen}
+          setDialogOpen={setDeletionDialogOpen}
+          title={"Remove recipe"}
+          message={`Are you sure you want to remove ${name}`}
+          onOk={removeRecipe}
+        />
         <FormControl
           style={{ minWidth: 100, marginTop: -7 }}
           hiddenLabel
@@ -200,6 +225,9 @@ export default function RecipeCollection({ setRecipeTitle }) {
             ))}
           </Select>
         </FormControl>
+        <Fab onClick={deleteOrder}>
+          <DeleteIcon />
+        </Fab>
 
         <FormControl
           style={{ minWidth: 150, marginTop: -7 }}
