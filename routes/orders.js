@@ -52,28 +52,34 @@ router.post("/cookie", async function (req, res) {
   res.sendStatus(200)
 })
 
-router.post("/", async function (req, res) {
+router.post("/", async function (req, res, next) {
   let { ah_token, ah_token_presumed } = req.headers
-  let loginResult
   if (!ah_token) {
     ah_token_presumed = ah_token_presumed || config.ah_token_presumed
-    loginResult = await api.login(ah_token_presumed)
-    ah_token = getCookie(loginResult.headers["set-cookie"], "ah_token")
+    try {
+      const loginResult = await api.login(ah_token_presumed)
+      ah_token = getCookie(loginResult.headers["set-cookie"], "ah_token")
+    } catch (err) {
+      res.status(500).send(`Login failed: ${err.message}`)
+      return next(err)
+    }
   }
 
   let recipes = req.body.recipes
   const order = await ingToProduct.pickOrder(...recipes)
-  const { success, error, failed } = await api
-    .addToShoppingList(order, ah_token)
-    .catch((error) => {
-      res.send({ error })
+  try {
+    const failed = await api.addToShoppingList(order, {
+      ah_token,
+      ah_token_presumed,
     })
-  if (!success) res.send({ error })
-  else if (failed) {
-    res.send({ failed })
-  } else {
-    orderDb.storeOrder(recipes)
-    res.sendStatus(200)
+    if (failed) {
+      res.send({ failed })
+    } else {
+      orderDb.storeOrder(recipes)
+      res.status(200).send()
+    }
+  } catch (error) {
+    res.status(500).send(`Error while putting order: ${error.message}`)
   }
 })
 

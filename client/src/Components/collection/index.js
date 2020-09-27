@@ -20,7 +20,7 @@ import NoTokenDialog from "./no-token-dialog"
 import ConfirmationDialog from "./confirmation-dialog"
 import { getCookie } from "../../cookie"
 
-const DEBUG = process.env.NODE_ENV === "development"
+const MOCK_DATA = process.env.REACT_APP_USE_MOCK_DATA === "true"
 
 export default function RecipeCollection({ setRecipeTitle }) {
   let [selectedRecipes, setSelectedRecipes] = useState(() => [])
@@ -37,7 +37,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
   const [noTokenOpen, setNoTokenOpen] = useState(false)
 
   function selectedFirstRecipe() {
-    if (!DEBUG) {
+    if (!MOCK_DATA) {
       server.get("recipes").then(initialize)
     } else {
       const db = require("./stub/db.test.json")
@@ -53,7 +53,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
     if (recipes.length > 0) {
       const recipe = recipes[0]
       setSelectedRecipe(recipe)
-      if (!DEBUG) sync()
+      if (!MOCK_DATA) sync()
     }
     setOrders(data.orders.sort((a, b) => b.date.localeCompare(a.date)))
     setCategories(data.categories)
@@ -99,20 +99,24 @@ export default function RecipeCollection({ setRecipeTitle }) {
 
     if (isOk && event.nativeEvent.key !== "Escape") {
       const ah_token = getCookie("ah_token") || ""
-      const { data } = await server.post(
-        "orders/",
-        {
-          recipes: selectedRecipes,
-        },
-        { headers: { ah_token } }
-      )
-      let message = data.failed
-        ? `Following items were not ordered: ${data.failed}`
-        : "All products were successfully ordered"
-      message = data.error
-        ? `Error when ordering recipes: ${data.error}`
-        : message
-      alert(message)
+      try {
+        const { data } = await server.post(
+          "orders/",
+          {
+            recipes: selectedRecipes,
+          },
+          { headers: { ah_token } }
+        )
+        let message = data.failed
+          ? `Following items were not ordered: ${data.failed}`
+          : "All products were successfully ordered"
+        message = data.error
+          ? `Error when ordering recipes: ${data.error}`
+          : message
+        alert(message)
+      } catch (err) {
+        alert(err.response.data)
+      }
     }
   }
 
