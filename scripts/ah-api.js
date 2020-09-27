@@ -59,25 +59,18 @@ class AhApi {
     return { headers: { Cookie } }
   }
 
-  async addToShoppingList(items, ah_token) {
-    let resp
-    try {
-      resp = await axios.post(
-        "https://www.ah.nl/common/api/basket/v2/add",
-        items,
-        this.cookies({ ah_token })
-      )
-    } catch (err) {
-      return { success: false, error: err.message || err }
-    }
+  async addToShoppingList(items, tokens) {
+    const resp = await axios.post(
+      "https://www.ah.nl/common/api/basket/v2/add",
+      items,
+      this.cookies(tokens)
+    )
     if (resp.failed && resp.failed.length > 0) {
       const failedInfos = resp.failed.map((fail) => this.getProduct(fail.id))
-      return Promise.all(failedInfos).then((infos) => ({
-        success: true,
-        failed: infos.map((info) => info.title).join(", "),
-      }))
+      return Promise.all(failedInfos).then((infos) =>
+        infos.map((info) => info.title).join(", ")
+      )
     }
-    return { success: true }
   }
 
   addRecipeToShoppingList(recipeId, name, ingredients, ah_token) {
