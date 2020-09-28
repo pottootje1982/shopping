@@ -10,6 +10,7 @@
 
 # Improvements
 
+- order button should add order to combo
 - Clicking add to cart button in ingredients list shouldn't look at quantity
 - adjust quantity buttons bigger
 - add AH-items together from different recipes on order (by making sortable table)
@@ -22,7 +23,7 @@
 # Bugs
 
 - after selecting order, it's impossible to edit recipe (even if selecting 'no order' in combo)
-- Prevent 4 tomaten to order 4 packages of tomatoes
-- Ingredienten: '200g gehalveerde, gewelde pruimen zonder pit': 1
 - kies eerst een order, daarna categorieen: dan komen order recepten bij de categorieen in
 - Don't translate from any language: for instance 'mirin' is now translated as 'dood', because it comes from 'Kurdish'
+
+- output.json: 7250

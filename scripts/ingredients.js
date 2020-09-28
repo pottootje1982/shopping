@@ -1,4 +1,12 @@
-const ingredientsRemoval = [/ingrediënt/i, /ingredient/i, /person/i]
+const ingredientsRemoval = [
+  /ingrediënt/i,
+  /ingredient/i,
+  /person/i,
+  /^for the /i,
+  /^to serve/i,
+  /^voor de/i,
+]
+const unpackedIngredients = [/aubergine/i, /courgette/i, /bloemkool/i]
 
 function filter(replacements, str) {
   for (const [find, rep] of replacements) {
@@ -9,7 +17,7 @@ function filter(replacements, str) {
 
 class Ingredients extends Array {
   getProducts() {
-    return this.map(i => i.ingredient)
+    return this.map((i) => i.ingredient)
   }
 
   setProducts(products) {
@@ -20,54 +28,87 @@ class Ingredients extends Array {
 
   static create(ingredients) {
     const list = (ingredients ? ingredients.split("\n") : [])
-      .filter(line => line.trim() != "")
-      .filter(line => ingredientsRemoval.every(r => !r.exec(line)))
-    const ingredientsList = list.map(i => new Ingredient(i))
+      .map((line) => line.trim())
+      .filter((line) => line)
+      .filter((line) => ingredientsRemoval.every((r) => !r.exec(line)))
+    const ingredientsList = list.map((i) => new Ingredient(i))
     return new Ingredients(...ingredientsList)
   }
 
   toString() {
-    return this.map(ing => ing.toString()).join("\n\n")
+    return this.map((ing) => ing.toString()).join("\n\n")
   }
 }
 
+const unitsWithNumber = [/.*ounce/]
+
+const quantMultExp = /([\d-¼½–.,/ ]*)\s*x?\s*/i
+const quantExp = /([\d-¼½–.,/]*)\s*/i
+const quantExpNoSpace = new RegExp(quantMultExp.source.replace(" ", ""), "i")
+const ingrExp = /([^,]*)/.source
+
 const containers = [
-  /\s+cans?/, // otherwise it matches with Tuscan
+  /cans?/,
+  /jars?/,
   /tins?/,
   /tinned/,
   /packs?/,
   /pots?/, // otherwise it matches with potatoes
-  /bag/
+  /bag/,
+
+  /blik/,
 ]
+const containerParsers = containers.map(
+  (unit) =>
+    new RegExp(`${quantExp.source}(.*${unit.source})\\s+${ingrExp}`, "i")
+)
+const multiplicationParsers = containers.map(
+  (unit) =>
+    new RegExp(
+      `${/([\d-¼½–.,/ ]*)\s*x\s*/i.source}(.*\\b${unit.source})\\s+${ingrExp}`,
+      "i"
+    )
+)
 
 const measurements = [
-  "tbsp",
+  ".*tbsp",
   "tbs",
   "tsp",
   "ts",
   "g",
+  "\\d+g",
   "gr",
   "kg",
   "gram",
   "ml",
   "cl",
   "dl",
-  "l",
+  "lt?",
   "cm",
   "el",
   "el.",
   "tl",
   "tl.",
-  "ons"
+  "ons",
 ]
 
-let units = [
-  // adjectives
-  //boneless/,
+const adjectives = [
+  /crushed/,
+  /boneless/,
   /skinless/,
-  /gehalveerde/,
   /young/,
   /slim/,
+  /thick[ly]+/,
+  /sliced/,
+
+  /gewelde?/,
+  /gehalveerde?/,
+  /gepelde?/,
+  /gesneden/,
+].map((adj) => new RegExp(`${adj.source},?`, "i"))
+
+let unitWords = [
+  /skinless/,
 
   // EN
   /bunch/,
@@ -82,12 +123,13 @@ let units = [
   /knob/,
   /splash/,
   /piece/,
-  /clove/,
+  /cloves?/,
   /nest/,
   /strip/,
   /rasher/,
   /sprig/,
   /jar/,
+  /slices?/,
 
   // NL
   /kilo/,
@@ -106,64 +148,54 @@ let units = [
   /stukje/,
   /snufje/,
   /takje/,
-  /vel/
-]
+  /vel/,
+].map((u) => new RegExp(`\\b${u.source}[^\\s]*`, "i"))
 
-const unitsWithNumber = [/.*ounce/]
+const unitWordParsers = unitWords.map(
+  (u) => new RegExp(`^${quantExp.source}(.*${u.source})\\s*${ingrExp}$`, "i")
+)
 
-const quantExp = /([\d-¼½–.,/ ]*)\s*x?\s*/.source
-const quantExpNoSpace = quantExp.replace(" ", "")
-const ingrExp = /([^,]*)/.source
-
-units = [
-  ...containers.map(
-    unit => new RegExp(`^(.*)\\s*(${unit.source})\\s+${ingrExp}`, "i")
-  ),
-  ...units.map(
-    unit => new RegExp(`^(.*)\\s*(${unit.source}[^\\s,]*)${ingrExp}`, "i")
-  ),
+const units = [
   ...measurements.map(
-    unit => new RegExp(`^${quantExp}\\s*(${unit})\\s+${ingrExp}`, "i")
+    (unit) =>
+      new RegExp(`^${quantMultExp.source}\\s*(${unit})\\s+${ingrExp}`, "i")
   ),
   ...unitsWithNumber.map(
-    unit => new RegExp(`${quantExpNoSpace}\\s*(${unit.source})\\s*${ingrExp}`)
-  )
+    (unit) =>
+      new RegExp(
+        `${quantExpNoSpace.source}\\s*(${unit.source})\\s*${ingrExp}`,
+        "i"
+      )
+  ),
 ]
 
 const ingLineReplacements = [
-  [/(.+)(\(.*\))$/, "$1"] // removal of parentheses
+  [/(.+)(\(.*\))$/i, "$1"], // removal of parentheses
+  [/([^\d]),.*$/i, "$1"], // removal of comma
 ]
 
 const ingReplacements = [
-  [/,.*$/, ""], // removal of comma
-  [/(.+)(\(.*\))$/, "$1"], // removal of parentheses
-  [/(\(.*\)\s+)(.+)$/, "$2"] // removal of parentheses
+  [/(.+)(\(.*\))$/i, "$1"], // removal of parentheses
+  [/(\(.*\)\s+)(.+)$/i, "$2"], // removal of parentheses
 ]
 
 class Ingredient {
   constructor(ingredientLine) {
-    let _all, quant, unit, ingr, not_quant
-    {
-      this.full = ingredientLine
-      ingredientLine = this.filterIngLine(ingredientLine)
-      const parsed = this.parse(ingredientLine)
-      if (parsed) {
-        ;[quant, unit, ingr] = parsed
-        const quantRest = new RegExp(`${quantExp}(.*)`, "g").exec(quant)
-        if (quantRest) {
-          ;[_all, quant, not_quant] = quantRest
-          if (!ingr) {
-            ingr = not_quant
-          } else {
-            unit = `${not_quant}${unit}`
-          }
-        }
-      } else {
-        ;[_all, quant, ingr] = new RegExp(`${quantExp}${ingrExp}`, "g").exec(
-          ingredientLine
-        )
-      }
+    let quant, unit, ingr
+
+    ingredientLine = ingredientLine.trim()
+    this.full = ingredientLine
+    ingredientLine = this.filterIngLine(ingredientLine)
+    const parsed = this.parse(ingredientLine)
+    if (parsed) {
+      ;[quant, unit, ingr] = parsed
+    } else {
+      ;[, quant, ingr] = new RegExp(
+        `${quantMultExp.source}${ingrExp}`,
+        "i"
+      ).exec(ingredientLine)
     }
+
     this.ingredient = this.filterIng(ingr)
     quant = quant && quant.trim()
     quant = quant === "" ? undefined : quant
@@ -172,16 +204,42 @@ class Ingredient {
     this.all = [this.quantity, this.unit, this.ingredient]
   }
 
-  parse(unit) {
-    const parsed = units.map(u => u.exec(unit))
-    let elems = parsed.find(u => u != null)
-    if (!elems) return null
-    let ing = elems[3].trim()
-    ing = ing === "" ? undefined : ing
-    return elems ? [elems[1], elems[2], ing] : null
+  match(matches, str) {
+    const parsed = matches.map((u) => u.exec(str))
+    return (parsed.find((u) => u != null) || []).slice(1)
+  }
+
+  parse(rawIng) {
+    let [quant, unit, ingredient] = this.match(multiplicationParsers, rawIng)
+    if (!ingredient) {
+      ;[quant, unit, ingredient] = this.match(containerParsers, rawIng)
+      if (ingredient) {
+        const [match] = measurements.find((m) => unit.match(`\\b${m}`)) || []
+        if (match) {
+          unit = `${quant.trim()} ${unit.trim()}`
+          quant = undefined
+        }
+      }
+    }
+    if (!ingredient) {
+      ;[quant, unit, ingredient] = this.match(unitWordParsers, rawIng)
+      if (!ingredient && unit) {
+        // ingredient - unit can be reversed like 'garlic cloves'
+        const match = unitWords.map((u) => unit.match(u)).find((u) => u)
+        unit = match ? match[0] : unit
+        ingredient = match ? match.input.replace(unit, "") : undefined
+      }
+    }
+    if (!ingredient) [quant, unit, ingredient] = this.match(units, rawIng)
+    if (ingredient) {
+      ingredient = ingredient.trim()
+      ingredient = ingredient === "" ? undefined : ingredient
+      return [quant, unit, ingredient]
+    }
   }
 
   filterIngLine(line) {
+    adjectives.forEach((adj) => (line = line.replace(adj, "")))
     return filter(ingLineReplacements, line)
   }
 
@@ -193,9 +251,22 @@ class Ingredient {
     if (ingredient) {
       this.ingredient = ingredient
       this.full = [this.quantity, this.unit, this.ingredient]
-        .filter(s => s)
+        .filter((s) => s)
         .join(" ")
     }
+  }
+
+  quantityToOrder() {
+    const { ingredient, unit } = this
+    const isPacked = containers.some((c) => unit && unit.match(c))
+    let quantity = this.unit && !isPacked ? 1 : parseInt(this.quantity)
+    const isUnpacked = unpackedIngredients.every((i) => !ingredient.match(i))
+    quantity =
+      quantity === undefined || isNaN(quantity) || (isUnpacked && !isPacked)
+        ? 1
+        : quantity
+
+    return quantity
   }
 
   toString() {

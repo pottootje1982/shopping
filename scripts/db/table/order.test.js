@@ -23,10 +23,10 @@ describe("storeRecipe()", () => {
         mappings: {
           prei: {
             id: 171425,
-            quantity: 1
-          }
-        }
-      }
+            quantity: 1,
+          },
+        },
+      },
     ]
     orderDb.storeOrder(order)
     const orders = await orderDb.getHydrated(recipes)
@@ -51,35 +51,35 @@ describe("storeRecipe()", () => {
         mappings: {
           slagroom: {
             id: 191621,
-            quantity: 1
+            quantity: 1,
           },
           dille: {
             id: 238966,
-            quantity: 1
+            quantity: 1,
           },
           "witte wijn": {
             id: 183474,
-            quantity: 1
+            quantity: 1,
           },
           boter: {
             id: 58082,
-            quantity: 1
+            quantity: 1,
           },
           sjalotjes: {
             id: 160653,
-            quantity: 1
+            quantity: 1,
           },
           boontjes: {
             id: 4102,
-            quantity: 1
+            quantity: 1,
           },
           witvis: { notAvailable: true, ignore: false, quantity: 1 },
           aardappels: {
             id: 111388,
-            quantity: 1
-          }
-        }
-      }
+            quantity: 1,
+          },
+        },
+      },
     ]
     await orderDb.storeOrder(order)
     const orders = await orderDb.get()
@@ -95,7 +95,7 @@ describe("storeRecipe()", () => {
       "sjalotjes",
       "boontjes",
       "witvis",
-      "aardappels"
+      "aardappels",
     ])
   })
 })

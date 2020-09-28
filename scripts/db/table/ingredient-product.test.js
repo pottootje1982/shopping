@@ -16,7 +16,7 @@ describe("storeMapping()", () => {
     const mapping = await ingToProduct.getMapping("pRei")
     expect(mapping.product).toEqual({
       id: 1273124,
-      title: "prei"
+      title: "prei",
     })
   })
 
@@ -25,13 +25,13 @@ describe("storeMapping()", () => {
     const mapping = ingToProduct.getMapping("prei")
     expect(mapping.product).toEqual({
       id: 1273124,
-      title: "prei"
+      title: "prei",
     })
 
     ingToProduct.storeMapping("prei", { id: 4, title: "AH prei" })
     expect(ingToProduct.getMapping("prei").product).toEqual({
       id: 4,
-      title: "AH prei"
+      title: "AH prei",
     })
   })
 
@@ -50,19 +50,19 @@ describe("storeMapping()", () => {
       Prei: { id: 1273124, quantity: 1 },
       Dille: { id: 2, quantity: 1 },
       Honing: {
-        quantity: 1
+        quantity: 1,
       },
       Wijn: {
-        quantity: 1
+        quantity: 1,
       },
       Zalm: { id: 1, quantity: 1 },
       "koriander poeder": {
-        quantity: 1
+        quantity: 1,
       },
       tomaten: {
-        quantity: 1
+        quantity: 1,
       },
-      Aardappels: { id: 3, quantity: 1 }
+      Aardappels: { id: 3, quantity: 1 },
     })
   })
 
@@ -86,28 +86,28 @@ describe("storeMapping()", () => {
       items: [
         {
           id: 1,
-          quantity: 4
+          quantity: 4,
         },
         {
           id: 5,
-          quantity: 1
+          quantity: 1,
         },
         {
           id: 2,
-          quantity: 1
+          quantity: 1,
         },
         {
           id: 3,
-          quantity: 1
+          quantity: 1,
         },
         {
           id: 6,
-          quantity: 1
-        }
-      ]
+          quantity: 1,
+        },
+      ],
     })
     const mappings = await ingToProduct.getAllMappings()
-    expect(mappings.filter(map => map.ingredient === "egg").length).toBe(1)
+    expect(mappings.filter((map) => map.ingredient === "egg").length).toBe(1)
   })
 
   it("does not order ignored items", async () => {
@@ -124,13 +124,13 @@ describe("storeMapping()", () => {
       items: [
         {
           id: 3,
-          quantity: 1
+          quantity: 1,
         },
         {
           id: 2,
-          quantity: 1
-        }
-      ]
+          quantity: 1,
+        },
+      ],
     })
     ingToProduct.storeMapping("kruimige aardappels", {})
     ingToProduct.storeMapping("zout en peper", { id: 1, ignore: false })
@@ -140,17 +140,17 @@ describe("storeMapping()", () => {
       items: [
         {
           id: 3,
-          quantity: 1
+          quantity: 1,
         },
         {
           id: 2,
-          quantity: 1
+          quantity: 1,
         },
         {
           id: 1,
-          quantity: 1
-        }
-      ]
+          quantity: 1,
+        },
+      ],
     })
   })
 
