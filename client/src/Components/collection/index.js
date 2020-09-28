@@ -99,13 +99,14 @@ export default function RecipeCollection({ setRecipeTitle }) {
 
     if (isOk && event.nativeEvent.key !== "Escape") {
       const ah_token = getCookie("ah_token") || ""
+      const ah_token_presumed = getCookie("ah_token_presumed") || ""
       try {
         const { data } = await server.post(
           "orders/",
           {
             recipes: selectedRecipes,
           },
-          { headers: { ah_token } }
+          { headers: { ah_token, ah_token_presumed } }
         )
         let message = data.failed
           ? `Following items were not ordered: ${data.failed}`

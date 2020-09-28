@@ -4,7 +4,7 @@ class IngredientProductDb {
     this.db = db
     this.db
       .defaults({
-        mapping: []
+        mapping: [],
       })
       .write()
   }
@@ -14,7 +14,7 @@ class IngredientProductDb {
     return this.db
       .get(this.tableName)
       .find({
-        ingredient
+        ingredient,
       })
       .upsert({ ingredient, product })
       .write()
@@ -25,7 +25,7 @@ class IngredientProductDb {
     return this.db
       .get(this.tableName)
       .find({
-        ingredient
+        ingredient,
       })
       .value()
   }
@@ -36,18 +36,17 @@ class IngredientProductDb {
 
   async getMappings(...recipes) {
     const mappings = await this.getAllMappings()
-    recipes.forEach(recipe => {
+    recipes.forEach((recipe) => {
       const result = {}
-      recipe.parsedIngredients.forEach(i => {
+      recipe.parsedIngredients.forEach((i) => {
         const mapping = mappings.find(
-          m => m.ingredient === i.ingredient.toLowerCase()
+          (m) => m.ingredient === i.ingredient.toLowerCase()
         )
         const product = (mapping && mapping.product) || {}
-        let quantity = i.unit ? 1 : parseInt(i.quantity)
-        quantity = quantity === undefined || isNaN(quantity) ? 1 : quantity
+        const quantity = i.quantityToOrder()
         result[i.ingredient] = {
           ...product,
-          quantity
+          quantity,
         }
       })
       recipe.mappings = result
@@ -55,9 +54,9 @@ class IngredientProductDb {
   }
 
   async pickOrder(...recipes) {
-    let mappings = recipes.map(recipe =>
+    let mappings = recipes.map((recipe) =>
       Object.values(recipe.mappings).filter(
-        mapping => !mapping.ignore && !mapping.notAvailable && mapping.id
+        (mapping) => !mapping.ignore && !mapping.notAvailable && mapping.id
       )
     )
     var items = [].concat(...mappings)
