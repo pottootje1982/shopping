@@ -7,9 +7,7 @@ import {
   FormControl,
   InputLabel,
 } from "@material-ui/core"
-import AddIcon from "@material-ui/icons/Add"
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
-import DeleteIcon from "@material-ui/icons/Delete"
+import { Add, ShoppingCart, Delete } from "@material-ui/icons"
 
 import Recipe from "../recipe"
 import OrderDialog from "./OrderDialog"
@@ -190,16 +188,16 @@ export default function RecipeCollection({ setRecipeTitle }) {
     <Grid container spacing={1} style={{ padding: 10 }} alignItems="flex-start">
       <Grid container item xs={4} spacing={1}>
         <Fab onClick={showOrderDialog}>
-          <ShoppingCartIcon />
+          <ShoppingCart />
         </Fab>
         <Fab onClick={addRecipe}>
-          <AddIcon />
+          <Add />
         </Fab>
         <Fab
           onClick={() => setDeletionDialogOpen(true)}
           disabled={!selectedRecipe}
         >
-          <DeleteIcon />
+          <Delete />
         </Fab>
         <ConfirmationDialog
           dialogOpen={deletionDialogOpen}
@@ -231,7 +229,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
           </Select>
         </FormControl>
         <Fab onClick={deleteOrder}>
-          <DeleteIcon />
+          <Delete />
         </Fab>
 
         <FormControl
