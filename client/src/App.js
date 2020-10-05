@@ -5,7 +5,7 @@ import { Grid, Typography } from "@material-ui/core"
 import { ReactComponent as Hat } from "./hat.svg"
 import blue from "@material-ui/core/colors/blue"
 
-function App() {
+export default function App() {
   const [recipeTitle, setRecipeTitle] = useState()
 
   return (
@@ -39,5 +39,3 @@ function App() {
     </div>
   )
 }
-
-export default App
