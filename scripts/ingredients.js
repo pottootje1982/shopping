@@ -6,7 +6,13 @@ const ingredientsRemoval = [
   /^to serve/i,
   /^voor de/i,
 ]
-const unpackedIngredients = [/aubergine/i, /courgette/i, /bloemkool/i]
+const wholeIngredients = [
+  /aubergine/i,
+  /courgette/i,
+  /bloemkool/i,
+  /chocola/i,
+  /brood/i,
+]
 
 function filter(replacements, str) {
   for (const [find, rep] of replacements) {
@@ -57,6 +63,8 @@ const containers = [
   /bag/,
 
   /blik/,
+  /pak/,
+  /beker/,
 ]
 const containerParsers = containers.map(
   (unit) =>
@@ -260,9 +268,12 @@ class Ingredient {
     const { ingredient, unit } = this
     const isPacked = containers.some((c) => unit && unit.match(c))
     let quantity = this.unit && !isPacked ? 1 : parseInt(this.quantity)
-    const isUnpacked = unpackedIngredients.every((i) => !ingredient.match(i))
+    const isUnpacked = wholeIngredients.every((i) => !ingredient.match(i))
+    console.log(ingredient, quantity, isPacked, isUnpacked)
     quantity =
-      quantity === undefined || isNaN(quantity) || (isUnpacked && !isPacked)
+      quantity === undefined ||
+      isNaN(quantity) ||
+      (isUnpacked && !isPacked && quantity !== 0)
         ? 1
         : quantity
 

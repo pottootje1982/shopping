@@ -44,8 +44,14 @@ describe("Ingredient", () => {
   })
 
   it("gets unpacked quantity", () => {
-    const i = new Ingredient("3 Aubergines")
+    let i = new Ingredient("3 Aubergines")
     expect(i.quantityToOrder()).toBe(3)
+    i = new Ingredient("2 chocola")
+    expect(i.quantityToOrder()).toBe(2)
+    i = new Ingredient("0 koekjes janne")
+    expect(i.quantityToOrder()).toBe(0)
+    i = new Ingredient("2 pak kwark")
+    expect(i.quantityToOrder()).toBe(2)
   })
 
   it("returns amount of cans (packed)", () => {
