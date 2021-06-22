@@ -10,14 +10,16 @@
       "name": "Launch Program",
       "url": "http://localhost:3000",
       "webRoot": "${workspaceFolder}",
-      "runtimeExecutable": "/home/wouter/.nvm/versions/node/v10.14.2/bin/node"
+      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v14.17.0/bin/node"
     },
     {
       "type": "node",
       "request": "launch",
       "name": "Launch Program npm",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["start"],
+      "runtimeArgs": [
+        "start"
+      ],
       "port": 9229
     }
   ]

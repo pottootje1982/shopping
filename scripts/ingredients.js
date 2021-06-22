@@ -269,7 +269,6 @@ class Ingredient {
     const isPacked = containers.some((c) => unit && unit.match(c))
     let quantity = this.unit && !isPacked ? 1 : parseInt(this.quantity)
     const isUnpacked = wholeIngredients.every((i) => !ingredient.match(i))
-    console.log(ingredient, quantity, isPacked, isUnpacked)
     quantity =
       quantity === undefined ||
       isNaN(quantity) ||
