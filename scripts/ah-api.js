@@ -35,7 +35,12 @@ class AhApi {
       let selectedProduct = products.find((p) => p.id === id)
       const withoutSelected = products.filter((p) => p.id !== id)
       if (!selectedProduct) {
-        selectedProduct = await this.getProduct(id)
+        try {
+          selectedProduct = await this.getProduct(id)
+        }
+        catch (err) {
+          console.log(err)
+        }
       }
       products = selectedProduct
         ? [selectedProduct, ...withoutSelected]
