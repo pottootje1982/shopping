@@ -14,15 +14,13 @@ class RecipeDb {
   }
 
   storeOrder(recipes) {
-    recipes.forEach(recipe => {
-      db.get("recipes")
-        .push(recipe)
-        .write()
+    recipes.forEach((recipe) => {
+      db.get("recipes").push(recipe).write()
     })
   }
 
   async translateRecipes(...recipes) {
-    recipes.forEach(recipe => {
+    recipes.forEach((recipe) => {
       if (!recipe.parsedIngredients) {
         recipe.parsedIngredients = Ingredients.create(recipe.ingredients)
       }
@@ -32,10 +30,7 @@ class RecipeDb {
   }
 
   async getRecipes() {
-    const recipes = await this.db
-      .get("recipes")
-      .cloneDeep()
-      .value()
+    const recipes = await this.db.get("recipes").cloneDeep().value()
     await this.translateRecipes(...recipes)
     return recipes
   }
@@ -45,11 +40,7 @@ class RecipeDb {
   }
 
   getRecipeRaw(uid) {
-    return this.db
-      .get("recipes")
-      .find({ uid })
-      .cloneDeep()
-      .value()
+    return this.db.get("recipes").find({ uid }).cloneDeep().value()
   }
 
   async getRecipe(uid) {
@@ -60,10 +51,7 @@ class RecipeDb {
 
   setHash(recipe) {
     const str = JSON.stringify(recipe)
-    recipe.hash = crypto
-      .createHash("sha256")
-      .update(str)
-      .digest("hex")
+    recipe.hash = crypto.createHash("sha256").update(str).digest("hex")
   }
 
   async editRecipe(recipe) {
@@ -75,7 +63,7 @@ class RecipeDb {
     await this.db
       .get("recipes")
       .find({
-        uid: recipe.uid
+        uid: recipe.uid,
       })
       .assign(newRecipe)
       .write()
@@ -84,17 +72,14 @@ class RecipeDb {
 
   addRecipe(recipe) {
     this.setHash(recipe)
-    return this.db
-      .get("recipes")
-      .push(recipe)
-      .write()
+    return this.db.get("recipes").push(recipe).write()
   }
 
   removeRecipe(recipe) {
     return this.db
       .get("recipes")
       .remove({
-        uid: recipe.uid
+        uid: recipe.uid,
       })
       .write()
   }

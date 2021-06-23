@@ -16,7 +16,7 @@ describe.skip("recipes()", () => {
     expect(recipes.length).toBe(188)
   })
 
-  it("2. find 1 recipe", async done => {
+  it("2. find 1 recipe", async (done) => {
     const recipe = await recipeDb.getRecipeRaw(
       "3fe04f98-8d73-4e9d-a7da-f4c1241aa3c4"
     )

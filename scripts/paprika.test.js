@@ -67,14 +67,14 @@ describe("Index", () => {
     const newRecipe = {
       photo: "ce2f1e34-239d-424b-94fd-98e0bf59c085.jpg",
       uid,
-      name: "Trout traybake with minty hollandaise"
+      name: "Trout traybake with minty hollandaise",
     }
     await paprika.updateRecipe(newRecipe)
     const recipe = apiStub.recipe(uid)
     expect(recipe).toEqual({
       photo: "ce2f1e34-239d-424b-94fd-98e0bf59c085.jpg",
       uid,
-      name: "Trout traybake with minty hollandaise"
+      name: "Trout traybake with minty hollandaise",
     })
   })
 

@@ -6,8 +6,8 @@ const { MongoClient } = require("mongodb")
 async function createDb() {
   const client = await MongoClient.connect(dbConnectionString, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
-  }).catch(err => {
+    useUnifiedTopology: true,
+  }).catch((err) => {
     console.log(err)
   })
 

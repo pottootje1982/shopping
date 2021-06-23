@@ -7,7 +7,7 @@ import {
   DialogContentText,
   DialogTitle,
   Grid,
-  Box
+  Box,
 } from "@material-ui/core"
 
 export default function OrderDialog({ open, handleClose, selectedRecipes }) {
@@ -16,18 +16,18 @@ export default function OrderDialog({ open, handleClose, selectedRecipes }) {
   const [notAvailable, setNotAvailable] = useState([])
 
   useEffect(() => {
-    const mappings = selectedRecipes.map(r =>
+    const mappings = selectedRecipes.map((r) =>
       Object.entries(r.mappings).map(([ingredient, map]) => {
         return {
           ingredient,
-          ...map
+          ...map,
         }
       })
     )
     const items = [].concat(...mappings)
-    setItems(items.filter(i => !i.notAvailable && !i.ignore))
-    setIgnored(items.filter(i => i.ignore))
-    setNotAvailable(items.filter(i => i.notAvailable))
+    setItems(items.filter((i) => !i.notAvailable && !i.ignore))
+    setIgnored(items.filter((i) => i.ignore))
+    setNotAvailable(items.filter((i) => i.notAvailable))
   }, [selectedRecipes])
 
   return (
@@ -71,10 +71,10 @@ export default function OrderDialog({ open, handleClose, selectedRecipes }) {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={e => handleClose(e, false)} color="primary">
+        <Button onClick={(e) => handleClose(e, false)} color="primary">
           Cancel
         </Button>
-        <Button onClick={e => handleClose(e, true)} color="primary" autoFocus>
+        <Button onClick={(e) => handleClose(e, true)} color="primary" autoFocus>
           Ok
         </Button>
       </DialogActions>

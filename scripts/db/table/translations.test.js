@@ -15,7 +15,7 @@ describe("storeTranslations()", () => {
         "vegetable stock",
         "sustainable white fish fillets",
         "rice or naan bread",
-        "leek"
+        "leek",
       ],
       [
         "plantaardige olie",
@@ -26,7 +26,7 @@ describe("storeTranslations()", () => {
         "groentebouillon",
         "duurzame witte visfilets",
         "rijst of naanbrood",
-        "leek" // for some reason it cannot translate leek whereas the web ui can do this
+        "leek", // for some reason it cannot translate leek whereas the web ui can do this
       ]
     )
   })
@@ -35,35 +35,29 @@ describe("storeTranslations()", () => {
     expect(await translationsDb.getTranslation("vegetable oil")).toBe(
       "plantaardige olie"
     )
-    let {
-      success,
-      translations,
-      untranslated
-    } = await translationsDb.getTranslations([
-      "Vegetable oil",
-      "large onion",
-      "garlic clove",
-      "leek"
-    ])
+    let { success, translations, untranslated } =
+      await translationsDb.getTranslations([
+        "Vegetable oil",
+        "large onion",
+        "garlic clove",
+        "leek",
+      ])
     expect(success).toBeTruthy()
     expect(translations).toEqual([
       "plantaardige olie",
       "grote ui",
       "teentje knoflook",
-      "prei"
+      "prei",
     ])
   })
 
   it("returns untranslated", async () => {
-    ;({
-      success,
-      translations,
-      untranslated
-    } = await translationsDb.getTranslations([
-      "unexisting",
-      "large onion",
-      "garlic clove"
-    ]))
+    ;({ success, translations, untranslated } =
+      await translationsDb.getTranslations([
+        "unexisting",
+        "large onion",
+        "garlic clove",
+      ]))
     expect(success).toBe(false)
     expect(translations).toEqual([undefined, "grote ui", "teentje knoflook"])
     expect(untranslated).toEqual(["unexisting"])

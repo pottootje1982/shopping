@@ -7,7 +7,7 @@
       "name": "Start",
       "program": "${workspaceFolder}/app.js",
       "args": ["start"],
-      "console": "integratedTerminal",
+      "console": "integratedTerminal"
     },
     {
       "type": "node",
@@ -19,7 +19,7 @@
       "internalConsoleOptions": "neverOpen",
       "windows": {
         "program": "${workspaceFolder}/node_modules/jest/bin/jest"
-      },
+      }
     }
   ]
 }

@@ -37,8 +37,7 @@ class AhApi {
       if (!selectedProduct) {
         try {
           selectedProduct = await this.getProduct(id)
-        }
-        catch (err) {
+        } catch (err) {
           console.log(err)
         }
       }

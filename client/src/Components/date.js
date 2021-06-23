@@ -6,7 +6,7 @@ function pad(s, size) {
   return s
 }
 
-module.exports = function(date) {
+module.exports = function (date) {
   date = date || new Date()
   const month = pad(date.getMonth() + 1, 2)
   const day = pad(date.getDate(), 2)

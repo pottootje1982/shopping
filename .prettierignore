@@ -2,3 +2,9 @@ recipes.json
 ing-to-product.json
 translations.json
 db.test.json
+
+coverage
+node_modules
+
+package.json
+package-lock.json

@@ -4,21 +4,21 @@ const uuidv1 = require("uuid/v1")
 
 const Paprika = require("../scripts/paprika")
 let recipeDb, translationsDb, ingToProduct, paprika
-require("../scripts/db/tables")("./mongo-client").then(dbs => {
+require("../scripts/db/tables")("./mongo-client").then((dbs) => {
   ;({ recipeDb, ingToProduct, translationsDb, orderDb } = dbs)
   paprika = new Paprika(null, recipeDb)
 })
 
 const Translator = require("../scripts/translator")
 
-router.get("/", async function(req, res) {
+router.get("/", async function (req, res) {
   const recipes = await recipeDb.getRecipes()
   const orders = await orderDb.getHydrated(recipes)
   const categories = await paprika.categories()
   res.send({ recipes, orders, categories })
 })
 
-router.put("/", async function(req, res) {
+router.put("/", async function (req, res) {
   let recipe = req.body
   recipe = await recipeDb.editRecipe(recipe)
   console.log(`Updating Paprika recipe: ${recipe.name}`)
@@ -41,10 +41,10 @@ const defaultRecipe = {
   notes: "",
   on_favorites: false,
   cook_time: "",
-  prep_time: ""
+  prep_time: "",
 }
 
-router.post("/", async function(req, res) {
+router.post("/", async function (req, res) {
   const recipe = { ...defaultRecipe, ...req.body }
   recipe.uid = recipe.uid || uuidv1()
   await recipeDb.addRecipe(recipe)
@@ -53,7 +53,7 @@ router.post("/", async function(req, res) {
   res.send(await recipeDb.getRecipe(recipe.uid))
 })
 
-router.delete("/", async function(req, res) {
+router.delete("/", async function (req, res) {
   const success = await recipeDb.removeRecipe(req.body)
   paprika.deleteRecipe(req.body)
   res.send(success)
@@ -74,10 +74,10 @@ router.post("/download", async (req, res) => {
   res.send(recipe)
 })
 
-router.post("/translate", async function(req, res) {
+router.post("/translate", async function (req, res) {
   const recipe = await recipeDb.getRecipe(req.body.recipeId)
   const translator = new Translator(translationsDb)
-  await translator.translate(recipe.parsedIngredients.map(i => i.ingredient))
+  await translator.translate(recipe.parsedIngredients.map((i) => i.ingredient))
   // update recipe with values from cache
   await translationsDb.translateRecipes(recipe)
   const mapping = await ingToProduct.getMappings(recipe)

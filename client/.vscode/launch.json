@@ -17,9 +17,7 @@
       "request": "launch",
       "name": "Launch Program npm",
       "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "start"
-      ],
+      "runtimeArgs": ["start"],
       "port": 9229
     }
   ]

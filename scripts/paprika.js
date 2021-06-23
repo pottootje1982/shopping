@@ -15,14 +15,14 @@ function createZip(recipe, fn) {
     const zip = zlib.createGzip()
     s.pipe(zip)
       .pipe(writeStream)
-      .on("finish", err => {
+      .on("finish", (err) => {
         if (err) return reject(err)
         else resolve()
       })
   })
 }
 
-PaprikaApi.prototype.upsertRecipe = async function(recipe) {
+PaprikaApi.prototype.upsertRecipe = async function (recipe) {
   delete recipe.mappings
   delete recipe.parsedIngredients
   const request = require("request-promise")
@@ -32,30 +32,30 @@ PaprikaApi.prototype.upsertRecipe = async function(recipe) {
     {
       auth: {
         user: this.email,
-        pass: this.password
+        pass: this.password,
       },
       formData: {
-        data: await fs.createReadStream("./file.gz")
-      }
+        data: await fs.createReadStream("./file.gz"),
+      },
     }
   )
   console.log(res)
   return res
 }
 
-PaprikaApi.prototype.downloadRecipe = async function(url) {
+PaprikaApi.prototype.downloadRecipe = async function (url) {
   const request = require("request-promise")
   const contents = await request.get(url)
   await createZip(contents, "./recipe.gz")
   let res = await request.post(`https://www.paprikaapp.com/api/v1/recipe/`, {
     auth: {
       user: this.email,
-      pass: this.password
+      pass: this.password,
     },
     formData: {
       url,
-      html: await fs.createReadStream("./recipe.gz")
-    }
+      html: await fs.createReadStream("./recipe.gz"),
+    },
   })
   res = JSON.parse(res)
   return res.result
@@ -94,7 +94,7 @@ class Paprika {
   }
 
   categories() {
-    return this.paprikaApi.categories().then(categories => {
+    return this.paprikaApi.categories().then((categories) => {
       return categories.sort(compare)
     })
   }
@@ -114,12 +114,12 @@ class Paprika {
 
   async synchronize(localRecipes) {
     const remoteRecipes = await this.paprikaApi.recipes()
-    const upsertToRemote = localRecipes.filter(local => {
-      const remote = remoteRecipes.find(remote => remote.uid === local.uid)
+    const upsertToRemote = localRecipes.filter((local) => {
+      const remote = remoteRecipes.find((remote) => remote.uid === local.uid)
       return !remote || remote.hash !== local.hash
     })
     for (const local of upsertToRemote) {
-      let remote = remoteRecipes.find(r => r.uid === local.uid)
+      let remote = remoteRecipes.find((r) => r.uid === local.uid)
       remote = remote && (await this.paprikaApi.recipe(remote.uid))
       if (
         !remote ||
@@ -135,8 +135,8 @@ class Paprika {
         this.recipeDb.editRecipe(remote)
       }
     }
-    const insertToLocal = remoteRecipes.filter(recipe => {
-      const local = localRecipes.find(remote => remote.uid === recipe.uid)
+    const insertToLocal = remoteRecipes.filter((recipe) => {
+      const local = localRecipes.find((remote) => remote.uid === recipe.uid)
       return !local
     })
     for (let remote of insertToLocal) {

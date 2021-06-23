@@ -38,16 +38,18 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   useEffect(addMouseWheel, [])
 
   function addMouseWheel() {
-    listRef.current.addEventListener("mousewheel", listWheel, {
-      passive: false,
-    })
+    if (listRef.current)
+      listRef.current.addEventListener("mousewheel", listWheel, {
+        passive: false,
+      })
     return removeMouseWheel
   }
 
   function removeMouseWheel() {
-    listRef.current.removeEventListener("mousewheel", listWheel, {
-      passive: false,
-    })
+    if (listRef.current)
+      listRef.current.removeEventListener("mousewheel", listWheel, {
+        passive: false,
+      })
   }
 
   useEffect(() => {

@@ -16,7 +16,7 @@ describe("translates", () => {
         "vegetable stock",
         "sustainable white fish fillets",
         "rice or naan bread",
-        "leek"
+        "leek",
       ],
       [
         "plantaardige olie",
@@ -27,7 +27,7 @@ describe("translates", () => {
         "groentebouillon",
         "duurzame witte visfilets",
         "rijst of naanbrood",
-        "leek" // for some reason it cannot translate leek whereas the web ui can do this
+        "leek", // for some reason it cannot translate leek whereas the web ui can do this
       ]
     )
     translator = new Translator(translationsDb, 1)
@@ -38,13 +38,13 @@ describe("translates", () => {
       "vegetable oil",
       "large onion",
       "garlic",
-      "madras curry paste"
+      "madras curry paste",
     ])
     expect(dutch).toEqual([
       "plantaardige olie",
       "grote ui",
       "knoflook",
-      "Madras curry pasta"
+      "Madras curry pasta",
     ])
   })
 
@@ -67,10 +67,10 @@ describe("translates", () => {
   it("translates with translator service", async () => {
     const translator = new Translator(
       translationsDb,
-      new TranslatorServiceStub(orig => ["baby nieuwe aardappelen"])
+      new TranslatorServiceStub((orig) => ["baby nieuwe aardappelen"])
     )
     expect(await translator.translate(["baby new potatoes"])).toEqual([
-      "baby nieuwe aardappelen"
+      "baby nieuwe aardappelen",
     ])
   })
 
@@ -84,7 +84,7 @@ describe("translates", () => {
     let items
     const translator = new Translator(
       translationsDb,
-      new TranslatorServiceStub(orig => {
+      new TranslatorServiceStub((orig) => {
         items = orig
         return orig
       })

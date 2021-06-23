@@ -49,10 +49,7 @@ class FileTableWrapper {
 
   upsert(value) {
     if (this.table.value()) {
-      this.table = this.db
-        .get(this.tableName)
-        .find(this.query)
-        .assign(value)
+      this.table = this.db.get(this.tableName).find(this.query).assign(value)
     } else {
       this.table = this.db.get(this.tableName).push(value)
     }

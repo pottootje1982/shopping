@@ -26,7 +26,7 @@ describe("storeRecipe()", () => {
     const uid = "a4623ba1-8bf2-439d-b8bb-4c95c4aa8b18"
     const recipe = await recipeDb.getRecipe(uid)
     expect(recipe.uid).toBe(uid)
-    const dutchIngredients = recipe.parsedIngredients.map(i => i.ingredient)
+    const dutchIngredients = recipe.parsedIngredients.map((i) => i.ingredient)
 
     expect(dutchIngredients).toEqual([
       "plantaardige olie",
@@ -36,7 +36,7 @@ describe("storeRecipe()", () => {
       "tomaten",
       "groentebouillon",
       "duurzame witte visfilets",
-      "rijst of naanbrood"
+      "rijst of naanbrood",
     ])
     expect(recipe.parsedIngredients[0].full).toBe("1 tbsp plantaardige olie")
   })
@@ -47,7 +47,7 @@ describe("storeRecipe()", () => {
 
     await recipeDb.editRecipe({
       uid: "a4623ba1-8bf2-439d-b8bb-4c95c4aa8b18",
-      name: "Super-quick fish curry 2"
+      name: "Super-quick fish curry 2",
     })
     const newRecipe = await recipeDb.getRecipeRaw(uid)
 

@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react"
 import {
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
   Button,
-} from '@material-ui/core'
+} from "@material-ui/core"
 
 export default function ConfirmationDialog({
   title,

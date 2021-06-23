@@ -8,11 +8,8 @@ class Translator {
   }
 
   async translate(itemsToTranslate, source, target) {
-    let {
-      success,
-      translations,
-      untranslated
-    } = await this.cache.getTranslations(itemsToTranslate)
+    let { success, translations, untranslated } =
+      await this.cache.getTranslations(itemsToTranslate)
 
     source = source || "en"
     target = target || "nl"
@@ -22,11 +19,8 @@ class Translator {
       await this.cache.storeTranslations(untranslated, translations)
     }
 
-    ;({
-      success,
-      translations,
-      untranslated
-    } = await this.cache.getTranslations(itemsToTranslate))
+    ;({ success, translations, untranslated } =
+      await this.cache.getTranslations(itemsToTranslate))
 
     return translations
   }

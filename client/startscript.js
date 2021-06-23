@@ -1,5 +1,5 @@
-const cmd=require('node-cmd')
-cmd.run('npm start')
+const cmd = require("node-cmd")
+cmd.run("npm start")
 
 // Use startscript to overcome following issue:
 

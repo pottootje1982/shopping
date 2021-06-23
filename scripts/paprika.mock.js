@@ -1,14 +1,14 @@
 class PaprikaApiStub {
   recipes() {
-    return this.recipeStore.map(r => ({ uid: r.uid, hash: r.hash }))
+    return this.recipeStore.map((r) => ({ uid: r.uid, hash: r.hash }))
   }
 
   recipe(uid) {
-    return this.recipeStore.find(r => r.uid === uid)
+    return this.recipeStore.find((r) => r.uid === uid)
   }
 
   upsertRecipe(recipe) {
-    const found = this.recipeStore.find(r => r.uid === recipe.uid)
+    const found = this.recipeStore.find((r) => r.uid === recipe.uid)
     if (found) {
       this.recipeStore.splice(this.recipeStore.indexOf(found), 1, recipe)
     } else {
@@ -47,7 +47,7 @@ class PaprikaApiStub {
         image_url: null,
         prep_time: "",
         servings: "",
-        nutritional_info: ""
+        nutritional_info: "",
       },
       {
         rating: 0,
@@ -73,7 +73,7 @@ class PaprikaApiStub {
           "1. Heat oven to 200C/fan 180C/gas 6. In a shallow pan, mix together the garlic and 4 tbsp of the olive oil. Cook over a high heat for 3 mins, tip in the tomatoes, then simmer for 8 mins, stirring every now and then. Stir in the tomato purée.\n\n2. Meanwhile, heat a griddle pan until very hot. Brush a few of the aubergines with a little oil, then add to the pan. Cook over a high heat until well browned and cooked through, about 5-7 mins. Turn them halfway through cooking. Lift onto kitchen paper and do the next batch.\n\n3. When all the aubergines are cooked, lay a few of them in the bottom of an ovenproof dish, then spoon over some sauce. Sprinkle with Parmesan and basil leaves. Add seasoning, then repeat this process with the remaining ingredients. Finally, pour the egg over the top, sprinkle over a little more Parmesan, then bake for 20 mins or until the topping is golden.",
         categories: [
           "eb2b8649-1477-4f62-9c7b-239864246748",
-          "f172bbb8-2b65-485d-bb57-3575b7c686bb"
+          "f172bbb8-2b65-485d-bb57-3575b7c686bb",
         ],
         photo_url:
           "http://uploads.paprikaapp.com.s3.amazonaws.com/150068/14354fd0-991f-406d-a32f-c36d9a995c0f.jpg?Signature=tX%2FJz4Dyt%2FlUJn4ZdwH%2B%2BT4ewyU%3D&Expires=1569527941&AWSAccessKeyId=AKIAJA4A42FBJBMX5ARA",
@@ -87,7 +87,7 @@ class PaprikaApiStub {
         prep_time: "10 min",
         servings: "6",
         nutritional_info:
-          "kcalories 225\nprotein 10g\ncarbs 8g\nfat 17g\nsaturates 5g\nfibre 5g\nsugar 7g\nsalt 0.52g"
+          "kcalories 225\nprotein 10g\ncarbs 8g\nfat 17g\nsaturates 5g\nfibre 5g\nsugar 7g\nsalt 0.52g",
       },
       {
         rating: 0,
@@ -102,8 +102,7 @@ class PaprikaApiStub {
         is_pinned: null,
         source: "Bbcgoodfood.com",
         total_time: null,
-        hash:
-          "ae2808c0fa46a7ac90ca3ba41b55e0822e838ffca4cfe62ae1aa5a595fb4222c",
+        hash: "ae2808c0fa46a7ac90ca3ba41b55e0822e838ffca4cfe62ae1aa5a595fb4222c",
         description: null,
         source_url:
           "http://www.bbcgoodfood.com/recipes/4666/superquick-fish-curry",
@@ -125,7 +124,7 @@ class PaprikaApiStub {
         prep_time: "5 min",
         servings: "4",
         nutritional_info:
-          "kcalories 191\nprotein 30g\ncarbs 9g\nfat 5g\nsaturates 1g\nfibre 2g\nsugar 6g\nsalt 0.54g"
+          "kcalories 191\nprotein 30g\ncarbs 9g\nfat 5g\nsaturates 1g\nfibre 2g\nsugar 6g\nsalt 0.54g",
       },
       {
         rating: 0,
@@ -140,8 +139,7 @@ class PaprikaApiStub {
         is_pinned: null,
         source: "Ah.nl",
         total_time: null,
-        hash:
-          "29c2840bcdb320395347378f7932394dfb4b41343cbffcb1d17ae16586174512",
+        hash: "29c2840bcdb320395347378f7932394dfb4b41343cbffcb1d17ae16586174512",
         description: null,
         source_url: "https://www.ah.nl/allerhande/recept/R-R742100/cantuccini",
         difficulty: "Easy",
@@ -162,7 +160,7 @@ class PaprikaApiStub {
         prep_time: "",
         servings: "",
         nutritional_info:
-          "Voedingswaarden\n(per stuk)\nenergie 95 kcal\neiwit 3 g\nkoolhydraten 13 g\nvet 3 g\nwaarvan verzadigd 0 g\nnatrium 50 mg\nvezels 1 g"
+          "Voedingswaarden\n(per stuk)\nenergie 95 kcal\neiwit 3 g\nkoolhydraten 13 g\nvet 3 g\nwaarvan verzadigd 0 g\nnatrium 50 mg\nvezels 1 g",
       },
       {
         rating: 0,
@@ -177,8 +175,7 @@ class PaprikaApiStub {
         is_pinned: null,
         source: "Bbcgoodfood.com",
         total_time: null,
-        hash:
-          "b188913399563904545b4adc688794c9a6791cd6de313e901aae451e9815ca16",
+        hash: "b188913399563904545b4adc688794c9a6791cd6de313e901aae451e9815ca16",
         description: null,
         source_url:
           "https://www.bbcgoodfood.com/recipes/spinach-sweet-potato-lentil-dhal",
@@ -200,8 +197,8 @@ class PaprikaApiStub {
         prep_time: "10 mins",
         servings: "Serves 4",
         nutritional_info:
-          "Calories: 397\nTotal Carbohydrates: 65g\nTotal Fat: 5g\nDietary fiber: 11g\nProtein: 18g\nSaturated fat: 1g\nSodium: 0.6g\nSugar: 19g"
-      }
+          "Calories: 397\nTotal Carbohydrates: 65g\nTotal Fat: 5g\nDietary fiber: 11g\nProtein: 18g\nSaturated fat: 1g\nSodium: 0.6g\nSugar: 19g",
+      },
     ]
   }
 }
