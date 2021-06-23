@@ -25,5 +25,6 @@
 - after selecting order, it's impossible to edit recipe (even if selecting 'no order' in combo)
 - kies eerst een order, daarna categorieen: dan komen order recepten bij de categorieen in
 - Don't translate from any language: for instance 'mirin' is now translated as 'dood', because it comes from 'Kurdish'
+- Get access to s3 images of recipes
 
 - output.json: 7250

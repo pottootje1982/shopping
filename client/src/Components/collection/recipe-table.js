@@ -31,17 +31,18 @@ export default function RecipeTable({
 
   const columns = [
     { field: "uid", hidden: true },
-    {
-      field: "photo_url",
-      render: (rowData) =>
-        rowData.photo_url && (
-          <img
-            src={rowData.photo_url && rowData.photo_url.split("?")[0]}
-            alt={rowData.name}
-            style={{ width: 50, backgroundColor: "#fff", padding: 2 }}
-          />
-        ),
-    },
+    // Forbidden to access S3
+    // {
+    //   field: "photo_url",
+    //   render: (rowData) =>
+    //     rowData.photo_url && (
+    //       <img
+    //         src={rowData.photo_url && rowData.photo_url.split("?")[0]}
+    //         alt={rowData.name}
+    //         style={{ width: 50, backgroundColor: "#fff", padding: 2 }}
+    //       />
+    //     ),
+    // },
     {
       title: "Name",
       field: "name",
