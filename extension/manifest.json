@@ -3,7 +3,12 @@
   "name": "Get AH token",
   "description": "Get AH token",
   "version": "1.0",
-  "permissions": ["cookies", "https://www.ah.nl/*", "http://localhost:3000/*"],
+  "permissions": [
+    "tabs",
+    "cookies",
+    "https://www.ah.nl/*",
+    "http://localhost:3000/*"
+  ],
   "background": {
     "scripts": ["background.js"],
     "persistent": false

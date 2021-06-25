@@ -159,9 +159,9 @@ export default function RecipeCollection({ setRecipeTitle }) {
   }
 
   function showOrderDialog() {
-    /*if (!localStorage.getItem("ah_token")) {
+    if (!getCookie("ah_token")) {
       setNoTokenOpen(true)
-    } else*/ if (selectedRecipes.length === 0) {
+    } else if (selectedRecipes.length === 0) {
       alert("Please select recipes before ordering")
       return
     } else setOpen(true)

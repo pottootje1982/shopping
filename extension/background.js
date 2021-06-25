@@ -15,6 +15,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
 let tabId
 
+// Answering query from gogetmeals in case ah.nl loaded first
 chrome.runtime.onMessage.addListener(function (request, _sender, sendResponse) {
   const { name } = request
   if (name === "getCookie") {
@@ -28,12 +29,14 @@ chrome.runtime.onMessage.addListener(function (request, _sender, sendResponse) {
   }
 })
 
+// Sending cookies to gogetmeals in case gogetmeals got loaded first
 chrome.cookies.onChanged.addListener(function (changeInfo) {
   const { domain, name } = changeInfo.cookie
   if (
     domain &&
     domain.includes("www.ah.nl") &&
-    (name === "ah_token" || name === "ah_token_presumed")
+    (name === "ah_token" || name === "ah_token_presumed") &&
+    tabId
   ) {
     chrome.tabs.sendMessage(tabId, changeInfo.cookie)
   }
