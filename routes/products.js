@@ -1,9 +1,8 @@
 var express = require("express")
 var router = express.Router()
 const AhApi = require("../scripts/ah-api")
-const { dbConnector } = require("../config")
 let recipeDb, ingToProduct, api
-require("../scripts/db/tables")(dbConnector).then((dbs) => {
+require("../scripts/db/tables")("./mongo-client").then((dbs) => {
   ;({ recipeDb, ingToProduct } = dbs)
   api = new AhApi(ingToProduct)
 })
@@ -33,8 +32,11 @@ router.get("/:productId/product", async function (req, res) {
 
 router.get("/mappings", async function (req, res) {
   const recipe = await recipeDb.getRecipe(req.query.uid)
-  await ingToProduct.getMappings(recipe)
-  res.send(recipe.mappings)
+  if (!recipe) return res.sendStatus(404)
+  else {
+    await ingToProduct.getMappings(recipe)
+    res.send(recipe.mappings)
+  }
 })
 
 module.exports = router

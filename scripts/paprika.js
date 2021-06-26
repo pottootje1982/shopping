@@ -1,5 +1,5 @@
 const { PaprikaApi } = require("paprika-api")
-const { paprikaUser, paprikaPass } = require("../config")
+const { PAPRIKA_USER, PAPRIKA_PASS } = require("../config")
 
 const fs = require("fs")
 const zlib = require("zlib")
@@ -75,7 +75,7 @@ function compare(cat1, cat2) {
 
 class Paprika {
   constructor(paprikaApi, db) {
-    this.paprikaApi = paprikaApi || new PaprikaApi(paprikaUser, paprikaPass)
+    this.paprikaApi = paprikaApi || new PaprikaApi(PAPRIKA_USER, PAPRIKA_PASS)
     this.recipeDb = db || recipeDb
   }
 
@@ -100,6 +100,7 @@ class Paprika {
   }
 
   updateRecipe(recipe) {
+    console.log("Updating Paprika recipe:", recipe.name)
     return this.paprikaApi.upsertRecipe(recipe)
   }
 

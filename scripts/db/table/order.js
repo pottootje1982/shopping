@@ -1,6 +1,7 @@
 const getDateStr = require("../../../client/src/Components/date")
 const Table = require("./table")
 const { ObjectId } = require("mongodb")
+const uuidv1 = require("uuid/v1")
 
 class OrderDb extends Table {
   constructor(db) {
@@ -9,10 +10,17 @@ class OrderDb extends Table {
     this.db.defaults({ orders: [] }).write()
   }
 
-  storeOrder(recipes) {
+  async storeOrder(recipes) {
     const date = getDateStr()
     recipes = recipes.map((r) => ({ uid: r.uid, mappings: r.mappings }))
-    return this.store({ date, recipes })
+    const order = { date, recipes }
+    order.uid = uuidv1()
+    await this.store(order)
+    return order
+  }
+
+  getOrder(uid) {
+    return this.db.get("orders").find({ uid }).cloneDeep().value()
   }
 
   deleteOrder(id) {

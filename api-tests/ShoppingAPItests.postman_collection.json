@@ -1,0 +1,796 @@
+{
+	"info": {
+		"_postman_id": "a838e1ae-01f1-475a-9a26-2e47eb09ff89",
+		"name": "Shopping API tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Recipes",
+			"item": [
+				{
+					"name": "recipes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const recipes =  pm.response.json().recipes",
+									"const recipeIds = recipes.map(r=>r.uid)",
+									"",
+									"pm.test('Status code is 200', () => {",
+									"    pm.response.to.have.status(200)",
+									"})",
+									"",
+									"pm.test('First recipe has id existingRecipe', () => {",
+									"    pm.expect(recipes.length).equals(12)",
+									"    pm.expect(recipeIds.includes(pm.variables.get('existingRecipe')), \"Zalm met prei exists\").equals(true)",
+									"",
+									"    const firstRecipe = recipes[0]",
+									"    pm.expect(firstRecipe.ingredients).equals(\"Prei\\nDille\\nBlik tomaten\\nZalm\\n3 Aardappels\\nWijn\\nHoning\\nkoriander poeder\")",
+									"    pm.expect(firstRecipe.name).equals(\"Zalm met prei\")",
+									"",
+									"    pm.expect(recipeIds.includes(pm.variables.get(\"unexistingRecipeToEdit\")), \"Unexisting recipe to edit should not exist\").equals(false)",
+									"})",
+									"",
+									"pm.test('unexistingRecipeToEdit does not exist', () => {",
+									"    pm.expect(recipeIds.includes(pm.variables.get(\"unexistingRecipeToEdit\")), \"Unexisting recipe to edit should not exist\").equals(false)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/recipes",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit unexisting recipes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Edit unexisting recipe returns 404', () => {",
+									"    pm.response.to.have.status(404)",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\": 0,\n    \"photo_hash\": null,\n    \"on_favorites\": false,\n    \"photo\": null,\n    \"uid\": \"{{unexistingRecipeToEdit}}\",\n    \"scale\": null,\n    \"ingredients\": \"test\",\n    \"is_pinned\": null,\n    \"source\": null,\n    \"total_time\": null,\n    \"hash\": \"73901df3e7a6d2ced0b1435c2ba30bab5e0549350c40a7e3f2d9aaa5eb74ced6\",\n    \"description\": null,\n    \"source_url\": \"\",\n    \"difficulty\": null,\n    \"on_grocery_list\": null,\n    \"in_trash\": false,\n    \"directions\": \"\",\n    \"categories\": [],\n    \"photo_url\": null,\n    \"cook_time\": \"\",\n    \"name\": \"test\",\n    \"created\": \"2019-12-06 22:57:49\",\n    \"notes\": \"\",\n    \"photo_large\": null,\n    \"image_url\": null,\n    \"prep_time\": \"\",\n    \"servings\": \"\",\n    \"nutritional_info\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{api}}/recipes",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit existing test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Edit existing recipe returns 200 and recipe with changed properties', () => {",
+									"    pm.response.to.have.status(200)",
+									"    const recipe =  pm.response.json()",
+									"    pm.expect(recipe.ingredients).equals(\"zalm\")",
+									"    pm.expect(recipe.name).equals(\"Zalm met prei edited\")",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uid\": \"{{existingRecipe}}\",\n    \"ingredients\": \"zalm\",\n    \"name\": \"Zalm met prei edited\"\n}"
+						},
+						"url": {
+							"raw": "{{api}}/recipes",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check recipe was edited",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Full recipe collection contains edited recipe', () => {",
+									"    pm.response.to.have.status(200)",
+									"    const recipes =  pm.response.json().recipes",
+									"    pm.expect(recipes.length).equals(12)",
+									"",
+									"    const firstRecipe = recipes[0]",
+									"    pm.expect(firstRecipe.ingredients).equals(\"zalm\")",
+									"    pm.expect(firstRecipe.name).equals(\"Zalm met prei edited\")",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/recipes",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Download",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Full recipe collection contains edited recipe', () => {",
+									"    pm.response.to.have.status(200)",
+									"    const downloadedRecipe = pm.response.json()",
+									"    downloadedRecipe.uid = \"b51566c7-9460-4340-96fb-ea74947feea7\"",
+									"    pm.collectionVariables.set('downloadedRecipe', JSON.stringify(downloadedRecipe))",
+									"    console.log(pm.collectionVariables.get('downloadedRecipe'))",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"url\":\"https://www.bbcgoodfood.com/recipes/spinach-kedgeree-spiced-salmon\"}"
+						},
+						"url": {
+							"raw": "{{api}}/recipes/download?uid=2ce31202-4560-4273-bdfa-06c20ae46084",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"recipes",
+								"download"
+							],
+							"query": [
+								{
+									"key": "uid",
+									"value": "2ce31202-4560-4273-bdfa-06c20ae46084"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add downloaded recipe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Edit existing recipe returns 200 and recipe with added properties', () => {",
+									"    pm.response.to.have.status(200)",
+									"    const recipe =  pm.response.json()",
+									"    pm.expect(recipe.name).equals(\"Spinach kedgeree with spiced salmon\")",
+									"    pm.expect(recipe.source_url).equals(\"https://www.bbcgoodfood.com/recipes/spinach-kedgeree-spiced-salmon\")",
+									"    // TODO: check ingredients, download is broke ATM",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{downloadedRecipe}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/recipes",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check downloaded recipes was added to db",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Full recipe collection contains edited recipe', () => {",
+									"    pm.response.to.have.status(200)",
+									"    const recipes =  pm.response.json().recipes",
+									"",
+									"    console.log(pm.collectionVariables.get('downloadedRecipe'))",
+									"",
+									"    pm.expect(recipes.length).equals(13)",
+									"",
+									"    const lastRecipe = recipes[recipes.length-1]",
+									"    pm.expect(lastRecipe.name).equals(\"Spinach kedgeree with spiced salmon\")",
+									"    pm.expect(lastRecipe.source_url).equals(\"https://www.bbcgoodfood.com/recipes/spinach-kedgeree-spiced-salmon\")",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/recipes",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "translate unexisting recipe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Edit unexisting recipe returns 404', () => {",
+									"    pm.response.to.have.status(404)",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"recipeId\": \"{{unexistingRecipeToEdit}}\"}"
+						},
+						"url": {
+							"raw": "{{api}}/recipes/translate",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"recipes",
+								"translate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "translate recipe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Edit recipe returns 200', () => {",
+									"    pm.response.to.have.status(200)",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"recipeId\": \"{{existingRecipe}}\"}"
+						},
+						"url": {
+							"raw": "{{api}}/recipes/translate",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"recipes",
+								"translate"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check if product nr can be found from AH', ()=>{",
+									"    pm.response.to.have.status(200)",
+									"    const product = pm.response.json()",
+									"    pm.expect(product.id).equals(216032)",
+									"    pm.expect(product.title).equals(\"AH Muskaat pompoen stukjes\")",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/products/216032/product",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"products",
+								"216032",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check if search yields results from AH', ()=>{",
+									"    pm.response.to.have.status(200)",
+									"    const products = pm.response.json()",
+									"    pm.expect(products.length).greaterThan(0)",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/products?query=koriander%20poeder&full=koriander%20poeder",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "koriander%20poeder"
+								},
+								{
+									"key": "full",
+									"value": "koriander%20poeder"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mappings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Has different value for prei', ()=>{",
+									"    pm.response.to.have.status(200)",
+									"    const mappings =  pm.response.json()",
+									"    const differentId = parseInt(pm.environment.get('changeProductIdMapping'))",
+									"    pm.expect(mappings.Prei.id).equals(differentId)",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/products/mappings?uid={{existingRecipe}}",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"products",
+								"mappings"
+							],
+							"query": [
+								{
+									"key": "uid",
+									"value": "{{existingRecipe}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "choose different product for prei",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Returns 200', ()=>{",
+									"    pm.response.to.have.status(200)",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"ingredient\":\"prei\", \"product\":{\"id\": 12312} }"
+						},
+						"url": {
+							"raw": "{{api}}/products/choose",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"products",
+								"choose"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check if mappings changed accordingly",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Has different value for prei', ()=>{",
+									"    pm.response.to.have.status(200)",
+									"    const mappings =  pm.response.json()",
+									"    const differentId = parseInt(pm.environment.get('changeProductIdMapping'))",
+									"",
+									"    pm.expect(mappings[0].id).equals(12312)",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/products/mappings?uid={{existingRecipe}}",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"products",
+								"mappings"
+							],
+							"query": [
+								{
+									"key": "uid",
+									"value": "{{existingRecipe}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/orders",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ah_token",
+								"value": "62052875_82f4-40b4-8cda-b39055c70408.af133e97-bbb2-440f-9bc3-72e796049b78",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"recipes\": [\n        {\n            \"mappings\": {\n                \"baby nieuwe aardappelen\": {\n                    \"id\": 215683,\n                    \"quantity\": 1,\n                    \"title\": \"AH Krieltjes vastkokend voordeel\",\n                    \"price\": {\n                        \"unitInfo\": {\n                            \"price\": 2.09,\n                            \"description\": \"KG\"\n                        },\n                        \"now\": 2.09,\n                        \"unitSize\": \"1 kg\"\n                    }\n                }\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{api}}/orders",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"items\": [\n        {\n            \"id\": 215683,\n            \"quantity\": 1\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{api}}/orders/product",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"orders",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete order",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "ah_token",
+								"type": "text",
+								"value": "62052875_82f4-40b4-8cda-b39055c70408.af133e97-bbb2-440f-9bc3-72e796049b78",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"recipes\": [\n        {\n            \"mappings\": {\n                \"baby nieuwe aardappelen\": {\n                    \"id\": 215683,\n                    \"quantity\": 1,\n                    \"title\": \"AH Krieltjes vastkokend voordeel\",\n                    \"price\": {\n                        \"unitInfo\": {\n                            \"price\": 2.09,\n                            \"description\": \"KG\"\n                        },\n                        \"now\": 2.09,\n                        \"unitSize\": \"1 kg\"\n                    }\n                }\n            }\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{api}}/orders/5f6e555abcba6def4a46aae3",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"orders",
+								"5f6e555abcba6def4a46aae3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "downloadedRecipe",
+			"value": ""
+		}
+	]
+}

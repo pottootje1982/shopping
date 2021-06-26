@@ -81,7 +81,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
     if (!selectedRecipe) return
     setRecipeTitle(selectedRecipe.name)
     setRecipeReadyToOrder(
-      selectedRecipe.parsedIngredients.length ===
+      selectedRecipe.parsedIngredients?.length ===
         Object.keys(selectedRecipe.mappings || {}).length
     )
     if (!recipes.includes(selectedRecipe)) {
@@ -107,7 +107,6 @@ export default function RecipeCollection({ setRecipeTitle }) {
       try {
         const order = createOrder(selectedRecipes)
         document.cookie = `order=${JSON.stringify(order)}`
-
         server.post("orders/", { recipes: selectedRecipes })
       } catch (err) {
         alert(err.response.data)

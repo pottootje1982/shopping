@@ -1,5 +1,6 @@
 const { Ingredients } = require("../../ingredients")
 var crypto = require("crypto")
+const uuidv1 = require("uuid/v1")
 
 class RecipeDb {
   constructor(db, translationDb, ingToProduct) {
@@ -21,7 +22,10 @@ class RecipeDb {
 
   async translateRecipes(...recipes) {
     recipes.forEach((recipe) => {
-      if (!recipe.parsedIngredients) {
+      if (
+        !recipe.parsedIngredients ||
+        recipe.parsedIngredients.constructor.name != "Ingredients"
+      ) {
         recipe.parsedIngredients = Ingredients.create(recipe.ingredients)
       }
     })
@@ -45,7 +49,7 @@ class RecipeDb {
 
   async getRecipe(uid) {
     const recipe = await this.getRecipeRaw(uid)
-    await this.translateRecipes(recipe)
+    if (recipe) await this.translateRecipes(recipe)
     return recipe
   }
 
@@ -56,6 +60,7 @@ class RecipeDb {
 
   async editRecipe(recipe) {
     const oldRecipe = await this.getRecipeRaw(recipe.uid)
+    if (!oldRecipe) return null
     const newRecipe = { ...oldRecipe, ...recipe }
     delete newRecipe.mappings
     delete newRecipe.parsedIngredients
@@ -71,6 +76,8 @@ class RecipeDb {
   }
 
   addRecipe(recipe) {
+    //delete recipe.parsedIngredients
+    recipe.uid = recipe.uid || uuidv1()
     this.setHash(recipe)
     return this.db.get("recipes").push(recipe).write()
   }

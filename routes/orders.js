@@ -1,11 +1,11 @@
 "use strict"
 
-const config = require("../config")
+const { AH_USER, AH_PASS, AH_API } = require("../config")
 var express = require("express")
 var router = express.Router()
 const AhApi = require("../scripts/ah-api")
 let ingToProduct, orderDb, api
-require("../scripts/db/tables")(config.dbConnector).then((dbs) => {
+require("../scripts/db/tables")("./mongo-client").then((dbs) => {
   ;({ ingToProduct, orderDb } = dbs)
   api = new AhApi(ingToProduct)
 })
@@ -18,12 +18,14 @@ router.get("/", async function (_req, res) {
 router.delete("/:id", async function (req, res) {
   const { id } = req.params
   const orders = await orderDb.deleteOrder(id)
-  res.send(orders)
+  if (orders) res.send(orders)
+  else res.sendStatus(404)
 })
 
 router.post("/product", async function (req, res) {
-  const result = await api.addToShoppingList(req.body)
-  res.send(result)
+  const { success, failures } = await api.addToShoppingList(req.body)
+  if (success) return res.sendStatus(200)
+  else res.send({ failures })
 })
 
 var path = require("path")

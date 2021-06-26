@@ -1,18 +1,17 @@
 var express = require("express")
 const router = express.Router()
-const uuidv1 = require("uuid/v1")
-const { dbConnector, useMemoryDb } = require("../config")
+const { PAPRIKA_API } = require("../config")
 
-const Paprika = require("../scripts/paprika")
+const Paprika = require(PAPRIKA_API)
 let recipeDb, translationsDb, ingToProduct, paprika
-require("../scripts/db/tables")(dbConnector).then((dbs) => {
+require("../scripts/db/tables")("./mongo-client").then((dbs) => {
   ;({ recipeDb, ingToProduct, translationsDb, orderDb } = dbs)
   paprika = new Paprika(null, recipeDb)
 })
 
 const Translator = require("../scripts/translator")
 
-router.get("/", async function (req, res) {
+router.get("/", async function (_req, res) {
   const recipes = await recipeDb.getRecipes()
   const orders = await orderDb.getHydrated(recipes)
   const categories = await paprika.categories()
@@ -22,9 +21,8 @@ router.get("/", async function (req, res) {
 router.put("/", async function (req, res) {
   let recipe = req.body
   recipe = await recipeDb.editRecipe(recipe)
-  console.log(`Updating Paprika recipe: ${recipe.name}`)
   paprika.updateRecipe(recipe)
-  res.send(await recipeDb.getRecipe(recipe.uid))
+  recipe ? res.send(await recipeDb.getRecipe(recipe.uid)) : res.sendStatus(404)
 })
 
 const defaultRecipe = {
@@ -47,9 +45,7 @@ const defaultRecipe = {
 
 router.post("/", async function (req, res) {
   const recipe = { ...defaultRecipe, ...req.body }
-  recipe.uid = recipe.uid || uuidv1()
   await recipeDb.addRecipe(recipe)
-  console.log("Adding recipe to Paprika:", recipe.name)
   await paprika.updateRecipe(recipe)
   res.send(await recipeDb.getRecipe(recipe.uid))
 })
@@ -61,10 +57,8 @@ router.delete("/", async function (req, res) {
 })
 
 router.get("/sync", async (_req, res) => {
-  if (!useMemoryDb) {
-    const result = await paprika.synchronize(await recipeDb.getRecipesRaw())
-    res.send(result)
-  } else res.status(200).send()
+  const result = await paprika.synchronize(await recipeDb.getRecipesRaw())
+  res.send(result)
 })
 
 router.post("/download", async (req, res) => {
@@ -79,12 +73,22 @@ router.post("/download", async (req, res) => {
 
 router.post("/translate", async function (req, res) {
   const recipe = await recipeDb.getRecipe(req.body.recipeId)
-  const translator = new Translator(translationsDb)
-  await translator.translate(recipe.parsedIngredients.map((i) => i.ingredient))
-  // update recipe with values from cache
-  await translationsDb.translateRecipes(recipe)
-  const mapping = await ingToProduct.getMappings(recipe)
-  res.send({ recipe, mapping })
+  if (!recipe) res.sendStatus(404)
+  else {
+    const translator = new Translator(translationsDb)
+    try {
+      await translator.translate(
+        recipe.parsedIngredients.map((i) => i.ingredient)
+      )
+      // update recipe with values from cache
+      await translationsDb.translateRecipes(recipe)
+      const mapping = await ingToProduct.getMappings(recipe)
+      res.send({ recipe, mapping })
+    } catch ({ code, errors }) {
+      console.log(errors)
+      res.status(code).send(errors)
+    }
+  }
 })
 
 module.exports = router

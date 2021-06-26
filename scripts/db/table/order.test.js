@@ -28,7 +28,7 @@ describe("storeRecipe()", () => {
         },
       },
     ]
-    orderDb.storeOrder(order)
+    await orderDb.storeOrder(order)
     const orders = await orderDb.getHydrated(recipes)
     expect(orders.length).toBe(1)
     order = orders[0]

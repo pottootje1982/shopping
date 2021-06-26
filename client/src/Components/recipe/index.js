@@ -28,8 +28,8 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   const listRef = useRef(null)
 
   const recipeId = selectedRecipe.uid
-  const mappings = selectedRecipe.mappings
-  const ingredients = selectedRecipe.parsedIngredients
+  const mappings = selectedRecipe.mappings || []
+  const ingredients = selectedRecipe.parsedIngredients || []
 
   const productInfo = ingredients.map(
     (i) => (mappings && mappings[i.ingredient]) || {}

@@ -1,5 +1,5 @@
 const createDb = require("../tables")
-const { ahUser, ahPass } = require("../../../config")
+const { AH_USER, AH_PASS } = require("../../../config")
 
 describe("storeMapping()", () => {
   let ingToProduct, recipeDb
@@ -156,7 +156,7 @@ describe("storeMapping()", () => {
 
   it.skip("hydrates ingredient product maps", async () => {
     const AhApi = require("../../ah-api")
-    const ahApi = new AhApi(ahUser, ahPass)
+    const ahApi = new AhApi(AH_USER, AH_PASS)
     const mappings = await ingToProduct.getAllMappings()
     for (const mapping of mappings) {
       if (typeof mapping.product === "number") {

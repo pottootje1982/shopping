@@ -75,7 +75,7 @@ describe("translates", () => {
   })
 
   it("does not translate already translated strings", async () => {
-    const { translationsDb } = await createDb("./memory-db", null)
+    const { translationsDb } = await createDb("./memory-db")
 
     translationsDb.storeTranslations(
       ["baby new potatoes"],
