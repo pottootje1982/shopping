@@ -1,18 +1,18 @@
 "use strict"
 
+const config = require("../config")
 var express = require("express")
 var router = express.Router()
 const AhApi = require("../scripts/ah-api")
 const { ahUser, ahPass } = require("../config")
 let ingToProduct, orderDb, api
-require("../scripts/db/tables")("./mongo-client").then((dbs) => {
+require("../scripts/db/tables")(config.dbConnector).then((dbs) => {
   ;({ ingToProduct, orderDb } = dbs)
   api = new AhApi(ahUser, ahPass, ingToProduct)
 })
-const config = require("../config")
 const { getCookie } = require("../scripts/cookie")
 
-router.get("/", async function (req, res) {
+router.get("/", async function (_req, res) {
   const orders = await orderDb.get()
   res.send(orders)
 })

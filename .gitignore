@@ -4,3 +4,4 @@ node_modules
 file.gz
 recipe.gz
 scripts/cookie.json
+extension.pem

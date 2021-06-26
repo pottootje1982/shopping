@@ -16,7 +16,7 @@
 - add AH-items together from different recipes on order (by making sortable table)
 - Make both general product - shopping item that applies to all recipes, or recipe specific mapping. To distinguish between recipe specific mappings & general mappings, we can just identify if a mapping exists for a certain ingredient, if and only if so, we should prompt the user: 'Do you want to use these product throughout all recipes?' 'Yes/No'?
 - Store default recipe quantities (if recipe is unselected, modify default quantities, otherwise keep it local and don't store in database)
-- Deselect category or order if when starting to search for recipes
+- Deselect category or order when starting to search for recipes
 - Create custom +/- control for Recipe (modifying quantities)
 
 # Bugs

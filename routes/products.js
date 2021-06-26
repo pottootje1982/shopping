@@ -1,9 +1,9 @@
 var express = require("express")
 var router = express.Router()
 const AhApi = require("../scripts/ah-api")
-const { ahUser, ahPass } = require("../config")
+const { ahUser, ahPass, dbConnector } = require("../config")
 let recipeDb, ingToProduct, api
-require("../scripts/db/tables")("./mongo-client").then((dbs) => {
+require("../scripts/db/tables")(dbConnector).then((dbs) => {
   ;({ recipeDb, ingToProduct } = dbs)
   api = new AhApi(ahUser, ahPass, ingToProduct)
 })
