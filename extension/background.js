@@ -1,43 +1,41 @@
-function getCookie(name) {
-  // eslint-disable-next-line no-useless-escape
-  console.log(chrome.cookies)
-  const escape = (s) => s.replace(/([.*+?\^${}()|\[\]\/\\])/g, "\\$1")
-  const match = document.cookie.match(
-    RegExp("(?:^|;\\s*)" + escape(name) + "=([^;]*)")
-  )
+const tabIds = {}
 
-  return match ? match[1] : null
-}
-
-chrome.runtime.onInstalled.addListener(() => {
-  console.log("onInstalled...", chrome.cookies)
-})
-
-let tabId
-
-// Answering query from gogetmeals in case ah.nl loaded first
-chrome.runtime.onMessage.addListener(function (request, _sender, sendResponse) {
-  const { name } = request
-  if (name === "getCookie") {
+// Registering AH tab id, that we can use to send an order to
+chrome.runtime.onMessage.addListener(function (request) {
+  const { name, tabName } = request
+  if (name === "register") {
     chrome.tabs.getSelected(null, (tab) => {
-      tabId = tab.id
+      tabIds[tabName] = tab.id
     })
-
-    const { cookieName, url } = request
-    chrome.cookies.get({ url, name: cookieName }, (e) => sendResponse(e))
     return true
   }
 })
 
-// Sending cookies to gogetmeals in case gogetmeals got loaded first
-chrome.cookies.onChanged.addListener(function (changeInfo) {
-  const { domain, name } = changeInfo.cookie
-  if (
-    domain &&
-    domain.includes("www.ah.nl") &&
-    (name === "ah_token" || name === "ah_token_presumed") &&
-    tabId
-  ) {
-    chrome.tabs.sendMessage(tabId, changeInfo.cookie)
+// Cookie listener that will send order from cookie to AH tab (that has tabId)
+chrome.cookies.onChanged.addListener(({ cookie, removed } = {}) => {
+  const { domain, name, value } = cookie
+  if (!removed) {
+    if (
+      domain &&
+      (domain.includes("localhost") || domain.includes("gogetmeals")) &&
+      name === "order"
+    ) {
+      const order = JSON.parse(value)
+
+      if (tabIds.ah) {
+        chrome.tabs.sendMessage(tabIds.ah, order, function (response = {}) {
+          const { message } = response
+          chrome.tabs.sendMessage(tabIds.shopping, {
+            ...response,
+            message: message || "NO_RESPONSE",
+          })
+        })
+      } else if (tabIds.shopping) {
+        chrome.tabs.sendMessage(tabIds.shopping, {
+          message: "AH_NOT_LOADED",
+        })
+      }
+    }
   }
+  return true
 })

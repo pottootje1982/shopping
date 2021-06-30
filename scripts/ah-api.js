@@ -1,23 +1,8 @@
 const axios = require("axios")
 
 class AhApi {
-  constructor(username, password, ingToProduct) {
-    this.body = {
-      username,
-      password,
-      recaptchaToken: "captchaToken", // captcha token value doesn't mather if
-      // is ah_token_presumed correct
-      // (ah_token_presumed in a year)
-    }
+  constructor(ingToProduct) {
     this.ingToProduct = ingToProduct
-  }
-
-  login(ah_token_presumed) {
-    return axios.post(
-      "https://www.ah.nl/mijn/api/login",
-      this.body,
-      this.cookies({ ah_token_presumed })
-    )
   }
 
   async search(query, full) {
@@ -54,39 +39,6 @@ class AhApi {
       .then(({ data }) => {
         return data.card.products.find((p) => p.id === id)
       })
-  }
-
-  cookies(cookies) {
-    const Cookie = Object.entries(cookies)
-      .map(([key, value]) => `${key}=${value}`)
-      .join(";")
-    return { headers: { Cookie } }
-  }
-
-  async addToShoppingList(items, tokens) {
-    const resp = await axios.post(
-      "https://www.ah.nl/common/api/basket/v2/add",
-      items,
-      this.cookies(tokens)
-    )
-    if (resp.failed && resp.failed.length > 0) {
-      const failedInfos = resp.failed.map((fail) => this.getProduct(fail.id))
-      return Promise.all(failedInfos).then((infos) =>
-        infos.map((info) => info.title).join(", ")
-      )
-    }
-  }
-
-  addRecipeToShoppingList(recipeId, name, ingredients, ah_token) {
-    return axios.post(
-      "https://www.ah.nl/common/api/basket/v2/add",
-      {
-        recipeId,
-        name,
-        ingredients,
-      },
-      this.cookies({ ah_token })
-    )
   }
 }
 

@@ -33,8 +33,9 @@ export default function NoTokenDialog({ dialogOpen, setDialogOpen }) {
       <DialogTitle>AH token cannot be found</DialogTitle>
       <DialogContent>
         <Typography>
-          Make sure you are signed in into ah.nl and have the chrome extension
-          installed
+          Make sure you have ah.nl opened in the browser and have the chrome
+          extension installed. After installation of the extension you should
+          refresh this page.
         </Typography>
         <Button onClick={getExtension}>Get extension</Button>
       </DialogContent>

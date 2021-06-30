@@ -1,11 +1,11 @@
 var express = require("express")
 var router = express.Router()
 const AhApi = require("../scripts/ah-api")
-const { ahUser, ahPass, dbConnector } = require("../config")
+const { dbConnector } = require("../config")
 let recipeDb, ingToProduct, api
 require("../scripts/db/tables")(dbConnector).then((dbs) => {
   ;({ recipeDb, ingToProduct } = dbs)
-  api = new AhApi(ahUser, ahPass, ingToProduct)
+  api = new AhApi(ingToProduct)
 })
 
 router.get("/", async function (req, res) {

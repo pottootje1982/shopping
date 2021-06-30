@@ -4,7 +4,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   Grid,
   Box,
@@ -43,32 +42,30 @@ export default function OrderDialog({ open, handleClose, selectedRecipes }) {
         {"Order the following items?"}
       </DialogTitle>
       <DialogContent style={{ minWidth: 900 }}>
-        <DialogContentText id="alert-dialog-description">
-          <Grid container>
-            <Grid item xs={6}>
-              <Box fontWeight="fontWeightBold">Ordered items</Box>
-              {items.map((item, index) => (
-                <li key={index}>
-                  {item.title || item.ingredient}: {item.quantity}{" "}
-                </li>
-              ))}
-            </Grid>
-            <Grid item xs={6}>
-              <Box fontWeight="fontWeightBold">Unavailable items</Box>
-              {notAvailable.map((item, index) => (
-                <li key={index}>
-                  {item.title || item.ingredient}: {item.quantity}{" "}
-                </li>
-              ))}
-              <Box fontWeight="fontWeightBold">Ignored items</Box>
-              {ignored.map((item, index) => (
-                <li key={index}>
-                  {item.title || item.ingredient}: {item.quantity}{" "}
-                </li>
-              ))}
-            </Grid>
+        <Grid container>
+          <Grid item xs={6}>
+            <Box fontWeight="fontWeightBold">Ordered items</Box>
+            {items.map((item, index) => (
+              <li key={index}>
+                {item.title || item.ingredient}: {item.quantity}{" "}
+              </li>
+            ))}
           </Grid>
-        </DialogContentText>
+          <Grid item xs={6}>
+            <Box fontWeight="fontWeightBold">Unavailable items</Box>
+            {notAvailable.map((item, index) => (
+              <li key={index}>
+                {item.title || item.ingredient}: {item.quantity}{" "}
+              </li>
+            ))}
+            <Box fontWeight="fontWeightBold">Ignored items</Box>
+            {ignored.map((item, index) => (
+              <li key={index}>
+                {item.title || item.ingredient}: {item.quantity}{" "}
+              </li>
+            ))}
+          </Grid>
+        </Grid>
       </DialogContent>
       <DialogActions>
         <Button onClick={(e) => handleClose(e, false)} color="primary">

@@ -4,13 +4,11 @@ const config = require("../config")
 var express = require("express")
 var router = express.Router()
 const AhApi = require("../scripts/ah-api")
-const { ahUser, ahPass } = require("../config")
 let ingToProduct, orderDb, api
 require("../scripts/db/tables")(config.dbConnector).then((dbs) => {
   ;({ ingToProduct, orderDb } = dbs)
-  api = new AhApi(ahUser, ahPass, ingToProduct)
+  api = new AhApi(ingToProduct)
 })
-const { getCookie } = require("../scripts/cookie")
 
 router.get("/", async function (_req, res) {
   const orders = await orderDb.get()
@@ -47,40 +45,10 @@ router.get("/extension", async function (req, res) {
   filestream.pipe(res)
 })
 
-router.post("/cookie", async function (req, res) {
-  api.setCookie(req.body.cookie)
-  res.sendStatus(200)
-})
-
-router.post("/", async function (req, res, next) {
-  let { ah_token, ah_token_presumed } = req.headers
-  if (!ah_token) {
-    ah_token_presumed = ah_token_presumed || config.ah_token_presumed
-    try {
-      const loginResult = await api.login(ah_token_presumed)
-      ah_token = getCookie(loginResult.headers["set-cookie"], "ah_token")
-    } catch (err) {
-      res.status(500).send(`Login failed: ${err.message}`)
-      return next(err)
-    }
-  }
-
+router.post("/", async function (req, res) {
   let recipes = req.body.recipes
-  const order = await ingToProduct.pickOrder(...recipes)
-  try {
-    const failed = await api.addToShoppingList(order, {
-      ah_token,
-      ah_token_presumed,
-    })
-    if (failed) {
-      res.send({ failed })
-    } else {
-      orderDb.storeOrder(recipes)
-      res.status(200).send()
-    }
-  } catch (error) {
-    res.status(500).send(`Error while putting order: ${error.message}`)
-  }
+  orderDb.storeOrder(recipes)
+  res.status(200).send()
 })
 
 module.exports = router

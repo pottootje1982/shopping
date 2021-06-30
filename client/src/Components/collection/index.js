@@ -16,7 +16,7 @@ import { Fab } from "../styled"
 import getDateString from "../date"
 import NoTokenDialog from "./no-token-dialog"
 import ConfirmationDialog from "./confirmation-dialog"
-import { getCookie } from "../../cookie"
+import { getCookie } from "../../cookie.js"
 
 const MOCK_DATA = process.env.REACT_APP_USE_MOCK_DATA === "true"
 
@@ -55,6 +55,14 @@ export default function RecipeCollection({ setRecipeTitle }) {
     }
     setOrders(data.orders.sort((a, b) => b.date.localeCompare(a.date)))
     setCategories(data.categories)
+  }
+
+  function createOrder(recipes) {
+    const items = recipes.map((r) => r.mappings).map((m) => Object.values(m))
+    return []
+      .concat(...items)
+      .filter((i) => i.id)
+      .map(({ id, quantity }) => ({ id, quantity }))
   }
 
   useEffect(selectedFirstRecipe, [])
@@ -96,23 +104,11 @@ export default function RecipeCollection({ setRecipeTitle }) {
     setOpen(false)
 
     if (isOk && event.nativeEvent.key !== "Escape") {
-      const ah_token = getCookie("ah_token") || ""
-      const ah_token_presumed = getCookie("ah_token_presumed") || ""
       try {
-        const { data } = await server.post(
-          "orders/",
-          {
-            recipes: selectedRecipes,
-          },
-          { headers: { ah_token, ah_token_presumed } }
-        )
-        let message = data.failed
-          ? `Following items were not ordered: ${data.failed}`
-          : "All products were successfully ordered"
-        message = data.error
-          ? `Error when ordering recipes: ${data.error}`
-          : message
-        alert(message)
+        const order = createOrder(selectedRecipes)
+        document.cookie = `order=${JSON.stringify(order)}`
+
+        server.post("orders/", { recipes: selectedRecipes })
       } catch (err) {
         alert(err.response.data)
       }
@@ -159,9 +155,8 @@ export default function RecipeCollection({ setRecipeTitle }) {
   }
 
   function showOrderDialog() {
-    if (!getCookie("ah_token")) {
-      setNoTokenOpen(true)
-    } else if (selectedRecipes.length === 0) {
+    if (!getCookie("HAS_SHOPPING_EXTENSION")) setNoTokenOpen(true)
+    else if (selectedRecipes.length === 0) {
       alert("Please select recipes before ordering")
       return
     } else setOpen(true)

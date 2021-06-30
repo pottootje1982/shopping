@@ -1,13 +1,13 @@
 {
   "manifest_version": 2,
-  "name": "Get AH token",
-  "description": "Get AH token",
+  "name": "Place AH Order",
+  "description": "Place AH Order",
   "version": "1.0",
   "permissions": [
     "tabs",
     "cookies",
-    "https://www.ah.nl/*",
-    "http://localhost:3000/*"
+    "http://localhost/*",
+    "*://gogetmeals.herokuapp.com/*"
   ],
   "background": {
     "scripts": ["background.js"],
@@ -15,11 +15,12 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://gogetmeals.herokuapp.com/*",
-        "http://localhost:3000/*"
-      ],
-      "js": ["load.js"]
+      "matches": ["https://www.ah.nl/*"],
+      "js": ["load-ah.js"]
+    },
+    {
+      "matches": ["http://localhost/*", "https://gogetmeals.herokuapp.com/*"],
+      "js": ["load-shopping.js"]
     }
   ]
 }
