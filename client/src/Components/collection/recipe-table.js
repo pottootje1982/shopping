@@ -1,119 +1,268 @@
-import React, { useState, useEffect } from "react"
+import React, { useContext, useEffect, useMemo } from "react"
 import blue from "@material-ui/core/colors/blue"
 import green from "@material-ui/core/colors/green"
-import MaterialTable, { MTableToolbar } from "material-table"
-import { Checkbox, FormControlLabel, Grid, Link } from "@material-ui/core"
+import {
+  TableFooter,
+  TablePagination,
+  Checkbox,
+  TableContainer,
+  ThemeProvider,
+} from "@material-ui/core"
+import { createMuiTheme } from "@material-ui/core/styles"
+import MaUTable from "@material-ui/core/Table"
+import TableBody from "@material-ui/core/TableBody"
+import TableCell from "@material-ui/core/TableCell"
+import TableHead from "@material-ui/core/TableHead"
+import TableRow from "@material-ui/core/TableRow"
+import TableToolbar from "./TableToolbar"
+import TablePaginationActions from "./TablePaginationActions"
+import RecipeContext from "./RecipeProvider"
 
-export default function RecipeTable({
-  recipes,
-  setSelectedRecipe,
-  setSelectedRecipes,
-  selectedRecipe,
-}) {
-  let [visibleRecipes, setVisibleRecipes] = useState(recipes)
-  let [showSelectedRecipes, setShowSelectedRecipe] = useState(false)
+import {
+  useTable,
+  useRowSelect,
+  usePagination,
+  useFilters,
+  useGlobalFilter,
+} from "react-table"
 
-  useEffect(() => {
-    const filtered = showSelectedRecipes
-      ? recipes.filter((r) => r.tableData && r.tableData.checked)
-      : recipes
-    setVisibleRecipes(filtered)
-  }, [showSelectedRecipes, recipes])
+const IndeterminateCheckbox = React.forwardRef(
+  ({ indeterminate, ...rest }, ref) => {
+    const defaultRef = React.useRef()
+    const resolvedRef = ref || defaultRef
 
-  function clickRow(_event, row) {
-    const recipe = recipes.find((r) => r.uid === row.uid)
+    React.useEffect(() => {
+      resolvedRef.current.indeterminate = indeterminate
+    }, [resolvedRef, indeterminate])
+
+    return (
+      <>
+        <Checkbox ref={resolvedRef} {...rest} />
+      </>
+    )
+  }
+)
+
+export default function RecipeTable() {
+  const theme = createMuiTheme({
+    overrides: {
+      MuiTableCell: {
+        root: {
+          //This can be referred from Material UI API documentation.
+          padding: "4px 8px",
+        },
+      },
+    },
+  })
+
+  const {
+    recipes,
+    setSelectedRecipe,
+    setSelectedRecipes,
+    selectedRecipe,
+    selectedCategory,
+    selectedOrder,
+  } = useContext(RecipeContext)
+
+  function clickRow(row) {
+    const uid = row.values.uid
+    const recipe = recipes.find((r) => r.uid === uid)
     setSelectedRecipe(recipe)
   }
 
-  function onSelectionChange(selRecipes) {
-    setSelectedRecipes(selRecipes)
-  }
-
-  const columns = [
-    { field: "uid", hidden: true },
-    // Forbidden to access S3
-    // {
-    //   field: "photo_url",
-    //   render: (rowData) =>
-    //     rowData.photo_url && (
-    //       <img
-    //         src={rowData.photo_url && rowData.photo_url.split("?")[0]}
-    //         alt={rowData.name}
-    //         style={{ width: 50, backgroundColor: "#fff", padding: 2 }}
-    //       />
-    //     ),
-    // },
-    {
-      title: "Name",
-      field: "name",
-      cellStyle: {
-        maxHeight: 10,
+  const columns = useMemo(
+    () => [
+      {
+        accessor: "uid",
+        show: false,
       },
-      render: (rowData) =>
-        rowData.source_url ? (
-          <Link href={rowData.source_url} target="_blank">
-            {rowData.name}
-          </Link>
-        ) : (
-          rowData.name
-        ),
-    },
-    { title: "Created", field: "created", type: "date" },
-  ]
+      {
+        Header: "Name",
+        accessor: "name",
+      },
+      { Header: "Created", accessor: "created", type: "date" },
+      { accessor: "mappings" },
+      { accessor: "parsedIngredients" },
+      { accessor: "categories" },
+    ],
+    []
+  )
 
-  function determineRowColor(rowData) {
-    const ingredients = rowData.parsedIngredients || []
+  function determineRowColor(row) {
+    const values = row.values
+    const ingredients = values.parsedIngredients || []
     const selectedOffset =
-      rowData.uid === (selectedRecipe && selectedRecipe.uid) ? 100 : 0
+      values.uid === (selectedRecipe && selectedRecipe.uid) ? 100 : 0
+
+    const allChosen = ingredients.every((i) => {
+      const mapping = values.mappings && values.mappings[i.ingredient]
+      return (
+        mapping &&
+        (mapping.id !== undefined || mapping.notAvailable || mapping.ignore)
+      )
+    })
     return {
       maxHeight: 10,
-      backgroundColor: ingredients.every((i) => {
-        const mapping = rowData.mappings && rowData.mappings[i.ingredient]
-        return (
-          mapping &&
-          (mapping.id !== undefined || mapping.notAvailable || mapping.ignore)
-        )
-      })
+      backgroundColor: allChosen
         ? green[100 + selectedOffset]
         : blue[50 + selectedOffset],
     }
   }
 
-  function filterOnSelected(e, checked) {
-    setShowSelectedRecipe(checked)
+  const handleChangePage = (_event, newPage) => {
+    gotoPage(newPage)
   }
+
+  const handleChangeRowsPerPage = (event) => {
+    setPageSize(Number(event.target.value))
+  }
+
+  const globalFilterFunc = (rows, _cols, filterValue = {}) => {
+    return rows.filter((row) => {
+      const { value, showSelected } = filterValue
+      const { name, categories, uid } = row.values
+
+      let show = true
+      if (selectedOrder !== "") {
+        const orderedRecipes = selectedOrder.recipes.map((r) => r.uid)
+        show &= orderedRecipes.includes(uid)
+      }
+      if (selectedCategory !== "") {
+        show &= categories
+          .map((c) => c.toLowerCase())
+          .includes(selectedCategory.uid.toLowerCase())
+      }
+      if (showSelected) show &= row.isSelected
+      return (
+        show &&
+        (value !== undefined && name !== undefined
+          ? name.toLowerCase().includes(value.toLowerCase())
+          : true)
+      )
+    })
+  }
+
+  const {
+    getTableProps,
+    headerGroups,
+    page,
+    prepareRow,
+    gotoPage,
+    setPageSize,
+    setGlobalFilter,
+    preGlobalFilteredRows,
+    state: { pageIndex, pageSize, selectedRowIds, globalFilter },
+  } = useTable(
+    {
+      columns,
+      data: recipes,
+      initialState: {
+        hiddenColumns: ["uid", "mappings", "parsedIngredients", "categories"],
+        pageSize: 15,
+      },
+      globalFilter: globalFilterFunc,
+    },
+    useFilters,
+    useGlobalFilter,
+    usePagination,
+    useRowSelect,
+    (hooks) => {
+      hooks.allColumns.push((columns) => [
+        {
+          id: "selection",
+          Header: ({ getToggleAllRowsSelectedProps }) => (
+            <div>
+              <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+            </div>
+          ),
+          Cell: ({ row }) => (
+            <div>
+              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+            </div>
+          ),
+        },
+        ...columns,
+      ])
+    }
+  )
+
+  useEffect(() => {
+    setSelectedRecipes(recipes.filter((_r, i) => selectedRowIds[i]))
+  }, [selectedRowIds, setSelectedRecipes, recipes])
+
+  useEffect(() => {
+    setGlobalFilter({ ...globalFilter, value: undefined })
+  }, [selectedCategory, selectedOrder])
 
   return (
     recipes && (
-      <MaterialTable
-        dense={true}
-        onRowClick={clickRow}
-        title="Recipes"
-        style={{ maxHeight: "75vh", minHeight: "75vh", overflow: "auto" }}
-        columns={columns}
-        data={visibleRecipes}
-        onSelectionChange={onSelectionChange}
-        options={{
-          pageSize: 50,
-          pageSizeOptions: [10, 50, 100, 200],
-          selection: true,
-          rowStyle: determineRowColor,
-        }}
-        components={{
-          Toolbar: (props) => (
-            <Grid container alignItems="flex-start">
-              <MTableToolbar {...props} />
-              <FormControlLabel
-                style={{ marginLeft: 0 }}
-                onChange={filterOnSelected}
-                checked={showSelectedRecipes}
-                control={<Checkbox label="Show selected"></Checkbox>}
-                label="Show selected"
-              />
-            </Grid>
-          ),
-        }}
-      ></MaterialTable>
+      <TableContainer>
+        <TableToolbar
+          numSelected={Object.keys(selectedRowIds).length}
+          preGlobalFilteredRows={preGlobalFilteredRows}
+          setGlobalFilter={setGlobalFilter}
+          globalFilter={globalFilter}
+        />
+        <ThemeProvider theme={theme}>
+          <MaUTable {...getTableProps()} style={{ minHeight: "78vh" }}>
+            <TableHead>
+              {headerGroups.map((headerGroup) => (
+                <TableRow {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column) => (
+                    <TableCell {...column.getHeaderProps()}>
+                      {column.render("Header")}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableHead>
+            <TableBody>
+              {page.map((row, i) => {
+                prepareRow(row)
+                return (
+                  <TableRow
+                    {...row.getRowProps()}
+                    onClick={() => clickRow(row)}
+                    style={determineRowColor(row)}
+                  >
+                    {row.cells.map((cell) => {
+                      return (
+                        <TableCell {...cell.getCellProps()}>
+                          {cell.render("Cell")}
+                        </TableCell>
+                      )
+                    })}
+                  </TableRow>
+                )
+              })}
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  rowsPerPageOptions={[
+                    5,
+                    10,
+                    15,
+                    25,
+                    { label: "All", value: recipes.length },
+                  ]}
+                  colSpan={3}
+                  count={recipes.length}
+                  rowsPerPage={pageSize}
+                  page={pageIndex}
+                  SelectProps={{
+                    inputProps: { "aria-label": "rows per page" },
+                    native: true,
+                  }}
+                  onChangePage={handleChangePage}
+                  onChangeRowsPerPage={handleChangeRowsPerPage}
+                  ActionsComponent={TablePaginationActions}
+                />
+              </TableRow>
+            </TableFooter>
+          </MaUTable>
+        </ThemeProvider>
+      </TableContainer>
     )
   )
 }

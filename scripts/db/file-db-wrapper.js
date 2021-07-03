@@ -71,7 +71,7 @@ class FileTableWrapper {
   }
 
   async write() {
-    this.table.write()
+    return this.table.write()
   }
 }
 

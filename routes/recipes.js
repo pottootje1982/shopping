@@ -51,9 +51,15 @@ router.post("/", async function (req, res) {
 })
 
 router.delete("/", async function (req, res) {
-  const success = await recipeDb.removeRecipe(req.body)
-  paprika.deleteRecipe(req.body)
-  res.send(success)
+  const recipes = req.body
+  const successes = await Promise.all(
+    recipes.map(async (recipe) => {
+      const success = await paprika.deleteRecipe(req.body)
+      const removedRecipe = await recipeDb.removeRecipe(recipe)
+      return removedRecipe && success
+    })
+  )
+  res.send(successes.every((s) => s))
 })
 
 router.get("/sync", async (_req, res) => {

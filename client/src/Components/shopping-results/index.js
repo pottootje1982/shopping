@@ -14,7 +14,7 @@ import {
 } from "@material-ui/core"
 import { Button } from "../styled"
 
-const styles = makeStyles((theme) => ({
+const styles = makeStyles(() => ({
   input: {
     height: 36,
     marginRight: 4,
@@ -130,7 +130,7 @@ export default function ProductSearch({
           <GridList
             cols={3}
             cellHeight="auto"
-            style={{ maxHeight: "75vh", overflow: "auto" }}
+            style={{ maxHeight: "78vh", overflow: "auto" }}
           >
             {products.map((item, i) => (
               <GridListTile key={item.id} xs={4}>

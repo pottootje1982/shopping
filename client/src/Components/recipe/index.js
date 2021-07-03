@@ -126,7 +126,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
             <List
               ref={listRef}
               dense
-              style={{ maxHeight: "75vh", overflow: "auto" }}
+              style={{ maxHeight: "78vh", overflow: "auto" }}
             >
               {(ingredients || []).map((item, i) => (
                 <ListItem

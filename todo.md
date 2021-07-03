@@ -2,14 +2,11 @@
 
 - add translations for quantities: 4
 - allow for pre-order mobile (when actually ordering on desktop make sure there won't be double orders)
-- name orders
-
-* Table
-
-  - Replace delete button with onRowDelete (from material-table): 2
+- name orders (and add category column)
 
 # Improvements
 
+- after selecting order, make sure to show ordered quantities
 - order button should add order to combo
 - Clicking add to cart button in ingredients list shouldn't look at quantity
 - adjust quantity buttons bigger
@@ -21,8 +18,6 @@
 
 # Bugs
 
-- after selecting order, it's impossible to edit recipe (even if selecting 'no order' in combo)
-- kies eerst een order, daarna categorieen: dan komen order recepten bij de categorieen in
 - Don't translate from any language: for instance 'mirin' is now translated as 'dood', because it comes from 'Kurdish'
 
 # Nice to have

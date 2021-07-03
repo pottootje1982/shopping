@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import server from "../server"
 import {
   Grid,
@@ -7,31 +7,34 @@ import {
   FormControl,
   InputLabel,
 } from "@material-ui/core"
-import { Add, ShoppingCart, Delete } from "@material-ui/icons"
+import { ShoppingCart, Delete } from "@material-ui/icons"
 
 import Recipe from "../recipe"
 import OrderDialog from "./OrderDialog"
 import RecipeTable from "./recipe-table"
 import { Fab } from "../styled"
-import getDateString from "../date"
 import NoTokenDialog from "./no-token-dialog"
-import ConfirmationDialog from "./confirmation-dialog"
 import { getCookie } from "../../cookie.js"
+import RecipeContext from "./RecipeProvider"
 
 const MOCK_DATA = process.env.REACT_APP_USE_MOCK_DATA === "true"
 
 export default function RecipeCollection({ setRecipeTitle }) {
-  let [selectedRecipes, setSelectedRecipes] = useState(() => [])
-  let [recipes, setRecipes] = useState([])
-  let [, setRecipeReadyToOrder] = useState()
-  let [selectedRecipe, setSelectedRecipe] = useState()
-  const [selectedOrder, setSelectedOrder] = useState("")
+  const {
+    recipes,
+    setRecipes,
+    selectedRecipes,
+    selectedRecipe,
+    setSelectedRecipe,
+    selectedOrder,
+    setSelectedOrder,
+    selectedCategory,
+    setSelectedCategory,
+  } = useContext(RecipeContext)
+  const [, setRecipeReadyToOrder] = useState()
   const [orders, setOrders] = useState()
-  const [selectedCategory, setSelectedCategory] = useState("")
-  const [categoryRecipes, setCategoryRecipes] = useState()
   const [categories, setCategories] = useState()
   const [open, setOpen] = useState(false)
-  const [deletionDialogOpen, setDeletionDialogOpen] = useState(false)
   const [noTokenOpen, setNoTokenOpen] = useState(false)
 
   function selectedFirstRecipe() {
@@ -46,7 +49,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
 
   function initialize(result) {
     const data = result.data
-    recipes = data.recipes
+    const recipes = data.recipes
     setRecipes(recipes)
     if (recipes.length > 0) {
       const recipe = recipes[0]
@@ -68,14 +71,6 @@ export default function RecipeCollection({ setRecipeTitle }) {
   useEffect(selectedFirstRecipe, [])
 
   useEffect(selectRecipe, [selectedRecipe])
-
-  useEffect(() => {
-    setCategoryRecipes(
-      recipes.filter(
-        (r) => !r.categories || r.categories.includes(selectedCategory.uid)
-      )
-    )
-  }, [selectedCategory, recipes])
 
   function selectRecipe() {
     if (!selectedRecipe) return
@@ -124,27 +119,6 @@ export default function RecipeCollection({ setRecipeTitle }) {
     setSelectedCategory(event.target.value)
   }
 
-  function addRecipe() {
-    const created = getDateString()
-    setSelectedRecipe({
-      parsedIngredients: [],
-      mappings: [],
-      created,
-    })
-  }
-
-  function removeRecipe() {
-    if (recipes.length > 0) {
-      server.delete("recipes", { data: selectedRecipe })
-      const index = recipes.indexOf(selectedRecipe)
-      const newRecipes = [...recipes]
-      newRecipes.splice(index, 1)
-      setRecipes(newRecipes)
-      const newIndex = Math.min(index, newRecipes.length - 1)
-      setSelectedRecipe(newRecipes[newIndex])
-    }
-  }
-
   async function sync() {
     const res = await server.get("recipes/sync")
     const recipes = res.data
@@ -172,8 +146,6 @@ export default function RecipeCollection({ setRecipeTitle }) {
     }
   }
 
-  const { name } = selectedRecipe || {}
-
   return recipes === undefined ? (
     <div>Loading</div>
   ) : (
@@ -182,22 +154,6 @@ export default function RecipeCollection({ setRecipeTitle }) {
         <Fab onClick={showOrderDialog}>
           <ShoppingCart />
         </Fab>
-        <Fab onClick={addRecipe}>
-          <Add />
-        </Fab>
-        <Fab
-          onClick={() => setDeletionDialogOpen(true)}
-          disabled={!selectedRecipe}
-        >
-          <Delete />
-        </Fab>
-        <ConfirmationDialog
-          dialogOpen={deletionDialogOpen}
-          setDialogOpen={setDeletionDialogOpen}
-          title={"Remove recipe"}
-          message={`Are you sure you want to remove ${name}`}
-          onOk={removeRecipe}
-        />
         <FormControl
           style={{ minWidth: 100, marginTop: -7 }}
           hiddenLabel
@@ -246,16 +202,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
           </Select>
         </FormControl>
         <Grid item xs={12}>
-          <RecipeTable
-            recipes={
-              (selectedOrder && selectedOrder.recipes) ||
-              (selectedCategory && categoryRecipes) ||
-              recipes
-            }
-            setRecipes={setRecipes}
-            setSelectedRecipe={setSelectedRecipe}
-            setSelectedRecipes={setSelectedRecipes}
-          />
+          <RecipeTable />
         </Grid>
       </Grid>
       {selectedRecipe ? (

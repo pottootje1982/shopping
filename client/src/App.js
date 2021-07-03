@@ -5,6 +5,7 @@ import { Grid, Typography } from "@material-ui/core"
 import { ReactComponent as Hat } from "./hat.svg"
 import blue from "@material-ui/core/colors/blue"
 import { useCookies } from "react-cookie"
+import { RecipeProvider } from "./Components/collection/RecipeProvider"
 
 export default function App() {
   const [recipeTitle, setRecipeTitle] = useState()
@@ -38,7 +39,9 @@ export default function App() {
         </Grid>
       </div>
 
-      <RecipeCollection setRecipeTitle={setRecipeTitle}></RecipeCollection>
+      <RecipeProvider>
+        <RecipeCollection setRecipeTitle={setRecipeTitle}></RecipeCollection>
+      </RecipeProvider>
     </div>
   )
 }
