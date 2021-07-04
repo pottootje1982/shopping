@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "jest",
+    "test": "eslint . && jest server",
     "test:watch": "npm run test -- jest --watch --no-coverage",
-    "start": "node app.js",
-    "start:mock": "AH_API=ah-api.stub USE_MEMORY_DB=true node app.js",
+    "start": "node server/app.js",
+    "start:mock": "AH_API=ah-api.stub USE_MEMORY_DB=true node server/app.js",
     "test:api": "npm run start:mock & newman run api-tests/ShoppingAPItests.postman_collection.json -e api-tests/shopping.postman_environment.json",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
@@ -14,7 +14,9 @@
     "test"
   ],
   "jest": {
-    "setupFiles": ["<rootDir>/.jest/setEnvVars.js"]  
+    "setupFiles": [
+      "<rootDir>/.jest/setEnvVars.js"
+    ]
   },
   "dependencies": {
     "@google-cloud/translate": "^4.2.1",
@@ -39,6 +41,11 @@
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
+    "eslint": "^7.30.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
     "husky": "^4.3.8",
     "jest": "^24.9.0",
     "newman": "^5.2.4",
@@ -49,5 +56,10 @@
     "hooks": {
       "pre-commit": "npm test"
     }
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "none"
   }
 }

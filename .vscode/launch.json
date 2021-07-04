@@ -5,7 +5,8 @@
       "type": "node",
       "request": "launch",
       "name": "Start",
-      "program": "${workspaceFolder}/app.js",
+      "program": "app.js",
+      "cwd": "${workspaceFolder}/server",
       "args": ["start"],
       "console": "integratedTerminal"
     },

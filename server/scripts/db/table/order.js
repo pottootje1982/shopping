@@ -1,4 +1,4 @@
-const getDateStr = require("../../../client/src/Components/date")
+const getDateStr = require("../../../../client/src/Components/date")
 const Table = require("./table")
 const { ObjectId } = require("mongodb")
 
