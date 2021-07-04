@@ -49,8 +49,8 @@ router.get("/extension", async function (req, res) {
 
 router.post("/", async function (req, res) {
   let recipes = req.body.recipes
-  orderDb.storeOrder(recipes)
-  res.status(200).send()
+  const newOrder = await orderDb.storeOrder(recipes)
+  res.send(newOrder)
 })
 
 module.exports = router

@@ -7,7 +7,6 @@
 # Improvements
 
 - after selecting order, make sure to show ordered quantities
-- order button should add order to combo
 - Clicking add to cart button in ingredients list shouldn't look at quantity
 - adjust quantity buttons bigger
 - add AH-items together from different recipes on order (by making sortable table)

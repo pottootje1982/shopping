@@ -1,3 +1,5 @@
+const { ObjectId } = require("mongodb")
+
 class FileDbWrapper {
   constructor(db) {
     this.db = db
@@ -43,6 +45,8 @@ class FileTableWrapper {
   }
 
   push(value) {
+    value._id = new ObjectId()
+    this.value = value
     this.table = this.table.push(value)
     return this
   }
@@ -51,6 +55,8 @@ class FileTableWrapper {
     if (this.table.value()) {
       this.table = this.db.get(this.tableName).find(this.query).assign(value)
     } else {
+      value._id = new ObjectId()
+      this.value = value
       this.table = this.db.get(this.tableName).push(value)
     }
     return this
@@ -71,7 +77,8 @@ class FileTableWrapper {
   }
 
   async write() {
-    return this.table.write()
+    await this.table.write()
+    return this.value
   }
 }
 

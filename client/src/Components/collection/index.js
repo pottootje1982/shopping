@@ -102,7 +102,9 @@ export default function RecipeCollection({ setRecipeTitle }) {
       try {
         const order = createOrder(selectedRecipes)
         document.cookie = `order=${JSON.stringify(order)}`
-        server.post("orders/", { recipes: selectedRecipes })
+        const { data: newOrder } =
+          (await server.post("orders/", { recipes: selectedRecipes })) || {}
+        if (newOrder) setOrders((orders) => [...orders, newOrder])
       } catch (err) {
         alert(err.response.data)
       }
