@@ -7,6 +7,7 @@ import {
   Button,
   Typography,
 } from "@material-ui/core"
+import PropTypes from "prop-types"
 
 import { getServerUrl } from "../server"
 
@@ -47,4 +48,9 @@ export default function NoTokenDialog({ dialogOpen, setDialogOpen }) {
       </DialogActions>
     </Dialog>
   )
+}
+
+NoTokenDialog.propTypes = {
+  dialogOpen: PropTypes.bool.isRequired,
+  setDialogOpen: PropTypes.func.isRequired,
 }

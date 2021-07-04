@@ -8,6 +8,7 @@ import {
   InputLabel,
 } from "@material-ui/core"
 import { ShoppingCart, Delete } from "@material-ui/icons"
+import PropTypes from "prop-types"
 
 import Recipe from "../recipe"
 import OrderDialog from "./OrderDialog"
@@ -133,7 +134,6 @@ export default function RecipeCollection({ setRecipeTitle }) {
     if (!getCookie("HAS_SHOPPING_EXTENSION")) setNoTokenOpen(true)
     else if (selectedRecipes.length === 0) {
       alert("Please select recipes before ordering")
-      return
     } else setOpen(true)
   }
 
@@ -228,4 +228,8 @@ export default function RecipeCollection({ setRecipeTitle }) {
       ></NoTokenDialog>
     </Grid>
   )
+}
+
+RecipeCollection.propTypes = {
+  setRecipeTitle: PropTypes.func.isRequired,
 }

@@ -1,18 +1,18 @@
-const { GOOGLE_API_KEY } = require("../config")
-const { Translate } = require("@google-cloud/translate")
+const { GOOGLE_API_KEY } = require('../config')
+const { Translate } = require('@google-cloud/translate')
 
 class Translator {
-  constructor(cache, translateService) {
+  constructor (cache, translateService) {
     this.cache = cache
     this.service = translateService || new Translate({ key: GOOGLE_API_KEY })
   }
 
-  async translate(itemsToTranslate, source, target) {
+  async translate (itemsToTranslate, source, target) {
     let { success, translations, untranslated } =
       await this.cache.getTranslations(itemsToTranslate)
 
-    source = source || "en"
-    target = target || "nl"
+    source = source || 'en'
+    target = target || 'nl'
 
     if (!success) {
       ;[translations] = await this.service.translate(untranslated, target)

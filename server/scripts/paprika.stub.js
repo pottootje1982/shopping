@@ -1,52 +1,52 @@
 class Paprika {
-  constructor(_paprikaApi, db) {
-    this.recipeDb = db || recipeDb
+  constructor (_paprikaApi, db) {
+    this.recipeDb = db
   }
 
-  getRecipe(uid) {
+  getRecipe (uid) {
     return this.paprikaApi.recipe(uid)
   }
 
-  getRecipes() {
+  getRecipes () {
     return true
   }
 
-  categories() {
+  categories () {
     return [
       {
         order_flag: 0,
-        uid: "f172bbb8-2b65-485d-bb57-3575b7c686bb",
+        uid: 'f172bbb8-2b65-485d-bb57-3575b7c686bb',
         parent_uid: null,
-        name: "week 01",
+        name: 'week 01'
       },
       {
         order_flag: 1,
-        uid: "2b047c3c-cffa-4e10-8654-06bd327d2901",
+        uid: '2b047c3c-cffa-4e10-8654-06bd327d2901',
         parent_uid: null,
-        name: "week 02",
+        name: 'week 02'
       },
       {
         order_flag: 2,
-        uid: "830ee6d1-21b3-4946-baaf-57efd9954b3d",
+        uid: '830ee6d1-21b3-4946-baaf-57efd9954b3d',
         parent_uid: null,
-        name: "week 03",
-      },
+        name: 'week 03'
+      }
     ]
   }
 
-  updateRecipe() {
+  updateRecipe () {
     return true
   }
 
-  deleteRecipe() {
+  deleteRecipe () {
     return true
   }
 
-  downloadRecipe() {
+  downloadRecipe () {
     return true
   }
 
-  synchronize() {
+  synchronize () {
     return true
   }
 }

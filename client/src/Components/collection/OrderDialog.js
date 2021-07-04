@@ -8,6 +8,7 @@ import {
   Grid,
   Box,
 } from "@material-ui/core"
+import PropTypes from "prop-types"
 
 export default function OrderDialog({ open, handleClose, selectedRecipes }) {
   const [items, setItems] = useState([])
@@ -77,4 +78,10 @@ export default function OrderDialog({ open, handleClose, selectedRecipes }) {
       </DialogActions>
     </Dialog>
   )
+}
+
+OrderDialog.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  selectedRecipes: PropTypes.array.isRequired,
 }

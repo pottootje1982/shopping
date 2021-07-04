@@ -1,7 +1,7 @@
-const Memory = require("lowdb/adapters/Memory")
-const FileDbWrapper = require("./file-db-wrapper")
-const low = require("lowdb")
-const path = require("path")
+const Memory = require('lowdb/adapters/Memory')
+const FileDbWrapper = require('./file-db-wrapper')
+const low = require('lowdb')
+const path = require('path')
 
 module.exports = function (file) {
   const adapter = new Memory()

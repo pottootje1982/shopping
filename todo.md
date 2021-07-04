@@ -7,7 +7,6 @@
 
 # Improvements
 
-- add eslint
 - after selecting order, make sure to show ordered quantities
 - favourite recipes
 

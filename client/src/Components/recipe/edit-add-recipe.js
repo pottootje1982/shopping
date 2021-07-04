@@ -4,6 +4,7 @@ import server from "../server"
 import getDateString from "../date"
 import { TextField, Button, Fab } from "../styled"
 import DownloadIcon from "@material-ui/icons/GetApp"
+import PropTypes from "prop-types"
 const uuidv1 = require("uuid/v1")
 
 export default function EditAddRecipe({
@@ -23,13 +24,13 @@ export default function EditAddRecipe({
     const uid = selectedRecipe.uid || uuidv1()
     const ingredients = ingredientsRef.current.value
     const directions = directionsRef.current.value
-    const source_url = urlRef.current.value
+    const sourceUrl = urlRef.current.value
     let recipe = {
       name,
       uid,
       ingredients,
       directions,
-      source_url,
+      source_url: sourceUrl,
     }
     if (!edit) {
       recipe.created = getDateString()
@@ -50,8 +51,8 @@ export default function EditAddRecipe({
   }
 
   async function downloadRecipe() {
-    const source_url = urlRef.current.value
-    const res = await server.post("recipes/download", { url: source_url })
+    const sourceUrl = urlRef.current.value
+    const res = await server.post("recipes/download", { url: sourceUrl })
     if (res.data) {
       setSelectedRecipe(res.data)
     } else {
@@ -119,4 +120,10 @@ export default function EditAddRecipe({
       </List>
     </Grid>
   )
+}
+
+EditAddRecipe.propTypes = {
+  selectedRecipe: PropTypes.object.isRequired,
+  setSelectedRecipe: PropTypes.func.isRequired,
+  setEditOrAddRecipe: PropTypes.func.isRequired,
 }

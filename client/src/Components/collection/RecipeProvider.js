@@ -1,4 +1,5 @@
 import React, { useState, createContext } from "react"
+import PropTypes from "prop-types"
 
 const RecipeContext = createContext()
 
@@ -29,4 +30,8 @@ export function RecipeProvider(props) {
       {props.children}
     </RecipeContext.Provider>
   )
+}
+
+RecipeProvider.propTypes = {
+  children: PropTypes.object.isRequired,
 }

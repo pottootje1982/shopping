@@ -19,6 +19,7 @@ import green from "@material-ui/core/colors/green"
 import grey from "@material-ui/core/colors/grey"
 import server from "../server"
 import { Fab } from "../styled"
+import PropTypes from "prop-types"
 
 export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   const [products, setProducts] = useState([])
@@ -38,18 +39,20 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   useEffect(addMouseWheel, [])
 
   function addMouseWheel() {
-    if (listRef.current)
+    if (listRef.current) {
       listRef.current.addEventListener("mousewheel", listWheel, {
         passive: false,
       })
+    }
     return removeMouseWheel
   }
 
   function removeMouseWheel() {
-    if (listRef.current)
+    if (listRef.current) {
       listRef.current.removeEventListener("mousewheel", listWheel, {
         passive: false,
       })
+    }
   }
 
   useEffect(() => {
@@ -60,11 +63,11 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   }, [selectedRecipe, ingredients, addRecipe, selectedIngredient])
 
   async function search(item, customSearch) {
-    const query = customSearch ? customSearch : item.ingredient
+    const query = customSearch || item.ingredient
     const searchResponse = await server.get(
       `products?query=${query}&full=${selectedIngredient.ingredient}`
     )
-    let products = searchResponse.data
+    const products = searchResponse.data
     setProducts(products)
   }
 
@@ -210,4 +213,9 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
       ) : null}
     </Fragment>
   )
+}
+
+Recipe.propTypes = {
+  selectedRecipe: PropTypes.object.isRequired,
+  setSelectedRecipe: PropTypes.func.isRequired,
 }

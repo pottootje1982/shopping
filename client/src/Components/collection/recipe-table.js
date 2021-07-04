@@ -17,6 +17,7 @@ import TableRow from "@material-ui/core/TableRow"
 import TableToolbar from "./TableToolbar"
 import TablePaginationActions from "./TablePaginationActions"
 import RecipeContext from "./RecipeProvider"
+import PropTypes from "prop-types"
 
 import {
   useTable,
@@ -42,13 +43,14 @@ const IndeterminateCheckbox = React.forwardRef(
     )
   }
 )
+IndeterminateCheckbox.displayName = "IndeterminateCheckbox"
 
 export default function RecipeTable() {
   const theme = createMuiTheme({
     overrides: {
       MuiTableCell: {
         root: {
-          //This can be referred from Material UI API documentation.
+          // This can be referred from Material UI API documentation.
           padding: "4px 8px",
         },
       },
@@ -84,7 +86,7 @@ export default function RecipeTable() {
       {
         Header: "Categories",
         accessor: "categoryNames",
-        Cell: (props) => <span>{props.value?.join(",")}</span>,
+        Cell: ({ value }) => <span>{value?.join(",")}</span>, //eslint-disable-line
       },
       { accessor: "mappings" },
       { accessor: "parsedIngredients" },
@@ -92,6 +94,10 @@ export default function RecipeTable() {
     ],
     []
   )
+
+  columns[3].Cell.propTypes = {
+    value: PropTypes.array.isRequired,
+  }
 
   function determineRowColor(row) {
     const values = row.values
@@ -177,6 +183,7 @@ export default function RecipeTable() {
     useGlobalFilter,
     usePagination,
     useRowSelect,
+    /* eslint-disable */
     (hooks) => {
       hooks.allColumns.push((columns) => [
         {
@@ -193,7 +200,7 @@ export default function RecipeTable() {
           ),
         },
         ...columns,
-      ])
+      ]) /* eslint-enable */
     }
   )
 
@@ -217,10 +224,10 @@ export default function RecipeTable() {
         <ThemeProvider theme={theme}>
           <MaUTable {...getTableProps()} style={{ minHeight: "78vh" }}>
             <TableHead>
-              {headerGroups.map((headerGroup) => (
-                <TableRow {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column) => (
-                    <TableCell {...column.getHeaderProps()}>
+              {headerGroups.map((headerGroup, i) => (
+                <TableRow key={i} {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column, j) => (
+                    <TableCell key={j} {...column.getHeaderProps()}>
                       {column.render("Header")}
                     </TableCell>
                   ))}
@@ -232,13 +239,14 @@ export default function RecipeTable() {
                 prepareRow(row)
                 return (
                   <TableRow
+                    key={i}
                     {...row.getRowProps()}
                     onClick={() => clickRow(row)}
                     style={determineRowColor(row)}
                   >
-                    {row.cells.map((cell) => {
+                    {row.cells.map((cell, j) => {
                       return (
-                        <TableCell {...cell.getCellProps()}>
+                        <TableCell key={j} {...cell.getCellProps()}>
                           {cell.render("Cell")}
                         </TableCell>
                       )
@@ -276,4 +284,8 @@ export default function RecipeTable() {
       </TableContainer>
     )
   )
+}
+
+IndeterminateCheckbox.propTypes = {
+  indeterminate: PropTypes.bool.isRequired,
 }

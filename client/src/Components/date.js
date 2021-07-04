@@ -1,7 +1,7 @@
-function pad(s, size) {
+function pad (s, size) {
   s = s.toString()
   while (s.length < (size || 2)) {
-    s = "0" + s
+    s = '0' + s
   }
   return s
 }
@@ -11,6 +11,6 @@ module.exports = function (date) {
   const month = pad(date.getMonth() + 1, 2)
   const day = pad(date.getDate(), 2)
   return `${date.getFullYear()}-${month}-${day} ${date.toLocaleTimeString(
-    "en-GB"
+    'en-GB'
   )}`
 }

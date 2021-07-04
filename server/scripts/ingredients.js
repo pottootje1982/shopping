@@ -4,17 +4,17 @@ const ingredientsRemoval = [
   /person/i,
   /^for the /i,
   /^to serve/i,
-  /^voor de/i,
+  /^voor de/i
 ]
 const wholeIngredients = [
   /aubergine/i,
   /courgette/i,
   /bloemkool/i,
   /chocola/i,
-  /brood/i,
+  /brood/i
 ]
 
-function filter(replacements, str) {
+function filter (replacements, str) {
   for (const [find, rep] of replacements) {
     str = str.replace(find, rep)
   }
@@ -22,18 +22,18 @@ function filter(replacements, str) {
 }
 
 class Ingredients extends Array {
-  getProducts() {
+  getProducts () {
     return this.map((i) => i.ingredient)
   }
 
-  setProducts(products) {
+  setProducts (products) {
     for (const [i, product] of products.entries()) {
       this[i].setIngredient(product)
     }
   }
 
-  static create(ingredients) {
-    const list = (ingredients ? ingredients.split("\n") : [])
+  static create (ingredients) {
+    const list = (ingredients ? ingredients.split('\n') : [])
       .map((line) => line.trim())
       .filter((line) => line)
       .filter((line) => ingredientsRemoval.every((r) => !r.exec(line)))
@@ -41,8 +41,8 @@ class Ingredients extends Array {
     return new Ingredients(...ingredientsList)
   }
 
-  toString() {
-    return this.map((ing) => ing.toString()).join("\n\n")
+  toString () {
+    return this.map((ing) => ing.toString()).join('\n\n')
   }
 }
 
@@ -50,7 +50,7 @@ const unitsWithNumber = [/.*ounce/]
 
 const quantMultExp = /([\d-¼½–.,/ ]*)\s*x?\s*/i
 const quantExp = /([\d-¼½–.,/]*)\s*/i
-const quantExpNoSpace = new RegExp(quantMultExp.source.replace(" ", ""), "i")
+const quantExpNoSpace = new RegExp(quantMultExp.source.replace(' ', ''), 'i')
 const ingrExp = /([^,]*)/.source
 
 const containers = [
@@ -64,40 +64,40 @@ const containers = [
 
   /blik/,
   /pak/,
-  /beker/,
+  /beker/
 ]
 const containerParsers = containers.map(
   (unit) =>
-    new RegExp(`${quantExp.source}(.*${unit.source})\\s+${ingrExp}`, "i")
+    new RegExp(`${quantExp.source}(.*${unit.source})\\s+${ingrExp}`, 'i')
 )
 const multiplicationParsers = containers.map(
   (unit) =>
     new RegExp(
       `${/([\d-¼½–.,/ ]*)\s*x\s*/i.source}(.*\\b${unit.source})\\s+${ingrExp}`,
-      "i"
+      'i'
     )
 )
 
 const measurements = [
-  ".*tbsp",
-  "tbs",
-  "tsp",
-  "ts",
-  "g",
-  "\\d+g",
-  "gr",
-  "kg",
-  "gram",
-  "ml",
-  "cl",
-  "dl",
-  "lt?",
-  "cm",
-  "el",
-  "el.",
-  "tl",
-  "tl.",
-  "ons",
+  '.*tbsp',
+  'tbs',
+  'tsp',
+  'ts',
+  'g',
+  '\\d+g',
+  'gr',
+  'kg',
+  'gram',
+  'ml',
+  'cl',
+  'dl',
+  'lt?',
+  'cm',
+  'el',
+  'el.',
+  'tl',
+  'tl.',
+  'ons'
 ]
 
 const adjectives = [
@@ -112,10 +112,10 @@ const adjectives = [
   /gewelde?/,
   /gehalveerde?/,
   /gepelde?/,
-  /gesneden/,
-].map((adj) => new RegExp(`${adj.source},?`, "i"))
+  /gesneden/
+].map((adj) => new RegExp(`${adj.source},?`, 'i'))
 
-let unitWords = [
+const unitWords = [
   /skinless/,
 
   // EN
@@ -156,39 +156,39 @@ let unitWords = [
   /stukje/,
   /snufje/,
   /takje/,
-  /vel/,
-].map((u) => new RegExp(`\\b${u.source}[^\\s]*`, "i"))
+  /vel/
+].map((u) => new RegExp(`\\b${u.source}[^\\s]*`, 'i'))
 
 const unitWordParsers = unitWords.map(
-  (u) => new RegExp(`^${quantExp.source}(.*${u.source})\\s*${ingrExp}$`, "i")
+  (u) => new RegExp(`^${quantExp.source}(.*${u.source})\\s*${ingrExp}$`, 'i')
 )
 
 const units = [
   ...measurements.map(
     (unit) =>
-      new RegExp(`^${quantMultExp.source}\\s*(${unit})\\s+${ingrExp}`, "i")
+      new RegExp(`^${quantMultExp.source}\\s*(${unit})\\s+${ingrExp}`, 'i')
   ),
   ...unitsWithNumber.map(
     (unit) =>
       new RegExp(
         `${quantExpNoSpace.source}\\s*(${unit.source})\\s*${ingrExp}`,
-        "i"
+        'i'
       )
-  ),
+  )
 ]
 
 const ingLineReplacements = [
-  [/(.+)(\(.*\))$/i, "$1"], // removal of parentheses
-  [/([^\d]),.*$/i, "$1"], // removal of comma
+  [/(.+)(\(.*\))$/i, '$1'], // removal of parentheses
+  [/([^\d]),.*$/i, '$1'] // removal of comma
 ]
 
 const ingReplacements = [
-  [/(.+)(\(.*\))$/i, "$1"], // removal of parentheses
-  [/(\(.*\)\s+)(.+)$/i, "$2"], // removal of parentheses
+  [/(.+)(\(.*\))$/i, '$1'], // removal of parentheses
+  [/(\(.*\)\s+)(.+)$/i, '$2'] // removal of parentheses
 ]
 
 class Ingredient {
-  constructor(ingredientLine) {
+  constructor (ingredientLine) {
     let quant, unit, ingr
 
     ingredientLine = ingredientLine.trim()
@@ -200,24 +200,24 @@ class Ingredient {
     } else {
       ;[, quant, ingr] = new RegExp(
         `${quantMultExp.source}${ingrExp}`,
-        "i"
+        'i'
       ).exec(ingredientLine)
     }
 
     this.ingredient = this.filterIng(ingr)
     quant = quant && quant.trim()
-    quant = quant === "" ? undefined : quant
+    quant = quant === '' ? undefined : quant
     this.quantity = !isNaN(quant) ? parseFloat(quant) : quant
     this.unit = unit && unit.trim()
     this.all = [this.quantity, this.unit, this.ingredient]
   }
 
-  match(matches, str) {
+  match (matches, str) {
     const parsed = matches.map((u) => u.exec(str))
     return (parsed.find((u) => u != null) || []).slice(1)
   }
 
-  parse(rawIng) {
+  parse (rawIng) {
     let [quant, unit, ingredient] = this.match(multiplicationParsers, rawIng)
     if (!ingredient) {
       ;[quant, unit, ingredient] = this.match(containerParsers, rawIng)
@@ -235,36 +235,36 @@ class Ingredient {
         // ingredient - unit can be reversed like 'garlic cloves'
         const match = unitWords.map((u) => unit.match(u)).find((u) => u)
         unit = match ? match[0] : unit
-        ingredient = match ? match.input.replace(unit, "") : undefined
+        ingredient = match ? match.input.replace(unit, '') : undefined
       }
     }
     if (!ingredient) [quant, unit, ingredient] = this.match(units, rawIng)
     if (ingredient) {
       ingredient = ingredient.trim()
-      ingredient = ingredient === "" ? undefined : ingredient
+      ingredient = ingredient === '' ? undefined : ingredient
       return [quant, unit, ingredient]
     }
   }
 
-  filterIngLine(line) {
-    adjectives.forEach((adj) => (line = line.replace(adj, "")))
+  filterIngLine (line) {
+    adjectives.forEach((adj) => (line = line.replace(adj, '')))
     return filter(ingLineReplacements, line)
   }
 
-  filterIng(ingr) {
+  filterIng (ingr) {
     return filter(ingReplacements, ingr).trim()
   }
 
-  setIngredient(ingredient) {
+  setIngredient (ingredient) {
     if (ingredient) {
       this.ingredient = ingredient
       this.full = [this.quantity, this.unit, this.ingredient]
         .filter((s) => s)
-        .join(" ")
+        .join(' ')
     }
   }
 
-  quantityToOrder() {
+  quantityToOrder () {
     const { ingredient, unit } = this
     const isPacked = containers.some((c) => unit && unit.match(c))
     let quantity = this.unit && !isPacked ? 1 : parseInt(this.quantity)
@@ -279,7 +279,7 @@ class Ingredient {
     return quantity
   }
 
-  toString() {
+  toString () {
     const all = this.all
     return `${all.toString()},`
   }

@@ -13,6 +13,7 @@ import {
   Link,
 } from "@material-ui/core"
 import { Button } from "../styled"
+import PropTypes from "prop-types"
 
 const styles = makeStyles(() => ({
   input: {
@@ -169,4 +170,12 @@ export default function ProductSearch({
       </Grid>
     </Grid>
   )
+}
+
+ProductSearch.propTypes = {
+  selectedIngredient: PropTypes.object.isRequired,
+  selectedRecipe: PropTypes.object.isRequired,
+  setSelectedRecipe: PropTypes.func.isRequired,
+  searchProducts: PropTypes.func.isRequired,
+  products: PropTypes.array.isRequired,
 }

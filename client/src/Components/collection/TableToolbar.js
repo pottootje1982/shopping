@@ -1,16 +1,16 @@
-import React, { useState, useContext } from "react"
+import React, { useState, useContext } from 'react'
 
-import clsx from "clsx"
-import DeleteIcon from "@material-ui/icons/Delete"
-import GlobalFilter from "./GlobalFilter"
-import { lighten, makeStyles } from "@material-ui/core/styles"
-import PropTypes from "prop-types"
-import ConfirmationDialog from "./confirmation-dialog"
-import { Fab } from "../styled"
-import { Add } from "@material-ui/icons"
-import getDateString from "../date"
-import server from "../server"
-import RecipeContext from "./RecipeProvider"
+import clsx from 'clsx'
+import DeleteIcon from '@material-ui/icons/Delete'
+import GlobalFilter from './GlobalFilter'
+import { lighten, makeStyles } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
+import ConfirmationDialog from './confirmation-dialog'
+import { Fab } from '../styled'
+import { Add } from '@material-ui/icons'
+import getDateString from '../date'
+import server from '../server'
+import RecipeContext from './RecipeProvider'
 
 import {
   Toolbar,
@@ -18,34 +18,34 @@ import {
   Checkbox,
   Typography,
   Tooltip,
-  IconButton,
-} from "@material-ui/core"
+  IconButton
+} from '@material-ui/core'
 
 const useToolbarStyles = makeStyles((theme) => ({
   root: {
     paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
+    paddingRight: theme.spacing(1)
   },
   highlight:
-    theme.palette.type === "light"
+    theme.palette.type === 'light'
       ? {
           color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+          backgroundColor: lighten(theme.palette.secondary.light, 0.85)
         }
       : {
           color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark,
+          backgroundColor: theme.palette.secondary.dark
         },
   title: {
-    flex: "1 1 100%",
-  },
+    flex: '1 1 100%'
+  }
 }))
 
 const TableToolbar = ({
   numSelected,
   preGlobalFilteredRows,
   setGlobalFilter,
-  globalFilter,
+  globalFilter
 }) => {
   const classes = useToolbarStyles()
   const [deletionDialogOpen, setDeletionDialogOpen] = useState(false)
@@ -54,28 +54,28 @@ const TableToolbar = ({
     setRecipes,
     selectedRecipe,
     setSelectedRecipe,
-    selectedRecipes,
+    selectedRecipes
   } = useContext(RecipeContext)
 
-  function addRecipe() {
+  function addRecipe () {
     const created = getDateString()
     setSelectedRecipe({
       parsedIngredients: [],
       mappings: [],
-      created,
+      created
     })
   }
 
-  async function removeRecipes() {
+  async function removeRecipes () {
     if (selectedRecipes.length > 0) {
-      const { data: success } = await server.delete("recipes", {
-        data: selectedRecipes,
+      const { data: success } = await server.delete('recipes', {
+        data: selectedRecipes
       })
       if (success) {
         const index = recipes.indexOf(selectedRecipe)
         const {
-          data: { recipes: newRecipes = [] },
-        } = (await server.get("recipes")) || {}
+          data: { recipes: newRecipes = [] }
+        } = (await server.get('recipes')) || {}
         setRecipes(newRecipes)
         const newIndex = Math.min(index, newRecipes.length - 1)
         setSelectedRecipe(newRecipes[newIndex])
@@ -86,13 +86,14 @@ const TableToolbar = ({
   return (
     <Toolbar
       className={clsx(classes.root, {
-        [classes.highlight]: numSelected > 0,
+        [classes.highlight]: numSelected > 0
       })}
     >
       <Fab onClick={addRecipe}>
         <Add />
       </Fab>
-      {numSelected > 0 ? (
+      {numSelected > 0
+        ? (
         <Typography
           className={classes.title}
           color="inherit"
@@ -100,13 +101,15 @@ const TableToolbar = ({
         >
           {numSelected} selected
         </Typography>
-      ) : (
+          )
+        : (
         <Typography className={classes.title} variant="h6" id="tableTitle">
           Recipes
         </Typography>
-      )}
+          )}
 
-      {numSelected > 0 ? (
+      {numSelected > 0
+        ? (
         <>
           <Tooltip title="Delete">
             <IconButton
@@ -119,20 +122,21 @@ const TableToolbar = ({
           <ConfirmationDialog
             dialogOpen={deletionDialogOpen}
             setDialogOpen={setDeletionDialogOpen}
-            title={"Remove recipe"}
+            title={'Remove recipe'}
             message={`Are you sure you want to remove ${selectedRecipes
               .map((r) => `"${r.name}"`)
-              .join(", ")}?`}
+              .join(', ')}?`}
             onOk={removeRecipes}
           />
         </>
-      ) : (
+          )
+        : (
         <GlobalFilter
           preGlobalFilteredRows={preGlobalFilteredRows}
           globalFilter={globalFilter}
           setGlobalFilter={setGlobalFilter}
         />
-      )}
+          )}
 
       {numSelected > 0 && (
         <FormControlLabel
@@ -156,7 +160,7 @@ TableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
   setGlobalFilter: PropTypes.func.isRequired,
   preGlobalFilteredRows: PropTypes.array.isRequired,
-  globalFilter: PropTypes.object,
+  globalFilter: PropTypes.object
 }
 
 export default TableToolbar
