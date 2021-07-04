@@ -12,9 +12,9 @@ require("../scripts/db/tables")("./mongo-client").then((dbs) => {
 const Translator = require("../scripts/translator")
 
 router.get("/", async function (_req, res) {
-  const recipes = await recipeDb.getRecipes()
-  const orders = await orderDb.getHydrated(recipes)
   const categories = await paprika.categories()
+  const recipes = await recipeDb.getRecipes(categories)
+  const orders = await orderDb.getHydrated(recipes)
   res.send({ recipes, orders, categories })
 })
 
@@ -63,8 +63,10 @@ router.delete("/", async function (req, res) {
 })
 
 router.get("/sync", async (_req, res) => {
-  const result = await paprika.synchronize(await recipeDb.getRecipesRaw())
-  res.send(result)
+  await paprika.synchronize(await recipeDb.getRecipesRaw())
+  const categories = await paprika.categories()
+  const recipes = await recipeDb.getRecipes(categories)
+  res.send(recipes)
 })
 
 router.post("/download", async (req, res) => {

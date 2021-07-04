@@ -23,7 +23,9 @@ describe("Index", () => {
 
   it("Synchronizes recipes - 1 new from Paprika, 1 new to Paprika", async () => {
     const localRecipes = await recipeDb.getRecipes()
-    const newRecipes = await paprika.synchronize(localRecipes)
+    const success = await paprika.synchronize(localRecipes)
+    expect(success).toBeTruthy()
+    const newRecipes = await recipeDb.getRecipes()
     const recipes = await paprika.getRecipes()
     expect(recipes.length).toBe(6)
     expect(newRecipes.length).toBe(5)

@@ -33,10 +33,27 @@ class RecipeDb {
     return this.ingToProduct.getMappings(...recipes)
   }
 
-  async getRecipes() {
+  addCategoryNames(recipes, cats = []) {
+    return recipes.map((recipe) => {
+      const { categories = [] } = recipe
+      const categoryNames = categories
+        .map((uid) =>
+          cats.find((c) => c.uid.toLowerCase() === uid.toLowerCase())
+        )
+        .filter((c) => c)
+        .map((c) => c.name)
+      return {
+        ...recipe,
+        categoryNames: categoryNames || [],
+      }
+    })
+  }
+
+  async getRecipes(categories) {
     const recipes = await this.db.get("recipes").cloneDeep().value()
-    await this.translateRecipes(...recipes)
-    return recipes
+    const recipesWithCategoryNames = this.addCategoryNames(recipes, categories)
+    await this.translateRecipes(...recipesWithCategoryNames)
+    return recipesWithCategoryNames
   }
 
   getRecipesRaw() {
@@ -64,6 +81,7 @@ class RecipeDb {
     const newRecipe = { ...oldRecipe, ...recipe }
     delete newRecipe.mappings
     delete newRecipe.parsedIngredients
+    delete newRecipe.categoryNames
     this.setHash(newRecipe)
     await this.db
       .get("recipes")

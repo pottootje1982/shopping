@@ -1,6 +1,5 @@
 "use strict"
 
-const { AH_USER, AH_PASS, AH_API } = require("../config")
 var express = require("express")
 var router = express.Router()
 const AhApi = require("../scripts/ah-api")

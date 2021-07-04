@@ -47,7 +47,7 @@ class Paprika {
   }
 
   synchronize() {
-    return this.recipeDb.getRecipes()
+    return true
   }
 }
 

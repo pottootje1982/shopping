@@ -80,7 +80,12 @@ export default function RecipeTable() {
         Header: "Name",
         accessor: "name",
       },
-      { Header: "Created", accessor: "created", type: "date" },
+      { Header: "Created", accessor: "created" },
+      {
+        Header: "Categories",
+        accessor: "categoryNames",
+        Cell: (props) => <span>{props.value?.join(",")}</span>,
+      },
       { accessor: "mappings" },
       { accessor: "parsedIngredients" },
       { accessor: "categories" },
@@ -157,7 +162,13 @@ export default function RecipeTable() {
       columns,
       data: recipes,
       initialState: {
-        hiddenColumns: ["uid", "mappings", "parsedIngredients", "categories"],
+        hiddenColumns: [
+          "uid",
+          "mappings",
+          "parsedIngredients",
+          "categories",
+          "created",
+        ],
         pageSize: 15,
       },
       globalFilter: globalFilterFunc,

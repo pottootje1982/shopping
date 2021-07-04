@@ -56,7 +56,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
       setSelectedRecipe(recipe)
       if (!MOCK_DATA) sync()
     }
-    setOrders(data.orders.sort((a, b) => b.date.localeCompare(a.date)))
+    setOrders(data.orders)
     setCategories(data.categories)
   }
 
@@ -148,6 +148,9 @@ export default function RecipeCollection({ setRecipeTitle }) {
     }
   }
 
+  const sortedOrders =
+    orders?.sort((a, b) => b.date.localeCompare(a.date)) || []
+
   return recipes === undefined ? (
     <div>Loading</div>
   ) : (
@@ -171,7 +174,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
             <MenuItem key="Orders" value="">
               <em>None</em>
             </MenuItem>
-            {(orders || []).map((order) => (
+            {sortedOrders.map((order) => (
               <MenuItem key={order.date} value={order}>
                 {order.date}
               </MenuItem>

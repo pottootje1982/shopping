@@ -2,10 +2,10 @@
 
 - add translations for quantities: 4
 - allow for pre-order mobile (when actually ordering on desktop make sure there won't be double orders)
-- name orders (and add category column)
 
 # Improvements
 
+- add eslint
 - after selecting order, make sure to show ordered quantities
 - Clicking add to cart button in ingredients list shouldn't look at quantity
 - adjust quantity buttons bigger

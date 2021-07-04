@@ -25,6 +25,7 @@ function createZip(recipe, fn) {
 PaprikaApi.prototype.upsertRecipe = async function (recipe) {
   delete recipe.mappings
   delete recipe.parsedIngredients
+  delete recipe.categoryNames
   const request = require("request-promise")
   await createZip(JSON.stringify(recipe), "./file.gz")
   const res = await request.post(
@@ -149,7 +150,7 @@ class Paprika {
         this.recipeDb.addRecipe(remote)
       }
     }
-    return insertToLocal.length > 0 ? this.recipeDb.getRecipes() : null
+    return insertToLocal.length > 0
   }
 }
 
