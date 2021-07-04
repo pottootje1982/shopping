@@ -21,12 +21,6 @@ router.delete("/:id", async function (req, res) {
   else res.sendStatus(404)
 })
 
-router.post("/product", async function (req, res) {
-  const { success, failures } = await api.addToShoppingList(req.body)
-  if (success) return res.sendStatus(200)
-  else res.send({ failures })
-})
-
 var path = require("path")
 var fs = require("fs")
 

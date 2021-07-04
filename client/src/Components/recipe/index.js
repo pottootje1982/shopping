@@ -101,7 +101,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   }
 
   function order(item) {
-    server.post("orders/product", { items: [item] })
+    document.cookie = `order=${JSON.stringify([{ ...item, quantity: 1 }])}`
   }
 
   function listWheel(e) {

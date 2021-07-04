@@ -18,7 +18,7 @@ export default function App() {
       <div className="App-header">
         <div style={{ display: "table", clear: "both" }}></div>
         <Grid container alignItems="center" spacing={1}>
-          <Grid item container xs={4}>
+          <Grid item container xs={3}>
             <Grid item>
               <Typography variant="h4" style={{ padding: 15, color: blue[50] }}>
                 Lazy chef
@@ -28,7 +28,7 @@ export default function App() {
               <Hat style={{ width: 60, height: 60 }}></Hat>
             </Grid>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={6}>
             <Typography variant="h6" style={{ color: blue[50] }}>
               {recipeTitle}
             </Typography>

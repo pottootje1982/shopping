@@ -128,11 +128,11 @@ export default function RecipeTable() {
       const { name, categories, uid } = row.values
 
       let show = true
-      if (selectedOrder !== "") {
+      if (selectedOrder) {
         const orderedRecipes = selectedOrder.recipes.map((r) => r.uid)
         show &= orderedRecipes.includes(uid)
       }
-      if (selectedCategory !== "") {
+      if (selectedCategory) {
         show &= categories
           .map((c) => c.toLowerCase())
           .includes(selectedCategory.uid.toLowerCase())
@@ -202,8 +202,8 @@ export default function RecipeTable() {
   }, [selectedRowIds, setSelectedRecipes, recipes])
 
   useEffect(() => {
-    setGlobalFilter({ ...globalFilter, value: undefined })
-  }, [selectedCategory, selectedOrder])
+    setGlobalFilter((filter) => ({ ...filter, value: undefined }))
+  }, [selectedCategory, selectedOrder, setGlobalFilter])
 
   return (
     recipes && (

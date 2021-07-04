@@ -168,7 +168,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
 
           <Select
             onChange={selectOrder}
-            value={selectedOrder}
+            value={selectedOrder || ""}
             style={{ marginLeft: 5 }}
           >
             <MenuItem key="Orders" value="">
@@ -193,7 +193,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
           <InputLabel id="demo-simple-select-label">Categories</InputLabel>
           <Select
             onChange={selectCategory}
-            value={selectedCategory}
+            value={selectedCategory || ""}
             style={{ marginLeft: 5 }}
           >
             <MenuItem key="Categories" value="">

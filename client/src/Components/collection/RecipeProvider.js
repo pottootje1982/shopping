@@ -8,8 +8,8 @@ export function RecipeProvider(props) {
   const [recipes, setRecipes] = useState([])
   const [selectedRecipes, setSelectedRecipes] = useState(() => [])
   const [selectedRecipe, setSelectedRecipe] = useState()
-  const [selectedOrder, setSelectedOrder] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("")
+  const [selectedOrder, setSelectedOrder] = useState()
+  const [selectedCategory, setSelectedCategory] = useState()
 
   const values = {
     recipes,
