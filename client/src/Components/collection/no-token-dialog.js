@@ -1,31 +1,31 @@
-import React from "react"
+import React from 'react'
 import {
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
   Button,
-  Typography,
-} from "@material-ui/core"
-import PropTypes from "prop-types"
+  Typography
+} from '@material-ui/core'
+import PropTypes from 'prop-types'
 
-import { getServerUrl } from "../server"
+import { getServerUrl } from '../server'
 
-export default function NoTokenDialog({ dialogOpen, setDialogOpen }) {
+export default function NoTokenDialog ({ dialogOpen, setDialogOpen }) {
   const closeDialog = () => {
     setDialogOpen(false)
   }
 
-  function onOkClick() {
+  function onOkClick () {
     closeDialog()
     onOk()
   }
 
-  function getExtension() {
+  function getExtension () {
     window.open(`${getServerUrl()}/orders/extension`)
   }
 
-  function onOk() {
+  function onOk () {
     closeDialog()
   }
 
@@ -52,5 +52,5 @@ export default function NoTokenDialog({ dialogOpen, setDialogOpen }) {
 
 NoTokenDialog.propTypes = {
   dialogOpen: PropTypes.bool.isRequired,
-  setDialogOpen: PropTypes.func.isRequired,
+  setDialogOpen: PropTypes.func.isRequired
 }

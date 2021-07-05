@@ -1,11 +1,11 @@
-import React, { useState, createContext } from "react"
-import PropTypes from "prop-types"
+import React, { useState, createContext } from 'react'
+import PropTypes from 'prop-types'
 
 const RecipeContext = createContext()
 
 export default RecipeContext
 
-export function RecipeProvider(props) {
+export function RecipeProvider (props) {
   const [recipes, setRecipes] = useState([])
   const [selectedRecipes, setSelectedRecipes] = useState(() => [])
   const [selectedRecipe, setSelectedRecipe] = useState()
@@ -22,7 +22,7 @@ export function RecipeProvider(props) {
     selectedOrder,
     setSelectedOrder,
     selectedCategory,
-    setSelectedCategory,
+    setSelectedCategory
   }
 
   return (
@@ -33,5 +33,5 @@ export function RecipeProvider(props) {
 }
 
 RecipeProvider.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.object.isRequired
 }

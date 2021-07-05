@@ -1,25 +1,25 @@
-import React, { useRef } from "react"
-import { Typography, Grid, Link, List, ListItem } from "@material-ui/core"
-import server from "../server"
-import getDateString from "../date"
-import { TextField, Button, Fab } from "../styled"
-import DownloadIcon from "@material-ui/icons/GetApp"
-import PropTypes from "prop-types"
-const uuidv1 = require("uuid/v1")
+import React, { useRef } from 'react'
+import { Typography, Grid, Link, List, ListItem } from '@material-ui/core'
+import server from '../server'
+import getDateString from '../date'
+import { TextField, Button, Fab } from '../styled'
+import DownloadIcon from '@material-ui/icons/GetApp'
+import PropTypes from 'prop-types'
+const uuidv1 = require('uuid/v1')
 
-export default function EditAddRecipe({
+export default function EditAddRecipe ({
   selectedRecipe,
   setSelectedRecipe,
-  setEditOrAddRecipe,
+  setEditOrAddRecipe
 }) {
   const nameRef = useRef(null)
   const ingredientsRef = useRef(null)
   const directionsRef = useRef(null)
   const urlRef = useRef(null)
   const edit = selectedRecipe.uid !== undefined
-  const title = edit ? "Edit Recipe" : "Add Recipe"
+  const title = edit ? 'Edit Recipe' : 'Add Recipe'
 
-  async function saveRecipeClick() {
+  async function saveRecipeClick () {
     const name = nameRef.current.value
     const uid = selectedRecipe.uid || uuidv1()
     const ingredients = ingredientsRef.current.value
@@ -30,33 +30,33 @@ export default function EditAddRecipe({
       uid,
       ingredients,
       directions,
-      source_url: sourceUrl,
+      source_url: sourceUrl
     }
     if (!edit) {
       recipe.created = getDateString()
     }
     let res
     if (edit) {
-      res = await server.put("recipes", recipe)
+      res = await server.put('recipes', recipe)
     } else {
       recipe = { ...selectedRecipe, ...recipe }
       delete recipe.parsedIngredients
-      res = await server.post("recipes", recipe)
+      res = await server.post('recipes', recipe)
     }
     setSelectedRecipe(res.data)
   }
 
-  function cancelClick() {
+  function cancelClick () {
     setEditOrAddRecipe(false)
   }
 
-  async function downloadRecipe() {
+  async function downloadRecipe () {
     const sourceUrl = urlRef.current.value
-    const res = await server.post("recipes/download", { url: sourceUrl })
+    const res = await server.post('recipes/download', { url: sourceUrl })
     if (res.data) {
       setSelectedRecipe(res.data)
     } else {
-      alert("Recipe could not be downloaded from url")
+      alert('Recipe could not be downloaded from url')
     }
   }
 
@@ -67,7 +67,7 @@ export default function EditAddRecipe({
         <Button onClick={cancelClick}>Cancel</Button>
       </div>
       <Typography variant="h5">{title}</Typography>
-      <List padding={1} style={{ maxHeight: "70vh", overflow: "auto" }}>
+      <List padding={1} style={{ maxHeight: '70vh', overflow: 'auto' }}>
         <ListItem>
           <TextField
             label="Source Url"
@@ -81,7 +81,7 @@ export default function EditAddRecipe({
         </ListItem>
         <ListItem>
           <Link href={selectedRecipe.source_url}>
-            {selectedRecipe.source_url || ""}
+            {selectedRecipe.source_url || ''}
           </Link>
         </ListItem>
         <ListItem>
@@ -94,7 +94,7 @@ export default function EditAddRecipe({
         <ListItem>
           <TextField
             InputProps={{
-              readOnly: true,
+              readOnly: true
             }}
             label="Created"
             readOnly
@@ -125,5 +125,5 @@ export default function EditAddRecipe({
 EditAddRecipe.propTypes = {
   selectedRecipe: PropTypes.object.isRequired,
   setSelectedRecipe: PropTypes.func.isRequired,
-  setEditOrAddRecipe: PropTypes.func.isRequired,
+  setEditOrAddRecipe: PropTypes.func.isRequired
 }
