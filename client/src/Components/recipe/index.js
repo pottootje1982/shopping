@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState, useRef } from "react"
+import React, { Fragment, useEffect, useState, useRef } from 'react'
 import {
   Grid,
   Paper,
@@ -7,21 +7,21 @@ import {
   ListItemText,
   Typography,
   TextField,
-  IconButton,
-} from "@material-ui/core"
-import EditIcon from "@material-ui/icons/Edit"
-import TranslateIcon from "@material-ui/icons/Translate"
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
-import ProductSearch from "../shopping-results"
-import EditAddRecipe from "./edit-add-recipe"
-import blue from "@material-ui/core/colors/blue"
-import green from "@material-ui/core/colors/green"
-import grey from "@material-ui/core/colors/grey"
-import server from "../server"
-import { Fab } from "../styled"
-import PropTypes from "prop-types"
+  IconButton
+} from '@material-ui/core'
+import EditIcon from '@material-ui/icons/Edit'
+import TranslateIcon from '@material-ui/icons/Translate'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
+import ProductSearch from '../shopping-results'
+import EditAddRecipe from './edit-add-recipe'
+import blue from '@material-ui/core/colors/blue'
+import green from '@material-ui/core/colors/green'
+import grey from '@material-ui/core/colors/grey'
+import server from '../server'
+import { Fab } from '../styled'
+import PropTypes from 'prop-types'
 
-export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
+export default function Recipe ({ selectedRecipe, setSelectedRecipe }) {
   const [products, setProducts] = useState([])
   const [selectedIngredient, setSelectedIngredient] = useState()
   const [editOrAddRecipe, setEditOrAddRecipe] = useState()
@@ -38,19 +38,19 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
 
   useEffect(addMouseWheel, [])
 
-  function addMouseWheel() {
+  function addMouseWheel () {
     if (listRef.current) {
-      listRef.current.addEventListener("mousewheel", listWheel, {
-        passive: false,
+      listRef.current.addEventListener('mousewheel', listWheel, {
+        passive: false
       })
     }
     return removeMouseWheel
   }
 
-  function removeMouseWheel() {
+  function removeMouseWheel () {
     if (listRef.current) {
-      listRef.current.removeEventListener("mousewheel", listWheel, {
-        passive: false,
+      listRef.current.removeEventListener('mousewheel', listWheel, {
+        passive: false
       })
     }
   }
@@ -62,7 +62,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
     }
   }, [selectedRecipe, ingredients, addRecipe, selectedIngredient])
 
-  async function search(item, customSearch) {
+  async function search (item, customSearch) {
     const query = customSearch || item.ingredient
     const searchResponse = await server.get(
       `products?query=${query}&full=${selectedIngredient.ingredient}`
@@ -71,26 +71,26 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
     setProducts(products)
   }
 
-  async function translate(uid) {
-    const res = await server.post("recipes/translate", { recipeId: uid })
+  async function translate (uid) {
+    const res = await server.post('recipes/translate', { recipeId: uid })
     const ingredientIndex = ingredients.indexOf(selectedIngredient)
     const recipe = res.data.recipe
     setSelectedRecipe(recipe)
     setSelectedIngredient(recipe.parsedIngredients[ingredientIndex])
   }
 
-  function editRecipeClick() {
+  function editRecipeClick () {
     setEditOrAddRecipe(true)
   }
 
-  function onAdjustQuantity(productInfo, event) {
+  function onAdjustQuantity (productInfo, event) {
     const target = event.target
     const value = parseInt(target.value)
     productInfo.quantity = value
     setSelectedRecipe({ ...selectedRecipe })
   }
 
-  function onAdjustQuantityWheel(productInfo, event) {
+  function onAdjustQuantityWheel (productInfo, event) {
     const target = event.target
     let value = parseInt(target.value)
     if (event.deltaY < 0) {
@@ -103,14 +103,14 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
     setSelectedRecipe({ ...selectedRecipe })
   }
 
-  function order(item) {
+  function order (item) {
     document.cookie = `order=${JSON.stringify([{ ...item, quantity: 1 }])}`
   }
 
-  function listWheel(e) {
+  function listWheel (e) {
     const { clientX, clientY } = e
     const focusedElement = document.elementFromPoint(clientX, clientY)
-    if (focusedElement.nodeName === "INPUT") {
+    if (focusedElement.nodeName === 'INPUT') {
       e.preventDefault(true)
     }
   }
@@ -124,12 +124,12 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
         <Fab onClick={editRecipeClick}>
           <EditIcon />
         </Fab>
-        <Grid item xs={12} style={{ minHeight: "75vh" }}>
+        <Grid item xs={12} style={{ minHeight: '75vh' }}>
           <Paper style={{ backgroundColor: blue[50] }}>
             <List
               ref={listRef}
               dense
-              style={{ maxHeight: "78vh", overflow: "auto" }}
+              style={{ maxHeight: '78vh', overflow: 'auto' }}
             >
               {(ingredients || []).map((item, i) => (
                 <ListItem
@@ -147,21 +147,23 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
                           color:
                             productInfo[i].ignore || productInfo[i].notAvailable
                               ? grey[500]
-                              : undefined,
+                              : undefined
                         }}
                       >
                         {item.full}
                       </Typography>
                     }
                     secondary={
-                      !productInfo[i].ignore && !productInfo[i].notAvailable ? (
+                      !productInfo[i].ignore && !productInfo[i].notAvailable
+                        ? (
                         <Typography
                           variant="subtitle2"
                           style={{ color: green[500], fontSize: 9 }}
                         >
                           {productInfo[i].title}
                         </Typography>
-                      ) : null
+                          )
+                        : null
                     }
                   ></ListItemText>
                   <TextField
@@ -170,7 +172,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
                     inputProps={{
                       min: 0,
                       max: 99,
-                      step: 1,
+                      step: 1
                     }}
                     style={{ width: 40, height: 40 }}
                     onChange={(e) => onAdjustQuantity(productInfo[i], e)}
@@ -182,7 +184,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
                       marginRight: -20,
                       marginTop: -20,
                       marginBottom: -20,
-                      transform: "scale(.7)",
+                      transform: 'scale(.7)'
                     }}
                   >
                     <ShoppingCartIcon />
@@ -194,14 +196,17 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
         </Grid>
       </Grid>
 
-      {editOrAddRecipe ? (
+      {editOrAddRecipe
+        ? (
         <EditAddRecipe
           key={selectedRecipe.name}
           selectedRecipe={selectedRecipe}
           setSelectedRecipe={setSelectedRecipe}
           setEditOrAddRecipe={setEditOrAddRecipe}
         />
-      ) : selectedIngredient ? (
+          )
+        : selectedIngredient
+          ? (
         <ProductSearch
           key={selectedIngredient}
           products={products}
@@ -210,12 +215,13 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
           selectedRecipe={selectedRecipe}
           setSelectedRecipe={setSelectedRecipe}
         />
-      ) : null}
+            )
+          : null}
     </Fragment>
   )
 }
 
 Recipe.propTypes = {
   selectedRecipe: PropTypes.object.isRequired,
-  setSelectedRecipe: PropTypes.func.isRequired,
+  setSelectedRecipe: PropTypes.func.isRequired
 }

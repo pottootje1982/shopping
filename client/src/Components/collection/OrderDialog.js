@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from 'react'
 import {
   Button,
   Dialog,
@@ -6,11 +6,11 @@ import {
   DialogContent,
   DialogTitle,
   Grid,
-  Box,
-} from "@material-ui/core"
-import PropTypes from "prop-types"
+  Box
+} from '@material-ui/core'
+import PropTypes from 'prop-types'
 
-export default function OrderDialog({ open, handleClose, selectedRecipes }) {
+export default function OrderDialog ({ open, handleClose, selectedRecipes }) {
   const [items, setItems] = useState([])
   const [ignored, setIgnored] = useState([])
   const [notAvailable, setNotAvailable] = useState([])
@@ -20,7 +20,7 @@ export default function OrderDialog({ open, handleClose, selectedRecipes }) {
       Object.entries(r.mappings).map(([ingredient, map]) => {
         return {
           ingredient,
-          ...map,
+          ...map
         }
       })
     )
@@ -40,7 +40,7 @@ export default function OrderDialog({ open, handleClose, selectedRecipes }) {
       maxWidth="md"
     >
       <DialogTitle id="alert-dialog-title">
-        {"Order the following items?"}
+        {'Order the following items?'}
       </DialogTitle>
       <DialogContent style={{ minWidth: 900 }}>
         <Grid container>
@@ -48,7 +48,7 @@ export default function OrderDialog({ open, handleClose, selectedRecipes }) {
             <Box fontWeight="fontWeightBold">Ordered items</Box>
             {items.map((item, index) => (
               <li key={index}>
-                {item.title || item.ingredient}: {item.quantity}{" "}
+                {item.title || item.ingredient}: {item.quantity}{' '}
               </li>
             ))}
           </Grid>
@@ -56,13 +56,13 @@ export default function OrderDialog({ open, handleClose, selectedRecipes }) {
             <Box fontWeight="fontWeightBold">Unavailable items</Box>
             {notAvailable.map((item, index) => (
               <li key={index}>
-                {item.title || item.ingredient}: {item.quantity}{" "}
+                {item.title || item.ingredient}: {item.quantity}{' '}
               </li>
             ))}
             <Box fontWeight="fontWeightBold">Ignored items</Box>
             {ignored.map((item, index) => (
               <li key={index}>
-                {item.title || item.ingredient}: {item.quantity}{" "}
+                {item.title || item.ingredient}: {item.quantity}{' '}
               </li>
             ))}
           </Grid>
@@ -83,5 +83,5 @@ export default function OrderDialog({ open, handleClose, selectedRecipes }) {
 OrderDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
-  selectedRecipes: PropTypes.array.isRequired,
+  selectedRecipes: PropTypes.array.isRequired
 }

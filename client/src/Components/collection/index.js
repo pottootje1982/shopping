@@ -1,26 +1,26 @@
-import React, { useState, useEffect, useContext } from "react"
-import server from "../server"
+import React, { useState, useEffect, useContext } from 'react'
+import server from '../server'
 import {
   Grid,
   Select,
   MenuItem,
   FormControl,
-  InputLabel,
-} from "@material-ui/core"
-import { ShoppingCart, Delete } from "@material-ui/icons"
-import PropTypes from "prop-types"
+  InputLabel
+} from '@material-ui/core'
+import { ShoppingCart, Delete } from '@material-ui/icons'
+import PropTypes from 'prop-types'
 
-import Recipe from "../recipe"
-import OrderDialog from "./OrderDialog"
-import RecipeTable from "./recipe-table"
-import { Fab } from "../styled"
-import NoTokenDialog from "./no-token-dialog"
-import { getCookie } from "../../cookie.js"
-import RecipeContext from "./RecipeProvider"
+import Recipe from '../recipe'
+import OrderDialog from './OrderDialog'
+import RecipeTable from './recipe-table'
+import { Fab } from '../styled'
+import NoTokenDialog from './no-token-dialog'
+import { getCookie } from '../../cookie.js'
+import RecipeContext from './RecipeProvider'
 
-const MOCK_DATA = process.env.REACT_APP_USE_MOCK_DATA === "true"
+const MOCK_DATA = process.env.REACT_APP_USE_MOCK_DATA === 'true'
 
-export default function RecipeCollection({ setRecipeTitle }) {
+export default function RecipeCollection ({ setRecipeTitle }) {
   const {
     recipes,
     setRecipes,
@@ -30,7 +30,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
     selectedOrder,
     setSelectedOrder,
     selectedCategory,
-    setSelectedCategory,
+    setSelectedCategory
   } = useContext(RecipeContext)
   const [, setRecipeReadyToOrder] = useState()
   const [orders, setOrders] = useState()
@@ -38,17 +38,17 @@ export default function RecipeCollection({ setRecipeTitle }) {
   const [open, setOpen] = useState(false)
   const [noTokenOpen, setNoTokenOpen] = useState(false)
 
-  function selectedFirstRecipe() {
+  function selectedFirstRecipe () {
     if (!MOCK_DATA) {
-      server.get("recipes").then(initialize)
+      server.get('recipes').then(initialize)
     } else {
-      const db = require("./stub/db.test.json")
+      const db = require('./stub/db.test.json')
       const result = { data: { ...db } }
       initialize(result)
     }
   }
 
-  function initialize(result) {
+  function initialize (result) {
     const data = result.data
     const recipes = data.recipes
     setRecipes(recipes)
@@ -61,7 +61,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
     setCategories(data.categories)
   }
 
-  function createOrder(recipes) {
+  function createOrder (recipes) {
     const items = recipes.map((r) => r.mappings).map((m) => Object.values(m))
     return []
       .concat(...items)
@@ -73,7 +73,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
 
   useEffect(selectRecipe, [selectedRecipe])
 
-  function selectRecipe() {
+  function selectRecipe () {
     if (!selectedRecipe) return
     setRecipeTitle(selectedRecipe.name)
     setRecipeReadyToOrder(
@@ -96,15 +96,15 @@ export default function RecipeCollection({ setRecipeTitle }) {
     }
   }
 
-  async function closeOrderDialog(event, isOk) {
+  async function closeOrderDialog (event, isOk) {
     setOpen(false)
 
-    if (isOk && event.nativeEvent.key !== "Escape") {
+    if (isOk && event.nativeEvent.key !== 'Escape') {
       try {
         const order = createOrder(selectedRecipes)
         document.cookie = `order=${JSON.stringify(order)}`
         const { data: newOrder } =
-          (await server.post("orders/", { recipes: selectedRecipes })) || {}
+          (await server.post('orders/', { recipes: selectedRecipes })) || {}
         if (newOrder) setOrders((orders) => [...orders, newOrder])
       } catch (err) {
         alert(err.response.data)
@@ -112,32 +112,32 @@ export default function RecipeCollection({ setRecipeTitle }) {
     }
   }
 
-  function selectOrder(event) {
-    setSelectedCategory("")
+  function selectOrder (event) {
+    setSelectedCategory('')
     setSelectedOrder(event.target.value)
   }
 
-  function selectCategory(event) {
-    setSelectedOrder("")
+  function selectCategory (event) {
+    setSelectedOrder('')
     setSelectedCategory(event.target.value)
   }
 
-  async function sync() {
-    const res = await server.get("recipes/sync")
+  async function sync () {
+    const res = await server.get('recipes/sync')
     const recipes = res.data
-    if (recipes && recipes !== "") {
+    if (recipes && recipes !== '') {
       setRecipes(recipes)
     }
   }
 
-  function showOrderDialog() {
-    if (!getCookie("HAS_SHOPPING_EXTENSION")) setNoTokenOpen(true)
+  function showOrderDialog () {
+    if (!getCookie('HAS_SHOPPING_EXTENSION')) setNoTokenOpen(true)
     else if (selectedRecipes.length === 0) {
-      alert("Please select recipes before ordering")
+      alert('Please select recipes before ordering')
     } else setOpen(true)
   }
 
-  function deleteOrder() {
+  function deleteOrder () {
     if (recipes.length > 0 && selectedOrder) {
       server.delete(`orders/${selectedOrder._id}`)
       const index = orders.indexOf(selectedOrder)
@@ -151,9 +151,11 @@ export default function RecipeCollection({ setRecipeTitle }) {
   const sortedOrders =
     orders?.sort((a, b) => b.date.localeCompare(a.date)) || []
 
-  return recipes === undefined ? (
+  return recipes === undefined
+    ? (
     <div>Loading</div>
-  ) : (
+      )
+    : (
     <Grid container spacing={1} style={{ padding: 10 }} alignItems="flex-start">
       <Grid container item xs={4} spacing={1}>
         <Fab onClick={showOrderDialog}>
@@ -168,7 +170,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
 
           <Select
             onChange={selectOrder}
-            value={selectedOrder || ""}
+            value={selectedOrder || ''}
             style={{ marginLeft: 5 }}
           >
             <MenuItem key="Orders" value="">
@@ -193,7 +195,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
           <InputLabel id="demo-simple-select-label">Categories</InputLabel>
           <Select
             onChange={selectCategory}
-            value={selectedCategory || ""}
+            value={selectedCategory || ''}
             style={{ marginLeft: 5 }}
           >
             <MenuItem key="Categories" value="">
@@ -210,13 +212,15 @@ export default function RecipeCollection({ setRecipeTitle }) {
           <RecipeTable />
         </Grid>
       </Grid>
-      {selectedRecipe ? (
+      {selectedRecipe
+        ? (
         <Recipe
           key={selectedRecipe.uid}
           selectedRecipe={selectedRecipe}
           setSelectedRecipe={setSelectedRecipe}
         />
-      ) : null}
+          )
+        : null}
       <OrderDialog
         open={open}
         handleClose={closeOrderDialog}
@@ -227,9 +231,9 @@ export default function RecipeCollection({ setRecipeTitle }) {
         setDialogOpen={setNoTokenOpen}
       ></NoTokenDialog>
     </Grid>
-  )
+      )
 }
 
 RecipeCollection.propTypes = {
-  setRecipeTitle: PropTypes.func.isRequired,
+  setRecipeTitle: PropTypes.func.isRequired
 }

@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core'
 import PropTypes from 'prop-types'
 
-export default function ConfirmationDialog({
+export default function ConfirmationDialog ({
   title,
   message,
   onOk,
@@ -19,7 +19,7 @@ export default function ConfirmationDialog({
     setDialogOpen(false)
   }
 
-  function onOkClick() {
+  function onOkClick () {
     closeDialog()
     onOk()
   }

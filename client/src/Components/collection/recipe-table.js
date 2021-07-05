@@ -1,31 +1,31 @@
-import React, { useContext, useEffect, useMemo } from "react"
-import blue from "@material-ui/core/colors/blue"
-import green from "@material-ui/core/colors/green"
+import React, { useContext, useEffect, useMemo } from 'react'
+import blue from '@material-ui/core/colors/blue'
+import green from '@material-ui/core/colors/green'
 import {
   TableFooter,
   TablePagination,
   Checkbox,
   TableContainer,
-  ThemeProvider,
-} from "@material-ui/core"
-import { createMuiTheme } from "@material-ui/core/styles"
-import MaUTable from "@material-ui/core/Table"
-import TableBody from "@material-ui/core/TableBody"
-import TableCell from "@material-ui/core/TableCell"
-import TableHead from "@material-ui/core/TableHead"
-import TableRow from "@material-ui/core/TableRow"
-import TableToolbar from "./TableToolbar"
-import TablePaginationActions from "./TablePaginationActions"
-import RecipeContext from "./RecipeProvider"
-import PropTypes from "prop-types"
+  ThemeProvider
+} from '@material-ui/core'
+import { createMuiTheme } from '@material-ui/core/styles'
+import MaUTable from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import TableToolbar from './TableToolbar'
+import TablePaginationActions from './TablePaginationActions'
+import RecipeContext from './RecipeProvider'
+import PropTypes from 'prop-types'
 
 import {
   useTable,
   useRowSelect,
   usePagination,
   useFilters,
-  useGlobalFilter,
-} from "react-table"
+  useGlobalFilter
+} from 'react-table'
 
 const IndeterminateCheckbox = React.forwardRef(
   ({ indeterminate, ...rest }, ref) => {
@@ -43,18 +43,18 @@ const IndeterminateCheckbox = React.forwardRef(
     )
   }
 )
-IndeterminateCheckbox.displayName = "IndeterminateCheckbox"
+IndeterminateCheckbox.displayName = 'IndeterminateCheckbox'
 
-export default function RecipeTable() {
+export default function RecipeTable () {
   const theme = createMuiTheme({
     overrides: {
       MuiTableCell: {
         root: {
           // This can be referred from Material UI API documentation.
-          padding: "4px 8px",
-        },
-      },
-    },
+          padding: '4px 8px'
+        }
+      }
+    }
   })
 
   const {
@@ -63,10 +63,10 @@ export default function RecipeTable() {
     setSelectedRecipes,
     selectedRecipe,
     selectedCategory,
-    selectedOrder,
+    selectedOrder
   } = useContext(RecipeContext)
 
-  function clickRow(row) {
+  function clickRow (row) {
     const uid = row.values.uid
     const recipe = recipes.find((r) => r.uid === uid)
     setSelectedRecipe(recipe)
@@ -75,31 +75,31 @@ export default function RecipeTable() {
   const columns = useMemo(
     () => [
       {
-        accessor: "uid",
-        show: false,
+        accessor: 'uid',
+        show: false
       },
       {
-        Header: "Name",
-        accessor: "name",
+        Header: 'Name',
+        accessor: 'name'
       },
-      { Header: "Created", accessor: "created" },
+      { Header: 'Created', accessor: 'created' },
       {
-        Header: "Categories",
-        accessor: "categoryNames",
+        Header: 'Categories',
+        accessor: 'categoryNames',
         Cell: ({ value }) => <span>{value?.join(",")}</span>, //eslint-disable-line
       },
-      { accessor: "mappings" },
-      { accessor: "parsedIngredients" },
-      { accessor: "categories" },
+      { accessor: 'mappings' },
+      { accessor: 'parsedIngredients' },
+      { accessor: 'categories' }
     ],
     []
   )
 
   columns[3].Cell.propTypes = {
-    value: PropTypes.array.isRequired,
+    value: PropTypes.array.isRequired
   }
 
-  function determineRowColor(row) {
+  function determineRowColor (row) {
     const values = row.values
     const ingredients = values.parsedIngredients || []
     const selectedOffset =
@@ -116,7 +116,7 @@ export default function RecipeTable() {
       maxHeight: 10,
       backgroundColor: allChosen
         ? green[100 + selectedOffset]
-        : blue[50 + selectedOffset],
+        : blue[50 + selectedOffset]
     }
   }
 
@@ -162,22 +162,22 @@ export default function RecipeTable() {
     setPageSize,
     setGlobalFilter,
     preGlobalFilteredRows,
-    state: { pageIndex, pageSize, selectedRowIds, globalFilter },
+    state: { pageIndex, pageSize, selectedRowIds, globalFilter }
   } = useTable(
     {
       columns,
       data: recipes,
       initialState: {
         hiddenColumns: [
-          "uid",
-          "mappings",
-          "parsedIngredients",
-          "categories",
-          "created",
+          'uid',
+          'mappings',
+          'parsedIngredients',
+          'categories',
+          'created'
         ],
-        pageSize: 15,
+        pageSize: 15
       },
-      globalFilter: globalFilterFunc,
+      globalFilter: globalFilterFunc
     },
     useFilters,
     useGlobalFilter,
@@ -222,13 +222,13 @@ export default function RecipeTable() {
           globalFilter={globalFilter}
         />
         <ThemeProvider theme={theme}>
-          <MaUTable {...getTableProps()} style={{ minHeight: "78vh" }}>
+          <MaUTable {...getTableProps()} style={{ minHeight: '78vh' }}>
             <TableHead>
               {headerGroups.map((headerGroup, i) => (
                 <TableRow key={i} {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column, j) => (
                     <TableCell key={j} {...column.getHeaderProps()}>
-                      {column.render("Header")}
+                      {column.render('Header')}
                     </TableCell>
                   ))}
                 </TableRow>
@@ -247,7 +247,7 @@ export default function RecipeTable() {
                     {row.cells.map((cell, j) => {
                       return (
                         <TableCell key={j} {...cell.getCellProps()}>
-                          {cell.render("Cell")}
+                          {cell.render('Cell')}
                         </TableCell>
                       )
                     })}
@@ -263,15 +263,15 @@ export default function RecipeTable() {
                     10,
                     15,
                     25,
-                    { label: "All", value: recipes.length },
+                    { label: 'All', value: recipes.length }
                   ]}
                   colSpan={3}
                   count={recipes.length}
                   rowsPerPage={pageSize}
                   page={pageIndex}
                   SelectProps={{
-                    inputProps: { "aria-label": "rows per page" },
-                    native: true,
+                    inputProps: { 'aria-label': 'rows per page' },
+                    native: true
                   }}
                   onChangePage={handleChangePage}
                   onChangeRowsPerPage={handleChangeRowsPerPage}
@@ -287,5 +287,5 @@ export default function RecipeTable() {
 }
 
 IndeterminateCheckbox.propTypes = {
-  indeterminate: PropTypes.bool.isRequired,
+  indeterminate: PropTypes.bool.isRequired
 }

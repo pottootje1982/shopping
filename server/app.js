@@ -10,7 +10,7 @@ const ordersRouter = require('./routes/orders')
 const app = express()
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')))
+app.use(express.static(path.join(__dirname, '../client/build')))
 
 app.use(logger('dev'))
 app.use(express.json())
@@ -20,7 +20,7 @@ app.use(
   })
 )
 app.use(cookieParser())
-app.use(express.static(path.join(__dirname, '/client/public')))
+app.use(express.static(path.join(__dirname, '../client/public')))
 
 // nb: cors settings must be included before other routes
 
@@ -33,8 +33,8 @@ app.use('/orders', ordersRouter)
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
-app.get("*", (_req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"))
+app.get('*', (_req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'))
 })
 
 module.exports = app
