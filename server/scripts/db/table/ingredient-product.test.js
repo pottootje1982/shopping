@@ -4,14 +4,14 @@ const { AH_USER, AH_PASS } = require('../../../config')
 describe('storeMapping()', () => {
   let ingToProduct, recipeDb
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     ;({ recipeDb, ingToProduct } = await createDb(
       './memory-db',
       './data/db.test.json'
     ))
   })
 
-  it('retrieves stored translations', async () => {
+  it('retrieves stored translations', async() => {
     ingToProduct.storeMapping('Prei', { id: 1273124, title: 'prei' })
     const mapping = await ingToProduct.getMapping('pRei')
     expect(mapping.product).toEqual({
@@ -20,7 +20,7 @@ describe('storeMapping()', () => {
     })
   })
 
-  it('updates stored translations', async () => {
+  it('updates stored translations', async() => {
     ingToProduct.storeMapping('prei', { id: 1273124, title: 'prei' })
     const mapping = ingToProduct.getMapping('prei')
     expect(mapping.product).toEqual({
@@ -35,7 +35,7 @@ describe('storeMapping()', () => {
     })
   })
 
-  it('retrieves stored translations for recipe', async () => {
+  it('retrieves stored translations for recipe', async() => {
     const recipe = await recipeDb.getRecipe(
       '3fe04f98-8d73-4e9d-a7da-f4c1241aa3c4'
     )
@@ -66,7 +66,7 @@ describe('storeMapping()', () => {
     })
   })
 
-  it('picks order', async () => {
+  it('picks order', async() => {
     ingToProduct.storeMapping('aubergines', { id: 1 })
     ingToProduct.storeMapping('Lasagne', { id: 2 })
     ingToProduct.storeMapping('ricotta', { id: 3 })
@@ -110,7 +110,7 @@ describe('storeMapping()', () => {
     expect(mappings.filter((map) => map.ingredient === 'egg').length).toBe(1)
   })
 
-  it('does not order ignored items', async () => {
+  it('does not order ignored items', async() => {
     ingToProduct.storeMapping('pastinaak', { id: 3 })
     ingToProduct.storeMapping('wortel', { id: 2 })
     ingToProduct.storeMapping('kruimige aardappels', { ignore: true })
@@ -154,7 +154,7 @@ describe('storeMapping()', () => {
     })
   })
 
-  it.skip('hydrates ingredient product maps', async () => {
+  it.skip('hydrates ingredient product maps', async() => {
     const AhApi = require('../../ah-api')
     const ahApi = new AhApi(AH_USER, AH_PASS)
     const mappings = await ingToProduct.getAllMappings()

@@ -3,24 +3,24 @@ const crypto = require('crypto')
 const uuidv1 = require('uuid/v1')
 
 class RecipeDb {
-  constructor (db, translationDb, ingToProduct) {
+  constructor(db, translationDb, ingToProduct) {
     this.db = db
     this.db.defaults({ recipes: [] }).write()
     this.translationDb = translationDb
     this.ingToProduct = ingToProduct
   }
 
-  close () {
+  close() {
     this.db.close()
   }
 
-  storeOrder (recipes) {
+  storeOrder(recipes) {
     recipes.forEach((recipe) => {
       this.db.get('recipes').push(recipe).write()
     })
   }
 
-  async translateRecipes (...recipes) {
+  async translateRecipes(...recipes) {
     recipes.forEach((recipe) => {
       if (
         !recipe.parsedIngredients ||
@@ -33,7 +33,7 @@ class RecipeDb {
     return this.ingToProduct.getMappings(...recipes)
   }
 
-  addCategoryNames (recipes, cats = []) {
+  addCategoryNames(recipes, cats = []) {
     return recipes.map((recipe) => {
       const { categories = [] } = recipe
       const categoryNames = categories
@@ -49,33 +49,33 @@ class RecipeDb {
     })
   }
 
-  async getRecipes (categories) {
+  async getRecipes(categories) {
     const recipes = await this.db.get('recipes').cloneDeep().value()
     const recipesWithCategoryNames = this.addCategoryNames(recipes, categories)
     await this.translateRecipes(...recipesWithCategoryNames)
     return recipesWithCategoryNames
   }
 
-  getRecipesRaw () {
+  getRecipesRaw() {
     return this.db.get('recipes').value()
   }
 
-  getRecipeRaw (uid) {
+  getRecipeRaw(uid) {
     return this.db.get('recipes').find({ uid }).cloneDeep().value()
   }
 
-  async getRecipe (uid) {
+  async getRecipe(uid) {
     const recipe = await this.getRecipeRaw(uid)
     if (recipe) await this.translateRecipes(recipe)
     return recipe
   }
 
-  setHash (recipe) {
+  setHash(recipe) {
     const str = JSON.stringify(recipe)
     recipe.hash = crypto.createHash('sha256').update(str).digest('hex')
   }
 
-  async editRecipe (recipe) {
+  async editRecipe(recipe) {
     const oldRecipe = await this.getRecipeRaw(recipe.uid)
     if (!oldRecipe) return null
     const newRecipe = { ...oldRecipe, ...recipe }
@@ -93,14 +93,14 @@ class RecipeDb {
     return newRecipe
   }
 
-  addRecipe (recipe) {
+  addRecipe(recipe) {
     // delete recipe.parsedIngredients
     recipe.uid = recipe.uid || uuidv1()
     this.setHash(recipe)
     return this.db.get('recipes').push(recipe).write()
   }
 
-  removeRecipe (recipe) {
+  removeRecipe(recipe) {
     return this.db
       .get('recipes')
       .remove({

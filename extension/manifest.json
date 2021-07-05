@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Place AH Order",
-  "description": "Place AH Order",
-  "version": "1.0",
+  "name": "Place AH.nl Order",
+  "description": "Extension helper to place a AH.nl order from https://gogetmeals.herokuapp.com",
+  "version": "0.0.1",
   "permissions": [
     "tabs",
     "cookies",

@@ -57,7 +57,7 @@ const TableToolbar = ({
     selectedRecipes
   } = useContext(RecipeContext)
 
-  function addRecipe () {
+  function addRecipe() {
     const created = getDateString()
     setSelectedRecipe({
       parsedIngredients: [],
@@ -66,7 +66,7 @@ const TableToolbar = ({
     })
   }
 
-  async function removeRecipes () {
+  async function removeRecipes() {
     if (selectedRecipes.length > 0) {
       const { data: success } = await server.delete('recipes', {
         data: selectedRecipes

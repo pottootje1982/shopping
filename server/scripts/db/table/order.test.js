@@ -3,19 +3,19 @@ const createDb = require('../tables')
 describe('storeRecipe()', () => {
   let orderDb, recipeDb
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     ;({ orderDb, recipeDb } = await createDb(
       './memory-db',
       './data/db.test.json'
     ))
   })
 
-  it('get orders', async () => {
+  it('get orders', async() => {
     const orders = await orderDb.get()
     expect(orders.length).toEqual(0)
   })
 
-  it('get hydrated', async () => {
+  it('get hydrated', async() => {
     const recipes = await recipeDb.getRecipes()
     let order = [
       {
@@ -44,7 +44,7 @@ describe('storeRecipe()', () => {
     orderDb.remove({ date: order.date })
   })
 
-  it('store order', async () => {
+  it('store order', async() => {
     let order = [
       {
         uid: '5134b9ac-32fd-4e5c-a6da-681d33cd007f',

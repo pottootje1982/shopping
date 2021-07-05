@@ -20,7 +20,7 @@ import RecipeContext from './RecipeProvider'
 
 const MOCK_DATA = process.env.REACT_APP_USE_MOCK_DATA === 'true'
 
-export default function RecipeCollection ({ setRecipeTitle }) {
+export default function RecipeCollection({ setRecipeTitle }) {
   const {
     recipes,
     setRecipes,
@@ -38,7 +38,7 @@ export default function RecipeCollection ({ setRecipeTitle }) {
   const [open, setOpen] = useState(false)
   const [noTokenOpen, setNoTokenOpen] = useState(false)
 
-  function selectedFirstRecipe () {
+  function selectedFirstRecipe() {
     if (!MOCK_DATA) {
       server.get('recipes').then(initialize)
     } else {
@@ -48,7 +48,7 @@ export default function RecipeCollection ({ setRecipeTitle }) {
     }
   }
 
-  function initialize (result) {
+  function initialize(result) {
     const data = result.data
     const recipes = data.recipes
     setRecipes(recipes)
@@ -61,7 +61,7 @@ export default function RecipeCollection ({ setRecipeTitle }) {
     setCategories(data.categories)
   }
 
-  function createOrder (recipes) {
+  function createOrder(recipes) {
     const items = recipes.map((r) => r.mappings).map((m) => Object.values(m))
     return []
       .concat(...items)
@@ -73,7 +73,7 @@ export default function RecipeCollection ({ setRecipeTitle }) {
 
   useEffect(selectRecipe, [selectedRecipe])
 
-  function selectRecipe () {
+  function selectRecipe() {
     if (!selectedRecipe) return
     setRecipeTitle(selectedRecipe.name)
     setRecipeReadyToOrder(
@@ -96,7 +96,7 @@ export default function RecipeCollection ({ setRecipeTitle }) {
     }
   }
 
-  async function closeOrderDialog (event, isOk) {
+  async function closeOrderDialog(event, isOk) {
     setOpen(false)
 
     if (isOk && event.nativeEvent.key !== 'Escape') {
@@ -112,17 +112,17 @@ export default function RecipeCollection ({ setRecipeTitle }) {
     }
   }
 
-  function selectOrder (event) {
+  function selectOrder(event) {
     setSelectedCategory('')
     setSelectedOrder(event.target.value)
   }
 
-  function selectCategory (event) {
+  function selectCategory(event) {
     setSelectedOrder('')
     setSelectedCategory(event.target.value)
   }
 
-  async function sync () {
+  async function sync() {
     const res = await server.get('recipes/sync')
     const recipes = res.data
     if (recipes && recipes !== '') {
@@ -130,14 +130,14 @@ export default function RecipeCollection ({ setRecipeTitle }) {
     }
   }
 
-  function showOrderDialog () {
+  function showOrderDialog() {
     if (!getCookie('HAS_SHOPPING_EXTENSION')) setNoTokenOpen(true)
     else if (selectedRecipes.length === 0) {
       alert('Please select recipes before ordering')
     } else setOpen(true)
   }
 
-  function deleteOrder () {
+  function deleteOrder() {
     if (recipes.length > 0 && selectedOrder) {
       server.delete(`orders/${selectedOrder._id}`)
       const index = orders.indexOf(selectedOrder)

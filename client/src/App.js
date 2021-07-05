@@ -7,7 +7,7 @@ import blue from '@material-ui/core/colors/blue'
 import { useCookies } from 'react-cookie'
 import { RecipeProvider } from './Components/collection/RecipeProvider'
 
-export default function App () {
+export default function App() {
   const [recipeTitle, setRecipeTitle] = useState()
   const [, , removeCookie] = useCookies(['HAS_SHOPPING_EXTENSION'])
 

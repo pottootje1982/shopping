@@ -11,21 +11,21 @@ import PropTypes from 'prop-types'
 
 import { getServerUrl } from '../server'
 
-export default function NoTokenDialog ({ dialogOpen, setDialogOpen }) {
+export default function NoTokenDialog({ dialogOpen, setDialogOpen }) {
   const closeDialog = () => {
     setDialogOpen(false)
   }
 
-  function onOkClick () {
+  function onOkClick() {
     closeDialog()
     onOk()
   }
 
-  function getExtension () {
+  function getExtension() {
     window.open(`${getServerUrl()}/orders/extension`)
   }
 
-  function onOk () {
+  function onOk() {
     closeDialog()
   }
 

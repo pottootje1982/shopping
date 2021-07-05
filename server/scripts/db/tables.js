@@ -5,7 +5,7 @@ const OrderDb = require('./table/order')
 
 const { USE_MEMORY_DB } = require('../../config')
 
-module.exports = async function createRecipeDb (connector, file) {
+module.exports = async function createRecipeDb(connector, file) {
   connector = USE_MEMORY_DB ? './memory-db' : connector
 
   const createDb = require(connector)

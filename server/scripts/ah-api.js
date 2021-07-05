@@ -1,11 +1,11 @@
 const axios = require('axios')
 
 class AhApi {
-  constructor (ingToProduct) {
+  constructor(ingToProduct) {
     this.ingToProduct = ingToProduct
   }
 
-  async search (query, full) {
+  async search(query, full) {
     const { data } = await axios.get(
       `https://www.ah.nl/zoeken/api/products/search?query=${query}`
     )
@@ -33,7 +33,7 @@ class AhApi {
     return products
   }
 
-  getProduct (id) {
+  getProduct(id) {
     return axios
       .get(`https://www.ah.nl/zoeken/api/products/product?webshopId=${id}`)
       .then(({ data }) => {

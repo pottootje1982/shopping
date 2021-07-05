@@ -7,7 +7,7 @@ import DownloadIcon from '@material-ui/icons/GetApp'
 import PropTypes from 'prop-types'
 const uuidv1 = require('uuid/v1')
 
-export default function EditAddRecipe ({
+export default function EditAddRecipe({
   selectedRecipe,
   setSelectedRecipe,
   setEditOrAddRecipe
@@ -19,7 +19,7 @@ export default function EditAddRecipe ({
   const edit = selectedRecipe.uid !== undefined
   const title = edit ? 'Edit Recipe' : 'Add Recipe'
 
-  async function saveRecipeClick () {
+  async function saveRecipeClick() {
     const name = nameRef.current.value
     const uid = selectedRecipe.uid || uuidv1()
     const ingredients = ingredientsRef.current.value
@@ -46,11 +46,11 @@ export default function EditAddRecipe ({
     setSelectedRecipe(res.data)
   }
 
-  function cancelClick () {
+  function cancelClick() {
     setEditOrAddRecipe(false)
   }
 
-  async function downloadRecipe () {
+  async function downloadRecipe() {
     const sourceUrl = urlRef.current.value
     const res = await server.post('recipes/download', { url: sourceUrl })
     if (res.data) {

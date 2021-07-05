@@ -3,16 +3,16 @@ const createDb = require('../tables')
 describe('storeRecipe()', () => {
   let recipeDb
 
-  beforeAll(async () => {
+  beforeAll(async() => {
     ;({ recipeDb } = await createDb('./memory-db', './data/db.test.json'))
   })
 
-  it('get recipes', async () => {
+  it('get recipes', async() => {
     const recipes = await recipeDb.getRecipes()
     expect(recipes.length).toEqual(12)
   })
 
-  it('mappings are set', async () => {
+  it('mappings are set', async() => {
     const recipes = await recipeDb.getRecipes()
     const recipe = recipes[3]
     expect(recipe.uid).toBe('a4623ba1-8bf2-439d-b8bb-4c95c4aa8b18')
@@ -22,7 +22,7 @@ describe('storeRecipe()', () => {
     expect(recipe.parsedIngredients.length).toBe(8)
   })
 
-  it('get recipe', async () => {
+  it('get recipe', async() => {
     const uid = 'a4623ba1-8bf2-439d-b8bb-4c95c4aa8b18'
     const recipe = await recipeDb.getRecipe(uid)
     expect(recipe.uid).toBe(uid)
@@ -41,7 +41,7 @@ describe('storeRecipe()', () => {
     expect(recipe.parsedIngredients[0].full).toBe('1 tbsp plantaardige olie')
   })
 
-  it('edits recipe', async () => {
+  it('edits recipe', async() => {
     const uid = 'a4623ba1-8bf2-439d-b8bb-4c95c4aa8b18'
     const recipe = await recipeDb.getRecipeRaw(uid)
 

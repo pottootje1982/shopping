@@ -2,7 +2,7 @@ const { Ingredient, Ingredients } = require('./ingredients')
 const createDb = require('./db/tables')
 
 describe('Ingredient', () => {
-  async function getRecipes () {
+  async function getRecipes() {
     const { recipeDb } = await createDb('./memory-db', './data/db.test.json')
     return recipeDb.getRecipes()
   }
@@ -138,7 +138,7 @@ describe('Ingredient', () => {
     )
   })
 
-  function equals (line, expected) {
+  function equals(line, expected) {
     const i = new Ingredient(line)
     expect(i.all).toEqual(expected)
   }
@@ -382,7 +382,7 @@ describe('Ingredient', () => {
     expect(ingredients[1].all).toEqual([200, 'g', 'gare kastanjes'])
   })
 
-  it('all ingredients from Paprika can be parsed', async () => {
+  it('all ingredients from Paprika can be parsed', async() => {
     const recipes = await getRecipes()
     const parsedIngredients = recipes
       .slice(0, 12)
@@ -558,13 +558,13 @@ describe('Ingredient', () => {
   })
 })
 
-function equalsIngredients (ingredients, expIngredients) {
+function equalsIngredients(ingredients, expIngredients) {
   ingredients.forEach((ingr, i) => {
     expect(ingr.all).toEqual(expIngredients[i])
   })
 }
 
-function equalsAll (all, expAll) {
+function equalsAll(all, expAll) {
   all.forEach((item, i) => {
     equalsIngredients(item, expAll[i])
   })

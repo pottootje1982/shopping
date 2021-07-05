@@ -1,17 +1,17 @@
 const { ObjectId } = require('mongodb')
 
 class FileDbWrapper {
-  constructor (db) {
+  constructor(db) {
     this.db = db
   }
 
-  close () {}
+  close() {}
 
-  get (table) {
+  get(table) {
     return new FileTableWrapper(this.db, table, this.db.get(table))
   }
 
-  defaults (table) {
+  defaults(table) {
     const wrapper = new FileTableWrapper(
       this.db,
       table,
@@ -22,36 +22,36 @@ class FileDbWrapper {
 }
 
 class FileTableWrapper {
-  constructor (db, tableName, table) {
+  constructor(db, tableName, table) {
     this.db = db
     this.table = table
     this.tableName = tableName
   }
 
-  find (query) {
+  find(query) {
     this.query = query
     this.table = this.table.find(query)
     return this
   }
 
-  cloneDeep () {
+  cloneDeep() {
     this.table = this.table.cloneDeep()
     return this
   }
 
-  assign (value) {
+  assign(value) {
     this.table = this.table.assign(value)
     return this
   }
 
-  push (value) {
+  push(value) {
     value._id = new ObjectId()
     this.value = value
     this.table = this.table.push(value)
     return this
   }
 
-  upsert (value) {
+  upsert(value) {
     if (this.table.value()) {
       this.table = this.db.get(this.tableName).find(this.query).assign(value)
     } else {
@@ -62,21 +62,21 @@ class FileTableWrapper {
     return this
   }
 
-  remove (query) {
+  remove(query) {
     this.table = this.table.remove(query)
     return this
   }
 
-  unset (key) {
+  unset(key) {
     this.table = this.table.unset(key)
     return this
   }
 
-  value () {
+  value() {
     return this.table.value()
   }
 
-  async write () {
+  async write() {
     await this.table.write()
     return this.value
   }

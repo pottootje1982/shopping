@@ -14,7 +14,7 @@ const wholeIngredients = [
   /brood/i
 ]
 
-function filter (replacements, str) {
+function filter(replacements, str) {
   for (const [find, rep] of replacements) {
     str = str.replace(find, rep)
   }
@@ -22,17 +22,17 @@ function filter (replacements, str) {
 }
 
 class Ingredients extends Array {
-  getProducts () {
+  getProducts() {
     return this.map((i) => i.ingredient)
   }
 
-  setProducts (products) {
+  setProducts(products) {
     for (const [i, product] of products.entries()) {
       this[i].setIngredient(product)
     }
   }
 
-  static create (ingredients) {
+  static create(ingredients) {
     const list = (ingredients ? ingredients.split('\n') : [])
       .map((line) => line.trim())
       .filter((line) => line)
@@ -41,7 +41,7 @@ class Ingredients extends Array {
     return new Ingredients(...ingredientsList)
   }
 
-  toString () {
+  toString() {
     return this.map((ing) => ing.toString()).join('\n\n')
   }
 }
@@ -188,7 +188,7 @@ const ingReplacements = [
 ]
 
 class Ingredient {
-  constructor (ingredientLine) {
+  constructor(ingredientLine) {
     let quant, unit, ingr
 
     ingredientLine = ingredientLine.trim()
@@ -212,12 +212,12 @@ class Ingredient {
     this.all = [this.quantity, this.unit, this.ingredient]
   }
 
-  match (matches, str) {
+  match(matches, str) {
     const parsed = matches.map((u) => u.exec(str))
     return (parsed.find((u) => u != null) || []).slice(1)
   }
 
-  parse (rawIng) {
+  parse(rawIng) {
     let [quant, unit, ingredient] = this.match(multiplicationParsers, rawIng)
     if (!ingredient) {
       ;[quant, unit, ingredient] = this.match(containerParsers, rawIng)
@@ -246,16 +246,16 @@ class Ingredient {
     }
   }
 
-  filterIngLine (line) {
+  filterIngLine(line) {
     adjectives.forEach((adj) => (line = line.replace(adj, '')))
     return filter(ingLineReplacements, line)
   }
 
-  filterIng (ingr) {
+  filterIng(ingr) {
     return filter(ingReplacements, ingr).trim()
   }
 
-  setIngredient (ingredient) {
+  setIngredient(ingredient) {
     if (ingredient) {
       this.ingredient = ingredient
       this.full = [this.quantity, this.unit, this.ingredient]
@@ -264,7 +264,7 @@ class Ingredient {
     }
   }
 
-  quantityToOrder () {
+  quantityToOrder() {
     const { ingredient, unit } = this
     const isPacked = containers.some((c) => unit && unit.match(c))
     let quantity = this.unit && !isPacked ? 1 : parseInt(this.quantity)
@@ -279,7 +279,7 @@ class Ingredient {
     return quantity
   }
 
-  toString () {
+  toString() {
     const all = this.all
     return `${all.toString()},`
   }

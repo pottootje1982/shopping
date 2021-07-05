@@ -3,13 +3,13 @@ const Table = require('./table')
 const { ObjectId } = require('mongodb')
 
 class OrderDb extends Table {
-  constructor (db) {
+  constructor(db) {
     super(db, 'orders')
     this.db = db
     this.db.defaults({ orders: [] }).write()
   }
 
-  async storeOrder (recipes) {
+  async storeOrder(recipes) {
     const date = getDateStr()
     recipes = recipes.map((r) => ({ uid: r.uid, mappings: r.mappings }))
     const order = { date, recipes }
@@ -17,15 +17,15 @@ class OrderDb extends Table {
     return newOrder
   }
 
-  getOrder (uid) {
+  getOrder(uid) {
     return this.db.get('orders').find({ uid }).cloneDeep().value()
   }
 
-  deleteOrder (id) {
+  deleteOrder(id) {
     return this.remove({ _id: ObjectId(id) })
   }
 
-  async getHydrated (recipes) {
+  async getHydrated(recipes) {
     const orders = await this.get()
     for (const order of orders) {
       for (const recipeOrder of order.recipes) {

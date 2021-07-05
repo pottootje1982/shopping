@@ -6,12 +6,12 @@ describe('Index', () => {
   const apiStub = new PaprikaApiStub()
   let recipeDb, paprika
 
-  beforeAll(async () => {
+  beforeAll(async() => {
     ;({ recipeDb } = await createDb('./memory-db', './data/small-db.test.json'))
     paprika = new Paprika(apiStub, recipeDb)
   })
 
-  it('Download recipes', async () => {
+  it('Download recipes', async() => {
     const recipes = await paprika.getRecipes()
     expect(recipes.length).toBe(5)
     expect(recipes[0].name).toEqual('Zalm met prei 2')
@@ -20,7 +20,7 @@ describe('Index', () => {
     )
   })
 
-  it('Synchronizes recipes - 1 new from Paprika, 1 new to Paprika', async () => {
+  it('Synchronizes recipes - 1 new from Paprika, 1 new to Paprika', async() => {
     const localRecipes = await recipeDb.getRecipes()
     const success = await paprika.synchronize(localRecipes)
     expect(success).toBeTruthy()
@@ -50,7 +50,7 @@ describe('Index', () => {
     expect(newRecipes[4].created).toEqual('2017-12-23 09:07:38')
   })
 
-  it('Edits recipe', async () => {
+  it('Edits recipe', async() => {
     const uid = '3fe04f98-8d73-4e9d-a7da-f4c1241aa3c4'
     let recipe = apiStub.recipe(uid)
     expect(recipe.name).toBe('Zalm met prei 2')
@@ -63,7 +63,7 @@ describe('Index', () => {
     )
   })
 
-  it('Adds recipe', async () => {
+  it('Adds recipe', async() => {
     const uid = 'e42df73f-3588-47ed-9f3a-41c364ededef'
     const newRecipe = {
       photo: 'ce2f1e34-239d-424b-94fd-98e0bf59c085.jpg',
@@ -79,14 +79,14 @@ describe('Index', () => {
     })
   })
 
-  it.skip('Saves recipes to paprika', async () => {
+  it.skip('Saves recipes to paprika', async() => {
     const paprika = new Paprika(null, recipeDb)
     const recipe = require('./data/db.test.json').recipes[0]
     recipe.name = 'Zalm met prei 9'
     await paprika.upsertRecipe(recipe)
   })
 
-  it.skip('Downloads recipe from url with paprika', async () => {
+  it.skip('Downloads recipe from url with paprika', async() => {
     jest.setTimeout(15000)
     const paprika = new Paprika(null, recipeDb)
     const recipe = await paprika.downloadRecipe(

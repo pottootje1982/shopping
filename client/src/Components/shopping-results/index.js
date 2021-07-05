@@ -23,7 +23,7 @@ const styles = makeStyles(() => ({
   }
 }))
 
-export default function ProductSearch ({
+export default function ProductSearch({
   selectedIngredient,
   selectedRecipe,
   setSelectedRecipe,
@@ -38,11 +38,11 @@ export default function ProductSearch ({
 
   useEffect(doSearch, [selectedIngredient])
 
-  function doSearch () {
+  function doSearch() {
     searchProducts(selectedIngredient)
   }
 
-  function selectProduct (completeProduct) {
+  function selectProduct(completeProduct) {
     const { id, title, price, ignore, notAvailable } = completeProduct
     const product = { id, title, price, ignore, notAvailable }
     const oldProduct = mappings[bareIngredient]
@@ -55,24 +55,24 @@ export default function ProductSearch ({
     })
   }
 
-  function textFieldSearch (event) {
+  function textFieldSearch(event) {
     if (event.keyCode === 13) {
       searchProducts(undefined, event.target.value)
     }
   }
 
-  function search (value) {
+  function search(value) {
     searchRef.current.value = value
     searchProducts(undefined, value)
   }
 
-  function ignoreIngredient (checked) {
+  function ignoreIngredient(checked) {
     product.ignore = checked
     product.notAvailable = false
     selectProduct(product)
   }
 
-  function notAvailableIngredient (checked) {
+  function notAvailableIngredient(checked) {
     product.notAvailable = checked
     product.ignore = false
     selectProduct(product)

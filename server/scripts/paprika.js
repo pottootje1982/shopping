@@ -4,7 +4,7 @@ const { PAPRIKA_USER, PAPRIKA_PASS } = require('../config')
 const fs = require('fs')
 const zlib = require('zlib')
 
-function createZip (recipe, fn) {
+function createZip(recipe, fn) {
   return new Promise((resolve, reject) => {
     const { Readable } = require('stream')
     const s = new Readable()
@@ -22,7 +22,7 @@ function createZip (recipe, fn) {
   })
 }
 
-PaprikaApi.prototype.upsertRecipe = async function (recipe) {
+PaprikaApi.prototype.upsertRecipe = async function(recipe) {
   delete recipe.mappings
   delete recipe.parsedIngredients
   delete recipe.categoryNames
@@ -44,7 +44,7 @@ PaprikaApi.prototype.upsertRecipe = async function (recipe) {
   return res
 }
 
-PaprikaApi.prototype.downloadRecipe = async function (url) {
+PaprikaApi.prototype.downloadRecipe = async function(url) {
   const request = require('request-promise')
   const contents = await request.get(url)
   await createZip(contents, './recipe.gz')
@@ -62,7 +62,7 @@ PaprikaApi.prototype.downloadRecipe = async function (url) {
   return res.result
 }
 
-function compare (cat1, cat2) {
+function compare(cat1, cat2) {
   const name1 = cat1.name.toLowerCase()
   const name2 = cat2.name.toLowerCase()
   if (name1 < name2) {
@@ -75,16 +75,16 @@ function compare (cat1, cat2) {
 }
 
 class Paprika {
-  constructor (paprikaApi, db) {
+  constructor(paprikaApi, db) {
     this.paprikaApi = paprikaApi || new PaprikaApi(PAPRIKA_USER, PAPRIKA_PASS)
     this.recipeDb = db
   }
 
-  getRecipe (uid) {
+  getRecipe(uid) {
     return this.paprikaApi.recipe(uid)
   }
 
-  async getRecipes () {
+  async getRecipes() {
     const recipesRaw = await this.paprikaApi.recipes()
     const recipes = []
     for (let i = 0; i < recipesRaw.length; i++) {
@@ -94,27 +94,27 @@ class Paprika {
     return recipes
   }
 
-  categories () {
+  categories() {
     return this.paprikaApi.categories().then((categories) => {
       return categories.sort(compare)
     })
   }
 
-  updateRecipe (recipe) {
+  updateRecipe(recipe) {
     console.log('Updating Paprika recipe:', recipe.name)
     return this.paprikaApi.upsertRecipe(recipe)
   }
 
-  deleteRecipe (recipe) {
+  deleteRecipe(recipe) {
     recipe.in_trash = true
     return this.paprikaApi.upsertRecipe(recipe)
   }
 
-  downloadRecipe (url) {
+  downloadRecipe(url) {
     return this.paprikaApi.downloadRecipe(url)
   }
 
-  async synchronize (localRecipes) {
+  async synchronize(localRecipes) {
     const remoteRecipes = await this.paprikaApi.recipes()
     const upsertToRemote = localRecipes.filter((local) => {
       const remote = remoteRecipes.find((remote) => remote.uid === local.uid)

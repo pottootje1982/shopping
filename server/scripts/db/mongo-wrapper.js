@@ -1,78 +1,78 @@
 const db = require('./mongo-client')
 
 class MongoWrapper {
-  constructor (client) {
+  constructor(client) {
     this.client = client
     this.db = client.db()
   }
 
-  close () {
+  close() {
     this.client.close()
   }
 
-  get (table) {
+  get(table) {
     return new MongoTableWrapper(this.db.collection(table))
   }
 
-  defaults () {
+  defaults() {
     return this
   }
 
-  write () {
+  write() {
     // Stub for defaults to do nothing
   }
 
-  async find (query) {
+  async find(query) {
     return db.findOne(query)
   }
 }
 
 class MongoTableWrapper {
-  constructor (table) {
+  constructor(table) {
     this.table = table
   }
 
-  find (query) {
+  find(query) {
     this.query = query
     return this
   }
 
-  cloneDeep () {
+  cloneDeep() {
     return this
   }
 
-  assign (value) {
+  assign(value) {
     this.valueToUpdate = value
     return this
   }
 
-  push (value) {
+  push(value) {
     this.valueToAdd = value
     return this
   }
 
-  upsert (value) {
+  upsert(value) {
     this.upsert = true
     this.valueToUpdate = value
     return this
   }
 
-  remove (query) {
+  remove(query) {
     this.queryToDelete = query
     return this
   }
 
-  unset (key) {
+  unset(key) {
     delete this.valueToUpdate[key]
     return this
   }
 
-  async value () {
+  async value() {
     if (this.query) return await this.table.findOne(this.query)
     return await this.table.find().toArray()
   }
 
-  async write () {
+  async write() {
     if (this.valueToAdd) {
       await this.table.insertOne(this.valueToAdd)
     } else if (this.query && this.valueToUpdate) {

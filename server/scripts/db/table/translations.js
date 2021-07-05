@@ -1,4 +1,4 @@
-function getTranslation (translations, key) {
+function getTranslation(translations, key) {
   let result = translations.find((t) => t.original === key.toLowerCase())
   if (!result) {
     const reverse = translations.find((t) => t.translation === key)
@@ -10,7 +10,7 @@ function getTranslation (translations, key) {
   return result || { original: key }
 }
 
-function getTranslations (translations, keys) {
+function getTranslations(translations, keys) {
   translations = keys.map((key) => getTranslation(translations, key))
   const untranslated = translations
     .filter((t) => !t.translation)
@@ -23,12 +23,12 @@ function getTranslations (translations, keys) {
 }
 
 class TranslationsDb {
-  constructor (db) {
+  constructor(db) {
     this.db = db
     this.db.defaults({ translations: [] }).write()
   }
 
-  async storeTranslations (originals, translations) {
+  async storeTranslations(originals, translations) {
     for (let [i, original] of originals.entries()) {
       original = original.toLowerCase()
       await this.db
@@ -38,20 +38,20 @@ class TranslationsDb {
     }
   }
 
-  get translations () {
+  get translations() {
     return this.db.get('translations').value()
   }
 
-  async getTranslation (key) {
+  async getTranslation(key) {
     const result = getTranslation(await this.translations, key)
     return result.translation
   }
 
-  async getTranslations (keys) {
+  async getTranslations(keys) {
     return getTranslations(await this.translations, keys)
   }
 
-  async translateRecipes (...recipes) {
+  async translateRecipes(...recipes) {
     const allTranslations = await this.translations
     recipes.forEach((recipe) => {
       const ingredients = recipe.parsedIngredients

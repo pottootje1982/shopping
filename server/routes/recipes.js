@@ -11,14 +11,14 @@ require('../scripts/db/tables')('./mongo-client').then((dbs) => {
 
 const Translator = require('../scripts/translator')
 
-router.get('/', async function (_req, res) {
+router.get('/', async function(_req, res) {
   const categories = await paprika.categories()
   const recipes = await recipeDb.getRecipes(categories)
   const orders = await orderDb.getHydrated(recipes)
   res.send({ recipes, orders, categories })
 })
 
-router.put('/', async function (req, res) {
+router.put('/', async function(req, res) {
   let recipe = req.body
   recipe = await recipeDb.editRecipe(recipe)
   paprika.updateRecipe(recipe)
@@ -43,17 +43,17 @@ const defaultRecipe = {
   prep_time: ''
 }
 
-router.post('/', async function (req, res) {
+router.post('/', async function(req, res) {
   const recipe = { ...defaultRecipe, ...req.body }
   await recipeDb.addRecipe(recipe)
   await paprika.updateRecipe(recipe)
   res.send(await recipeDb.getRecipe(recipe.uid))
 })
 
-router.delete('/', async function (req, res) {
+router.delete('/', async function(req, res) {
   const recipes = req.body
   const successes = await Promise.all(
-    recipes.map(async (recipe) => {
+    recipes.map(async(recipe) => {
       const success = await paprika.deleteRecipe(req.body)
       const removedRecipe = await recipeDb.removeRecipe(recipe)
       return removedRecipe && success
@@ -62,14 +62,14 @@ router.delete('/', async function (req, res) {
   res.send(successes.every((s) => s))
 })
 
-router.get('/sync', async (_req, res) => {
+router.get('/sync', async(_req, res) => {
   await paprika.synchronize(await recipeDb.getRecipesRaw())
   const categories = await paprika.categories()
   const recipes = await recipeDb.getRecipes(categories)
   res.send(recipes)
 })
 
-router.post('/download', async (req, res) => {
+router.post('/download', async(req, res) => {
   const url = req.body.url
   const recipe = await paprika.downloadRecipe(url)
   if (recipe) {
@@ -79,7 +79,7 @@ router.post('/download', async (req, res) => {
   res.send(recipe)
 })
 
-router.post('/translate', async function (req, res) {
+router.post('/translate', async function(req, res) {
   const recipe = await recipeDb.getRecipe(req.body.recipeId)
   if (!recipe) res.sendStatus(404)
   else {

@@ -1,5 +1,5 @@
 class IngredientProductDb {
-  constructor (db, tableName) {
+  constructor(db, tableName) {
     this.tableName = tableName || 'ing-to-product'
     this.db = db
     this.db
@@ -9,7 +9,7 @@ class IngredientProductDb {
       .write()
   }
 
-  storeMapping (ingredient, product) {
+  storeMapping(ingredient, product) {
     ingredient = ingredient.toLowerCase()
     return this.db
       .get(this.tableName)
@@ -20,7 +20,7 @@ class IngredientProductDb {
       .write()
   }
 
-  getMapping (ingredient) {
+  getMapping(ingredient) {
     ingredient = ingredient.toLowerCase()
     return this.db
       .get(this.tableName)
@@ -30,11 +30,11 @@ class IngredientProductDb {
       .value()
   }
 
-  getAllMappings () {
+  getAllMappings() {
     return this.db.get(this.tableName).value() || []
   }
 
-  async getMappings (...recipes) {
+  async getMappings(...recipes) {
     const mappings = await this.getAllMappings()
     recipes.forEach((recipe) => {
       const result = {}
@@ -53,7 +53,7 @@ class IngredientProductDb {
     })
   }
 
-  async pickOrder (...recipes) {
+  async pickOrder(...recipes) {
     const mappings = recipes.map((recipe) =>
       Object.values(recipe.mappings).filter(
         (mapping) => !mapping.ignore && !mapping.notAvailable && mapping.id

@@ -5,7 +5,7 @@ const RecipeContext = createContext()
 
 export default RecipeContext
 
-export function RecipeProvider (props) {
+export function RecipeProvider(props) {
   const [recipes, setRecipes] = useState([])
   const [selectedRecipes, setSelectedRecipes] = useState(() => [])
   const [selectedRecipe, setSelectedRecipe] = useState()

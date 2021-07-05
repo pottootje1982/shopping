@@ -1,4 +1,4 @@
-export function getCookie (name) {
+export function getCookie(name) {
   // eslint-disable-next-line no-useless-escape
   const escape = (s) => s.replace(/([.*+?\^${}()|\[\]\/\\])/g, '\\$1')
   const match = document.cookie.match(
@@ -8,7 +8,7 @@ export function getCookie (name) {
   return match ? match[1] : undefined
 }
 
-export function setCookie (name, value, expirationHours) {
+export function setCookie(name, value, expirationHours) {
   const exdate = new Date()
   exdate.setHours(exdate.getHours() + expirationHours)
   document.cookie =

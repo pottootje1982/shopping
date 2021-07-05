@@ -3,7 +3,7 @@ const originalRequire = Module.prototype.require
 
 let resolveMap
 
-function newRequire () {
+function newRequire() {
   const id = arguments[0]
   if (resolveMap[id]) {
     return originalRequire.apply(this, resolveMap[id])
@@ -14,7 +14,7 @@ function newRequire () {
 
 Module.prototype.require = newRequire
 
-function defineMap (map) {
+function defineMap(map) {
   resolveMap = map
 }
 

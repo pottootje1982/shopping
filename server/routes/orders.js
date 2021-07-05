@@ -8,12 +8,12 @@ require('../scripts/db/tables')('./mongo-client').then((dbs) => {
   ;({ orderDb } = dbs)
 })
 
-router.get('/', async function (_req, res) {
+router.get('/', async function(_req, res) {
   const orders = await orderDb.get()
   res.send(orders)
 })
 
-router.delete('/:id', async function (req, res) {
+router.delete('/:id', async function(req, res) {
   const { id } = req.params
   const orders = await orderDb.deleteOrder(id)
   if (orders) res.send(orders)
@@ -23,7 +23,7 @@ router.delete('/:id', async function (req, res) {
 const path = require('path')
 const fs = require('fs')
 
-router.get('/extension', async function (req, res) {
+router.get('/extension', async function(req, res) {
   const file = path.join(__dirname, '/../extension.crx')
 
   const filename = path.basename(file)
@@ -39,7 +39,7 @@ router.get('/extension', async function (req, res) {
   filestream.pipe(res)
 })
 
-router.post('/', async function (req, res) {
+router.post('/', async function(req, res) {
   const recipes = req.body.recipes
   const newOrder = await orderDb.storeOrder(recipes)
   res.send(newOrder)

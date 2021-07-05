@@ -3,11 +3,11 @@ const createDb = require('../tables')
 describe.skip('storeMapping()', () => {
   let ingToProduct
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     ;({ ingToProduct } = await createDb('../mongo-client'))
   })
 
-  it('retrieves stored translations', async () => {
+  it('retrieves stored translations', async() => {
     let mapping = await ingToProduct.getMapping('pRei')
     const product = mapping.product
     expect(product.id).toBe(171425)

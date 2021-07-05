@@ -3,7 +3,7 @@ const createDb = require('../tables')
 describe('storeTranslations()', () => {
   let translationsDb
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     ;({ translationsDb } = await createDb('./memory-db', 'data/db.test.json'))
     translationsDb.storeTranslations(
       [
@@ -31,7 +31,7 @@ describe('storeTranslations()', () => {
     )
   })
 
-  it('retrieves stored translations', async () => {
+  it('retrieves stored translations', async() => {
     expect(await translationsDb.getTranslation('vegetable oil')).toBe(
       'plantaardige olie'
     )
@@ -50,7 +50,7 @@ describe('storeTranslations()', () => {
     ])
   })
 
-  it('returns untranslated', async () => {
+  it('returns untranslated', async() => {
     const { success, translations, untranslated } =
       await translationsDb.getTranslations([
         'unexisting',

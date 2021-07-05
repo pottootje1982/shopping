@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core'
 import PropTypes from 'prop-types'
 
-export default function OrderDialog ({ open, handleClose, selectedRecipes }) {
+export default function OrderDialog({ open, handleClose, selectedRecipes }) {
   const [items, setItems] = useState([])
   const [ignored, setIgnored] = useState([])
   const [notAvailable, setNotAvailable] = useState([])

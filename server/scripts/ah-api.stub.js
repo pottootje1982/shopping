@@ -1,16 +1,16 @@
 class AhApi {
-  constructor (username, password) {
+  constructor(username, password) {
     this.username = username
     this.password = password
   }
 
-  login () {
+  login() {
     if (this.username === 'test_user' && this.password === 'test_pass') {
       return true
     } else return false
   }
 
-  async addToShoppingList () {
+  async addToShoppingList() {
     return { success: true }
   }
 }

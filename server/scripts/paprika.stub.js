@@ -1,17 +1,17 @@
 class Paprika {
-  constructor (_paprikaApi, db) {
+  constructor(_paprikaApi, db) {
     this.recipeDb = db
   }
 
-  getRecipe (uid) {
+  getRecipe(uid) {
     return this.paprikaApi.recipe(uid)
   }
 
-  getRecipes () {
+  getRecipes() {
     return true
   }
 
-  categories () {
+  categories() {
     return [
       {
         order_flag: 0,
@@ -34,19 +34,19 @@ class Paprika {
     ]
   }
 
-  updateRecipe () {
+  updateRecipe() {
     return true
   }
 
-  deleteRecipe () {
+  deleteRecipe() {
     return true
   }
 
-  downloadRecipe () {
+  downloadRecipe() {
     return true
   }
 
-  synchronize () {
+  synchronize() {
     return true
   }
 }

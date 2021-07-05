@@ -21,7 +21,7 @@ import server from '../server'
 import { Fab } from '../styled'
 import PropTypes from 'prop-types'
 
-export default function Recipe ({ selectedRecipe, setSelectedRecipe }) {
+export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
   const [products, setProducts] = useState([])
   const [selectedIngredient, setSelectedIngredient] = useState()
   const [editOrAddRecipe, setEditOrAddRecipe] = useState()
@@ -38,7 +38,7 @@ export default function Recipe ({ selectedRecipe, setSelectedRecipe }) {
 
   useEffect(addMouseWheel, [])
 
-  function addMouseWheel () {
+  function addMouseWheel() {
     if (listRef.current) {
       listRef.current.addEventListener('mousewheel', listWheel, {
         passive: false
@@ -47,7 +47,7 @@ export default function Recipe ({ selectedRecipe, setSelectedRecipe }) {
     return removeMouseWheel
   }
 
-  function removeMouseWheel () {
+  function removeMouseWheel() {
     if (listRef.current) {
       listRef.current.removeEventListener('mousewheel', listWheel, {
         passive: false
@@ -62,7 +62,7 @@ export default function Recipe ({ selectedRecipe, setSelectedRecipe }) {
     }
   }, [selectedRecipe, ingredients, addRecipe, selectedIngredient])
 
-  async function search (item, customSearch) {
+  async function search(item, customSearch) {
     const query = customSearch || item.ingredient
     const searchResponse = await server.get(
       `products?query=${query}&full=${selectedIngredient.ingredient}`
@@ -71,7 +71,7 @@ export default function Recipe ({ selectedRecipe, setSelectedRecipe }) {
     setProducts(products)
   }
 
-  async function translate (uid) {
+  async function translate(uid) {
     const res = await server.post('recipes/translate', { recipeId: uid })
     const ingredientIndex = ingredients.indexOf(selectedIngredient)
     const recipe = res.data.recipe
@@ -79,18 +79,18 @@ export default function Recipe ({ selectedRecipe, setSelectedRecipe }) {
     setSelectedIngredient(recipe.parsedIngredients[ingredientIndex])
   }
 
-  function editRecipeClick () {
+  function editRecipeClick() {
     setEditOrAddRecipe(true)
   }
 
-  function onAdjustQuantity (productInfo, event) {
+  function onAdjustQuantity(productInfo, event) {
     const target = event.target
     const value = parseInt(target.value)
     productInfo.quantity = value
     setSelectedRecipe({ ...selectedRecipe })
   }
 
-  function onAdjustQuantityWheel (productInfo, event) {
+  function onAdjustQuantityWheel(productInfo, event) {
     const target = event.target
     let value = parseInt(target.value)
     if (event.deltaY < 0) {
@@ -103,11 +103,11 @@ export default function Recipe ({ selectedRecipe, setSelectedRecipe }) {
     setSelectedRecipe({ ...selectedRecipe })
   }
 
-  function order (item) {
+  function order(item) {
     document.cookie = `order=${JSON.stringify([{ ...item, quantity: 1 }])}`
   }
 
-  function listWheel (e) {
+  function listWheel(e) {
     const { clientX, clientY } = e
     const focusedElement = document.elementFromPoint(clientX, clientY)
     if (focusedElement.nodeName === 'INPUT') {

@@ -4,7 +4,7 @@ const createDb = require('./db/tables')
 describe('translates', () => {
   let translationsDb, translator
 
-  beforeAll(async () => {
+  beforeAll(async() => {
     ;({ translationsDb } = await createDb('./memory-db', 'data/db.test.json'))
     translationsDb.storeTranslations(
       [
@@ -33,7 +33,7 @@ describe('translates', () => {
     translator = new Translator(translationsDb, 1)
   })
 
-  it('retrieves from cache first', async () => {
+  it('retrieves from cache first', async() => {
     const dutch = await translator.translate([
       'vegetable oil',
       'large onion',
@@ -48,23 +48,23 @@ describe('translates', () => {
     ])
   })
 
-  it('tries to invoke translation service', async () => {
+  it('tries to invoke translation service', async() => {
     expect(translator.translate(['unexisting'])).rejects.toEqual(
       new TypeError('this.service.translate is not a function')
     )
   })
 
   class TranslatorServiceStub {
-    constructor (translator) {
+    constructor(translator) {
       this.translator = translator
     }
 
-    translate (items) {
+    translate(items) {
       return [this.translator(items)]
     }
   }
 
-  it('translates with translator service', async () => {
+  it('translates with translator service', async() => {
     const translator = new Translator(
       translationsDb,
       new TranslatorServiceStub((orig) => ['baby nieuwe aardappelen'])
@@ -74,7 +74,7 @@ describe('translates', () => {
     ])
   })
 
-  it('does not translate already translated strings', async () => {
+  it('does not translate already translated strings', async() => {
     const { translationsDb } = await createDb('./memory-db')
 
     translationsDb.storeTranslations(

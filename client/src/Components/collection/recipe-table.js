@@ -45,7 +45,7 @@ const IndeterminateCheckbox = React.forwardRef(
 )
 IndeterminateCheckbox.displayName = 'IndeterminateCheckbox'
 
-export default function RecipeTable () {
+export default function RecipeTable() {
   const theme = createMuiTheme({
     overrides: {
       MuiTableCell: {
@@ -66,7 +66,7 @@ export default function RecipeTable () {
     selectedOrder
   } = useContext(RecipeContext)
 
-  function clickRow (row) {
+  function clickRow(row) {
     const uid = row.values.uid
     const recipe = recipes.find((r) => r.uid === uid)
     setSelectedRecipe(recipe)
@@ -86,7 +86,7 @@ export default function RecipeTable () {
       {
         Header: 'Categories',
         accessor: 'categoryNames',
-        Cell: ({ value }) => <span>{value?.join(",")}</span>, //eslint-disable-line
+        Cell: ({ value }) => <span>{value?.join(',')}</span> //eslint-disable-line
       },
       { accessor: 'mappings' },
       { accessor: 'parsedIngredients' },
@@ -99,7 +99,7 @@ export default function RecipeTable () {
     value: PropTypes.array.isRequired
   }
 
-  function determineRowColor (row) {
+  function determineRowColor(row) {
     const values = row.values
     const ingredients = values.parsedIngredients || []
     const selectedOffset =
@@ -187,7 +187,7 @@ export default function RecipeTable () {
     (hooks) => {
       hooks.allColumns.push((columns) => [
         {
-          id: "selection",
+          id: 'selection',
           Header: ({ getToggleAllRowsSelectedProps }) => (
             <div>
               <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
@@ -197,9 +197,9 @@ export default function RecipeTable () {
             <div>
               <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
             </div>
-          ),
+          )
         },
-        ...columns,
+        ...columns
       ]) /* eslint-enable */
     }
   )

@@ -1,13 +1,13 @@
 class PaprikaApiStub {
-  recipes () {
+  recipes() {
     return this.recipeStore.map((r) => ({ uid: r.uid, hash: r.hash }))
   }
 
-  recipe (uid) {
+  recipe(uid) {
     return this.recipeStore.find((r) => r.uid === uid)
   }
 
-  upsertRecipe (recipe) {
+  upsertRecipe(recipe) {
     const found = this.recipeStore.find((r) => r.uid === recipe.uid)
     if (found) {
       this.recipeStore.splice(this.recipeStore.indexOf(found), 1, recipe)
@@ -16,7 +16,7 @@ class PaprikaApiStub {
     }
   }
 
-  constructor () {
+  constructor() {
     this.recipeStore = [
       {
         rating: 0,
