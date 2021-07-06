@@ -16,15 +16,15 @@ export default function OrderDialog({ open, handleClose, selectedRecipes }) {
   const [notAvailable, setNotAvailable] = useState([])
 
   useEffect(() => {
-    const mappings = selectedRecipes.map((r) =>
-      Object.entries(r.mappings).map(([ingredient, map]) => {
+    const products = selectedRecipes.map((r) =>
+      r.parsedIngredients.map(({ ingredient, product }) => {
         return {
           ingredient,
-          ...map
+          ...product
         }
       })
     )
-    const items = [].concat(...mappings)
+    const items = [].concat(...products).filter((p) => p.id)
     setItems(items.filter((i) => !i.notAvailable && !i.ignore))
     setIgnored(items.filter((i) => i.ignore))
     setNotAvailable(items.filter((i) => i.notAvailable))

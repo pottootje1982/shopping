@@ -26,10 +26,8 @@ class Ingredients extends Array {
     return this.map((i) => i.ingredient)
   }
 
-  setProducts(products) {
-    for (const [i, product] of products.entries()) {
-      this[i].setIngredient(product)
-    }
+  translate(products) {
+    return this.map((ing, i) => ing.setIngredient(products[i]))
   }
 
   static create(ingredients) {
@@ -189,27 +187,29 @@ const ingReplacements = [
 
 class Ingredient {
   constructor(ingredientLine) {
-    let quant, unit, ingr
+    if (ingredientLine) {
+      let quant, unit, ingr
 
-    ingredientLine = ingredientLine.trim()
-    this.full = ingredientLine
-    ingredientLine = this.filterIngLine(ingredientLine)
-    const parsed = this.parse(ingredientLine)
-    if (parsed) {
-      ;[quant, unit, ingr] = parsed
-    } else {
-      ;[, quant, ingr] = new RegExp(
-        `${quantMultExp.source}${ingrExp}`,
-        'i'
-      ).exec(ingredientLine)
+      ingredientLine = ingredientLine.trim()
+      this.full = ingredientLine
+      ingredientLine = this.filterIngLine(ingredientLine)
+      const parsed = this.parse(ingredientLine)
+      if (parsed) {
+        ;[quant, unit, ingr] = parsed
+      } else {
+        ;[, quant, ingr] = new RegExp(
+          `${quantMultExp.source}${ingrExp}`,
+          'i'
+        ).exec(ingredientLine)
+      }
+
+      this.ingredient = this.filterIng(ingr)
+      quant = quant && quant.trim()
+      quant = quant === '' ? undefined : quant
+      this.quantity = !isNaN(quant) ? parseFloat(quant) : quant
+      this.unit = unit && unit.trim()
+      this.all = [this.quantity, this.unit, this.ingredient]
     }
-
-    this.ingredient = this.filterIng(ingr)
-    quant = quant && quant.trim()
-    quant = quant === '' ? undefined : quant
-    this.quantity = !isNaN(quant) ? parseFloat(quant) : quant
-    this.unit = unit && unit.trim()
-    this.all = [this.quantity, this.unit, this.ingredient]
   }
 
   match(matches, str) {
@@ -256,11 +256,11 @@ class Ingredient {
   }
 
   setIngredient(ingredient) {
-    if (ingredient) {
-      this.ingredient = ingredient
-      this.full = [this.quantity, this.unit, this.ingredient]
-        .filter((s) => s)
-        .join(' ')
+    ingredient = ingredient || this.ingredient
+    return {
+      ...this,
+      ingredient,
+      full: [this.quantity, this.unit, ingredient].filter((s) => s).join(' ')
     }
   }
 
@@ -282,6 +282,11 @@ class Ingredient {
   toString() {
     const all = this.all
     return `${all.toString()},`
+  }
+
+  static createFromObject(obj) {
+    const res = new Ingredient()
+    return Object.assign(res, obj)
   }
 }
 

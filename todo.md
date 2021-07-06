@@ -9,6 +9,7 @@
 
 - after selecting order, make sure to show ordered quantities
 - favourite recipes
+- store selected rows in localStorage
 
 - add AH-items together from different recipes on order (by making sortable table)
 - Make both general product - shopping item that applies to all recipes, or recipe specific mapping. To distinguish between recipe specific mappings & general mappings, we can just identify if a mapping exists for a certain ingredient, if and only if so, we should prompt the user: 'Do you want to use these product throughout all recipes?' 'Yes/No'?

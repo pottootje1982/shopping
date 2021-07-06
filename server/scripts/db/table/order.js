@@ -11,7 +11,10 @@ class OrderDb extends Table {
 
   async storeOrder(recipes) {
     const date = getDateStr()
-    recipes = recipes.map((r) => ({ uid: r.uid, mappings: r.mappings }))
+    recipes = recipes.map(({ uid, parsedIngredients }) => ({
+      uid,
+      parsedIngredients
+    }))
     const order = { date, recipes }
     const newOrder = await this.store(order)
     return newOrder
@@ -26,12 +29,27 @@ class OrderDb extends Table {
   }
 
   async getHydrated(recipes) {
+    const getProduct = ({ parsedIngredients }, ing) => {
+      const found = parsedIngredients.find(
+        (i) => i.ingredient.toLowerCase() === ing.ingredient.toLowerCase()
+      )
+      return {
+        ...ing.product,
+        ...found?.product
+      }
+    }
+
     const orders = await this.get()
     for (const order of orders) {
-      for (const recipeOrder of order.recipes) {
-        const recipe = recipes.find((r) => r.uid === recipeOrder.uid)
-        recipeOrder.parsedIngredients = recipe && recipe.parsedIngredients
-        recipeOrder.name = recipe && recipe.name
+      for (const orderedRecipe of order.recipes) {
+        const recipe = recipes.find((r) => r.uid === orderedRecipe.uid)
+        orderedRecipe.parsedIngredients = recipe?.parsedIngredients.map(
+          (ing) => ({
+            ...ing,
+            product: getProduct(orderedRecipe, ing)
+          })
+        )
+        orderedRecipe.name = recipe?.name
       }
     }
     return orders

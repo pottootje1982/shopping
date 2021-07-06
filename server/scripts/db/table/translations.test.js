@@ -1,10 +1,14 @@
 const createDb = require('../tables')
+const { Ingredients } = require('../../ingredients')
 
 describe('storeTranslations()', () => {
-  let translationsDb
+  let translationsDb, recipeDb
 
-  beforeEach(async() => {
-    ;({ translationsDb } = await createDb('./memory-db', 'data/db.test.json'))
+  beforeEach(async () => {
+    ;({ translationsDb, recipeDb } = await createDb(
+      './memory-db',
+      'data/db.test.json'
+    ))
     translationsDb.storeTranslations(
       [
         'vegetable oil',
@@ -31,7 +35,7 @@ describe('storeTranslations()', () => {
     )
   })
 
-  it('retrieves stored translations', async() => {
+  it('retrieves stored translations', async () => {
     expect(await translationsDb.getTranslation('vegetable oil')).toBe(
       'plantaardige olie'
     )
@@ -50,7 +54,7 @@ describe('storeTranslations()', () => {
     ])
   })
 
-  it('returns untranslated', async() => {
+  it('returns untranslated', async () => {
     const { success, translations, untranslated } =
       await translationsDb.getTranslations([
         'unexisting',
@@ -60,5 +64,14 @@ describe('storeTranslations()', () => {
     expect(success).toBe(false)
     expect(translations).toEqual([undefined, 'grote ui', 'teentje knoflook'])
     expect(untranslated).toEqual(['unexisting'])
+  })
+
+  it('translates recipes', async () => {
+    let recipes = (await recipeDb.getRecipesRaw()).slice(1, 2).map((r) => ({
+      ...r,
+      parsedIngredients: Ingredients.create(r.ingredients)
+    }))
+    recipes = await translationsDb.translateRecipes(...recipes)
+    expect(recipes).toMatchSnapshot()
   })
 })

@@ -7,6 +7,14 @@ describe('Ingredient', () => {
     return recipeDb.getRecipes()
   }
 
+  it('creates from object', () => {
+    const i = Ingredient.createFromObject({
+      ingredient: 'aardappels',
+      quantity: 3
+    })
+    expect(i.quantityToOrder()).toBe(1)
+  })
+
   it('divides into quantity, unit & ingredient', () => {
     const i = new Ingredient('1 tbsp sugar')
     expect(i.quantity).toBe(1)
@@ -124,7 +132,7 @@ describe('Ingredient', () => {
   it('removes parentheses', () => {
     expect(
       Ingredient.prototype.filterIng(
-        '1-2 tbsp madras curry paste (we used Patak\'s)'
+        "1-2 tbsp madras curry paste (we used Patak's)"
       )
     ).toBe('1-2 tbsp madras curry paste')
     expect(
@@ -382,7 +390,7 @@ describe('Ingredient', () => {
     expect(ingredients[1].all).toEqual([200, 'g', 'gare kastanjes'])
   })
 
-  it('all ingredients from Paprika can be parsed', async() => {
+  it('all ingredients from Paprika can be parsed', async () => {
     const recipes = await getRecipes()
     const parsedIngredients = recipes
       .slice(0, 12)

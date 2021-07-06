@@ -25,16 +25,14 @@ const styles = makeStyles(() => ({
 
 export default function ProductSearch({
   selectedIngredient,
-  selectedRecipe,
-  setSelectedRecipe,
+  setSelectedIngredient,
   searchProducts,
   products
 }) {
   const classes = styles()
   const searchRef = useRef(null)
-  const mappings = selectedRecipe.mappings
   const bareIngredient = selectedIngredient.ingredient
-  const product = mappings[bareIngredient]
+  const { product = {} } = selectedIngredient
 
   useEffect(doSearch, [selectedIngredient])
 
@@ -44,14 +42,12 @@ export default function ProductSearch({
 
   function selectProduct(completeProduct) {
     const { id, title, price, ignore, notAvailable } = completeProduct
-    const product = { id, title, price, ignore, notAvailable }
-    const oldProduct = mappings[bareIngredient]
-    mappings[bareIngredient] = { ...oldProduct, ...product }
-    setSelectedRecipe({ ...selectedRecipe, mappings })
+    const newProduct = { id, title, price, ignore, notAvailable }
+    setSelectedIngredient({ ...selectedIngredient, product: newProduct })
 
     server.post('products/choose', {
       ingredient: bareIngredient,
-      product: product
+      product: newProduct
     })
   }
 
@@ -121,31 +117,25 @@ export default function ProductSearch({
         }
         label="Not available"
       />
-
       <Grid item xs={12}>
-        {products.length === 0
-          ? (
+        {products.length === 0 ? (
           <Typography color="secondary" style={{ paddingTop: 20 }}>
             No products found
           </Typography>
-            )
-          : (
+        ) : (
           <GridList
             cols={3}
             cellHeight="auto"
             style={{ maxHeight: '78vh', overflow: 'auto' }}
           >
-            {products.map((item, i) => (
+            {products.map((item) => (
               <GridListTile key={item.id} xs={4}>
                 <MuiButton
                   color="primary"
                   onClick={() => selectProduct(item)}
                   style={{
                     textTransform: 'none',
-                    border:
-                      (mappings[bareIngredient] || {}).id === item.id
-                        ? '2px solid'
-                        : ''
+                    border: product.id === item.id ? '2px solid' : ''
                   }}
                   title={item.title}
                 >
@@ -168,7 +158,7 @@ export default function ProductSearch({
               </GridListTile>
             ))}
           </GridList>
-            )}
+        )}
       </Grid>
     </Grid>
   )
@@ -176,8 +166,7 @@ export default function ProductSearch({
 
 ProductSearch.propTypes = {
   selectedIngredient: PropTypes.object.isRequired,
-  selectedRecipe: PropTypes.object.isRequired,
-  setSelectedRecipe: PropTypes.func.isRequired,
+  setSelectedIngredient: PropTypes.func.isRequired,
   searchProducts: PropTypes.func.isRequired,
   products: PropTypes.array.isRequired
 }

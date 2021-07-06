@@ -3,12 +3,7 @@
   "name": "Place AH.nl Order",
   "description": "Extension helper to place a AH.nl order from https://gogetmeals.herokuapp.com",
   "version": "0.0.1",
-  "permissions": [
-    "tabs",
-    "cookies",
-    "http://localhost/*",
-    "*://gogetmeals.herokuapp.com/*"
-  ],
+  "permissions": ["cookies", "*://gogetmeals.herokuapp.com/*"],
   "background": {
     "scripts": ["background.js"],
     "persistent": false

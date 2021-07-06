@@ -53,11 +53,12 @@ class TranslationsDb {
 
   async translateRecipes(...recipes) {
     const allTranslations = await this.translations
-    recipes.forEach((recipe) => {
-      const ingredients = recipe.parsedIngredients
-      const products = ingredients.getProducts()
+    return recipes.map(({ parsedIngredients, ...r }) => {
+      const ingredients = parsedIngredients
+      const products = parsedIngredients.map((i) => i.ingredient)
       const { translations } = getTranslations(allTranslations, products)
-      ingredients.setProducts(translations)
+      const translated = ingredients.translate(translations)
+      return { ...r, parsedIngredients: translated }
     })
   }
 }

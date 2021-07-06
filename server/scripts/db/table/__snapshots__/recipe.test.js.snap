@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`storeRecipe() mappings are set 1`] = `
+Ingredients [
+  Object {
+    "all": Array [
+      1,
+      "tbsp",
+      "vegetable oil",
+    ],
+    "full": "1 tbsp plantaardige olie",
+    "ingredient": "plantaardige olie",
+    "product": undefined,
+    "quantity": 1,
+    "unit": "tbsp",
+  },
+  Object {
+    "all": Array [
+      1,
+      undefined,
+      "large onion",
+    ],
+    "full": "1 grote ui",
+    "ingredient": "grote ui",
+    "product": 124987,
+    "quantity": 1,
+    "unit": undefined,
+  },
+  Object {
+    "all": Array [
+      1,
+      "clove",
+      "garlic",
+    ],
+    "full": "1 clove knoflook",
+    "ingredient": "knoflook",
+    "product": undefined,
+    "quantity": 1,
+    "unit": "clove",
+  },
+  Object {
+    "all": Array [
+      "1-2",
+      "tbsp",
+      "madras curry paste",
+    ],
+    "full": "1-2 tbsp Madras curry pasta",
+    "ingredient": "Madras curry pasta",
+    "product": undefined,
+    "quantity": 1,
+    "unit": "tbsp",
+  },
+  Object {
+    "all": Array [
+      undefined,
+      "400 g can",
+      "tomatoes",
+    ],
+    "full": "400 g can tomaten",
+    "ingredient": "tomaten",
+    "product": Object {
+      "id": 395307,
+      "title": "AH Biologisch Tomatenblokjes",
+    },
+    "quantity": 1,
+    "unit": "400 g can",
+  },
+  Object {
+    "all": Array [
+      200,
+      "ml",
+      "vegetable stock",
+    ],
+    "full": "200 ml groentebouillon",
+    "ingredient": "groentebouillon",
+    "product": undefined,
+    "quantity": 1,
+    "unit": "ml",
+  },
+  Object {
+    "all": Array [
+      undefined,
+      undefined,
+      "sustainable white fish fillets",
+    ],
+    "full": "duurzame witte visfilets",
+    "ingredient": "duurzame witte visfilets",
+    "product": undefined,
+    "quantity": 1,
+    "unit": undefined,
+  },
+  Object {
+    "all": Array [
+      undefined,
+      undefined,
+      "rice or naan bread",
+    ],
+    "full": "rijst of naanbrood",
+    "ingredient": "rijst of naanbrood",
+    "product": undefined,
+    "quantity": 1,
+    "unit": undefined,
+  },
+]
+`;

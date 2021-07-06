@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`storeMapping() retrieves stored translations for recipe 1`] = `
+Array [
+  Object {
+    "categories": Array [
+      "cef31e04-4245-4483-9e83-34c26ebf267a",
+    ],
+    "cook_time": "",
+    "created": "2015-08-29 11:30:47",
+    "description": "",
+    "difficulty": "",
+    "directions": "",
+    "hash": "DA475055E02DCFCBA26744E139067B6B8178D93FDE143B755FA0A8B7571610A9",
+    "image_url": null,
+    "in_trash": false,
+    "ingredients": "Prei
+Dille
+Blik tomaten
+Zalm
+3 Aardappels
+Wijn
+Honing
+koriander poeder",
+    "is_pinned": false,
+    "name": "Zalm met prei",
+    "notes": "",
+    "nutritional_info": "",
+    "on_favorites": false,
+    "on_grocery_list": null,
+    "parsedIngredients": Ingredients [
+      Object {
+        "all": Array [
+          undefined,
+          undefined,
+          "Prei",
+        ],
+        "full": "Prei",
+        "ingredient": "Prei",
+        "product": Object {
+          "id": 1273124,
+        },
+        "quantity": 1,
+        "unit": undefined,
+      },
+      Object {
+        "all": Array [
+          undefined,
+          undefined,
+          "Dille",
+        ],
+        "full": "Dille",
+        "ingredient": "Dille",
+        "product": Object {
+          "id": 2,
+        },
+        "quantity": 1,
+        "unit": undefined,
+      },
+      Object {
+        "all": Array [
+          undefined,
+          "Blik",
+          "tomaten",
+        ],
+        "full": "Blik tomaten",
+        "ingredient": "tomaten",
+        "product": Object {
+          "id": 395307,
+          "title": "AH Biologisch Tomatenblokjes",
+        },
+        "quantity": 1,
+        "unit": "Blik",
+      },
+      Object {
+        "all": Array [
+          undefined,
+          undefined,
+          "Zalm",
+        ],
+        "full": "Zalm",
+        "ingredient": "Zalm",
+        "product": Object {
+          "id": 1,
+        },
+        "quantity": 1,
+        "unit": undefined,
+      },
+      Object {
+        "all": Array [
+          3,
+          undefined,
+          "Aardappels",
+        ],
+        "full": "3 Aardappels",
+        "ingredient": "Aardappels",
+        "product": Object {
+          "id": 3,
+        },
+        "quantity": 1,
+        "unit": undefined,
+      },
+      Object {
+        "all": Array [
+          undefined,
+          undefined,
+          "Wijn",
+        ],
+        "full": "Wijn",
+        "ingredient": "Wijn",
+        "product": undefined,
+        "quantity": 1,
+        "unit": undefined,
+      },
+      Object {
+        "all": Array [
+          undefined,
+          undefined,
+          "Honing",
+        ],
+        "full": "Honing",
+        "ingredient": "Honing",
+        "product": undefined,
+        "quantity": 1,
+        "unit": undefined,
+      },
+      Object {
+        "all": Array [
+          undefined,
+          undefined,
+          "koriander poeder",
+        ],
+        "full": "koriander poeder",
+        "ingredient": "koriander poeder",
+        "product": undefined,
+        "quantity": 1,
+        "unit": undefined,
+      },
+    ],
+    "photo": null,
+    "photo_hash": null,
+    "photo_large": null,
+    "photo_url": null,
+    "prep_time": "",
+    "rating": 0,
+    "scale": null,
+    "servings": "",
+    "source": "",
+    "source_url": "",
+    "total_time": "",
+    "uid": "3fe04f98-8d73-4e9d-a7da-f4c1241aa3c4",
+  },
+]
+`;

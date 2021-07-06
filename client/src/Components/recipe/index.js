@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState, useRef } from 'react'
+import React, { Fragment, useEffect, useState, useRef, useContext } from 'react'
 import {
   Grid,
   Paper,
@@ -14,27 +14,22 @@ import TranslateIcon from '@material-ui/icons/Translate'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import ProductSearch from '../shopping-results'
 import EditAddRecipe from './edit-add-recipe'
-import blue from '@material-ui/core/colors/blue'
-import green from '@material-ui/core/colors/green'
-import grey from '@material-ui/core/colors/grey'
+import { blue, green, grey } from '@material-ui/core/colors'
 import server from '../server'
 import { Fab } from '../styled'
-import PropTypes from 'prop-types'
+import RecipeContext from '../collection/RecipeProvider'
 
-export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
+export default function Recipe() {
   const [products, setProducts] = useState([])
   const [selectedIngredient, setSelectedIngredient] = useState()
   const [editOrAddRecipe, setEditOrAddRecipe] = useState()
-  const addRecipe = selectedRecipe.uid === undefined
   const listRef = useRef(null)
 
-  const recipeId = selectedRecipe.uid
-  const mappings = selectedRecipe.mappings || []
-  const ingredients = selectedRecipe.parsedIngredients || []
+  const { selectedRecipe, setSelectedRecipe } = useContext(RecipeContext)
 
-  const productInfo = ingredients.map(
-    (i) => (mappings && mappings[i.ingredient]) || {}
-  )
+  const { uid: recipeId, parsedIngredients: ingredients } = selectedRecipe
+
+  const addRecipe = !recipeId
 
   useEffect(addMouseWheel, [])
 
@@ -62,6 +57,17 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
     }
   }, [selectedRecipe, ingredients, addRecipe, selectedIngredient])
 
+  useEffect(() => {
+    if (!selectedIngredient || ingredients?.indexOf(selectedIngredient) >= 0)
+      return
+    const ing = ingredients.find(
+      (i) => i.ingredient === selectedIngredient?.ingredient
+    )
+    const index = ingredients.indexOf(ing)
+    ingredients.splice(index, 1, selectedIngredient)
+    setSelectedRecipe((r) => ({ ...r, parsedIngredients: ingredients }))
+  }, [selectedIngredient])
+
   async function search(item, customSearch) {
     const query = customSearch || item.ingredient
     const searchResponse = await server.get(
@@ -83,14 +89,14 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
     setEditOrAddRecipe(true)
   }
 
-  function onAdjustQuantity(productInfo, event) {
+  function onAdjustQuantity(product, event) {
     const target = event.target
     const value = parseInt(target.value)
-    productInfo.quantity = value
+    product.quantity = value
     setSelectedRecipe({ ...selectedRecipe })
   }
 
-  function onAdjustQuantityWheel(productInfo, event) {
+  function onAdjustQuantityWheel(product, event) {
     const target = event.target
     let value = parseInt(target.value)
     if (event.deltaY < 0) {
@@ -99,7 +105,7 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
       value = Math.max(value - 1, 0)
     }
     target.value = value
-    productInfo.quantity = value
+    product.quantity = value
     setSelectedRecipe({ ...selectedRecipe })
   }
 
@@ -131,97 +137,102 @@ export default function Recipe({ selectedRecipe, setSelectedRecipe }) {
               dense
               style={{ maxHeight: '78vh', overflow: 'auto' }}
             >
-              {(ingredients || []).map((item, i) => (
-                <ListItem
-                  divider={true}
-                  button
-                  selected={item === selectedIngredient}
-                  key={i}
-                  onClick={(e) => setSelectedIngredient(item)}
-                >
-                  <ListItemText
+              {ingredients.map(
+                (
+                  {
+                    ignore,
+                    notAvailable,
+                    ingredient,
+                    full,
+                    quantity,
+                    product: { title, quantity: orderedQuantity } = {},
+                    product
+                  },
+                  i
+                ) => (
+                  <ListItem
+                    divider={true}
+                    button
+                    selected={ingredient === selectedIngredient}
                     key={i}
-                    primary={
-                      <Typography
-                        style={{
-                          color:
-                            productInfo[i].ignore || productInfo[i].notAvailable
-                              ? grey[500]
-                              : undefined
-                        }}
-                      >
-                        {item.full}
-                      </Typography>
-                    }
-                    secondary={
-                      !productInfo[i].ignore && !productInfo[i].notAvailable
-                        ? (
-                        <Typography
-                          variant="subtitle2"
-                          style={{ color: green[500], fontSize: 9 }}
-                        >
-                          {productInfo[i].title}
-                        </Typography>
-                          )
-                        : null
-                    }
-                  ></ListItemText>
-                  <TextField
-                    type="number"
-                    defaultValue={productInfo[i].quantity}
-                    inputProps={{
-                      min: 0,
-                      max: 99,
-                      step: 1
-                    }}
-                    style={{ width: 40, height: 40 }}
-                    onChange={(e) => onAdjustQuantity(productInfo[i], e)}
-                    onWheel={(e) => onAdjustQuantityWheel(productInfo[i], e)}
-                  />
-                  <IconButton
-                    onClick={(e) => order(productInfo[i])}
+                    onClick={() => setSelectedIngredient(ingredients[i])}
                     style={{
-                      marginRight: -20,
-                      marginTop: -20,
-                      marginBottom: -20,
-                      transform: 'scale(.7)'
+                      backgroundColor:
+                        orderedQuantity &&
+                        orderedQuantity !== quantity &&
+                        blue[200]
                     }}
                   >
-                    <ShoppingCartIcon />
-                  </IconButton>
-                </ListItem>
-              ))}
+                    <ListItemText
+                      key={i}
+                      primary={
+                        <Typography
+                          style={{
+                            color:
+                              ignore || notAvailable ? grey[500] : undefined
+                          }}
+                        >
+                          {full}
+                        </Typography>
+                      }
+                      secondary={
+                        !ignore && !notAvailable ? (
+                          <Typography
+                            variant="subtitle2"
+                            style={{ color: green[500], fontSize: 9 }}
+                          >
+                            {title}
+                          </Typography>
+                        ) : null
+                      }
+                    ></ListItemText>
+                    <TextField
+                      type="number"
+                      defaultValue={orderedQuantity || quantity}
+                      inputProps={{
+                        min: 0,
+                        max: 99,
+                        step: 1
+                      }}
+                      style={{ width: 40, height: 40 }}
+                      onChange={(e) => onAdjustQuantity(product, e)}
+                      onWheel={(e) => onAdjustQuantityWheel(product, e)}
+                    />
+                    <IconButton
+                      onClick={(e) => order(product)}
+                      style={{
+                        marginRight: -20,
+                        marginTop: -20,
+                        marginBottom: -20,
+                        transform: 'scale(.7)'
+                      }}
+                    >
+                      <ShoppingCartIcon />
+                    </IconButton>
+                  </ListItem>
+                )
+              )}
             </List>
           </Paper>
         </Grid>
       </Grid>
 
-      {editOrAddRecipe
-        ? (
+      {editOrAddRecipe ? (
         <EditAddRecipe
           key={selectedRecipe.name}
           selectedRecipe={selectedRecipe}
           setSelectedRecipe={setSelectedRecipe}
           setEditOrAddRecipe={setEditOrAddRecipe}
         />
-          )
-        : selectedIngredient
-          ? (
+      ) : selectedIngredient ? (
         <ProductSearch
           key={selectedIngredient}
+          setSelectedIngredient={setSelectedIngredient}
           products={products}
           selectedIngredient={selectedIngredient}
           searchProducts={search}
-          selectedRecipe={selectedRecipe}
-          setSelectedRecipe={setSelectedRecipe}
         />
-            )
-          : null}
+      ) : null}
     </Fragment>
   )
-}
-
-Recipe.propTypes = {
-  selectedRecipe: PropTypes.object.isRequired,
-  setSelectedRecipe: PropTypes.func.isRequired
 }

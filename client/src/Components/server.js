@@ -1,9 +1,7 @@
 import axios from 'axios'
 
 export function getServerUrl() {
-  return window.location.href.includes('localhost')
-    ? 'http://localhost:5000'
-    : 'https://gogetmeals.herokuapp.com'
+  return window.location.href.includes('localhost') ? 'http://localhost:5000' : 'https://gogetmeals.herokuapp.com'
 }
 
 axios.defaults.baseURL = getServerUrl()

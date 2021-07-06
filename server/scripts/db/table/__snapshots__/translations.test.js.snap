@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`storeTranslations() translates recipes 1`] = `
+Array [
+  Object {
+    "categories": Array [
+      "eb2b8649-1477-4f62-9c7b-239864246748",
+      "f172bbb8-2b65-485d-bb57-3575b7c686bb",
+    ],
+    "cook_time": "50 min",
+    "created": "2016-08-29 11:37:51",
+    "description": null,
+    "difficulty": "Easy",
+    "directions": "1. Heat oven to 200C/fan 180C/gas 6. In a shallow pan, mix together the garlic and 4 tbsp of the olive oil. Cook over a high heat for 3 mins, tip in the tomatoes, then simmer for 8 mins, stirring every now and then. Stir in the tomato purée.
+
+2. Meanwhile, heat a griddle pan until very hot. Brush a few of the aubergines with a little oil, then add to the pan. Cook over a high heat until well browned and cooked through, about 5-7 mins. Turn them halfway through cooking. Lift onto kitchen paper and do the next batch.
+
+3. When all the aubergines are cooked, lay a few of them in the bottom of an ovenproof dish, then spoon over some sauce. Sprinkle with Parmesan and basil leaves. Add seasoning, then repeat this process with the remaining ingredients. Finally, pour the egg over the top, sprinkle over a little more Parmesan, then bake for 20 mins or until the topping is golden.",
+    "hash": "41400a3b48471daad789d0d44efc33bfbd1c730e0ad371cf0c4346bf2604999b",
+    "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--327515_12.jpg?itok=ZqsycSvB",
+    "in_trash": null,
+    "ingredients": "2 garlic cloves, crushed
+6 tbsp olive oil
+2 x 400g cans chopped tomatoes
+2 tbsp tomato purée
+4 aubergines, cut into long, 5mm thick slices
+85g parmesan (or vegetarian alternative), freshly grated
+20g pack basil, leaves torn
+1 egg, beaten
+Lasagna
+Ricotta",
+    "is_pinned": null,
+    "name": "Aubergine, tomato & Parmesan bake (Melanzane alla Parmigiana) 2",
+    "notes": "",
+    "nutritional_info": "kcalories 225
+protein 10g
+carbs 8g
+fat 17g
+saturates 5g
+fibre 5g
+sugar 7g
+salt 0.52g",
+    "on_favorites": false,
+    "on_grocery_list": null,
+    "parsedIngredients": Ingredients [
+      Object {
+        "all": Array [
+          2,
+          "cloves",
+          "garlic",
+        ],
+        "full": "2 cloves knoflook",
+        "ingredient": "knoflook",
+        "quantity": 2,
+        "unit": "cloves",
+      },
+      Object {
+        "all": Array [
+          6,
+          "tbsp",
+          "olive oil",
+        ],
+        "full": "6 tbsp olive oil",
+        "ingredient": "olive oil",
+        "quantity": 6,
+        "unit": "tbsp",
+      },
+      Object {
+        "all": Array [
+          2,
+          "400g cans",
+          "chopped tomatoes",
+        ],
+        "full": "2 400g cans chopped tomatoes",
+        "ingredient": "chopped tomatoes",
+        "quantity": 2,
+        "unit": "400g cans",
+      },
+      Object {
+        "all": Array [
+          2,
+          "tbsp",
+          "tomato purée",
+        ],
+        "full": "2 tbsp tomato purée",
+        "ingredient": "tomato purée",
+        "quantity": 2,
+        "unit": "tbsp",
+      },
+      Object {
+        "all": Array [
+          4,
+          undefined,
+          "aubergines",
+        ],
+        "full": "4 aubergines",
+        "ingredient": "aubergines",
+        "quantity": 4,
+        "unit": undefined,
+      },
+      Object {
+        "all": Array [
+          85,
+          "g",
+          "parmesan",
+        ],
+        "full": "85 g parmesan",
+        "ingredient": "parmesan",
+        "quantity": 85,
+        "unit": "g",
+      },
+      Object {
+        "all": Array [
+          undefined,
+          "20 g pack",
+          "basil",
+        ],
+        "full": "20 g pack basil",
+        "ingredient": "basil",
+        "quantity": undefined,
+        "unit": "20 g pack",
+      },
+      Object {
+        "all": Array [
+          1,
+          undefined,
+          "egg",
+        ],
+        "full": "1 egg",
+        "ingredient": "egg",
+        "quantity": 1,
+        "unit": undefined,
+      },
+      Object {
+        "all": Array [
+          undefined,
+          undefined,
+          "Lasagna",
+        ],
+        "full": "lasagne",
+        "ingredient": "lasagne",
+        "quantity": undefined,
+        "unit": undefined,
+      },
+      Object {
+        "all": Array [
+          undefined,
+          undefined,
+          "Ricotta",
+        ],
+        "full": "Ricotta",
+        "ingredient": "Ricotta",
+        "quantity": undefined,
+        "unit": undefined,
+      },
+    ],
+    "photo": "14354fd0-991f-406d-a32f-c36d9a995c0f.jpg",
+    "photo_hash": "347410a4aef70bd061e6cf88c7225f8d0247e5630e1b6a9ad272a777d3ecfb3b",
+    "photo_large": null,
+    "photo_url": "http://uploads.paprikaapp.com.s3.amazonaws.com/150068/14354fd0-991f-406d-a32f-c36d9a995c0f.jpg?Signature=tX%2FJz4Dyt%2FlUJn4ZdwH%2B%2BT4ewyU%3D&Expires=1569527941&AWSAccessKeyId=AKIAJA4A42FBJBMX5ARA",
+    "prep_time": "10 min",
+    "rating": 0,
+    "scale": null,
+    "servings": "6",
+    "source": "Bbcgoodfood.com",
+    "source_url": "http://www.bbcgoodfood.com/recipes/10033/aubergine-tomato-and-parmesan-bake-melanzane-alla-",
+    "total_time": null,
+    "uid": "94ca1528-93ae-4b26-9576-a2dc1ada36c3",
+  },
+]
+`;

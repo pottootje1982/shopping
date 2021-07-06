@@ -2,8 +2,7 @@
     "env": {
         "browser": true,
         "commonjs": true,
-        "es2021": true,
-        "jest": true
+        "es2021": true
     },
     "extends": [
         "standard"
@@ -12,6 +11,5 @@
         "ecmaVersion": 12
     },
     "rules": {
-        "space-before-function-paren": ["error", "never"]
     }
 }

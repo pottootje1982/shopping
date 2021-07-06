@@ -62,11 +62,10 @@ export default function RecipeCollection({ setRecipeTitle }) {
   }
 
   function createOrder(recipes) {
-    const items = recipes.map((r) => r.mappings).map((m) => Object.values(m))
-    return []
-      .concat(...items)
-      .filter((i) => i.id)
-      .map(({ id, quantity }) => ({ id, quantity }))
+    const items = recipes.map((r) =>
+      r.parsedIngredients.map((i) => i.product).filter((p) => p)
+    )
+    return [].concat(...items).map(({ id, quantity }) => ({ id, quantity }))
   }
 
   useEffect(selectedFirstRecipe, [])
@@ -113,12 +112,12 @@ export default function RecipeCollection({ setRecipeTitle }) {
   }
 
   function selectOrder(event) {
-    setSelectedCategory('')
+    setSelectedCategory()
     setSelectedOrder(event.target.value)
   }
 
   function selectCategory(event) {
-    setSelectedOrder('')
+    setSelectedOrder()
     setSelectedCategory(event.target.value)
   }
 
@@ -151,11 +150,9 @@ export default function RecipeCollection({ setRecipeTitle }) {
   const sortedOrders =
     orders?.sort((a, b) => b.date.localeCompare(a.date)) || []
 
-  return recipes === undefined
-    ? (
+  return recipes === undefined ? (
     <div>Loading</div>
-      )
-    : (
+  ) : (
     <Grid container spacing={1} style={{ padding: 10 }} alignItems="flex-start">
       <Grid container item xs={4} spacing={1}>
         <Fab onClick={showOrderDialog}>
@@ -212,15 +209,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
           <RecipeTable />
         </Grid>
       </Grid>
-      {selectedRecipe
-        ? (
-        <Recipe
-          key={selectedRecipe.uid}
-          selectedRecipe={selectedRecipe}
-          setSelectedRecipe={setSelectedRecipe}
-        />
-          )
-        : null}
+      {selectedRecipe ? <Recipe key={selectedRecipe.uid} /> : null}
       <OrderDialog
         open={open}
         handleClose={closeOrderDialog}
@@ -231,7 +220,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
         setDialogOpen={setNoTokenOpen}
       ></NoTokenDialog>
     </Grid>
-      )
+  )
 }
 
 RecipeCollection.propTypes = {

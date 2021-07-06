@@ -68,7 +68,8 @@ export default function RecipeTable() {
 
   function clickRow(row) {
     const uid = row.values.uid
-    const recipe = recipes.find((r) => r.uid === uid)
+    const _recipes = selectedOrder?.recipes || recipes
+    const recipe = _recipes.find((r) => r.uid === uid)
     setSelectedRecipe(recipe)
   }
 
@@ -96,7 +97,7 @@ export default function RecipeTable() {
   )
 
   columns[3].Cell.propTypes = {
-    value: PropTypes.array.isRequired
+    value: PropTypes.array
   }
 
   function determineRowColor(row) {
@@ -105,13 +106,7 @@ export default function RecipeTable() {
     const selectedOffset =
       values.uid === (selectedRecipe && selectedRecipe.uid) ? 100 : 0
 
-    const allChosen = ingredients.every((i) => {
-      const mapping = values.mappings && values.mappings[i.ingredient]
-      return (
-        mapping &&
-        (mapping.id !== undefined || mapping.notAvailable || mapping.ignore)
-      )
-    })
+    const allChosen = ingredients.every(({ product }) => product?.id)
     return {
       maxHeight: 10,
       backgroundColor: allChosen
@@ -146,7 +141,7 @@ export default function RecipeTable() {
       if (showSelected) show &= row.isSelected
       return (
         show &&
-        (value !== undefined && name !== undefined
+        (value && name
           ? name.toLowerCase().includes(value.toLowerCase())
           : true)
       )

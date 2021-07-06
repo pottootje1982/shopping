@@ -566,54 +566,33 @@
     }
   ],
   "translations": [
-    {
-      "original": "vegetable oil",
-      "translation": "plantaardige olie"
-    },
-    {
-      "original": "large onion",
-      "translation": "grote ui"
-    },
-    {
-      "original": "garlic",
-      "translation": "knoflook"
-    },
-    {
-      "original": "madras curry paste",
-      "translation": "Madras curry pasta"
-    },
-    {
-      "original": "tomatoes",
-      "translation": "tomaten"
-    },
-    {
-      "original": "vegetable stock",
-      "translation": "groentebouillon"
-    },
+    { "original": "vegetable oil", "translation": "plantaardige olie" },
+    { "original": "large onion", "translation": "grote ui" },
+    { "original": "garlic", "translation": "knoflook" },
+    { "original": "madras curry paste", "translation": "Madras curry pasta" },
+    { "original": "tomatoes", "translation": "tomaten" },
+    { "original": "vegetable stock", "translation": "groentebouillon" },
     {
       "original": "sustainable white fish fillets",
       "translation": "duurzame witte visfilets"
     },
-    {
-      "original": "rice or naan bread",
-      "translation": "rijst of naanbrood"
-    },
-    {
-      "original": "leek",
-      "translation": "prei"
-    },
-    {
-      "original": "spoon",
-      "translation": "lepel"
-    },
+    { "original": "rice or naan bread", "translation": "rijst of naanbrood" },
+    { "original": "leek", "translation": "prei" },
+    { "original": "spoon", "translation": "lepel" },
     {
       "original": "baby new potatoes",
       "translation": "baby nieuwe aardappelen"
     },
+    { "original": "lasagna", "translation": "lasagne" },
+    { "original": "lemon", "translation": "citroen" },
+    { "original": "pine nuts", "translation": "pijnboompitten" },
+    { "original": "small courgette", "translation": "kleine courgette" },
+    { "original": "dill", "translation": "dille" },
     {
-      "original": "lasagna",
-      "translation": "lasagne"
-    }
+      "original": "strong vegetable stock",
+      "translation": "sterke groentebouillon"
+    },
+    { "original": "haddock", "translation": "schelvis" }
   ],
   "ing-to-product": [
     {
@@ -621,10 +600,7 @@
       "product": {
         "id": 171425,
         "title": "AH Prei",
-        "price": {
-          "now": 0.5,
-          "unitSize": "per stuk"
-        }
+        "price": { "now": 0.5, "unitSize": "per stuk" }
       }
     },
     {
@@ -633,10 +609,7 @@
         "id": 238966,
         "title": "AH Dille",
         "price": {
-          "unitInfo": {
-            "price": 92.67,
-            "description": "KG"
-          },
+          "unitInfo": { "price": 92.67, "description": "KG" },
           "now": 1.39,
           "unitSize": "15 g"
         }
@@ -648,10 +621,7 @@
         "id": 395307,
         "title": "AH Biologisch Tomatenblokjes",
         "price": {
-          "unitInfo": {
-            "price": 3.13,
-            "description": "KG"
-          },
+          "unitInfo": { "price": 3.13, "description": "KG" },
           "now": 1.25,
           "unitSize": "400 g"
         }
@@ -663,10 +633,7 @@
         "id": 51335,
         "title": "AH Zalmfilet",
         "price": {
-          "unitInfo": {
-            "price": 24.99,
-            "description": "KG"
-          },
+          "unitInfo": { "price": 24.99, "description": "KG" },
           "now": 7.75,
           "unitSize": "ca. 310 g"
         }
@@ -678,10 +645,7 @@
         "id": 111388,
         "title": "AH Kilo'tje iets kruimige aardappelen",
         "price": {
-          "unitInfo": {
-            "price": 1.99,
-            "description": "KG"
-          },
+          "unitInfo": { "price": 1.99, "description": "KG" },
           "theme": "ah",
           "now": 1.99,
           "unitSize": "1 kg"
@@ -694,13 +658,58 @@
         "id": 238968,
         "title": "AH Koriander",
         "price": {
-          "unitInfo": {
-            "price": 92.67,
-            "description": "KG"
-          },
+          "unitInfo": { "price": 92.67, "description": "KG" },
           "now": 1.39,
           "unitSize": "15 g"
         }
+      }
+    },
+    {
+      "ingredient": "citroen",
+      "product": {
+        "id": 190654,
+        "title": "AH Biologisch Citroen"
+      }
+    },
+    {
+      "ingredient": "couscous",
+      "product": {
+        "id": 395654,
+        "title": "AH Biologisch Couscous"
+      }
+    },
+    {
+      "ingredient": "pijnboompitten",
+      "product": {
+        "id": 415609,
+        "title": "AH Pijnboompitten",
+        "ignore": false,
+        "notAvailable": false
+      }
+    },
+    {
+      "ingredient": "kleine courgette",
+      "product": {
+        "id": 185202,
+        "title": "AH Biologisch Courgette"
+      }
+    },
+    {
+      "ingredient": "dille",
+      "product": { "id": 238966, "title": "AH Dille", "quantity": 1 }
+    },
+    {
+      "ingredient": "sterke groentebouillon",
+      "product": {
+        "id": 388183,
+        "title": "AH Groentebouillon"
+      }
+    },
+    {
+      "ingredient": "schelvis",
+      "product": {
+        "id": 155601,
+        "title": "AH Schelvisfilet"
       }
     }
   ],
@@ -711,1495 +720,708 @@
       "recipes": [
         {
           "uid": "D9148F9A-BED3-4828-A4D7-7FC7A7AAD6A9",
-          "mappings": {
-            "kwark": {
-              "id": { "$numberInt": "231878" },
-              "title": "AH Magere Franse kwark",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.49" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.49" },
-                "unitSize": "1 kg"
-              },
-              "quantity": { "$numberInt": "2" }
+          "parsedIngredients": [
+            {
+              "ingredient": "kwark",
+              "product": {
+                "id": 231878,
+                "title": "AH Magere Franse kwark",
+                "quantity": 2
+              }
             },
-            "karnemelk": {
-              "id": { "$numberInt": "61008" },
-              "title": "AH Biologisch Karnemelk",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.05" },
-                  "description": "LT"
-                },
-                "now": { "$numberDouble": "1.05" },
-                "unitSize": "1 l"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "karnemelk",
+              "product": {
+                "id": 61008,
+                "title": "AH Biologisch Karnemelk",
+                "quantity": 1
+              }
             },
-            "melk": {
-              "id": { "$numberInt": "407049" },
-              "title": "Arla Biologische halfvolle melk",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.25" },
-                  "description": "LT"
-                },
-                "theme": "bonus",
-                "now": { "$numberDouble": "1.41" },
-                "was": { "$numberDouble": "1.88" },
-                "unitSize": "1,5 l"
-              },
-              "quantity": { "$numberInt": "2" }
+            {
+              "ingredient": "melk",
+              "product": {
+                "id": 407049,
+                "title": "Arla Biologische halfvolle melk",
+                "quantity": 2
+              }
             },
-            "beschuit": {
-              "id": { "$numberInt": "420825" },
-              "title": "Bolletje Beschuit vezelrijk meerzaden",
-              "price": {
-                "now": { "$numberDouble": "1.19" },
-                "unitSize": "13 stuks"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "beschuit",
+              "product": {
+                "id": 420825,
+                "title": "Bolletje Beschuit vezelrijk meerzaden",
+                "quantity": 1
+              }
             },
-            "ei": {
-              "id": { "$numberInt": "161001" },
-              "title": "Blije Kip Buitenei vrije uitloop",
-              "price": {
-                "now": { "$numberDouble": "3.09" },
-                "unitSize": "10 stuks"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "ei",
+              "product": {
+                "id": 161001,
+                "title": "Blije Kip Buitenei vrije uitloop",
+                "quantity": 1
+              }
             },
-            "bananen": {
-              "id": { "$numberInt": "368480" },
-              "title": "AH Biologisch Bananen",
-              "price": {
-                "now": { "$numberDouble": "2.09" },
-                "unitSize": "5 stuks"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "bananen",
+              "product": {
+                "id": 368480,
+                "title": "AH Biologisch Bananen",
+                "quantity": 1
+              }
             },
-            "mandarijnen": {
-              "id": { "$numberInt": "188797" },
-              "title": "AH Mandarijnen voordeel",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.85" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "3.69" },
-                "unitSize": "2 kg"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "mandarijnen",
+              "product": {
+                "id": 188797,
+                "title": "AH Mandarijnen voordeel",
+                "quantity": 1
+              }
             },
-            "appels": {
-              "id": { "$numberInt": "124256" },
-              "control": { "theme": "ah", "type": "default" },
-              "title": "AH Biologisch Santana appelen",
-              "link": "/producten/product/wi124256/ah-biologisch-santana-appelen",
-              "orderable": true,
-              "propertyIcons": [],
-              "images": [
-                {
-                  "height": { "$numberInt": "200" },
-                  "width": { "$numberInt": "200" },
-                  "title": "AH Biologisch Santana appelen",
-                  "url": "https://static.ah.nl/image-optimization/static/product/AHI_434d50313838333530_7_200x200_JPG.JPG?options=399,q85",
-                  "ratio": "1-1"
-                },
-                {
-                  "height": { "$numberInt": "708" },
-                  "width": { "$numberInt": "708" },
-                  "title": "AH Biologisch Santana appelen",
-                  "url": "https://static.ah.nl/image-optimization/static/product/AHI_434d50313838333530_7_LowRes_JPG.JPG?options=399,q85",
-                  "ratio": "1-1"
-                }
-              ],
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "3.99" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.69" },
-                "unitSize": "4 stuks"
-              },
-              "theme": "ah",
-              "hqId": { "$numberInt": "549859" },
-              "category": "Aardappel, groente, fruit/Appels friszuur",
-              "gtins": [{ "$numberLong": "8710400901983" }],
-              "brand": "AH Biologisch",
-              "summary": "<p>Santana is een frisse zoetzure appel, het ideale handappeltje!</p><p><ul><li>Stevig en sappig van structuur</li><li>Bereiden: de appel wassen en eventueel schillen</li><li>Bewaren: appels na aankoop bewaren in de koelkast</li><li>Geschikt voor: snack</li></ul></p>",
-              "descriptionFull": "<p>Deze biologisch geteelde bijzondere appel is geschikt voor mensen met een milde appelallergie.</p><p>\"Neem het ervan en geniet van het lekkerste dat de natuur te bieden heeft. U kunt met een goed gevoel van onze biologische producten genieten, omdat ze met zorg en aandacht voor ons zijn geproduceerd. Natuurlijk worden al onze biologische producten onafhankelijk gecontroleerd en daarom verdienen ze het Europese keurmerk. Biologisch van Albert Heijn: dat smaakt naar meer! Meer weten over biologisch eten? Bezoek onze website: ah.nl/biologisch.\"\"\"</p><p>Land van oorsprong: Nederland</p>",
-              "taxonomyId": { "$numberInt": "4588" },
-              "taxonomies": [
-                {
-                  "id": { "$numberInt": "6401" },
-                  "name": "Aardappel, groente, fruit",
-                  "imageSiteTarget": "app_cat_agf",
-                  "images": [
-                    {
-                      "height": { "$numberInt": "360" },
-                      "width": { "$numberInt": "596" },
-                      "url": "https://static.ahold.com//cmgtcontent/media//001002000/000/001002086_008_Aardappelen,_groente,_fruit_(3).png"
-                    }
-                  ],
-                  "shown": true,
-                  "level": { "$numberInt": "1" },
-                  "sortSequence": { "$numberInt": "1" },
-                  "parentIds": [{ "$numberInt": "0" }]
-                },
-                {
-                  "id": { "$numberInt": "1085" },
-                  "name": "Fruit",
-                  "imageSiteTarget": "app_cat_fruit",
-                  "images": [
-                    {
-                      "height": { "$numberInt": "133" },
-                      "width": { "$numberInt": "200" },
-                      "url": "https://static.ahold.com//cmgtcontent/media//000749000/000/000749062_001_app_cat_fruit.jpg"
-                    }
-                  ],
-                  "shown": true,
-                  "level": { "$numberInt": "2" },
-                  "sortSequence": { "$numberInt": "2" },
-                  "parentIds": [{ "$numberInt": "6401" }]
-                },
-                {
-                  "id": { "$numberInt": "884" },
-                  "name": "Appels",
-                  "imageSiteTarget": "app_cat_appels",
-                  "images": [
-                    {
-                      "height": { "$numberInt": "133" },
-                      "width": { "$numberInt": "200" },
-                      "url": "https://static.ahold.com//cmgtcontent/media//000748900/000/000748982_001_app_cat_appels.jpg"
-                    }
-                  ],
-                  "shown": true,
-                  "level": { "$numberInt": "3" },
-                  "sortSequence": { "$numberInt": "1" },
-                  "parentIds": [
-                    { "$numberInt": "1085" },
-                    { "$numberInt": "5285" }
-                  ]
-                },
-                {
-                  "id": { "$numberInt": "4588" },
-                  "name": "Appels friszuur",
-                  "images": [],
-                  "shown": true,
-                  "level": { "$numberInt": "4" },
-                  "sortSequence": { "$numberInt": "4" },
-                  "parentIds": [{ "$numberInt": "884" }]
-                }
-              ],
-              "properties": {
-                "lifestyle": [
-                  "zonder_melk",
-                  "zonder_kreeftachtigen",
-                  "zonder_soja",
-                  "zonder_vis",
-                  "dieet_biologisch",
-                  "dieet_vegetarisch",
-                  "zonder_lupine",
-                  "zonder_pindas",
-                  "zonder_mosterd",
-                  "zonder_lactose",
-                  "zonder_sulfiet",
-                  "dieet_veganistisch",
-                  "zonder_sesam",
-                  "dieet_laag_vet",
-                  "dieet_laag_zout",
-                  "zonder_schelpdieren",
-                  "zonder_eieren",
-                  "zonder_noten",
-                  "zonder_selderij",
-                  "zonder_gluten"
-                ]
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "appels",
+              "product": {
+                "id": 124256,
+                "title": "AH Biologisch Santana appelen",
+                "quantity": 1
+              }
             },
-            "smeerboter": {
-              "id": { "$numberInt": "134934" },
-              "control": { "theme": "ah", "type": "default" },
-              "title": "Blue Band Idee! kuip",
-              "link": "/producten/product/wi134934/blue-band-idee-kuip",
-              "orderable": true,
-              "propertyIcons": [],
-              "images": [
-                {
-                  "height": { "$numberInt": "200" },
-                  "width": { "$numberInt": "200" },
-                  "title": "Blue Band Idee! kuip",
-                  "url": "https://static.ah.nl/image-optimization/static/product/AHI_43545237303439383333_1_200x200_JPG.JPG?options=399,q85",
-                  "ratio": "1-1"
-                },
-                {
-                  "height": { "$numberInt": "708" },
-                  "width": { "$numberInt": "708" },
-                  "title": "Blue Band Idee! kuip",
-                  "url": "https://static.ah.nl/image-optimization/static/product/AHI_43545237303439383333_1_LowRes_JPG.JPG?options=399,q85",
-                  "ratio": "1-1"
-                }
-              ],
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "4.38" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.19" },
-                "unitSize": "500 g"
-              },
-              "theme": "ah",
-              "hqId": { "$numberInt": "600648" },
-              "category": "Zuivel, eieren/Smeerbare margarine",
-              "gtins": [
-                { "$numberLong": "8719200055698" },
-                { "$numberLong": "8711200361687" },
-                { "$numberLong": "8722700191377" },
-                { "$numberLong": "8712566111855" },
-                { "$numberLong": "8722700086451" },
-                { "$numberLong": "8718114789330" }
-              ],
-              "brand": "Blue Band",
-              "summary": "<p>Blue Band Idee!</p><p><ul><li>Met de vetzuren DHA en ALA. DHA draagt bij tot de instandhouding van de normale hersenfunctie</li><li>Gemaakt van plantaardige oliën</li><li>Bevat essentiële vetten, die ons eigen lichaam niet zelf kan aanmaken</li><li>Belangrijk voor de groei en ontwikkeling van kinderen</li></ul></p>",
-              "descriptionFull": "<p>Blue Band Idee! bevat daarnaast 6 vitamines: B1, B6 B 12, A, D, E</p><p>Blue Band bevat essentiële vetten, die belangrijk zijn voor de groei en ontwikkeling van kinderen. Waarom we deze vetten essentieel noemen? Omdat ons lichaam ze zelf niet kan aanmaken. Net als vitamines moeten we ze via de voeding binnen krijgen. Ze komen van nature voor in plantaardige oliën. Dagelijks gebruik van Blue Band is een makkelijke en smakelijke manier om ze binnen te krijgen. Als onderdeel van een gevarieerde voeding en gezonde leefstijl, leveren 2 eetlepels Blue Band Vloeibaar (20ml) per dag een belangrijke bijdrage aan de hoeveelheid essentiële vetten die nodig zijn voor de groei en ontwikkeling van kinderen. De benodigde dagelijkse inname is 2g alfa-linoleenzuur en 10g linolzuur.</p>",
-              "taxonomyId": { "$numberInt": "2321" },
-              "taxonomies": [
-                {
-                  "id": { "$numberInt": "1730" },
-                  "name": "Zuivel, eieren",
-                  "imageSiteTarget": "app_cat_zuivel_eieren",
-                  "images": [
-                    {
-                      "height": { "$numberInt": "360" },
-                      "width": { "$numberInt": "596" },
-                      "url": "https://static.ahold.com//cmgtcontent/media//001002100/000/001002190_008_Zuivel,_eieren_(4).png"
-                    }
-                  ],
-                  "shown": true,
-                  "level": { "$numberInt": "1" },
-                  "sortSequence": { "$numberInt": "5" },
-                  "parentIds": [{ "$numberInt": "0" }]
-                },
-                {
-                  "id": { "$numberInt": "951" },
-                  "name": "Boter",
-                  "imageSiteTarget": "app_cat_boter",
-                  "images": [
-                    {
-                      "height": { "$numberInt": "133" },
-                      "width": { "$numberInt": "200" },
-                      "url": "https://static.ahold.com//cmgtcontent/media//000752000/000/000752022_001_app_cat_boter.jpg"
-                    }
-                  ],
-                  "shown": true,
-                  "level": { "$numberInt": "2" },
-                  "sortSequence": { "$numberInt": "4" },
-                  "parentIds": [{ "$numberInt": "1730" }]
-                },
-                {
-                  "id": { "$numberInt": "2320" },
-                  "name": "Halvarine, margarine",
-                  "images": [],
-                  "shown": true,
-                  "level": { "$numberInt": "3" },
-                  "sortSequence": { "$numberInt": "2" },
-                  "parentIds": [{ "$numberInt": "951" }]
-                },
-                {
-                  "id": { "$numberInt": "2321" },
-                  "name": "Smeerbare margarine",
-                  "images": [],
-                  "shown": true,
-                  "level": { "$numberInt": "4" },
-                  "sortSequence": { "$numberInt": "2" },
-                  "parentIds": [{ "$numberInt": "2320" }]
-                }
-              ],
-              "properties": {
-                "lifestyle": [
-                  "zonder_melk",
-                  "zonder_kreeftachtigen",
-                  "dieet_laag_suiker",
-                  "zonder_schelpdieren",
-                  "zonder_eieren",
-                  "zonder_noten",
-                  "zonder_lupine",
-                  "zonder_pindas",
-                  "zonder_selderij",
-                  "zonder_mosterd",
-                  "zonder_lactose",
-                  "zonder_sulfiet",
-                  "zonder_sesam",
-                  "zonder_gluten"
-                ]
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "smeerboter",
+              "product": {
+                "id": 134934,
+                "title": "Blue Band Idee! kuip",
+                "quantity": 1
+              }
             },
-            "gerookte zalm": {
-              "id": { "$numberInt": "211064" },
-              "title": "AH Biologisch Gerookte zalm",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "47.9" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "4.79" },
-                "unitSize": "100 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "gerookte zalm",
+              "product": {
+                "id": 211064,
+                "title": "AH Biologisch Gerookte zalm",
+                "quantity": 1
+              }
             },
-            "vleeswaren": {
-              "id": { "$numberInt": "171483" },
-              "title": "AH Biologisch Gerookte kipfilet",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "33.39" },
-                  "description": "KG"
-                },
-                "theme": "bonus",
-                "now": { "$numberDouble": "3.01" },
-                "was": { "$numberDouble": "3.34" },
-                "unitSize": "ca. 100 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "vleeswaren",
+              "product": {
+                "id": 171483,
+                "title": "AH Biologisch Gerookte kipfilet",
+                "quantity": 1
+              }
             },
-            "brood": {
-              "id": { "$numberInt": "437239" },
-              "title": "AH Biologisch Les Pains Montagne heel",
-              "price": {
-                "now": { "$numberDouble": "2.66" },
-                "unitSize": "per stuk"
-              },
-              "quantity": { "$numberInt": "2" }
+            {
+              "ingredient": "brood",
+              "product": {
+                "id": 437239,
+                "title": "AH Biologisch Les Pains Montagne heel",
+                "quantity": 2
+              }
             },
-            "meel": {
-              "id": { "$numberInt": "407571" },
-              "title": "Bij Robèrt Broodbloem volkoren",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.94" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.94" },
-                "unitSize": "1 kg"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "meel",
+              "product": {
+                "id": 407571,
+                "title": "Bij Robèrt Broodbloem volkoren",
+                "quantity": 1
+              }
             },
-            "chocola": {
-              "id": { "$numberInt": "193233" },
-              "title": "AH Biologisch Pure chocolade met hazelnoot",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "16.5" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.65" },
-                "unitSize": "100 g"
-              },
-              "quantity": { "$numberInt": "2" }
+            {
+              "ingredient": "chocola",
+              "product": {
+                "id": 193233,
+                "title": "AH Biologisch Pure chocolade met hazelnoot",
+                "quantity": 2
+              }
             },
-            "nootjes": {
-              "id": { "$numberInt": "460617" },
-              "title": "AH Elitehaver",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "12.45" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.49" },
-                "unitSize": "200 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "nootjes",
+              "product": {
+                "id": 460617,
+                "title": "AH Elitehaver",
+                "quantity": 1
+              }
             },
-            "pistache": {
-              "id": { "$numberInt": "426103" },
-              "control": { "theme": "ah", "type": "default" },
-              "title": "AH Gezouten notenmix pistache",
-              "link": "/producten/product/wi426103/ah-gezouten-notenmix-pistache",
-              "orderable": true,
-              "propertyIcons": [],
-              "images": [
-                {
-                  "height": { "$numberInt": "200" },
-                  "width": { "$numberInt": "200" },
-                  "title": "AH Gezouten notenmix pistache",
-                  "url": "https://static.ah.nl/image-optimization/static/product/AHI_434d5031393436383435_1_200x200_JPG.JPG?options=399,q85",
-                  "ratio": "1-1"
-                },
-                {
-                  "height": { "$numberInt": "708" },
-                  "width": { "$numberInt": "708" },
-                  "title": "AH Gezouten notenmix pistache",
-                  "url": "https://static.ah.nl/image-optimization/static/product/AHI_434d5031393436383435_1_LowRes_JPG.JPG?options=399,q85",
-                  "ratio": "1-1"
-                }
-              ],
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "12.45" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.49" },
-                "unitSize": "200 g"
-              },
-              "theme": "ah",
-              "hqId": { "$numberInt": "8412" },
-              "category": "Snoep, koek, chips/Notenmix (zakje)",
-              "gtins": [{ "$numberLong": "8718906775770" }],
-              "brand": "AH",
-              "summary": "<p>Albert Heijn Gezouten pistachemix is een pittige notenmix, heerlijk voor bij de borrel of gewoon als je er zin in hebt.</p><p><ul><li>In hetelucht geroosterde pistachenoten</li><li>Rijk aan fosfor en vitamine E</li><li>Rijk aan onverzadigde vetten</li><li>Makkelijk hersluitbaar</li></ul></p>",
-              "descriptionFull": "<p>Gasten te eten? Zet alvast een bakje nootjes op tafel. Glaasje wijn of biertje erbij, de avond kan beginnen.</p>",
-              "taxonomyId": { "$numberInt": "8345" },
-              "taxonomies": [
-                {
-                  "id": { "$numberInt": "1555" },
-                  "name": "Snoep, koek, chips",
-                  "imageSiteTarget": "app_cat_snoep_koek_chips",
-                  "images": [
-                    {
-                      "height": { "$numberInt": "360" },
-                      "width": { "$numberInt": "596" },
-                      "url": "https://static.ahold.com//cmgtcontent/media//001002100/000/001002120_009_Snoep,_koek,_chips_(5).png"
-                    }
-                  ],
-                  "shown": true,
-                  "level": { "$numberInt": "1" },
-                  "sortSequence": { "$numberInt": "13" },
-                  "parentIds": [{ "$numberInt": "0" }]
-                },
-                {
-                  "id": { "$numberInt": "1352" },
-                  "name": "Noten",
-                  "imageSiteTarget": "app_cat_noten",
-                  "images": [
-                    {
-                      "height": { "$numberInt": "133" },
-                      "width": { "$numberInt": "200" },
-                      "url": "https://static.ahold.com//cmgtcontent/media//000749100/000/000749198_001_app_cat_noten.jpg"
-                    }
-                  ],
-                  "shown": true,
-                  "level": { "$numberInt": "2" },
-                  "sortSequence": { "$numberInt": "9" },
-                  "parentIds": [{ "$numberInt": "1555" }]
-                },
-                {
-                  "id": { "$numberInt": "10903" },
-                  "name": "Noten in zak",
-                  "images": [],
-                  "shown": true,
-                  "level": { "$numberInt": "3" },
-                  "sortSequence": { "$numberInt": "3" },
-                  "parentIds": [{ "$numberInt": "1352" }]
-                },
-                {
-                  "id": { "$numberInt": "8345" },
-                  "name": "Notenmix (zakje)",
-                  "images": [],
-                  "shown": true,
-                  "level": { "$numberInt": "4" },
-                  "sortSequence": { "$numberInt": "3" },
-                  "parentIds": [{ "$numberInt": "10903" }]
-                }
-              ],
-              "properties": {
-                "lifestyle": [
-                  "zonder_melk",
-                  "zonder_schelpdieren",
-                  "zonder_lupine",
-                  "zonder_selderij",
-                  "zonder_mosterd",
-                  "zonder_lactose",
-                  "zonder_sulfiet",
-                  "zonder_sesam"
-                ]
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "pistache",
+              "product": {
+                "id": 426103,
+                "title": "AH Gezouten notenmix pistache",
+                "quantity": 0
+              }
             },
-            "lentil chips": {
-              "id": { "$numberInt": "436448" },
-              "control": { "theme": "ah", "type": "default" },
-              "title": "Eat Real Lentil chips chili & lemon",
-              "link": "/producten/product/wi436448/eat-real-lentil-chips-chili-en-lemon",
-              "orderable": true,
-              "propertyIcons": [],
-              "images": [
-                {
-                  "height": { "$numberInt": "200" },
-                  "width": { "$numberInt": "200" },
-                  "title": "Eat Real Lentil chips chili & lemon",
-                  "url": "https://static.ah.nl/image-optimization/static/product/AHI_43545237303530323735_1_200x200_JPG.JPG?options=399,q85",
-                  "ratio": "1-1"
-                },
-                {
-                  "height": { "$numberInt": "708" },
-                  "width": { "$numberInt": "708" },
-                  "title": "Eat Real Lentil chips chili & lemon",
-                  "url": "https://static.ah.nl/image-optimization/static/product/AHI_43545237303530323735_1_LowRes_JPG.JPG?options=399,q85",
-                  "ratio": "1-1"
-                }
-              ],
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "19.03" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.15" },
-                "unitSize": "113 g"
-              },
-              "theme": "ah",
-              "hqId": { "$numberInt": "58341" },
-              "category": "Aardappel, groente, fruit/Groente chips",
-              "gtins": [{ "$numberLong": "5026489483078" }],
-              "brand": "Eat Real",
-              "summary": "<p>Chips op basis van linzen. Op smaak gebracht met pittige chilli en frisse citroen. Een heerlijke pittige snack, laag in suiker &amp; 40% minder vet dan reguliere aardappelchips.</p><p><ul><li>Geschikt voor veganisten</li><li>Bevat geen van de 14 declareerbare allegenen en glutenvrij</li><li>Gen kunstmatige kleur- of smaakstoffen en conserveermiddelen</li></ul></p>",
-              "descriptionFull": "",
-              "taxonomyId": { "$numberInt": "2419" },
-              "taxonomies": [
-                {
-                  "id": { "$numberInt": "6401" },
-                  "name": "Aardappel, groente, fruit",
-                  "imageSiteTarget": "app_cat_agf",
-                  "images": [
-                    {
-                      "height": { "$numberInt": "360" },
-                      "width": { "$numberInt": "596" },
-                      "url": "https://static.ahold.com//cmgtcontent/media//001002000/000/001002086_008_Aardappelen,_groente,_fruit_(3).png"
-                    }
-                  ],
-                  "shown": true,
-                  "level": { "$numberInt": "1" },
-                  "sortSequence": { "$numberInt": "1" },
-                  "parentIds": [{ "$numberInt": "0" }]
-                },
-                {
-                  "id": { "$numberInt": "5159" },
-                  "name": "Snoepgroente",
-                  "imageSiteTarget": "app_cat_groentesnacks",
-                  "images": [
-                    {
-                      "height": { "$numberInt": "133" },
-                      "width": { "$numberInt": "200" },
-                      "url": "https://static.ahold.com//cmgtcontent/media//000918900/000/000918968_001_app_cat_groentesnacks.jpg"
-                    }
-                  ],
-                  "shown": true,
-                  "level": { "$numberInt": "2" },
-                  "sortSequence": { "$numberInt": "7" },
-                  "parentIds": [{ "$numberInt": "6401" }]
-                },
-                {
-                  "id": { "$numberInt": "2419" },
-                  "name": "Groente chips",
-                  "images": [],
-                  "shown": true,
-                  "level": { "$numberInt": "3" },
-                  "sortSequence": { "$numberInt": "7" },
-                  "parentIds": [
-                    { "$numberInt": "5159" },
-                    { "$numberInt": "997" }
-                  ]
-                }
-              ],
-              "properties": {
-                "lifestyle": [
-                  "zonder_melk",
-                  "zonder_kreeftachtigen",
-                  "zonder_soja",
-                  "zonder_vis",
-                  "dieet_laag_suiker",
-                  "zonder_schelpdieren",
-                  "dieet_vegetarisch",
-                  "zonder_eieren",
-                  "zonder_noten",
-                  "zonder_lupine",
-                  "zonder_pindas",
-                  "zonder_selderij",
-                  "zonder_mosterd",
-                  "zonder_lactose",
-                  "zonder_sulfiet",
-                  "dieet_veganistisch",
-                  "zonder_sesam",
-                  "zonder_gluten"
-                ]
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "lentil chips",
+              "product": {
+                "id": 436448,
+                "title": "Eat Real Lentil chips chili & lemon",
+                "quantity": 1
+              }
             },
-            "muesli": {
-              "id": { "$numberInt": "437365" },
-              "title": "AH Fruit noten muesli",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "3.45" },
-                  "description": "KG"
-                },
-                "theme": "bonus",
-                "now": { "$numberDouble": "2.59" },
-                "was": { "$numberDouble": "3.45" },
-                "unitSize": "1 kg"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "muesli",
+              "product": {
+                "id": 437365,
+                "title": "AH Fruit noten muesli",
+                "quantity": 0
+              }
             },
-            "zoet beleg": {
-              "id": { "$numberInt": "440464" },
-              "title": "AH Gekleurde hagel",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.98" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "0.79" },
-                "unitSize": "400 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "zoet beleg",
+              "product": {
+                "id": 440464,
+                "title": "AH Gekleurde hagel",
+                "quantity": 0
+              }
             },
-            "Pindakaas": {
-              "id": { "$numberInt": "65232" },
-              "title": "AH Biologisch Pindakaas met stukjes pinda",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "7.11" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.49" },
-                "unitSize": "350 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "Pindakaas",
+              "product": {
+                "id": 65232,
+                "title": "AH Biologisch Pindakaas met stukjes pinda",
+                "quantity": 0
+              }
             },
-            "kauwgom": {
-              "id": { "$numberInt": "458507" },
-              "title": "Sportlife Frozn deepmint",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "35.97" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.59" },
-                "unitSize": "72 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "kauwgom",
+              "product": {
+                "id": 458507,
+                "title": "Sportlife Frozn deepmint",
+                "quantity": 0
+              }
             },
-            "gist": {
-              "id": { "$numberInt": "30228" },
-              "title": "Dr. Oetker Gist levure",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "28.1" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "0.59" },
-                "unitSize": "3 x 7 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "gist",
+              "product": {
+                "id": 30228,
+                "title": "Dr. Oetker Gist levure",
+                "quantity": 1
+              }
             },
-            "havermout": {
-              "id": { "$numberInt": "368021" },
-              "title": "AH Vezelrijke havermout grove vlokken",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.98" },
-                  "description": "KG"
-                },
-                "theme": "bonus",
-                "now": { "$numberDouble": "0.67" },
-                "was": { "$numberDouble": "0.89" },
-                "unitSize": "450 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "havermout",
+              "product": {
+                "id": 368021,
+                "title": "AH Vezelrijke havermout grove vlokken",
+                "quantity": 1
+              }
             },
-            "toiletpapier": {
-              "id": { "$numberInt": "166254" },
-              "title": "AH Ecologisch toiletpapier 3-laags",
-              "price": {
-                "now": { "$numberDouble": "2.49" },
-                "unitSize": "6 rollen"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "toiletpapier",
+              "product": {
+                "id": 166254,
+                "title": "AH Ecologisch toiletpapier 3-laags",
+                "quantity": 0
+              }
             },
-            "keukenpapier": {
-              "id": { "$numberInt": "405197" },
-              "title": "AH Eco keukenpapier extra lang",
-              "price": {
-                "now": { "$numberDouble": "1.99" },
-                "unitSize": "2 rollen"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "keukenpapier",
+              "product": {
+                "id": 405197,
+                "title": "AH Eco keukenpapier extra lang",
+                "quantity": 0
+              }
             },
-            "kikkererwten chips": {
-              "id": { "$numberInt": "198141" },
-              "title": "Valle del sole Chick peas",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "2.54" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "0.61" },
-                "unitSize": "400 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "kikkererwten chips",
+              "product": {
+                "id": 198141,
+                "title": "Valle del sole Chick peas",
+                "quantity": 0
+              }
             },
-            "koffie": {
-              "id": { "$numberInt": "395364" },
-              "title": "Café Intención Ecológico espresso bonen krachtig",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "15.4" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "7.7" },
-                "unitSize": "500 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "koffie",
+              "product": {
+                "id": 395364,
+                "title": "Café Intención Ecológico espresso bonen krachtig",
+                "quantity": 0
+              }
             }
-          }
+          ]
         },
         {
           "uid": "d025e880-0f5a-11ea-9075-61e7ea84c133",
-          "mappings": {
-            "aardappelen": {
-              "id": { "$numberInt": "96049" },
-              "title": "AH Iets kruimige aardappelen",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.33" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "3.99" },
-                "unitSize": "3 kg"
-              },
-              "quantity": { "$numberInt": "1" }
+          "parsedIngredients": [
+            {
+              "ingredient": "aardappelen",
+              "product": {
+                "id": 96049,
+                "title": "AH Iets kruimige aardappelen",
+                "quantity": 1
+              }
             },
-            "verse zuurkool": {
-              "id": { "$numberInt": "51774" },
-              "title": "AH Biologisch Zuurkool naturel",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.78" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "0.89" },
-                "unitSize": "520 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "verse zuurkool",
+              "product": {
+                "id": 51774,
+                "title": "AH Biologisch Zuurkool naturel",
+                "quantity": 1
+              }
             },
-            "optioneel: ½ verse ananas": {
-              "id": { "$numberInt": "382975" },
-              "title": "AH Ananas",
-              "price": {
-                "now": { "$numberDouble": "1.89" },
-                "unitSize": "per stuk"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "optioneel: ½ verse ananas",
+              "product": { "id": 382975, "title": "AH Ananas", "quantity": 1 }
             },
-            "ui": {
-              "id": { "$numberInt": "4083" },
-              "title": "AH Middelgrote uien",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.09" },
-                  "description": "KG"
-                },
-                "theme": "ah",
-                "now": { "$numberDouble": "1.09" },
-                "unitSize": "1 kg"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "ui",
+              "product": {
+                "id": 4083,
+                "title": "AH Middelgrote uien",
+                "quantity": 0
+              }
             },
-            "boter": {
-              "id": { "$numberInt": "58082" },
-              "title": "AH Biologisch Roomboter ongezouten",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "9.72" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.43" },
-                "unitSize": "250 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "boter",
+              "product": {
+                "id": 58082,
+                "title": "AH Biologisch Roomboter ongezouten",
+                "quantity": 0
+              }
             },
-            "kerrie": {
-              "id": { "$numberInt": "216637" },
-              "title": "Verstegen Strooier kerriepoeder",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "57.25" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.29" },
-                "unitSize": "40 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "kerrie",
+              "product": {
+                "id": 216637,
+                "title": "Verstegen Strooier kerriepoeder",
+                "quantity": 0
+              }
             },
-            "gehakt": {
-              "id": { "$numberInt": "436752" },
-              "title": "AH Biologisch Rundergehakt",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "10.63" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "3.19" },
-                "unitSize": "300 g"
-              },
-              "quantity": { "$numberInt": "2" }
+            {
+              "ingredient": "gehakt",
+              "product": {
+                "id": 436752,
+                "title": "AH Biologisch Rundergehakt",
+                "quantity": 2
+              }
             },
-            "peper": {
-              "id": { "$numberInt": "195387" },
-              "title": "Verstegen Zwarte peper",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "28.69" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "4.59" },
-                "unitSize": "160 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "peper",
+              "product": {
+                "id": 195387,
+                "title": "Verstegen Zwarte peper",
+                "quantity": 0
+              }
             },
-            "zout": {
-              "ignore": true,
-              "notAvailable": false,
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "zout",
+              "product": {
+                "ignore": true,
+                "notAvailable": false,
+                "quantity": 1
+              }
             },
-            "rozijnen": {
-              "id": { "$numberInt": "185802" },
-              "title": "AH Biologisch Rozijnen",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "11.96" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.99" },
-                "unitSize": "250 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "rozijnen",
+              "product": {
+                "id": 185802,
+                "title": "AH Biologisch Rozijnen",
+                "quantity": 0
+              }
             },
-            "scheutje melk": {
-              "id": { "$numberInt": "407049" },
-              "title": "Arla Biologische halfvolle melk",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.25" },
-                  "description": "LT"
-                },
-                "theme": "bonus",
-                "now": { "$numberDouble": "1.41" },
-                "was": { "$numberDouble": "1.88" },
-                "unitSize": "1,5 l"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "scheutje melk",
+              "product": {
+                "id": 407049,
+                "title": "Arla Biologische halfvolle melk",
+                "quantity": 0
+              }
             },
-            "klontje boter": {
-              "id": { "$numberInt": "58082" },
-              "title": "AH Biologisch Roomboter ongezouten",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "9.72" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.43" },
-                "unitSize": "250 g"
-              },
-              "ignore": true,
-              "notAvailable": false,
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "klontje boter",
+              "product": {
+                "id": 58082,
+                "title": "AH Biologisch Roomboter ongezouten",
+                "ignore": true,
+                "notAvailable": false,
+                "quantity": 1
+              }
             },
-            "geraspte kaas": {
-              "id": { "$numberInt": "238913" },
-              "title": "AH Biologisch Parmigiano Reggiano 32+ stuk",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "38.49" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "5.62" },
-                "unitSize": "ca. 145 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "geraspte kaas",
+              "product": {
+                "id": 238913,
+                "title": "AH Biologisch Parmigiano Reggiano 32+ stuk",
+                "quantity": 1
+              }
             }
-          }
+          ]
         },
         {
           "uid": "90029e40-1b91-11ea-abcd-57b76efee3d9",
-          "mappings": {
-            "amandelschaafsel": {
-              "id": { "$numberInt": "161499" },
-              "title": "AH Amandelschaafsel",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "37.27" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.05" },
-                "unitSize": "55 g"
-              },
-              "quantity": { "$numberInt": "2" }
+          "parsedIngredients": [
+            {
+              "ingredient": "amandelschaafsel",
+              "product": {
+                "id": 161499,
+                "title": "AH Amandelschaafsel",
+                "quantity": 2
+              }
             },
-            "suiker": {
-              "id": { "$numberInt": "101206" },
-              "title": "AH Biologisch Kristalsuiker",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "2.12" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.59" },
-                "unitSize": "750 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "suiker",
+              "product": {
+                "id": 101206,
+                "title": "AH Biologisch Kristalsuiker",
+                "quantity": 0
+              }
             },
-            "bloem": {
-              "id": { "$numberInt": "951" },
-              "title": "AH Patent tarwebloem",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "0.64" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "0.64" },
-                "unitSize": "1 kg"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "bloem",
+              "product": {
+                "id": 951,
+                "title": "AH Patent tarwebloem",
+                "quantity": 0
+              }
             },
-            "mespunt zout": {
-              "id": { "$numberInt": "3372" },
-              "title": "AH Keukenzout met jodium",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "0.45" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "0.45" },
-                "unitSize": "1 kg"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "mespunt zout",
+              "product": {
+                "id": 3372,
+                "title": "AH Keukenzout met jodium",
+                "quantity": 0
+              }
             },
-            "water": {
-              "ignore": true,
-              "notAvailable": false,
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "water",
+              "product": {
+                "ignore": true,
+                "notAvailable": false,
+                "quantity": 1
+              }
             },
-            "boter": {
-              "id": { "$numberInt": "58082" },
-              "title": "AH Biologisch Roomboter ongezouten",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "9.72" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.43" },
-                "unitSize": "250 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "boter",
+              "product": {
+                "id": 58082,
+                "title": "AH Biologisch Roomboter ongezouten",
+                "quantity": 0
+              }
             },
-            "ei losgeklopt": {
-              "id": { "$numberInt": "161001" },
-              "title": "Blije Kip Buitenei vrije uitloop",
-              "price": {
-                "now": { "$numberDouble": "3.09" },
-                "unitSize": "10 stuks"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "ei losgeklopt",
+              "product": {
+                "id": 161001,
+                "title": "Blije Kip Buitenei vrije uitloop",
+                "price": { "now": 3.09, "unitSize": "10 stuks" },
+                "quantity": 0
+              }
             }
-          }
+          ]
         },
         {
           "uid": "D495F133-DC67-4A4F-A2DF-128B176D9400-752-00000141CDC47399",
-          "mappings": {
-            "pijnboompitten": {
-              "id": { "$numberInt": "415609" },
-              "title": "AH Pijnboompitten",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "32.87" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "4.93" },
-                "unitSize": "150 g"
-              },
-              "quantity": { "$numberInt": "1" },
-              "ignore": true,
-              "notAvailable": false
+          "parsedIngredients": [
+            {
+              "ingredient": "pijnboompitten",
+              "product": {
+                "id": 415609,
+                "title": "AH Pijnboompitten",
+                "quantity": 1,
+                "ignore": true,
+                "notAvailable": false
+              }
             },
-            "vastkokende aardappels": {
-              "id": { "$numberInt": "123866" },
-              "title": "AH Kilo'tje vastkokend",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.99" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.99" },
-                "unitSize": "1 kg"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "vastkokende aardappels",
+              "product": {
+                "id": 123866,
+                "title": "AH Kilo'tje vastkokend",
+                "quantity": 1
+              }
             },
-            "tagliatelle of een andere pastasoort": {
-              "id": { "$numberInt": "409909" },
-              "title": "De Cecco Tagliatelle n° 203",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "6.78" },
-                  "description": "KG"
-                },
-                "theme": "ah",
-                "now": { "$numberDouble": "3.39" },
-                "unitSize": "500 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "tagliatelle of een andere pastasoort",
+              "product": {
+                "id": 409909,
+                "title": "De Cecco Tagliatelle n° 203",
+                "quantity": 1
+              }
             },
-            "sperziebonen": {
-              "id": { "$numberInt": "4102" },
-              "title": "AH Sperziebonen",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "3.58" },
-                  "description": "KG"
-                },
-                "theme": "ah",
-                "now": { "$numberDouble": "1.19" },
-                "unitSize": "500 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "sperziebonen",
+              "product": {
+                "id": 4102,
+                "title": "AH Sperziebonen",
+                "quantity": 1
+              }
             },
-            "versgeraspte Parmezaanse kaas": {
-              "id": { "$numberInt": "238913" },
-              "title": "AH Biologisch Parmigiano Reggiano 32+ stuk",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "38.49" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "5.62" },
-                "unitSize": "ca. 145 g"
-              },
-              "ignore": true,
-              "notAvailable": false,
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "versgeraspte Parmezaanse kaas",
+              "product": {
+                "id": 238913,
+                "title": "AH Biologisch Parmigiano Reggiano 32+ stuk",
+                "ignore": true,
+                "notAvailable": false,
+                "quantity": 1
+              }
             },
-            "basilicum": {
-              "id": { "$numberInt": "41172" },
-              "title": "AH Verse basilicum",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "92.67" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.39" },
-                "unitSize": "15 g"
-              },
-              "quantity": { "$numberInt": "1" },
-              "ignore": true,
-              "notAvailable": false
+            {
+              "ingredient": "basilicum",
+              "product": {
+                "id": 41172,
+                "title": "AH Verse basilicum",
+                "quantity": 1,
+                "ignore": true,
+                "notAvailable": false
+              }
             },
-            "Voor de pesto:": {
-              "ignore": true,
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "Voor de pesto:",
+              "product": { "ignore": true, "quantity": 1 }
             },
-            "knoflook": {
-              "id": { "$numberInt": "4160" },
-              "title": "AH Knoflook",
-              "price": {
-                "now": { "$numberDouble": "0.89" },
-                "unitSize": "2 stuks"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "knoflook",
+              "product": { "id": 4160, "title": "AH Knoflook", "quantity": 0 }
             },
-            "extra vierge olijfolie": {
-              "id": { "$numberInt": "429760" },
-              "title": "Carapelli Bio extra vierge",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "14.65" },
-                  "description": "LT"
-                },
-                "now": { "$numberDouble": "10.99" },
-                "unitSize": "0,75 l"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "extra vierge olijfolie",
+              "product": {
+                "id": 429760,
+                "title": "Carapelli Bio extra vierge",
+                "quantity": 0
+              }
             }
-          }
+          ]
         },
         {
           "uid": "4b2f2ed4-d79c-4adf-9508-61668df6d770",
-          "mappings": {
-            "kleine zeebaarzen of 2 grote schoongemaakt maar met kop en staart er nog aan": {
-              "ignore": false,
-              "notAvailable": true,
-              "quantity": { "$numberInt": "4" }
+          "parsedIngredients": [
+            {
+              "ingredient": "kleine zeebaarzen of 2 grote schoongemaakt maar met kop en staart er nog aan",
+              "product": {
+                "ignore": false,
+                "notAvailable": true,
+                "quantity": 4
+              }
             },
-            "ui fijn gesnipperd": {
-              "id": { "$numberInt": "101159" },
-              "title": "AH Biologisch Uien",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.72" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.29" },
-                "unitSize": "750 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "ui fijn gesnipperd",
+              "product": {
+                "id": 101159,
+                "title": "AH Biologisch Uien",
+                "quantity": 0
+              }
             },
-            "tahin van sesamzaad": {
-              "id": { "$numberInt": "198150" },
-              "title": "Sebahat Tahin sesampasta",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "7.41" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.15" },
-                "unitSize": "290 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "tahin van sesamzaad",
+              "product": {
+                "id": 198150,
+                "title": "Sebahat Tahin sesampasta",
+                "quantity": 0
+              }
             },
-            "korianderblad grof gesneden": {
-              "id": { "$numberInt": "238968" },
-              "title": "AH Koriander",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "92.67" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.39" },
-                "unitSize": "15 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "korianderblad grof gesneden",
+              "product": {
+                "id": 238968,
+                "title": "AH Koriander",
+                "quantity": 1
+              }
             },
-            "knoflook gekneusd": {
-              "id": { "$numberInt": "185774" },
-              "title": "AH Biologisch Knoflook",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "8.9" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "0.89" },
-                "unitSize": "100 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "knoflook gekneusd",
+              "product": {
+                "id": 185774,
+                "title": "AH Biologisch Knoflook",
+                "quantity": 0
+              }
             },
-            "gepelde tomaten (uit": {
-              "id": { "$numberInt": "207510" },
-              "title": "AH Biologisch Gepeld tomaten in tomatensaus",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.88" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "0.75" },
-                "unitSize": "400 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "gepelde tomaten (uit",
+              "product": {
+                "id": 207510,
+                "title": "AH Biologisch Gepeld tomaten in tomatensaus",
+                "quantity": 0
+              }
             },
-            "verse tomaten": {
-              "id": { "$numberInt": "389076" },
-              "title": "AH Biologisch Trostomaten",
-              "price": {
-                "now": { "$numberDouble": "2.29" },
-                "unitSize": "5 stuks"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "verse tomaten",
+              "product": {
+                "id": 389076,
+                "title": "AH Biologisch Trostomaten",
+                "quantity": 1
+              }
             },
-            "sap van uitgeperste citroen": {
-              "id": { "$numberInt": "190654" },
-              "title": "AH Biologisch Citroen",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "5.3" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.59" },
-                "unitSize": "2 stuks"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "sap van uitgeperste citroen",
+              "product": {
+                "id": 190654,
+                "title": "AH Biologisch Citroen",
+                "quantity": 1
+              }
             },
-            "gesneden": {
-              "id": { "$numberInt": "190654" },
-              "title": "AH Biologisch Citroen",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "5.3" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.59" },
-                "unitSize": "2 stuks"
-              },
-              "ignore": true,
-              "notAvailable": false,
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "gesneden",
+              "product": {
+                "id": 190654,
+                "title": "AH Biologisch Citroen",
+                "ignore": true,
+                "notAvailable": false,
+                "quantity": 1
+              }
             },
-            "mespuntje chilipoeder": {
-              "id": { "$numberInt": "216614" },
-              "title": "Verstegen Strooier chili",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "65.43" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.29" },
-                "unitSize": "35 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "mespuntje chilipoeder",
+              "product": {
+                "id": 216614,
+                "title": "Verstegen Strooier chili",
+                "quantity": 0
+              }
             },
-            "tamari": {
-              "id": { "$numberInt": "388362" },
-              "title": "Kokki Djawa Tamarinde pasta",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "11.25" },
-                  "description": "KG"
-                },
-                "theme": "ah",
-                "now": { "$numberDouble": "2.25" },
-                "unitSize": "200 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "tamari",
+              "product": {
+                "id": 388362,
+                "title": "Kokki Djawa Tamarinde pasta",
+                "quantity": 0
+              }
             },
-            "zwarte Griekse olijven": {
-              "id": { "$numberInt": "238642" },
-              "title": "AH Biologisch Griekse kalamon olijven",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberInt": "25" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.5" },
-                "unitSize": "100 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "zwarte Griekse olijven",
+              "product": {
+                "id": 238642,
+                "title": "AH Biologisch Griekse kalamon olijven",
+                "quantity": 1
+              }
             },
-            "olijfolie": {
-              "id": { "$numberInt": "58055" },
-              "title": "AH Olijfolie traditioneel",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "6.53" },
-                  "description": "LT"
-                },
-                "now": { "$numberDouble": "6.53" },
-                "unitSize": "1 l"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "olijfolie",
+              "product": {
+                "id": 58055,
+                "title": "AH Olijfolie traditioneel",
+                "quantity": 0
+              }
             }
-          }
+          ]
         },
         {
           "uid": "7e24093b-4247-4bf0-9af4-d76a1c46dcfa",
-          "mappings": {
-            "komijnzaad": {
-              "id": { "$numberInt": "216645" },
-              "title": "Verstegen Strooier komijnzaad",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "49.75" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.99" },
-                "unitSize": "40 g"
-              },
-              "quantity": { "$numberInt": "0" }
+          "parsedIngredients": [
+            {
+              "ingredient": "komijnzaad",
+              "product": {
+                "id": 216645,
+                "title": "Verstegen Strooier komijnzaad",
+                "quantity": 0
+              }
             },
-            "olijfolie": {
-              "id": { "$numberInt": "58055" },
-              "title": "AH Olijfolie traditioneel",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "6.53" },
-                  "description": "LT"
-                },
-                "now": { "$numberDouble": "6.53" },
-                "unitSize": "1 l"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "olijfolie",
+              "product": {
+                "id": 58055,
+                "title": "AH Olijfolie traditioneel",
+                "quantity": 0
+              }
             },
-            "uien": {
-              "id": { "$numberInt": "4083" },
-              "title": "AH Middelgrote uien",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.09" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.09" },
-                "unitSize": "1 kg"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "uien",
+              "product": {
+                "id": 4083,
+                "title": "AH Middelgrote uien",
+                "quantity": 0
+              }
             },
-            "mager lamsgehakt": {
-              "id": { "$numberInt": "165343" },
-              "title": "Garden Gourmet Vegetarisch fijngehakt",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "15.94" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.79" },
-                "unitSize": "175 g"
-              },
-              "quantity": { "$numberInt": "2" }
+            {
+              "ingredient": "mager lamsgehakt",
+              "product": {
+                "id": 165343,
+                "title": "Garden Gourmet Vegetarisch fijngehakt",
+                "quantity": 2
+              }
             },
-            "fijngehakte gember": {
-              "id": { "$numberInt": "104818" },
-              "title": "AH Biologisch Gember (verse gemberwortel)",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "13.27" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.99" },
-                "unitSize": "150 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "fijngehakte gember",
+              "product": {
+                "id": 104818,
+                "title": "AH Biologisch Gember (verse gemberwortel)",
+                "quantity": 0
+              }
             },
-            "knoflook": {
-              "id": { "$numberInt": "4160" },
-              "title": "AH Knoflook",
-              "price": {
-                "now": { "$numberDouble": "0.89" },
-                "unitSize": "2 stuks"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "knoflook",
+              "product": { "id": 4160, "title": "AH Knoflook", "quantity": 0 }
             },
-            "gesneden tomaten": {
-              "id": { "$numberInt": "395307" },
-              "title": "AH Biologisch Tomatenblokjes",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "3.13" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.25" },
-                "unitSize": "400 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "gesneden tomaten",
+              "product": {
+                "id": 395307,
+                "title": "AH Biologisch Tomatenblokjes",
+                "quantity": 1
+              }
             },
-            "Paprika": {
-              "id": { "$numberInt": "123865" },
-              "title": "AH Zoete rode puntpaprika's",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "19.9" },
-                  "description": "KG"
-                },
-                "theme": "ah",
-                "now": { "$numberDouble": "1.99" },
-                "unitSize": "2 stuks"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "Paprika",
+              "product": {
+                "id": 123865,
+                "title": "AH Zoete rode puntpaprika's",
+                "quantity": 0
+              }
             },
-            "gemalen kaneel": {
-              "id": { "$numberInt": "216632" },
-              "title": "Verstegen Strooier kaneel",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "56.49" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.09" },
-                "unitSize": "37 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "gemalen kaneel",
+              "product": {
+                "id": 216632,
+                "title": "Verstegen Strooier kaneel",
+                "quantity": 0
+              }
             },
-            "gemalen koriander": {
-              "id": { "$numberInt": "415009" },
-              "title": "Verstegen Strooier koriander gemalen",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "69.39" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.29" },
-                "unitSize": "33 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "gemalen koriander",
+              "product": {
+                "id": 415009,
+                "title": "Verstegen Strooier koriander gemalen",
+                "quantity": 0
+              }
             },
-            "harissa": {
-              "id": { "$numberInt": "450246" },
-              "title": "Souq Harissa",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "11.7" },
-                  "description": "KG"
-                },
-                "theme": "ah",
-                "now": { "$numberDouble": "2.69" },
-                "unitSize": "230 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "harissa",
+              "product": {
+                "id": 450246,
+                "title": "Souq Harissa",
+                "quantity": 1
+              }
             },
-            "rode pepers": {
-              "id": { "$numberInt": "234031" },
-              "title": "AH Rawitt pepers rood & groen (Spaanse)",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberInt": "30" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.5" },
-                "unitSize": "50 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "rode pepers",
+              "product": {
+                "id": 234031,
+                "title": "AH Rawitt pepers rood & groen (Spaanse)",
+                "quantity": 1
+              }
             },
-            "kikkererwten": {
-              "id": { "$numberInt": "469876" },
-              "title": "AH Biologisch Kikkererwten",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "3.98" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.99" },
-                "unitSize": "500 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "kikkererwten",
+              "product": {
+                "id": 469876,
+                "title": "AH Biologisch Kikkererwten",
+                "quantity": 1
+              }
             },
-            "koriander": {
-              "id": { "$numberInt": "238968" },
-              "title": "AH Koriander",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "92.67" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.39" },
-                "unitSize": "15 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "koriander",
+              "product": {
+                "id": 238968,
+                "title": "AH Koriander",
+                "quantity": 1
+              }
             },
-            "runder- of lamsbouillon": {
-              "id": { "$numberInt": "412195" },
-              "title": "Knorr Biologische bouillon rundvleessmaak",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "19.67" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.18" },
-                "unitSize": "60 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "runder- of lamsbouillon",
+              "product": {
+                "id": 412195,
+                "title": "Knorr Biologische bouillon rundvleessmaak",
+                "quantity": 0
+              }
             },
-            "bloemkool": {
-              "id": { "$numberInt": "186629" },
-              "title": "AH Biologisch Bloemkool",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "3.37" },
-                  "description": "KG"
-                },
-                "theme": "ah",
-                "now": { "$numberDouble": "1.99" },
-                "unitSize": "per stuk"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "bloemkool",
+              "product": {
+                "id": 186629,
+                "title": "AH Biologisch Bloemkool",
+                "quantity": 1
+              }
             }
-          }
+          ]
         }
       ]
     },
@@ -2209,747 +1431,414 @@
       "recipes": [
         {
           "uid": "112a2202-cd43-44e4-8de5-043c0da01f98",
-          "mappings": {
-            "citroen": {
-              "id": { "$numberInt": "190654" },
-              "title": "AH Biologisch Citroen",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "5.3" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.59" },
-                "unitSize": "2 stuks"
-              },
-              "quantity": { "$numberInt": "1" }
+          "parsedIngredients": [
+            {
+              "ingredient": "citroen",
+              "product": {
+                "id": 190654,
+                "title": "AH Biologisch Citroen",
+                "quantity": 1
+              }
             },
-            "couscous": {
-              "id": { "$numberInt": "395654" },
-              "title": "AH Biologisch Couscous",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "3.13" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.25" },
-                "unitSize": "400 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "couscous",
+              "product": {
+                "id": 395654,
+                "title": "AH Biologisch Couscous",
+                "quantity": 2
+              }
             },
-            "pijnboompitten": {
-              "id": { "$numberInt": "415609" },
-              "title": "AH Pijnboompitten",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "32.87" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "4.93" },
-                "unitSize": "150 g"
-              },
-              "ignore": false,
-              "notAvailable": false,
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "pijnboompitten",
+              "product": {
+                "id": 415609,
+                "title": "AH Pijnboompitten",
+                "ignore": false,
+                "notAvailable": false,
+                "quantity": 0
+              }
             },
-            "kleine courgette": {
-              "id": { "$numberInt": "185202" },
-              "title": "AH Biologisch Courgette",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "5.3" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.59" },
-                "unitSize": "per stuk"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "kleine courgette",
+              "product": {
+                "id": 185202,
+                "title": "AH Biologisch Courgette",
+                "quantity": 1
+              }
             },
-            "dille": {
-              "id": { "$numberInt": "238966" },
-              "title": "AH Dille",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "92.67" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.39" },
-                "unitSize": "15 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "dille",
+              "product": { "id": 238966, "title": "AH Dille", "quantity": 1 }
             },
-            "sterke groentebouillon": {
-              "id": { "$numberInt": "388183" },
-              "title": "AH Groentebouillon",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "11.2" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.12" },
-                "unitSize": "100 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "sterke groentebouillon",
+              "product": {
+                "id": 388183,
+                "title": "AH Groentebouillon",
+                "quantity": 1
+              }
             },
-            "schelvis": {
-              "id": { "$numberInt": "155601" },
-              "title": "AH Schelvisfilet",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "20.49" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "5.74" },
-                "unitSize": "ca. 280 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "schelvis",
+              "product": {
+                "id": 155601,
+                "title": "AH Schelvisfilet",
+                "quantity": 0
+              }
             }
-          }
+          ]
         },
         {
           "uid": "abe9a0fb-ce86-4d6f-99a7-05857e498009",
-          "mappings": {
-            "gebraden kip": {
-              "quantity": { "$numberInt": "2" },
-              "id": { "$numberInt": "197231" },
-              "title": "AH Scharrel kipdijfilet",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "10.49" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "3.99" },
-                "unitSize": "ca. 380 g"
+          "parsedIngredients": [
+            {
+              "ingredient": "gebraden kip",
+              "product": {
+                "quantity": 2,
+                "id": 197231,
+                "title": "AH Scharrel kipdijfilet"
               }
             },
-            "gepelde walnoten": {
-              "quantity": { "$numberInt": "1" },
-              "id": { "$numberInt": "397907" },
-              "title": "AH Ongebrande walnoten",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "14.25" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.85" },
-                "unitSize": "200 g"
+            {
+              "ingredient": "gepelde walnoten",
+              "product": {
+                "quantity": 1,
+                "id": 397907,
+                "title": "AH Ongebrande walnoten"
               }
             },
-            "gemalen koriander": {
-              "id": { "$numberInt": "415009" },
-              "title": "Verstegen Strooier koriander gemalen",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "69.39" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.29" },
-                "unitSize": "33 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "gemalen koriander",
+              "product": {
+                "id": 415009,
+                "title": "Verstegen Strooier koriander gemalen",
+                "quantity": 1
+              }
             },
-            "fenegriek": {
-              "ignore": false,
-              "notAvailable": true,
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "fenegriek",
+              "product": {
+                "ignore": false,
+                "notAvailable": true,
+                "quantity": 1
+              }
             },
-            "paar draadjes saffraan": {
-              "id": { "$numberInt": "414972" },
-              "title": "Verstegen Zakje saffraan heel",
-              "price": {
-                "now": { "$numberDouble": "1.39" },
-                "unitSize": "0,05 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "paar draadjes saffraan",
+              "product": {
+                "id": 414972,
+                "title": "Verstegen Zakje saffraan heel",
+                "quantity": 1
+              }
             },
-            "soepkom groentebouillon": {
-              "id": { "$numberInt": "388343" },
-              "title": "Knorr Biologisch bouillon blokje groenten",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "17.88" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.18" },
-                "unitSize": "6 x 11 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "soepkom groentebouillon",
+              "product": {
+                "id": 388343,
+                "title": "Knorr Biologisch bouillon blokje groenten",
+                "quantity": 1
+              }
             },
-            "peper en zout": {
-              "ignore": true,
-              "notAvailable": false,
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "peper en zout",
+              "product": {
+                "ignore": true,
+                "notAvailable": false,
+                "quantity": 0
+              }
             },
-            "graanaatappelpitjes": {
-              "id": { "$numberInt": "401913" },
-              "title": "AH Zongerijpte granaatappelpitjes",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "18.92" },
-                  "description": "KG"
-                },
-                "theme": "bonus",
-                "now": { "$numberInt": "3" },
-                "was": { "$numberDouble": "3.5" },
-                "unitSize": "185 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "graanaatappelpitjes",
+              "product": {
+                "id": 401913,
+                "title": "AH Zongerijpte granaatappelpitjes",
+                "quantity": 1
+              }
             }
-          }
+          ]
         },
         {
           "uid": "a79d348b-bbfc-423b-99c4-3d7bc544b7e2",
-          "mappings": {
-            "Voor de bouillon": {
-              "quantity": { "$numberInt": "1" },
-              "ignore": true,
-              "notAvailable": false
-            },
-            "groentebouillon of kippenbouillon": {
-              "quantity": { "$numberInt": "1" },
-              "id": { "$numberInt": "388344" },
-              "title": "Knorr Biologisch bouillon blokje kip",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "19.67" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.18" },
-                "unitSize": "6 x 10 g"
+          "parsedIngredients": [
+            {
+              "ingredient": "Voor de bouillon",
+              "product": {
+                "quantity": 1,
+                "ignore": true,
+                "notAvailable": false
               }
             },
-            "harissa": {
-              "id": { "$numberInt": "450246" },
-              "title": "Souq Harissa",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "11.7" },
-                  "description": "KG"
-                },
-                "theme": "ah",
-                "now": { "$numberDouble": "2.69" },
-                "unitSize": "230 g"
-              },
-              "quantity": { "$numberInt": "0" }
-            },
-            "wortels": {
-              "id": { "$numberInt": "188141" },
-              "title": "AH Geschilde bospeen",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "4.98" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.99" },
-                "unitSize": "600 g"
-              },
-              "quantity": { "$numberInt": "3" }
-            },
-            "grote pastinaak": {
-              "quantity": { "$numberInt": "1" },
-              "id": { "$numberInt": "203003" },
-              "title": "AH Biologisch Pastinaak",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "3.48" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.39" },
-                "unitSize": "400 g"
+            {
+              "ingredient": "groentebouillon of kippenbouillon",
+              "product": {
+                "quantity": 1,
+                "id": 388344,
+                "title": "Knorr Biologisch bouillon blokje kip"
               }
             },
-            "rode uien": {
-              "id": { "$numberInt": "189478" },
-              "title": "AH Rode uien",
-              "price": {
-                "now": { "$numberDouble": "0.59" },
-                "unitSize": "2 stuks"
-              },
-              "quantity": { "$numberInt": "2" }
-            },
-            "grote aardappelen": {
-              "id": { "$numberInt": "111388" },
-              "title": "AH Kilo'tje iets kruimige aardappelen",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.79" },
-                  "description": "KG"
-                },
-                "theme": "ah",
-                "now": { "$numberDouble": "1.79" },
-                "unitSize": "1 kg"
-              },
-              "quantity": { "$numberInt": "0" }
-            },
-            "pompoen": {
-              "id": { "$numberInt": "216032" },
-              "title": "AH Pompoen stukjes",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "5.98" },
-                  "description": "KG"
-                },
-                "theme": "ah",
-                "now": { "$numberDouble": "2.39" },
-                "unitSize": "400 g"
-              },
-              "quantity": { "$numberInt": "1" }
-            },
-            "prei": {
-              "id": { "$numberInt": "171425" },
-              "price": {
-                "now": { "$numberDouble": "0.5" },
-                "unitSize": "per stuk"
-              },
-              "title": "AH Prei",
-              "quantity": { "$numberInt": "1" }
-            },
-            "gedroogde vijgen": {
-              "quantity": { "$numberInt": "1" },
-              "id": { "$numberInt": "404057" },
-              "title": "Puur Natuur Vijgen",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "13.18" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "6.59" },
-                "unitSize": "500 g"
+            {
+              "ingredient": "harissa",
+              "product": {
+                "id": 450246,
+                "title": "Souq Harissa",
+                "quantity": 0
               }
             },
-            "bewaarde citroenen": {
-              "quantity": { "$numberInt": "0" },
-              "notAvailable": true,
-              "ignore": false
-            },
-            "munt": {
-              "id": { "$numberInt": "238969" },
-              "title": "AH Munt",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "72.67" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.09" },
-                "unitSize": "15 g"
-              },
-              "quantity": { "$numberInt": "1" }
-            },
-            "Voor de couscous": {
-              "quantity": { "$numberInt": "0" },
-              "id": { "$numberInt": "220772" },
-              "title": "Dari Couscous medium",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "2.69" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.69" },
-                "unitSize": "1 kg"
+            {
+              "ingredient": "wortels",
+              "product": {
+                "id": 188141,
+                "title": "AH Geschilde bospeen",
+                "quantity": 3
               }
             },
-            "couscous": {
-              "id": { "$numberInt": "395654" },
-              "title": "AH Biologisch Couscous",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "3.13" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.25" },
-                "unitSize": "400 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "grote pastinaak",
+              "product": {
+                "quantity": 1,
+                "id": 203003,
+                "title": "AH Biologisch Pastinaak"
+              }
             },
-            "kikkererwten": {
-              "id": { "$numberInt": "469876" },
-              "title": "AH Biologisch Kikkererwten",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "3.98" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.99" },
-                "unitSize": "500 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "rode uien",
+              "product": {
+                "id": 189478,
+                "title": "AH Rode uien",
+                "quantity": 2
+              }
             },
-            "boter": {
-              "id": { "$numberInt": "58082" },
-              "title": "AH Biologisch Roomboter ongezouten",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "9.72" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.43" },
-                "unitSize": "250 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "grote aardappelen",
+              "product": {
+                "id": 111388,
+                "title": "AH Kilo'tje iets kruimige aardappelen",
+                "quantity": 0
+              }
             },
-            "rode ui": {
-              "id": { "$numberInt": "101180" },
-              "control": { "theme": "ah", "type": "default" },
-              "title": "AH Biologisch Rode uien",
-              "link": "/producten/product/wi101180/ah-biologisch-rode-uien",
-              "orderable": true,
-              "propertyIcons": [
-                { "name": "biologisch", "title": "Biologisch" }
-              ],
-              "images": [
-                {
-                  "height": { "$numberInt": "200" },
-                  "width": { "$numberInt": "200" },
-                  "title": "AH Biologisch Rode uien",
-                  "url": "https://static.ah.nl/image-optimization/static/product/AHI_434d50313333393031_5_200x200_JPG.JPG?options=399,q85",
-                  "ratio": "1-1"
-                },
-                {
-                  "height": { "$numberInt": "708" },
-                  "width": { "$numberInt": "708" },
-                  "title": "AH Biologisch Rode uien",
-                  "url": "https://static.ah.nl/image-optimization/static/product/AHI_434d50313333393031_5_LowRes_JPG.JPG?options=399,q85",
-                  "ratio": "1-1"
-                }
-              ],
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "4.3" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.29" },
-                "unitSize": "300 g"
-              },
-              "theme": "ah",
-              "hqId": { "$numberInt": "539529" },
-              "category": "Aardappel, groente, fruit/Rode uien",
-              "gtins": [{ "$numberDouble": "8710400230106.0" }],
-              "brand": "AH Biologisch",
-              "summary": "Rode uien behoren tot de familie van de uiachtigen, evenals prei en knoflook. De ui bevat veel suiker en een kenmerkende vluchtige olie die de typische uiensmaak veroorzaakt.",
-              "descriptionFull": "<p><ul><li><strong>Smaak:</strong> Scherper van smaak dan gele uien.</li><li><strong>Bewaren:</strong> Op een koele, donkere en droge plaats buiten de koelkast. Zo zijn uien enkele weken te bewaren.</li><li><strong>Bereiden:</strong> De rode uien ontdoen van de buitenste (harde) rokken. Daarna in ringen snijden of snipperen. Rode uien zijn rauw in salades zeer smaakvol. Je kunt ze ook (roer)bakken, stoven of koken als groente.</li></ul></p><p>Neem het ervan en geniet van het lekkerste dat de natuur te bieden heeft. Van onze biologische producten kun je met een goed gevoel genieten dankzij de aandacht en inspanning van de boeren en producenten die ze voor ons maken. Natuurlijk worden al onze biologische producten onafhankelijk gecontroleerd en daarom verdienen ze het Europese keurmerk. Biologisch van Albert Heijn: dat smaakt naar meer!</p>",
-              "taxonomyId": { "$numberInt": "1461" },
-              "taxonomies": [
-                {
-                  "id": { "$numberInt": "6401" },
-                  "name": "Aardappel, groente, fruit",
-                  "imageSiteTarget": "app_cat_agf",
-                  "images": [
-                    {
-                      "height": { "$numberInt": "360" },
-                      "width": { "$numberInt": "596" },
-                      "url": "https://static.ahold.com//cmgtcontent/media//001002000/000/001002086_008_Aardappelen,_groente,_fruit_(3).png"
-                    }
-                  ],
-                  "shown": true,
-                  "level": { "$numberInt": "1" },
-                  "sortSequence": { "$numberInt": "1" },
-                  "parentIds": [{ "$numberInt": "0" }]
-                },
-                {
-                  "id": { "$numberInt": "1125" },
-                  "name": "Groente",
-                  "imageSiteTarget": "app_cat_groente_wortels_prei_broccoli",
-                  "images": [
-                    {
-                      "height": { "$numberInt": "133" },
-                      "width": { "$numberInt": "200" },
-                      "url": "https://static.ahold.com//cmgtcontent/media//000752000/000/000752030_001_app_cat_groente_wortels_prei_broccoli.jpg"
-                    }
-                  ],
-                  "shown": true,
-                  "level": { "$numberInt": "2" },
-                  "sortSequence": { "$numberInt": "1" },
-                  "parentIds": [{ "$numberInt": "6401" }]
-                },
-                {
-                  "id": { "$numberInt": "10151" },
-                  "name": "Prei, ui, knoflook",
-                  "images": [],
-                  "shown": true,
-                  "level": { "$numberInt": "3" },
-                  "sortSequence": { "$numberInt": "15" },
-                  "parentIds": [{ "$numberInt": "1125" }]
-                },
-                {
-                  "id": { "$numberInt": "5208" },
-                  "name": "Uien",
-                  "images": [],
-                  "shown": true,
-                  "level": { "$numberInt": "4" },
-                  "sortSequence": { "$numberInt": "2" },
-                  "parentIds": [{ "$numberInt": "10151" }]
-                },
-                {
-                  "id": { "$numberInt": "1461" },
-                  "name": "Rode uien",
-                  "images": [],
-                  "shown": true,
-                  "level": { "$numberInt": "5" },
-                  "sortSequence": { "$numberInt": "3" },
-                  "parentIds": [{ "$numberInt": "5208" }]
-                }
-              ],
-              "properties": {
-                "lifestyle": [
-                  "zonder_melk",
-                  "zonder_kreeftachtigen",
-                  "zonder_soja",
-                  "zonder_vis",
-                  "dieet_laag_suiker",
-                  "dieet_biologisch",
-                  "dieet_vegetarisch",
-                  "zonder_lupine",
-                  "zonder_pindas",
-                  "zonder_mosterd",
-                  "zonder_lactose",
-                  "zonder_sulfiet",
-                  "dieet_veganistisch",
-                  "zonder_sesam",
-                  "dieet_laag_vet",
-                  "dieet_laag_zout",
-                  "zonder_schelpdieren",
-                  "zonder_eieren",
-                  "zonder_noten",
-                  "zonder_selderij",
-                  "zonder_gluten"
-                ]
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "pompoen",
+              "product": {
+                "id": 216032,
+                "title": "AH Pompoen stukjes",
+                "quantity": 1
+              }
             },
-            "lente-uitjes": {
-              "id": { "$numberInt": "46236" },
-              "title": "AH Bosuitjes",
-              "price": {
-                "now": { "$numberDouble": "0.79" },
-                "unitSize": "3 stuks"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "prei",
+              "product": { "id": 171425, "title": "AH Prei", "quantity": 1 }
             },
-            "olijfolie": {
-              "id": { "$numberInt": "58055" },
-              "title": "AH Olijfolie traditioneel",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "6.53" },
-                  "description": "LT"
-                },
-                "now": { "$numberDouble": "6.53" },
-                "unitSize": "1 l"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "gedroogde vijgen",
+              "product": {
+                "quantity": 1,
+                "id": 404057,
+                "title": "Puur Natuur Vijgen"
+              }
             },
-            "sap 1 citroen": {
-              "id": { "$numberInt": "190654" },
-              "title": "AH Biologisch Citroen",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "5.63" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.69" },
-                "unitSize": "2 stuks"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "bewaarde citroenen",
+              "product": {
+                "quantity": 0,
+                "notAvailable": true,
+                "ignore": false
+              }
             },
-            "koriander": {
-              "id": { "$numberInt": "238968" },
-              "title": "AH Koriander",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "92.67" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.39" },
-                "unitSize": "15 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "munt",
+              "product": { "id": 238969, "title": "AH Munt", "quantity": 1 }
+            },
+            {
+              "ingredient": "Voor de couscous",
+              "product": {
+                "quantity": 0,
+                "id": 220772,
+                "title": "Dari Couscous medium"
+              }
+            },
+            {
+              "ingredient": "couscous",
+              "product": {
+                "id": 395654,
+                "title": "AH Biologisch Couscous",
+                "quantity": 1
+              }
+            },
+            {
+              "ingredient": "kikkererwten",
+              "product": {
+                "id": 469876,
+                "title": "AH Biologisch Kikkererwten",
+                "quantity": 0
+              }
+            },
+            {
+              "ingredient": "boter",
+              "product": {
+                "id": 58082,
+                "title": "AH Biologisch Roomboter ongezouten",
+                "quantity": 0
+              }
+            },
+            {
+              "ingredient": "rode ui",
+              "product": {
+                "id": 101180,
+                "title": "AH Biologisch Rode uien",
+                "quantity": 1
+              }
+            },
+            {
+              "ingredient": "lente-uitjes",
+              "product": { "id": 46236, "title": "AH Bosuitjes", "quantity": 1 }
+            },
+            {
+              "ingredient": "olijfolie",
+              "product": {
+                "id": 58055,
+                "title": "AH Olijfolie traditioneel",
+                "quantity": 1
+              }
+            },
+            {
+              "ingredient": "sap 1 citroen",
+              "product": {
+                "id": 190654,
+                "title": "AH Biologisch Citroen",
+                "quantity": 1
+              }
+            },
+            {
+              "ingredient": "koriander",
+              "product": {
+                "id": 238968,
+                "title": "AH Koriander",
+                "quantity": 1
+              }
             }
-          }
+          ]
         },
         {
           "uid": "74a02390-1da6-11ea-b041-bd56e7f8bea1",
-          "mappings": {
-            "flinke ui": {
-              "id": { "$numberInt": "41247" },
-              "title": "AH Uien klein",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.58" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "0.79" },
-                "unitSize": "500 g"
-              },
-              "quantity": { "$numberInt": "1" }
+          "parsedIngredients": [
+            {
+              "ingredient": "flinke ui",
+              "product": {
+                "id": 41247,
+                "title": "AH Uien klein",
+                "quantity": 1
+              }
             },
-            "bleekselderij": {
-              "id": { "$numberInt": "186043" },
-              "title": "AH Biologisch Bleekselderij",
-              "price": {
-                "now": { "$numberDouble": "1.79" },
-                "unitSize": "per stuk"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "bleekselderij",
+              "product": {
+                "id": 186043,
+                "title": "AH Biologisch Bleekselderij",
+                "quantity": 1
+              }
             },
-            "worteltjes": {
-              "id": { "$numberInt": "99036" },
-              "title": "AH Winterpeen",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "2.45" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "0.49" },
-                "unitSize": "per stuk"
-              },
-              "quantity": { "$numberInt": "2" }
+            {
+              "ingredient": "worteltjes",
+              "product": {
+                "id": 99036,
+                "title": "AH Winterpeen",
+                "quantity": 2
+              }
             },
-            "knoflook": {
-              "id": { "$numberInt": "4160" },
-              "title": "AH Knoflook",
-              "price": {
-                "now": { "$numberDouble": "0.89" },
-                "unitSize": "2 stuks"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "knoflook",
+              "product": {
+                "id": 4160,
+                "title": "AH Knoflook",
+                "price": { "now": 0.89, "unitSize": "2 stuks" },
+                "quantity": 0
+              }
             },
-            "roomboter": {
-              "id": { "$numberInt": "58082" },
-              "title": "AH Biologisch Roomboter ongezouten",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "9.72" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.43" },
-                "unitSize": "250 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "roomboter",
+              "product": {
+                "id": 58082,
+                "title": "AH Biologisch Roomboter ongezouten",
+                "quantity": 0
+              }
             },
-            "olijfolie": {
-              "id": { "$numberInt": "58055" },
-              "title": "AH Olijfolie traditioneel",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "6.53" },
-                  "description": "LT"
-                },
-                "now": { "$numberDouble": "6.53" },
-                "unitSize": "1 l"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "olijfolie",
+              "product": {
+                "id": 58055,
+                "title": "AH Olijfolie traditioneel",
+                "quantity": 0
+              }
             },
-            "rundvlees": {
-              "ignore": true,
-              "notAvailable": false,
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "rundvlees",
+              "product": {
+                "ignore": true,
+                "notAvailable": false,
+                "quantity": 1
+              }
             },
-            "rode wijn": {
-              "id": { "$numberInt": "166917" },
-              "title": "AH Biologisch Merlot",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "5.72" },
-                  "description": "LT"
-                },
-                "theme": "ah",
-                "now": { "$numberDouble": "4.29" },
-                "unitSize": "0,75 l"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "rode wijn",
+              "product": {
+                "id": 166917,
+                "title": "AH Biologisch Merlot",
+                "quantity": 1
+              }
             },
-            "tomatenpuree": {
-              "id": { "$numberInt": "2226" },
-              "title": "AH Tomatenpuree",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "4.57" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "0.32" },
-                "unitSize": "70 g"
-              },
-              "quantity": { "$numberInt": "2" }
+            {
+              "ingredient": "tomatenpuree",
+              "product": {
+                "id": 2226,
+                "title": "AH Tomatenpuree",
+                "quantity": 2
+              }
             },
-            "ui": {
-              "id": { "$numberInt": "4083" },
-              "title": "AH Middelgrote uien",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "1.09" },
-                  "description": "KG"
-                },
-                "theme": "ah",
-                "now": { "$numberDouble": "1.09" },
-                "unitSize": "1 kg"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "ui",
+              "product": {
+                "id": 4083,
+                "title": "AH Middelgrote uien",
+                "quantity": 0
+              }
             },
-            "blad laurier": {
-              "id": { "$numberInt": "197873" },
-              "title": "Euroma Laurierblad vriesdroog",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberInt": "250" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.25" },
-                "unitSize": "9 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "blad laurier",
+              "product": {
+                "id": 197873,
+                "title": "Euroma Laurierblad vriesdroog",
+                "quantity": 0
+              }
             },
-            "tak tijm": {
-              "id": { "$numberInt": "238974" },
-              "title": "AH Tijm",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "92.67" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "1.39" },
-                "unitSize": "15 g"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "tak tijm",
+              "product": { "id": 238974, "title": "AH Tijm", "quantity": 0 }
             },
-            "kaneel": {
-              "id": { "$numberInt": "216632" },
-              "title": "Verstegen Strooier kaneel",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "56.49" },
-                  "description": "KG"
-                },
-                "now": { "$numberDouble": "2.09" },
-                "unitSize": "37 g"
-              },
-              "quantity": { "$numberInt": "1" }
+            {
+              "ingredient": "kaneel",
+              "product": {
+                "id": 216632,
+                "title": "Verstegen Strooier kaneel",
+                "quantity": 1
+              }
             },
-            "bouillonblokje": {
-              "id": { "$numberInt": "126671" },
-              "title": "AH Bospaddestoelenfond",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "5.66" },
-                  "description": "LT"
-                },
-                "now": { "$numberDouble": "2.15" },
-                "unitSize": "380 ml"
-              },
-              "quantity": { "$numberInt": "2" }
+            {
+              "ingredient": "bouillonblokje",
+              "product": {
+                "id": 126671,
+                "title": "AH Bospaddestoelenfond",
+                "quantity": 2
+              }
             },
-            "brandy": {
-              "id": { "$numberInt": "121590" },
-              "title": "Napoleon Brandy",
-              "price": {
-                "unitInfo": {
-                  "price": { "$numberDouble": "17.13" },
-                  "description": "LT"
-                },
-                "now": { "$numberDouble": "11.99" },
-                "unitSize": "70 cl"
-              },
-              "quantity": { "$numberInt": "0" }
+            {
+              "ingredient": "brandy",
+              "product": {
+                "id": 121590,
+                "title": "Napoleon Brandy",
+                "quantity": 0
+              }
             }
-          }
+          ]
         }
       ]
     }

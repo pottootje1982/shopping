@@ -1,3 +1,5 @@
+const { Ingredient } = require('../../ingredients')
+
 class IngredientProductDb {
   constructor(db, tableName) {
     this.tableName = tableName || 'ing-to-product'
@@ -36,33 +38,18 @@ class IngredientProductDb {
 
   async getMappings(...recipes) {
     const mappings = await this.getAllMappings()
-    recipes.forEach((recipe) => {
-      const result = {}
-      recipe.parsedIngredients.forEach((i) => {
+    return recipes.map(({ parsedIngredients, ...r }) => {
+      parsedIngredients = parsedIngredients.map((i) => {
         const mapping = mappings.find(
           (m) => m.ingredient === i.ingredient.toLowerCase()
         )
-        const product = (mapping && mapping.product) || {}
-        const quantity = i.quantityToOrder()
-        result[i.ingredient] = {
-          ...product,
-          quantity
-        }
+        const ing = Ingredient.createFromObject(i)
+        const quantity = ing.quantityToOrder()
+        let product = mapping?.product
+        return { ...i, quantity, product }
       })
-      recipe.mappings = result
+      return { ...r, parsedIngredients }
     })
-  }
-
-  async pickOrder(...recipes) {
-    const mappings = recipes.map((recipe) =>
-      Object.values(recipe.mappings).filter(
-        (mapping) => !mapping.ignore && !mapping.notAvailable && mapping.id
-      )
-    )
-    let items = [].concat(...mappings)
-    items = items.map(({ quantity, id }) => ({ id, quantity }))
-
-    return { items }
   }
 }
 

@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "eslint . && jest server",
-    "test:watch": "npm run test -- jest --watch --no-coverage",
+    "test": "jest server",
+    "test:watch": "npm run test -- jest --watch --no-coverage --testPathIgnorePatterns=client/",
     "start": "node server/app.js",
     "start:mock": "AH_API=ah-api.stub USE_MEMORY_DB=true node server/app.js",
     "test:api": "npm run start:mock & newman run api-tests/ShoppingAPItests.postman_collection.json -e api-tests/shopping.postman_environment.json",
@@ -15,7 +15,7 @@
   ],
   "jest": {
     "setupFiles": [
-      "<rootDir>/.jest/setEnvVars.js"
+      "<rootDir>/server/.jest/setEnvVars.js"
     ]
   },
   "dependencies": {

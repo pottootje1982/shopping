@@ -22,14 +22,11 @@ class RecipeDb {
 
   async translateRecipes(...recipes) {
     recipes.forEach((recipe) => {
-      if (
-        !recipe.parsedIngredients ||
-        recipe.parsedIngredients.constructor.name !== 'Ingredients'
-      ) {
+      if (recipe.parsedIngredients?.constructor.name !== 'Ingredients') {
         recipe.parsedIngredients = Ingredients.create(recipe.ingredients)
       }
     })
-    await this.translationDb.translateRecipes(...recipes)
+    recipes = await this.translationDb.translateRecipes(...recipes)
     return this.ingToProduct.getMappings(...recipes)
   }
 
@@ -52,8 +49,7 @@ class RecipeDb {
   async getRecipes(categories) {
     const recipes = await this.db.get('recipes').cloneDeep().value()
     const recipesWithCategoryNames = this.addCategoryNames(recipes, categories)
-    await this.translateRecipes(...recipesWithCategoryNames)
-    return recipesWithCategoryNames
+    return this.translateRecipes(...recipesWithCategoryNames)
   }
 
   getRecipesRaw() {
@@ -66,8 +62,8 @@ class RecipeDb {
 
   async getRecipe(uid) {
     const recipe = await this.getRecipeRaw(uid)
-    if (recipe) await this.translateRecipes(recipe)
-    return recipe
+    const translated = await this.translateRecipes(recipe)
+    return translated[0]
   }
 
   setHash(recipe) {

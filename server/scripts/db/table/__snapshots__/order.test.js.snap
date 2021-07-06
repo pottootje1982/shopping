@@ -1,0 +1,182 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`storeRecipe() get hydrated 1`] = `
+Ingredients [
+  Object {
+    "all": Array [
+      undefined,
+      undefined,
+      "Prei",
+    ],
+    "full": "Prei",
+    "ingredient": "Prei",
+    "product": Object {
+      "id": 171425,
+      "quantity": 1,
+      "title": "AH Prei",
+    },
+    "quantity": 1,
+    "unit": undefined,
+  },
+  Object {
+    "all": Array [
+      undefined,
+      undefined,
+      "Dille",
+    ],
+    "full": "Dille",
+    "ingredient": "Dille",
+    "product": Object {
+      "id": 238966,
+      "title": "AH Dille",
+    },
+    "quantity": 1,
+    "unit": undefined,
+  },
+  Object {
+    "all": Array [
+      undefined,
+      "Blik",
+      "tomaten",
+    ],
+    "full": "Blik tomaten",
+    "ingredient": "tomaten",
+    "product": Object {
+      "id": 395307,
+      "title": "AH Biologisch Tomatenblokjes",
+    },
+    "quantity": 1,
+    "unit": "Blik",
+  },
+  Object {
+    "all": Array [
+      undefined,
+      undefined,
+      "Zalm",
+    ],
+    "full": "Zalm",
+    "ingredient": "Zalm",
+    "product": Object {
+      "id": 51335,
+      "ignore": true,
+      "title": "AH Zalmfilet",
+    },
+    "quantity": 1,
+    "unit": undefined,
+  },
+  Object {
+    "all": Array [
+      3,
+      undefined,
+      "Aardappels",
+    ],
+    "full": "3 Aardappels",
+    "ingredient": "Aardappels",
+    "product": Object {
+      "id": 111388,
+      "quantity": 10,
+      "title": "AH Kilo'tje iets kruimige aardappelen",
+    },
+    "quantity": 1,
+    "unit": undefined,
+  },
+  Object {
+    "all": Array [
+      undefined,
+      undefined,
+      "Wijn",
+    ],
+    "full": "Wijn",
+    "ingredient": "Wijn",
+    "product": Object {},
+    "quantity": 1,
+    "unit": undefined,
+  },
+  Object {
+    "all": Array [
+      undefined,
+      undefined,
+      "Honing",
+    ],
+    "full": "Honing",
+    "ingredient": "Honing",
+    "product": Object {},
+    "quantity": 1,
+    "unit": undefined,
+  },
+  Object {
+    "all": Array [
+      undefined,
+      undefined,
+      "koriander poeder",
+    ],
+    "full": "koriander poeder",
+    "ingredient": "koriander poeder",
+    "product": Object {},
+    "quantity": 1,
+    "unit": undefined,
+  },
+]
+`;
+
+exports[`storeRecipe() store order 1`] = `
+Array [
+  Object {
+    "ingredient": "slagroom",
+    "product": Object {
+      "id": 191621,
+      "quantity": 1,
+    },
+  },
+  Object {
+    "ingredient": "dille",
+    "product": Object {
+      "id": 238966,
+      "quantity": 1,
+    },
+  },
+  Object {
+    "ingredient": "witte wijn",
+    "product": Object {
+      "id": 183474,
+      "quantity": 1,
+    },
+  },
+  Object {
+    "ingredient": "boter",
+    "product": Object {
+      "id": 58082,
+      "quantity": 1,
+    },
+  },
+  Object {
+    "ingredient": "sjalotjes",
+    "product": Object {
+      "id": 160653,
+      "quantity": 2,
+    },
+  },
+  Object {
+    "ingredient": "boontjes",
+    "product": Object {
+      "id": 4102,
+      "quantity": 2,
+    },
+  },
+  Object {
+    "ingredient": "witvis",
+    "product": Object {
+      "ignore": false,
+      "notAvailable": true,
+      "quantity": 1,
+    },
+  },
+  Object {
+    "ingredient": "aardappels",
+    "product": Object {
+      "id": 111388,
+      "quantity": 1,
+    },
+  },
+]
+`;
