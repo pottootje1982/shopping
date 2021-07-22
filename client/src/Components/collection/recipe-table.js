@@ -68,8 +68,7 @@ export default function RecipeTable() {
 
   function clickRow(row) {
     const uid = row.values.uid
-    const _recipes = selectedOrder?.recipes || recipes
-    const recipe = _recipes.find((r) => r.uid === uid)
+    const recipe = recipes.find((r) => r.uid === uid)
     setSelectedRecipe(recipe)
   }
 
@@ -125,24 +124,26 @@ export default function RecipeTable() {
 
   const globalFilterFunc = (rows, _cols, filterValue = {}) => {
     return rows.filter((row) => {
-      const { value, showSelected } = filterValue
+      const { value: searchString, showSelected } = filterValue
       const { name, categories, uid } = row.values
 
       let show = true
       if (selectedOrder) {
         const orderedRecipes = selectedOrder.recipes.map((r) => r.uid)
-        show &= orderedRecipes.includes(uid)
+        show = show && orderedRecipes.includes(uid)
       }
       if (selectedCategory) {
-        show &= categories
-          .map((c) => c.toLowerCase())
-          .includes(selectedCategory.uid.toLowerCase())
+        show =
+          show &&
+          categories
+            .map((c) => c.toLowerCase())
+            .includes(selectedCategory.uid.toLowerCase())
       }
       if (showSelected) show &= row.isSelected
       return (
         show &&
-        (value && name
-          ? name.toLowerCase().includes(value.toLowerCase())
+        (searchString && name
+          ? name.toLowerCase().includes(searchString.toLowerCase())
           : true)
       )
     })
@@ -205,7 +206,7 @@ export default function RecipeTable() {
 
   useEffect(() => {
     setGlobalFilter((filter) => ({ ...filter, value: undefined }))
-  }, [selectedCategory, selectedOrder, setGlobalFilter])
+  }, [selectedCategory, selectedOrder, setGlobalFilter, recipes])
 
   return (
     recipes && (

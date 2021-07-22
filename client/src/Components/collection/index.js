@@ -69,8 +69,9 @@ export default function RecipeCollection({ setRecipeTitle }) {
   }
 
   useEffect(selectedFirstRecipe, [])
-
   useEffect(selectRecipe, [selectedRecipe])
+  useEffect(() => setSelectedOrder(), [orders])
+  useEffect(() => setSelectedCategory(), [categories])
 
   function selectRecipe() {
     if (!selectedRecipe) return

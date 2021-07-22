@@ -25,9 +25,13 @@ export default function Recipe() {
   const [editOrAddRecipe, setEditOrAddRecipe] = useState()
   const listRef = useRef(null)
 
-  const { selectedRecipe, setSelectedRecipe } = useContext(RecipeContext)
+  const { selectedRecipe, setSelectedRecipe, selectedOrder } =
+    useContext(RecipeContext)
 
   const { uid: recipeId, parsedIngredients: ingredients } = selectedRecipe
+
+  const ordered = selectedOrder?.recipes?.find((r) => r.uid === recipeId)
+  const { parsedIngredients: orderedIngs = {} } = ordered || {}
 
   const addRecipe = !recipeId
 
@@ -90,23 +94,28 @@ export default function Recipe() {
   }
 
   function onAdjustQuantity(product, event) {
-    const target = event.target
-    const value = parseInt(target.value)
-    product.quantity = value
-    setSelectedRecipe({ ...selectedRecipe })
+    if (product) {
+      const target = event.target
+      const value = parseInt(target.value)
+      product.quantity = value
+      setSelectedRecipe({ ...selectedRecipe })
+    }
   }
 
   function onAdjustQuantityWheel(product, event) {
-    const target = event.target
-    let value = parseInt(target.value)
-    if (event.deltaY < 0) {
-      value = value + 1
-    } else {
-      value = Math.max(value - 1, 0)
+    if (product) {
+      const target = event.target
+      let value = parseInt(target.value)
+      if (event.deltaY < 0) {
+        value = value + 1
+      } else {
+        value = Math.max(value - 1, 0)
+      }
+      target.value = value
+      console.log(product)
+      product.quantity = value
+      setSelectedRecipe({ ...selectedRecipe })
     }
-    target.value = value
-    product.quantity = value
-    setSelectedRecipe({ ...selectedRecipe })
   }
 
   function order(item) {
@@ -142,75 +151,83 @@ export default function Recipe() {
                   {
                     ignore,
                     notAvailable,
-                    ingredient,
+                    ingredient: name,
                     full,
                     quantity,
-                    product: { title, quantity: orderedQuantity } = {},
+                    product: { title } = {},
                     product
                   },
                   i
-                ) => (
-                  <ListItem
-                    divider={true}
-                    button
-                    selected={ingredient === selectedIngredient}
-                    key={i}
-                    onClick={() => setSelectedIngredient(ingredients[i])}
-                    style={{
-                      backgroundColor:
-                        orderedQuantity &&
-                        orderedQuantity !== quantity &&
-                        blue[200]
-                    }}
-                  >
-                    <ListItemText
+                ) => {
+                  const orderedQuantity = orderedIngs[i]?.product.quantity
+                  const ingredient = ingredients[i]
+                  return (
+                    <ListItem
+                      divider={true}
+                      button
+                      selected={name === selectedIngredient}
                       key={i}
-                      primary={
-                        <Typography
-                          style={{
-                            color:
-                              ignore || notAvailable ? grey[500] : undefined
-                          }}
-                        >
-                          {full}
-                        </Typography>
-                      }
-                      secondary={
-                        !ignore && !notAvailable ? (
-                          <Typography
-                            variant="subtitle2"
-                            style={{ color: green[500], fontSize: 9 }}
-                          >
-                            {title}
-                          </Typography>
-                        ) : null
-                      }
-                    ></ListItemText>
-                    <TextField
-                      type="number"
-                      defaultValue={orderedQuantity || quantity}
-                      inputProps={{
-                        min: 0,
-                        max: 99,
-                        step: 1
-                      }}
-                      style={{ width: 40, height: 40 }}
-                      onChange={(e) => onAdjustQuantity(product, e)}
-                      onWheel={(e) => onAdjustQuantityWheel(product, e)}
-                    />
-                    <IconButton
-                      onClick={(e) => order(product)}
+                      onClick={() => setSelectedIngredient(ingredient)}
                       style={{
-                        marginRight: -20,
-                        marginTop: -20,
-                        marginBottom: -20,
-                        transform: 'scale(.7)'
+                        backgroundColor:
+                          orderedQuantity !== undefined &&
+                          orderedQuantity !== quantity &&
+                          blue[200]
                       }}
                     >
-                      <ShoppingCartIcon />
-                    </IconButton>
-                  </ListItem>
-                )
+                      <ListItemText
+                        key={i}
+                        primary={
+                          <Typography
+                            style={{
+                              color:
+                                ignore || notAvailable ? grey[500] : undefined
+                            }}
+                          >
+                            {full}
+                          </Typography>
+                        }
+                        secondary={
+                          !ignore && !notAvailable ? (
+                            <Typography
+                              variant="subtitle2"
+                              style={{ color: green[500], fontSize: 9 }}
+                            >
+                              {title}
+                            </Typography>
+                          ) : null
+                        }
+                      ></ListItemText>
+                      <TextField
+                        type="number"
+                        defaultValue={
+                          orderedQuantity !== undefined
+                            ? orderedQuantity
+                            : quantity
+                        }
+                        inputProps={{
+                          min: 0,
+                          max: 99,
+                          step: 1
+                        }}
+                        style={{ width: 40, height: 40 }}
+                        onChange={(e) => onAdjustQuantity(product, e)}
+                        onWheel={(e) => onAdjustQuantityWheel(product, e)}
+                      />
+                      <IconButton
+                        onClick={(e) => order(product)}
+                        style={{
+                          marginRight: -20,
+                          marginTop: -20,
+                          marginBottom: -20,
+                          transform: 'scale(.7)'
+                        }}
+                      >
+                        <ShoppingCartIcon />
+                      </IconButton>
+                    </ListItem>
+                  )
+                }
               )}
             </List>
           </Paper>

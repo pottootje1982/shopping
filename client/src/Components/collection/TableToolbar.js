@@ -92,51 +92,43 @@ const TableToolbar = ({
       <Fab onClick={addRecipe}>
         <Add />
       </Fab>
-      {numSelected > 0
-        ? (
+      {numSelected > 0 ? (
         <Typography
           className={classes.title}
           color="inherit"
-          variant="subtitle1"
+          variant="subtitle2"
+          style={{ minWidth: 80 }}
         >
           {numSelected} selected
         </Typography>
-          )
-        : (
+      ) : (
         <Typography className={classes.title} variant="h6" id="tableTitle">
           Recipes
         </Typography>
-          )}
+      )}
 
-      {numSelected > 0
-        ? (
-        <>
-          <Tooltip title="Delete">
-            <IconButton
-              aria-label="delete"
-              onClick={() => setDeletionDialogOpen(true)}
-            >
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-          <ConfirmationDialog
-            dialogOpen={deletionDialogOpen}
-            setDialogOpen={setDeletionDialogOpen}
-            title={'Remove recipe'}
-            message={`Are you sure you want to remove ${selectedRecipes
-              .map((r) => `"${r.name}"`)
-              .join(', ')}?`}
-            onOk={removeRecipes}
-          />
-        </>
-          )
-        : (
-        <GlobalFilter
-          preGlobalFilteredRows={preGlobalFilteredRows}
-          globalFilter={globalFilter}
-          setGlobalFilter={setGlobalFilter}
-        />
-          )}
+      <Tooltip title="Delete">
+        <IconButton
+          aria-label="delete"
+          onClick={() => setDeletionDialogOpen(true)}
+        >
+          <DeleteIcon />
+        </IconButton>
+      </Tooltip>
+      <ConfirmationDialog
+        dialogOpen={deletionDialogOpen}
+        setDialogOpen={setDeletionDialogOpen}
+        title={'Remove recipe'}
+        message={`Are you sure you want to remove ${selectedRecipes
+          .map((r) => `"${r.name}"`)
+          .join(', ')}?`}
+        onOk={removeRecipes}
+      />
+      <GlobalFilter
+        preGlobalFilteredRows={preGlobalFilteredRows}
+        globalFilter={globalFilter}
+        setGlobalFilter={setGlobalFilter}
+      />
 
       {numSelected > 0 && (
         <FormControlLabel
