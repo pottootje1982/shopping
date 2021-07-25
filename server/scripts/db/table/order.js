@@ -9,15 +9,14 @@ class OrderDb extends Table {
     this.db.defaults({ orders: [] }).write()
   }
 
-  async storeOrder(recipes) {
+  storeOrder(recipes) {
     const date = getDateStr()
     recipes = recipes.map(({ uid, parsedIngredients }) => ({
       uid,
       parsedIngredients
     }))
     const order = { date, recipes }
-    const newOrder = await this.store(order)
-    return newOrder
+    return this.store(order)
   }
 
   getOrder(uid) {

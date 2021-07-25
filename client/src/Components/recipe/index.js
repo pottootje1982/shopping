@@ -93,17 +93,17 @@ export default function Recipe() {
     setEditOrAddRecipe(true)
   }
 
-  function onAdjustQuantity(product, event) {
-    if (product) {
+  function onAdjustQuantity(ingredient, event) {
+    if (ingredient.product) {
       const target = event.target
       const value = parseInt(target.value)
-      product.quantity = value
+      ingredient.quantity = value
       setSelectedRecipe({ ...selectedRecipe })
     }
   }
 
-  function onAdjustQuantityWheel(product, event) {
-    if (product) {
+  function onAdjustQuantityWheel(ingredient, event) {
+    if (ingredient.product) {
       const target = event.target
       let value = parseInt(target.value)
       if (event.deltaY < 0) {
@@ -112,8 +112,7 @@ export default function Recipe() {
         value = Math.max(value - 1, 0)
       }
       target.value = value
-      console.log(product)
-      product.quantity = value
+      ingredient.quantity = value
       setSelectedRecipe({ ...selectedRecipe })
     }
   }
@@ -149,17 +148,15 @@ export default function Recipe() {
               {ingredients.map(
                 (
                   {
-                    ignore,
-                    notAvailable,
                     ingredient: name,
                     full,
                     quantity,
-                    product: { title } = {},
+                    product: { title, ignore, notAvailable } = {},
                     product
                   },
                   i
                 ) => {
-                  const orderedQuantity = orderedIngs[i]?.product.quantity
+                  const orderedQuantity = orderedIngs[i]?.product?.quantity
                   const ingredient = ingredients[i]
                   return (
                     <ListItem
@@ -211,8 +208,8 @@ export default function Recipe() {
                           step: 1
                         }}
                         style={{ width: 40, height: 40 }}
-                        onChange={(e) => onAdjustQuantity(product, e)}
-                        onWheel={(e) => onAdjustQuantityWheel(product, e)}
+                        onChange={(e) => onAdjustQuantity(ingredient, e)}
+                        onWheel={(e) => onAdjustQuantityWheel(ingredient, e)}
                       />
                       <IconButton
                         onClick={(e) => order(product)}

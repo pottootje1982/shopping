@@ -1,7 +1,7 @@
 const path = require('path')
 
 it.skip('transforms orders', () => {
-  const { orders, ...rest } = require('./db.api-test.json')
+  const orders = require('../../../../test.json')
   console.log(orders)
   const updated = orders.map(({ recipes, ...order }) => ({
     ...order,
@@ -18,7 +18,6 @@ it.skip('transforms orders', () => {
 
   require('fs').writeFileSync(
     path.join(__dirname, './db.api-test2.json'),
-    JSON.stringify({ ...rest, orders: updated })
+    JSON.stringify(updated)
   )
-  //expect(updated).toMatchSnapshot()
 })

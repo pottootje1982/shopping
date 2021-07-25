@@ -57,21 +57,24 @@ export default function RecipeCollection({ setRecipeTitle }) {
       setSelectedRecipe(recipe)
       if (!MOCK_DATA) sync()
     }
+    setSelectedOrder()
+    setSelectedCategory()
     setOrders(data.orders)
     setCategories(data.categories)
   }
 
   function createOrder(recipes) {
     const items = recipes.map((r) =>
-      r.parsedIngredients.map((i) => i.product).filter((p) => p)
+      r.parsedIngredients.filter((i) => i.product)
     )
-    return [].concat(...items).map(({ id, quantity }) => ({ id, quantity }))
+    return []
+      .concat(...items)
+      .map(({ product: { id }, quantity }) => ({ id, quantity }))
+      .filter((item) => item.id)
   }
 
   useEffect(selectedFirstRecipe, [])
   useEffect(selectRecipe, [selectedRecipe])
-  useEffect(() => setSelectedOrder(), [orders])
-  useEffect(() => setSelectedCategory(), [categories])
 
   function selectRecipe() {
     if (!selectedRecipe) return

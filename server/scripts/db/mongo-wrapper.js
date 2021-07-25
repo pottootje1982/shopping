@@ -72,15 +72,15 @@ class MongoTableWrapper {
     return await this.table.find().toArray()
   }
 
-  async write() {
+  write() {
     if (this.valueToAdd) {
-      await this.table.insertOne(this.valueToAdd)
+      return this.table.insertOne(this.valueToAdd)
     } else if (this.query && this.valueToUpdate) {
-      await this.table.findOneAndReplace(this.query, this.valueToUpdate, {
+      return this.table.findOneAndReplace(this.query, this.valueToUpdate, {
         upsert: this.upsert
       })
     } else if (this.queryToDelete) {
-      await this.table.deleteOne(this.queryToDelete)
+      return this.table.deleteOne(this.queryToDelete)
     }
   }
 }

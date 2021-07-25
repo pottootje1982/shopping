@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from 'react'
+import React, { useContext, useEffect, useMemo, useCallback } from 'react'
 import blue from '@material-ui/core/colors/blue'
 import green from '@material-ui/core/colors/green'
 import {
@@ -105,7 +105,9 @@ export default function RecipeTable() {
     const selectedOffset =
       values.uid === (selectedRecipe && selectedRecipe.uid) ? 100 : 0
 
-    const allChosen = ingredients.every(({ product }) => product?.id)
+    const allChosen = ingredients.every(
+      ({ product }) => product?.id || product?.ignore || product?.notAvailable
+    )
     return {
       maxHeight: 10,
       backgroundColor: allChosen
@@ -154,6 +156,8 @@ export default function RecipeTable() {
     headerGroups,
     page,
     prepareRow,
+    // selectedFlatRows,
+    // toggleRowSelected,
     gotoPage,
     setPageSize,
     setGlobalFilter,
@@ -171,8 +175,10 @@ export default function RecipeTable() {
           'categories',
           'created'
         ],
-        pageSize: 15
+        pageSize: 15,
+        selectedRowIds: JSON.parse(localStorage.getItem('selectedRowIds'))
       },
+      getRowId: useCallback((row) => row.uid, []),
       globalFilter: globalFilterFunc
     },
     useFilters,
@@ -201,7 +207,10 @@ export default function RecipeTable() {
   )
 
   useEffect(() => {
-    setSelectedRecipes(recipes.filter((_r, i) => selectedRowIds[i]))
+    localStorage.setItem('selectedRowIds', JSON.stringify(selectedRowIds))
+    setSelectedRecipes(
+      recipes.filter((r) => Object.keys(selectedRowIds).includes(r.uid))
+    )
   }, [selectedRowIds, setSelectedRecipes, recipes])
 
   useEffect(() => {

@@ -3,7 +3,7 @@ const tabIds = {}
 // Registering AH tab id, that we can use to send an order to
 chrome.runtime.onMessage.addListener(function (request) {
   const { name, tabName } = request
-  if (name === "register") {
+  if (name === 'register') {
     chrome.tabs.getSelected(null, (tab) => {
       tabIds[tabName] = tab.id
     })
@@ -17,8 +17,8 @@ chrome.cookies.onChanged.addListener(({ cookie, removed } = {}) => {
   if (!removed) {
     if (
       domain &&
-      (domain.includes("localhost") || domain.includes("gogetmeals")) &&
-      name === "order"
+      (domain.includes('localhost') || domain.includes('gogetmeals')) &&
+      name === 'order'
     ) {
       const order = JSON.parse(value)
 
@@ -27,12 +27,12 @@ chrome.cookies.onChanged.addListener(({ cookie, removed } = {}) => {
           const { message } = response
           chrome.tabs.sendMessage(tabIds.shopping, {
             ...response,
-            message: message || "NO_RESPONSE",
+            message: message || 'NO_RESPONSE'
           })
         })
       } else if (tabIds.shopping) {
         chrome.tabs.sendMessage(tabIds.shopping, {
-          message: "AH_NOT_LOADED",
+          message: 'AH_NOT_LOADED'
         })
       }
     }
