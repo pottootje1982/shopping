@@ -22,8 +22,7 @@ function createZip(recipe, fn) {
   })
 }
 
-PaprikaApi.prototype.upsertRecipe = async function(recipe) {
-  delete recipe.mappings
+PaprikaApi.prototype.upsertRecipe = async function (recipe) {
   delete recipe.parsedIngredients
   delete recipe.categoryNames
   const request = require('request-promise')
@@ -44,7 +43,7 @@ PaprikaApi.prototype.upsertRecipe = async function(recipe) {
   return res
 }
 
-PaprikaApi.prototype.downloadRecipe = async function(url) {
+PaprikaApi.prototype.downloadRecipe = async function (url) {
   const request = require('request-promise')
   const contents = await request.get(url)
   await createZip(contents, './recipe.gz')

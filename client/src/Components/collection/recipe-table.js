@@ -88,7 +88,6 @@ export default function RecipeTable() {
         accessor: 'categoryNames',
         Cell: ({ value }) => <span>{value?.join(',')}</span> //eslint-disable-line
       },
-      { accessor: 'mappings' },
       { accessor: 'parsedIngredients' },
       { accessor: 'categories' }
     ],
@@ -168,15 +167,9 @@ export default function RecipeTable() {
       columns,
       data: recipes,
       initialState: {
-        hiddenColumns: [
-          'uid',
-          'mappings',
-          'parsedIngredients',
-          'categories',
-          'created'
-        ],
+        hiddenColumns: ['uid', 'parsedIngredients', 'categories', 'created'],
         pageSize: 15,
-        selectedRowIds: JSON.parse(localStorage.getItem('selectedRowIds'))
+        selectedRowIds: JSON.parse(localStorage.getItem('selectedRowIds')) || {}
       },
       getRowId: useCallback((row) => row.uid, []),
       globalFilter: globalFilterFunc

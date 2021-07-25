@@ -7,7 +7,7 @@ require('../scripts/db/tables')('./mongo-client').then((dbs) => {
   api = new AhApi(ingToProduct)
 })
 
-router.get('/', async function(req, res) {
+router.get('/', async function (req, res) {
   const products = await api
     .search(req.query.query, req.query.full)
     .catch((err) => {
@@ -16,7 +16,7 @@ router.get('/', async function(req, res) {
   res.send(products)
 })
 
-router.post('/choose', async function(req, res) {
+router.post('/choose', async function (req, res) {
   ingToProduct
     .storeMapping(req.body.ingredient, req.body.product)
     .catch((err) => {
@@ -25,18 +25,9 @@ router.post('/choose', async function(req, res) {
   res.send()
 })
 
-router.get('/:productId/product', async function(req, res) {
+router.get('/:productId/product', async function (req, res) {
   const product = await api.getProduct(parseInt(req.params.productId))
   res.send(product)
-})
-
-router.get('/mappings', async function(req, res) {
-  const recipe = await recipeDb.getRecipe(req.query.uid)
-  if (!recipe) return res.sendStatus(404)
-  else {
-    await ingToProduct.getMappings(recipe)
-    res.send(recipe.mappings)
-  }
 })
 
 module.exports = router

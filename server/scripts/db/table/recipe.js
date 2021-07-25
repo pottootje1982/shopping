@@ -75,7 +75,6 @@ class RecipeDb {
     const oldRecipe = await this.getRecipeRaw(recipe.uid)
     if (!oldRecipe) return null
     const newRecipe = { ...oldRecipe, ...recipe }
-    delete newRecipe.mappings
     delete newRecipe.parsedIngredients
     delete newRecipe.categoryNames
     this.setHash(newRecipe)

@@ -61,7 +61,6 @@ const TableToolbar = ({
     const created = getDateString()
     setSelectedRecipe({
       parsedIngredients: [],
-      mappings: [],
       created
     })
   }

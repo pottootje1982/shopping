@@ -32,7 +32,6 @@ export default function RecipeCollection({ setRecipeTitle }) {
     selectedCategory,
     setSelectedCategory
   } = useContext(RecipeContext)
-  const [, setRecipeReadyToOrder] = useState()
   const [orders, setOrders] = useState()
   const [categories, setCategories] = useState()
   const [open, setOpen] = useState(false)
@@ -79,10 +78,6 @@ export default function RecipeCollection({ setRecipeTitle }) {
   function selectRecipe() {
     if (!selectedRecipe) return
     setRecipeTitle(selectedRecipe.name)
-    setRecipeReadyToOrder(
-      selectedRecipe.parsedIngredients?.length ===
-        Object.keys(selectedRecipe.mappings || {}).length
-    )
     if (!recipes.includes(selectedRecipe)) {
       const index = recipes.indexOf(
         recipes.find((r) => r.uid === selectedRecipe.uid)
