@@ -21,7 +21,7 @@
   "dependencies": {
     "@google-cloud/translate": "^4.2.1",
     "@material-ui/icons": "^4.11.2",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
