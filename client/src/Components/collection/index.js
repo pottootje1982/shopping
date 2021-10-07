@@ -18,8 +18,6 @@ import NoTokenDialog from './no-token-dialog'
 import { getCookie } from '../../cookie.js'
 import RecipeContext from './RecipeProvider'
 
-const MOCK_DATA = process.env.REACT_APP_USE_MOCK_DATA === 'true'
-
 export default function RecipeCollection({ setRecipeTitle }) {
   const {
     recipes,
@@ -30,7 +28,8 @@ export default function RecipeCollection({ setRecipeTitle }) {
     selectedOrder,
     setSelectedOrder,
     selectedCategory,
-    setSelectedCategory
+    setSelectedCategory,
+    supermarket
   } = useContext(RecipeContext)
   const [orders, setOrders] = useState()
   const [categories, setCategories] = useState()
@@ -38,13 +37,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
   const [noTokenOpen, setNoTokenOpen] = useState(false)
 
   function selectedFirstRecipe() {
-    if (!MOCK_DATA) {
-      server.get('recipes').then(initialize)
-    } else {
-      const db = require('./stub/db.test.json')
-      const result = { data: { ...db } }
-      initialize(result)
-    }
+    server.get(`recipes?supermarket=${supermarket?.key}`).then(initialize)
   }
 
   function initialize(result) {
@@ -54,7 +47,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
     if (recipes.length > 0) {
       const recipe = recipes[0]
       setSelectedRecipe(recipe)
-      if (!MOCK_DATA) sync()
+      sync()
     }
     setSelectedOrder()
     setSelectedCategory()
@@ -73,6 +66,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
   }
 
   useEffect(selectedFirstRecipe, [])
+  useEffect(selectedFirstRecipe, [supermarket])
   useEffect(selectRecipe, [selectedRecipe])
 
   function selectRecipe() {
@@ -102,7 +96,10 @@ export default function RecipeCollection({ setRecipeTitle }) {
         const order = createOrder(selectedRecipes)
         document.cookie = `order=${JSON.stringify(order)}`
         const { data: newOrder } =
-          (await server.post('orders/', { recipes: selectedRecipes })) || {}
+          (await server.post('orders/', {
+            recipes: selectedRecipes,
+            supermarket: supermarket.key
+          })) || {}
         if (newOrder) setOrders((orders) => [...orders, newOrder])
       } catch (err) {
         alert(err.response.data)
@@ -121,7 +118,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
   }
 
   async function sync() {
-    const res = await server.get('recipes/sync')
+    const res = await server.get(`recipes/sync?supermarket=${supermarket.key}`)
     const recipes = res.data
     if (recipes && recipes !== '') {
       setRecipes(recipes)

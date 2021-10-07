@@ -11,23 +11,29 @@ class IngredientProductDb {
       .write()
   }
 
-  storeMapping(ingredient, product) {
+  storeMapping(ingredient, { id, title, ignore, notAvailable }, supermarket) {
     ingredient = ingredient.toLowerCase()
     return this.db
       .get(this.tableName)
       .find({
-        ingredient
+        ingredient,
+        supermarket
       })
-      .upsert({ ingredient, product })
+      .upsert({
+        ingredient,
+        supermarket,
+        product: { id, title, ignore, notAvailable }
+      })
       .write()
   }
 
-  getMapping(ingredient) {
+  getMapping(ingredient, supermarket) {
     ingredient = ingredient.toLowerCase()
     return this.db
       .get(this.tableName)
       .find({
-        ingredient
+        ingredient,
+        supermarket
       })
       .value()
   }
@@ -36,12 +42,14 @@ class IngredientProductDb {
     return this.db.get(this.tableName).value() || []
   }
 
-  async getMappings(...recipes) {
+  async getMappings(recipes, supermarket) {
     const mappings = await this.getAllMappings()
     return recipes.map(({ parsedIngredients, ...r }) => {
       parsedIngredients = parsedIngredients.map((i) => {
         const mapping = mappings.find(
-          (m) => m.ingredient === i.ingredient.toLowerCase()
+          (m) =>
+            m.ingredient === i.ingredient.toLowerCase() &&
+            m.supermarket === supermarket
         )
         const ing = Ingredient.createFromObject(i)
         const quantity = ing.quantityToOrder()

@@ -1,5 +1,5 @@
 import server from '../server'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Grid,
@@ -10,10 +10,13 @@ import {
   FormControlLabel,
   Checkbox,
   Button as MuiButton,
-  Link
+  Link,
+  Select,
+  MenuItem
 } from '@material-ui/core'
 import { Button } from '../styled'
 import PropTypes from 'prop-types'
+import RecipeContext from '../collection/RecipeProvider'
 
 const styles = makeStyles(() => ({
   input: {
@@ -34,6 +37,9 @@ export default function ProductSearch({
   const bareIngredient = selectedIngredient.ingredient
   const { product = {} } = selectedIngredient
 
+  const { supermarket, supermarkets, setSupermarket } =
+    useContext(RecipeContext)
+
   useEffect(doSearch, [selectedIngredient])
 
   function doSearch() {
@@ -41,13 +47,19 @@ export default function ProductSearch({
   }
 
   function selectProduct(completeProduct) {
-    const { id, title, price, ignore, notAvailable } = completeProduct
-    const newProduct = { id, title, price, ignore, notAvailable }
+    const { id, title, ignore, notAvailable } = completeProduct
+    const newProduct = {
+      id,
+      title,
+      ignore,
+      notAvailable
+    }
     setSelectedIngredient({ ...selectedIngredient, product: newProduct })
 
     server.post('products/choose', {
       ingredient: bareIngredient,
-      product: newProduct
+      product: newProduct,
+      supermarket: supermarket.key
     })
   }
 
@@ -72,6 +84,10 @@ export default function ProductSearch({
     product.notAvailable = checked
     product.ignore = false
     selectProduct(product)
+  }
+
+  function changeSupermarket(e) {
+    setSupermarket(e.target.value)
   }
 
   return (
@@ -117,6 +133,17 @@ export default function ProductSearch({
         }
         label="Not available"
       />
+      <Select
+        onChange={changeSupermarket}
+        value={supermarket}
+        style={{ marginLeft: 5 }}
+      >
+        {supermarkets.map((supermarket) => (
+          <MenuItem key={supermarket.key} value={supermarket}>
+            {supermarket.name}
+          </MenuItem>
+        ))}
+      </Select>
       <Grid item xs={12}>
         {products.length === 0 ? (
           <Typography color="secondary" style={{ paddingTop: 20 }}>
@@ -151,7 +178,7 @@ export default function ProductSearch({
                       target="_blank"
                     >
                       {item.title} ({item.price.unitSize}) €
-                      {item.price.now.toFixed(2)}
+                      {item.price.now && item.price.now.toFixed(2)}
                     </Link>
                   </div>
                 </MuiButton>

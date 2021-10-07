@@ -6,7 +6,7 @@
     "test": "jest server",
     "test:watch": "npm run test -- jest --watch --no-coverage --testPathIgnorePatterns=client/",
     "start": "node server/app.js",
-    "start:mock": "AH_API=ah-api.stub USE_MEMORY_DB=true node server/app.js",
+    "start:mock": "AH_API=ah.stub USE_MEMORY_DB=true node server/app.js",
     "test:api": "npm run start:mock & newman run api-tests/ShoppingAPItests.postman_collection.json -e api-tests/shopping.postman_environment.json",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
@@ -36,6 +36,7 @@
     "morgan": "~1.9.1",
     "node-gzip": "^1.1.2",
     "paprika-api": "^1.0.3",
+    "picnic-api": "^1.4.2",
     "request-promise": "^4.2.6",
     "uuidv1": "^1.6.14"
   },

@@ -25,7 +25,7 @@ export default function Recipe() {
   const [editOrAddRecipe, setEditOrAddRecipe] = useState()
   const listRef = useRef(null)
 
-  const { selectedRecipe, setSelectedRecipe, selectedOrder } =
+  const { selectedRecipe, setSelectedRecipe, selectedOrder, supermarket } =
     useContext(RecipeContext)
 
   const { uid: recipeId, parsedIngredients: ingredients } = selectedRecipe
@@ -75,7 +75,7 @@ export default function Recipe() {
   async function search(item, customSearch) {
     const query = customSearch || item.ingredient
     const searchResponse = await server.get(
-      `products?query=${query}&full=${selectedIngredient.ingredient}`
+      `products?supermarket=${supermarket.key}&query=${query}&full=${selectedIngredient.ingredient}`
     )
     const products = searchResponse.data
     setProducts(products)

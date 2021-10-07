@@ -1,31 +1,33 @@
 const express = require('express')
 const router = express.Router()
-const AhApi = require('../scripts/ah-api')
-let recipeDb, ingToProduct, api
+
+const createSupermarket = require('../scripts/supermarkets')
+
+let ingToProduct
 require('../scripts/db/tables')('./mongo-client').then((dbs) => {
-  ;({ recipeDb, ingToProduct } = dbs)
-  api = new AhApi(ingToProduct)
+  ;({ ingToProduct } = dbs)
 })
 
-router.get('/', async function (req, res) {
-  const products = await api
-    .search(req.query.query, req.query.full)
-    .catch((err) => {
-      console.log(err.message, err.error, err.stack)
-    })
+router.get('/', async (req, res) => {
+  const { supermarket, authKey, query, full } = req.query
+  const api = createSupermarket(supermarket, ingToProduct, authKey)
+  await api.login()
+  const products = await api.search(query, full).catch((err) => {
+    console.log(err.message, err.error, err.stack)
+  })
   res.send(products)
 })
 
-router.post('/choose', async function (req, res) {
-  ingToProduct
-    .storeMapping(req.body.ingredient, req.body.product)
-    .catch((err) => {
-      console.log(err)
-    })
+router.post('/choose', async (req, res) => {
+  const { ingredient, product, supermarket } = req.body
+  ingToProduct.storeMapping(ingredient, product, supermarket).catch((err) => {
+    console.log(err)
+  })
   res.send()
 })
 
-router.get('/:productId/product', async function (req, res) {
+router.get('/:productId/product', async (req, res) => {
+  const api = createSupermarket(req.query.supermarket, ingToProduct)
   const product = await api.getProduct(parseInt(req.params.productId))
   res.send(product)
 })

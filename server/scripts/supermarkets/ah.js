@@ -5,16 +5,21 @@ class AhApi {
     this.ingToProduct = ingToProduct
   }
 
+  login() {}
+
   async search(query, full) {
     const { data } = await axios.get(
       `https://www.ah.nl/zoeken/api/products/search?query=${query}`
     )
     const cards = data.cards
-    let products = cards.map((card) => card.products[0])
+    let products = cards
+      .map((card) => card.products[0])
+      .map(({ id, title, images, price }) => ({ id, title, images, price }))
+
     if (!full) {
       return products
     }
-    const mapping = await this.ingToProduct.getMapping(full)
+    const mapping = await this.ingToProduct.getMapping(full, 'ah')
     if (mapping && !mapping.product.ignore && !mapping.product.notAvailable) {
       const id = mapping.product.id
       let selectedProduct = products.find((p) => p.id === id)
@@ -39,6 +44,10 @@ class AhApi {
       .then(({ data }) => {
         return data.card.products.find((p) => p.id === id)
       })
+  }
+
+  order(recipes) {
+    // Products are ordered via chrome extension
   }
 }
 

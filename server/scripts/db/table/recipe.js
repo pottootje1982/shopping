@@ -20,14 +20,14 @@ class RecipeDb {
     })
   }
 
-  async translateRecipes(...recipes) {
+  async translateRecipes(recipes, supermarket) {
     recipes.forEach((recipe) => {
       if (recipe.parsedIngredients?.constructor.name !== 'Ingredients') {
         recipe.parsedIngredients = Ingredients.create(recipe.ingredients)
       }
     })
     recipes = await this.translationDb.translateRecipes(...recipes)
-    return this.ingToProduct.getMappings(...recipes)
+    return this.ingToProduct.getMappings(recipes, supermarket)
   }
 
   addCategoryNames(recipes, cats = []) {
@@ -46,10 +46,10 @@ class RecipeDb {
     })
   }
 
-  async getRecipes(categories) {
+  async getRecipes(categories, supermarket) {
     const recipes = await this.db.get('recipes').cloneDeep().value()
     const recipesWithCategoryNames = this.addCategoryNames(recipes, categories)
-    return this.translateRecipes(...recipesWithCategoryNames)
+    return this.translateRecipes(recipesWithCategoryNames, supermarket)
   }
 
   getRecipesRaw() {
@@ -62,7 +62,7 @@ class RecipeDb {
 
   async getRecipe(uid) {
     const recipe = await this.getRecipeRaw(uid)
-    const translated = await this.translateRecipes(recipe)
+    const translated = await this.translateRecipes([recipe])
     return translated[0]
   }
 
