@@ -39,3 +39,29 @@ it.skip('add supermarket to mappings', () => {
     JSON.stringify(updated)
   )
 })
+
+it.skip('add users to recipes', () => {
+  const recipes = require('./recipes.json')
+  const updated = recipes.map(({ ...recipe }) => ({
+    ...recipe,
+    user: 'wouterpot2@gmail.com'
+  }))
+
+  require('fs').writeFileSync(
+    path.join(__dirname, './recipes-updated.json'),
+    JSON.stringify(updated)
+  )
+})
+
+it.skip('add users to orders', () => {
+  const orders = require('./orders.json')
+  const updated = orders.map(({ ...order }) => ({
+    ...order,
+    user: 'wouterpot2@gmail.com'
+  }))
+
+  require('fs').writeFileSync(
+    path.join(__dirname, './orders-updated.json'),
+    JSON.stringify(updated)
+  )
+})

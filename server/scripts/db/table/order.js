@@ -9,25 +9,29 @@ class OrderDb extends Table {
     this.db.defaults({ orders: [] }).write()
   }
 
-  storeOrder(recipes) {
+  storeOrder(recipes, supermarket, user) {
     const date = getDateStr()
     recipes = recipes.map(({ uid, parsedIngredients }) => ({
       uid,
       parsedIngredients
     }))
-    const order = { date, recipes }
+    const order = { date, recipes, supermarket, user }
     return this.store(order)
   }
 
-  getOrder(uid) {
-    return this.db.get('orders').find({ uid }).cloneDeep().value()
+  getOrders(user) {
+    return this.db.get('orders').findAll({ user }).cloneDeep().value()
   }
 
-  deleteOrder(id) {
-    return this.remove({ _id: ObjectId(id) })
+  getOrder(user, uid) {
+    return this.db.get('orders').find({ user, uid }).cloneDeep().value()
   }
 
-  async getHydrated(recipes) {
+  deleteOrder(user, id) {
+    return this.remove({ user, _id: ObjectId(id) })
+  }
+
+  async getHydrated(user, recipes) {
     const getProduct = ({ parsedIngredients }, ing) => {
       const found = parsedIngredients.find(
         (i) => i.ingredient.toLowerCase() === ing.ingredient.toLowerCase()
@@ -38,7 +42,7 @@ class OrderDb extends Table {
       }
     }
 
-    const orders = await this.get()
+    const orders = await this.getOrders(user)
     for (const order of orders) {
       for (const orderedRecipe of order.recipes) {
         const recipe = recipes.find((r) => r.uid === orderedRecipe.uid)

@@ -2,7 +2,6 @@ const axios = require('axios')
 
 const PicnicClient = require('picnic-api')
 const { ImageSizes } = PicnicClient
-const { PICNIC_USER, PICNIC_PASS } = require('../../config')
 
 class PicnicApi {
   constructor(ingToProduct, authKey) {
@@ -11,7 +10,7 @@ class PicnicApi {
   }
 
   login(user, pass) {
-    return this.client.login(PICNIC_USER, PICNIC_PASS)
+    return this.client.login(user, pass)
   }
 
   async search(query, full) {
@@ -56,6 +55,13 @@ class PicnicApi {
     }
     console.log(items)
   }
+}
+
+PicnicApi.create = async (ingToProduct, userDb, mail) => {
+  const { picnicUser, picnicPass } = await userDb.getUser(mail)
+  const api = new PicnicApi(ingToProduct)
+  await api.login(picnicUser, picnicPass)
+  return api
 }
 
 module.exports = PicnicApi

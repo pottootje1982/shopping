@@ -6,7 +6,7 @@ describe('storeRecipe()', () => {
   beforeEach(async () => {
     ;({ orderDb, recipeDb } = await createDb(
       './memory-db',
-      './data/db.test.json'
+      './data/db.unit-test.json'
     ))
   })
 
@@ -16,7 +16,7 @@ describe('storeRecipe()', () => {
   })
 
   it('get hydrated', async () => {
-    const recipes = await recipeDb.getRecipes()
+    const recipes = await recipeDb.getRecipes(undefined, 'ah')
     let order = [
       {
         uid: '3fe04f98-8d73-4e9d-a7da-f4c1241aa3c4',
@@ -37,8 +37,9 @@ describe('storeRecipe()', () => {
         ]
       }
     ]
-    await orderDb.storeOrder(order)
-    const orders = await orderDb.getHydrated(recipes)
+    const user = 'henry jones'
+    await orderDb.storeOrder(order, 'ah', user)
+    const orders = await orderDb.getHydrated(user, recipes)
     expect(orders.length).toBe(1)
     order = orders[0]
     expect(order.date).toBeDefined()

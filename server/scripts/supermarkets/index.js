@@ -1,7 +1,6 @@
-function createSupermarket(name, ingToProduct)
-{
-  const supermarket = require(`./${name}`)
-  return new supermarket(ingToProduct)
+function createSupermarket(name, ingToProduct, userDb, mail) {
+  const { create } = require(`./${name}`)
+  return create(ingToProduct, userDb, mail)
 }
 
 module.exports = createSupermarket

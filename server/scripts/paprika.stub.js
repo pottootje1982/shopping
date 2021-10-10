@@ -1,5 +1,5 @@
 class Paprika {
-  constructor(_paprikaApi, db) {
+  constructor(db) {
     this.recipeDb = db
   }
 
@@ -49,6 +49,10 @@ class Paprika {
   synchronize() {
     return true
   }
+}
+
+Paprika.create = async (recipeDb) => {
+  return new Paprika(recipeDb)
 }
 
 module.exports = Paprika

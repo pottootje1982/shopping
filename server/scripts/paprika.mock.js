@@ -41,7 +41,7 @@ class PaprikaApiStub {
         photo_url: null,
         cook_time: '',
         name: 'Zalm met prei 2',
-        created: '2019-08-29 11:30:47', // newer timestamp than the one in db.test.json
+        created: '2019-08-29 11:30:47', // newer timestamp than the one in db.unit-test.json
         notes: '',
         photo_large: null,
         image_url: null,

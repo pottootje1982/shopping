@@ -597,6 +597,7 @@
   "ing-to-product": [
     {
       "ingredient": "prei",
+      "supermarket": "ah",
       "product": {
         "id": 171425,
         "title": "AH Prei",
@@ -605,6 +606,7 @@
     },
     {
       "ingredient": "dille",
+      "supermarket": "ah",
       "product": {
         "id": 238966,
         "title": "AH Dille",
@@ -617,6 +619,7 @@
     },
     {
       "ingredient": "tomaten",
+      "supermarket": "ah",
       "product": {
         "id": 395307,
         "title": "AH Biologisch Tomatenblokjes",
@@ -629,6 +632,7 @@
     },
     {
       "ingredient": "zalm",
+      "supermarket": "ah",
       "product": {
         "id": 51335,
         "title": "AH Zalmfilet",
@@ -641,6 +645,7 @@
     },
     {
       "ingredient": "aardappels",
+      "supermarket": "ah",
       "product": {
         "id": 111388,
         "title": "AH Kilo'tje iets kruimige aardappelen",
@@ -654,6 +659,7 @@
     },
     {
       "ingredient": "koriander",
+      "supermarket": "ah",
       "product": {
         "id": 238968,
         "title": "AH Koriander",
@@ -666,6 +672,7 @@
     },
     {
       "ingredient": "citroen",
+      "supermarket": "ah",
       "product": {
         "id": 190654,
         "title": "AH Biologisch Citroen"
@@ -673,6 +680,7 @@
     },
     {
       "ingredient": "couscous",
+      "supermarket": "ah",
       "product": {
         "id": 395654,
         "title": "AH Biologisch Couscous"
@@ -680,6 +688,7 @@
     },
     {
       "ingredient": "pijnboompitten",
+      "supermarket": "ah",
       "product": {
         "id": 415609,
         "title": "AH Pijnboompitten",
@@ -689,6 +698,7 @@
     },
     {
       "ingredient": "kleine courgette",
+      "supermarket": "ah",
       "product": {
         "id": 185202,
         "title": "AH Biologisch Courgette"
@@ -696,10 +706,12 @@
     },
     {
       "ingredient": "dille",
+      "supermarket": "ah",
       "product": { "id": 238966, "title": "AH Dille", "quantity": 1 }
     },
     {
       "ingredient": "sterke groentebouillon",
+      "supermarket": "ah",
       "product": {
         "id": 388183,
         "title": "AH Groentebouillon"
@@ -707,6 +719,7 @@
     },
     {
       "ingredient": "schelvis",
+      "supermarket": "ah",
       "product": {
         "id": 155601,
         "title": "AH Schelvisfilet"

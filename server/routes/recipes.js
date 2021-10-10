@@ -3,17 +3,21 @@ const router = express.Router()
 const { PAPRIKA_API } = require('../config')
 
 const Paprika = require(PAPRIKA_API)
-let recipeDb, translationsDb, ingToProduct, paprika, orderDb
+let recipeDb, translationsDb, ingToProduct, orderDb, userDb
 require('../scripts/db/tables')('./mongo-client').then((dbs) => {
-  ;({ recipeDb, ingToProduct, translationsDb, orderDb } = dbs)
-  paprika = new Paprika(null, recipeDb)
+  ;({ recipeDb, ingToProduct, translationsDb, orderDb, userDb } = dbs)
 })
 
 const Translator = require('../scripts/translator')
 
 router.get('/', async (req, res) => {
+  const paprika = await Paprika.create(recipeDb, userDb, req.user)
   const categories = await paprika.categories()
-  const recipes = await recipeDb.getRecipes(categories, req.query.supermarket)
+  const recipes = await recipeDb.getRecipes(
+    categories,
+    req.query.supermarket,
+    req.user
+  )
   const orders = await orderDb.getHydrated(recipes)
   res.send({ recipes, orders, categories })
 })
@@ -21,6 +25,7 @@ router.get('/', async (req, res) => {
 router.put('/', async (req, res) => {
   let recipe = req.body
   recipe = await recipeDb.editRecipe(recipe)
+  const paprika = await Paprika.create(recipeDb, userDb, req.user)
   paprika.updateRecipe(recipe)
   recipe ? res.send(await recipeDb.getRecipe(recipe.uid)) : res.sendStatus(404)
 })
@@ -46,12 +51,14 @@ const defaultRecipe = {
 router.post('/', async (req, res) => {
   const recipe = { ...defaultRecipe, ...req.body }
   await recipeDb.addRecipe(recipe)
+  const paprika = await Paprika.create(recipeDb, userDb, req.user)
   await paprika.updateRecipe(recipe)
   res.send(await recipeDb.getRecipe(recipe.uid))
 })
 
 router.delete('/', async (req, res) => {
   const recipes = req.body
+  const paprika = await Paprika.create(recipeDb, userDb, req.user)
   const successes = await Promise.all(
     recipes.map(async (recipe) => {
       const success = await paprika.deleteRecipe(req.body)
@@ -63,14 +70,20 @@ router.delete('/', async (req, res) => {
 })
 
 router.get('/sync', async (req, res) => {
+  const paprika = await Paprika.create(recipeDb, userDb, req.user)
   await paprika.synchronize(await recipeDb.getRecipesRaw())
   const categories = await paprika.categories()
-  const recipes = await recipeDb.getRecipes(categories, req.query.supermarket)
+  const recipes = await recipeDb.getRecipes(
+    categories,
+    req.query.supermarket,
+    req.user
+  )
   res.send(recipes)
 })
 
 router.post('/download', async (req, res) => {
   const url = req.body.url
+  const paprika = await Paprika.create(recipeDb, userDb, req.user)
   const recipe = await paprika.downloadRecipe(url)
   if (recipe) {
     await recipeDb.translateRecipes([recipe])

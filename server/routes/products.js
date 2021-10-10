@@ -1,17 +1,16 @@
 const express = require('express')
 const router = express.Router()
 
-const createSupermarket = require('../scripts/supermarkets')
+const create = require('../scripts/supermarkets')
 
-let ingToProduct
+let ingToProduct, userDb
 require('../scripts/db/tables')('./mongo-client').then((dbs) => {
-  ;({ ingToProduct } = dbs)
+  ;({ ingToProduct, userDb } = dbs)
 })
 
 router.get('/', async (req, res) => {
-  const { supermarket, authKey, query, full } = req.query
-  const api = createSupermarket(supermarket, ingToProduct, authKey)
-  await api.login()
+  const { supermarket, query, full } = req.query
+  const api = await create(supermarket, ingToProduct, userDb, req.user)
   const products = await api.search(query, full).catch((err) => {
     console.log(err.message, err.error, err.stack)
   })
@@ -27,7 +26,8 @@ router.post('/choose', async (req, res) => {
 })
 
 router.get('/:productId/product', async (req, res) => {
-  const api = createSupermarket(req.query.supermarket, ingToProduct)
+  const { mail, query } = req
+  const api = await create(query.supermarket, ingToProduct, userDb, mail)
   const product = await api.getProduct(parseInt(req.params.productId))
   res.send(product)
 })

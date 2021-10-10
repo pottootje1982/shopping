@@ -46,8 +46,12 @@ class RecipeDb {
     })
   }
 
-  async getRecipes(categories, supermarket) {
-    const recipes = await this.db.get('recipes').cloneDeep().value()
+  async getRecipes(categories, supermarket, user) {
+    const recipes = await this.db
+      .get('recipes')
+      .findAll({ $or: [{ user }, { user: null }] })
+      .cloneDeep()
+      .value()
     const recipesWithCategoryNames = this.addCategoryNames(recipes, categories)
     return this.translateRecipes(recipesWithCategoryNames, supermarket)
   }

@@ -9,9 +9,7 @@ import {
   TextField,
   IconButton
 } from '@material-ui/core'
-import EditIcon from '@material-ui/icons/Edit'
-import TranslateIcon from '@material-ui/icons/Translate'
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
+import { Edit, Translate, ShoppingCart } from '@material-ui/icons'
 import ProductSearch from '../shopping-results'
 import EditAddRecipe from './edit-add-recipe'
 import { blue, green, grey } from '@material-ui/core/colors'
@@ -133,10 +131,10 @@ export default function Recipe() {
     <Fragment>
       <Grid container item xs={2} spacing={1}>
         <Fab onClick={(e) => translate(recipeId)}>
-          <TranslateIcon />
+          <Translate />
         </Fab>
         <Fab onClick={editRecipeClick}>
-          <EditIcon />
+          <Edit />
         </Fab>
         <Grid item xs={12} style={{ minHeight: '75vh' }}>
           <Paper style={{ backgroundColor: blue[50] }}>
@@ -220,7 +218,7 @@ export default function Recipe() {
                           transform: 'scale(.7)'
                         }}
                       >
-                        <ShoppingCartIcon />
+                        <ShoppingCart />
                       </IconButton>
                     </ListItem>
                   )

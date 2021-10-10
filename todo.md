@@ -4,6 +4,10 @@
 - users
 - multiple supermarkets
 
+# Refactor
+
+- clean up orders mongo table (remove garbage from product)
+
 # Improvements
 
 - favourite recipes

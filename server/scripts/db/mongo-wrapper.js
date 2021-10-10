@@ -37,6 +37,11 @@ class MongoTableWrapper {
     return this
   }
 
+  findAll(query) {
+    this.queryAll = query
+    return this
+  }
+
   cloneDeep() {
     return this
   }
@@ -67,9 +72,10 @@ class MongoTableWrapper {
     return this
   }
 
-  async value() {
-    if (this.query) return await this.table.findOne(this.query)
-    return await this.table.find().toArray()
+  value() {
+    if (this.query) return this.table.findOne(this.query)
+    else if (this.queryAll) return this.table.find(this.queryAll).toArray()
+    return this.table.find().toArray()
   }
 
   write() {

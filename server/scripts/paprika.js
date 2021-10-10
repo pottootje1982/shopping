@@ -1,5 +1,5 @@
 const { PaprikaApi } = require('paprika-api')
-const { PAPRIKA_USER, PAPRIKA_PASS } = require('../config')
+const PaprikaStub = require('./paprika.stub')
 
 const fs = require('fs')
 const zlib = require('zlib')
@@ -74,8 +74,8 @@ function compare(cat1, cat2) {
 }
 
 class Paprika {
-  constructor(paprikaApi, db) {
-    this.paprikaApi = paprikaApi || new PaprikaApi(PAPRIKA_USER, PAPRIKA_PASS)
+  constructor(db, user, pass) {
+    this.paprikaApi = new PaprikaApi(user, pass)
     this.recipeDb = db
   }
 
@@ -151,6 +151,12 @@ class Paprika {
     }
     return insertToLocal.length > 0
   }
+}
+
+Paprika.create = async (recipeDb, userDb, mail) => {
+  const { paprikaUser, paprikaPass } = userDb.getUser(mail)
+  if (paprikaUser) return new paprika(recipeDb, paprikaUser, paprikaPass)
+  else return new PaprikaStub(recipeDb)
 }
 
 module.exports = Paprika

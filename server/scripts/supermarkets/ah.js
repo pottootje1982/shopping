@@ -51,4 +51,8 @@ class AhApi {
   }
 }
 
+AhApi.create = async (ingToProduct) => {
+  return new AhApi(ingToProduct)
+}
+
 module.exports = AhApi

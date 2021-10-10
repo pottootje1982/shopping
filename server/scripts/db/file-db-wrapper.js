@@ -34,6 +34,10 @@ class FileTableWrapper {
     return this
   }
 
+  findAll() {
+    return this
+  }
+
   cloneDeep() {
     this.table = this.table.cloneDeep()
     return this

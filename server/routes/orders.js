@@ -2,28 +2,28 @@
 
 const express = require('express')
 const router = express.Router()
-let orderDb, ingToProduct
-const createSupermarket = require('../scripts/supermarkets')
+let orderDb, ingToProduct, userDb
+const create = require('../scripts/supermarkets')
 
 require('../scripts/db/tables')('./mongo-client').then((dbs) => {
-  ;({ orderDb, ingToProduct } = dbs)
+  ;({ orderDb, ingToProduct, userDb } = dbs)
 })
 
 router.get('/', async (_req, res) => {
-  const orders = await orderDb.get()
+  const orders = await orderDb.get(req.user)
   res.send(orders)
 })
 
 router.delete('/:id', async (req, res) => {
   const { id } = req.params
-  const response = await orderDb.deleteOrder(id)
+  const response = await orderDb.deleteOrder(req.user, id)
   res.status(response.deletedCount > 0 ? 204 : 404).send(response.result)
 })
 
 const path = require('path')
 const fs = require('fs')
 
-router.get('/extension', async (req, res) => {
+router.get('/extension', async (_req, res) => {
   const file = path.join(__dirname, '/../extension.crx')
 
   const filename = path.basename(file)
@@ -39,10 +39,9 @@ router.get('/extension', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const { recipes, supermarket } = req.body
-  const api = createSupermarket(supermarket, ingToProduct)
-  await api.login()
+  const api = await create(supermarket, ingToProduct, userDb, req.user)
   await api.order(recipes)
-  const response = await orderDb.storeOrder(recipes)
+  const response = await orderDb.storeOrder(recipes, supermarket, req.user)
   const success = response.insertedCount > 0
   res.status(success ? 201 : 400).send(success && response.ops[0])
 })

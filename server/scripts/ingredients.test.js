@@ -3,7 +3,10 @@ const createDb = require('./db/tables')
 
 describe('Ingredient', () => {
   async function getRecipes() {
-    const { recipeDb } = await createDb('./memory-db', './data/db.test.json')
+    const { recipeDb } = await createDb(
+      './memory-db',
+      './data/db.unit-test.json'
+    )
     return recipeDb.getRecipes()
   }
 
@@ -151,7 +154,7 @@ describe('Ingredient', () => {
     expect(i.all).toEqual(expected)
   }
 
-  it('validations from recipes from db.test.json', () => {
+  it('validations from recipes from db.unit-test.json', () => {
     // equals("2 400g cans cherry tomatoes", [2, "400g cans", "cherry tomatoes"])
     // equals(
     //   "2 handfuls of a mixed pack of sweetcorn, peas, broccoli and carrots",

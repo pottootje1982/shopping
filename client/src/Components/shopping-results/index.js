@@ -135,7 +135,7 @@ export default function ProductSearch({
       />
       <Select
         onChange={changeSupermarket}
-        value={supermarket}
+        value={supermarkets.find((s) => s.key === supermarket.key)}
         style={{ marginLeft: 5 }}
       >
         {supermarkets.map((supermarket) => (

@@ -4,16 +4,16 @@ describe('storeRecipe()', () => {
   let recipeDb
 
   beforeAll(async () => {
-    ;({ recipeDb } = await createDb('./memory-db', './data/db.test.json'))
+    ;({ recipeDb } = await createDb('./memory-db', './data/db.unit-test.json'))
   })
 
   it('get recipes', async () => {
-    const recipes = await recipeDb.getRecipes()
+    const recipes = await recipeDb.getRecipes(undefined, 'ah')
     expect(recipes.length).toEqual(12)
   })
 
   it('mappings are set', async () => {
-    const recipes = await recipeDb.getRecipes()
+    const recipes = await recipeDb.getRecipes(undefined, 'ah')
     const recipe = recipes[3]
     expect(recipe.uid).toBe('a4623ba1-8bf2-439d-b8bb-4c95c4aa8b18')
     // Not for all translated ingredients there are mappings

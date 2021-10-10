@@ -7,7 +7,7 @@ describe('storeTranslations()', () => {
   beforeEach(async () => {
     ;({ translationsDb, recipeDb } = await createDb(
       './memory-db',
-      'data/db.test.json'
+      'data/db.unit-test.json'
     ))
     translationsDb.storeTranslations(
       [

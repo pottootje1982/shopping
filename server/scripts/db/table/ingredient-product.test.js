@@ -7,13 +7,13 @@ describe('storeMapping()', () => {
   beforeEach(async () => {
     ;({ recipeDb, ingToProduct } = await createDb(
       './memory-db',
-      './data/db.test.json'
+      './data/db.unit-test.json'
     ))
   })
 
   it('retrieves stored translations', async () => {
-    ingToProduct.storeMapping('Prei', { id: 1273124, title: 'prei' })
-    const mapping = await ingToProduct.getMapping('pRei')
+    ingToProduct.storeMapping('Prei', { id: 1273124, title: 'prei' }, 'ah')
+    const mapping = await ingToProduct.getMapping('pRei', 'ah')
     expect(mapping.product).toEqual({
       id: 1273124,
       title: 'prei'
@@ -21,15 +21,15 @@ describe('storeMapping()', () => {
   })
 
   it('updates stored translations', async () => {
-    ingToProduct.storeMapping('prei', { id: 1273124, title: 'prei' })
-    const mapping = ingToProduct.getMapping('prei')
+    ingToProduct.storeMapping('prei', { id: 1273124, title: 'prei' }, 'ah')
+    const mapping = ingToProduct.getMapping('prei', 'ah')
     expect(mapping.product).toEqual({
       id: 1273124,
       title: 'prei'
     })
 
-    ingToProduct.storeMapping('prei', { id: 4, title: 'AH prei' })
-    expect(ingToProduct.getMapping('prei').product).toEqual({
+    ingToProduct.storeMapping('prei', { id: 4, title: 'AH prei' }, 'ah')
+    expect(ingToProduct.getMapping('prei', 'ah').product).toEqual({
       id: 4,
       title: 'AH prei'
     })
@@ -39,12 +39,12 @@ describe('storeMapping()', () => {
     const recipe = await recipeDb.getRecipe(
       '3fe04f98-8d73-4e9d-a7da-f4c1241aa3c4'
     )
-    ingToProduct.storeMapping('Prei', { id: 1273124 })
-    ingToProduct.storeMapping('zalm', { id: 1 })
-    ingToProduct.storeMapping('dille', { id: 2 })
-    ingToProduct.storeMapping('aardappels', { id: 3 })
+    ingToProduct.storeMapping('Prei', { id: 1273124 }, 'ah')
+    ingToProduct.storeMapping('zalm', { id: 1 }, 'ah')
+    ingToProduct.storeMapping('dille', { id: 2 }, 'ah')
+    ingToProduct.storeMapping('aardappels', { id: 3 }, 'ah')
 
-    const recipes = await ingToProduct.getMappings(recipe)
+    const recipes = await ingToProduct.getMappings([recipe], 'ah')
     expect(recipes).toMatchSnapshot()
   })
 })
