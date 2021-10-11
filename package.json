@@ -36,6 +36,7 @@
     "node-gzip": "^1.1.2",
     "paprika-api": "^1.0.3",
     "picnic-api": "^1.4.2",
+    "ramda": "^0.27.1",
     "request-promise": "^4.2.6",
     "uuidv1": "^1.6.14"
   },

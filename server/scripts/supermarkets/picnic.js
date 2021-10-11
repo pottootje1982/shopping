@@ -1,11 +1,10 @@
-const axios = require('axios')
-
 const PicnicClient = require('picnic-api')
 const { ImageSizes } = PicnicClient
+const Supermarket = require('./supermarket')
 
-class PicnicApi {
+class PicnicApi extends Supermarket {
   constructor(ingToProduct, authKey) {
-    this.ingToProduct = ingToProduct
+    super(ingToProduct, 'picnic')
     this.client = new PicnicClient({ authKey })
   }
 
@@ -14,22 +13,34 @@ class PicnicApi {
   }
 
   async search(query, full) {
-    const products = await this.client.search(query)
+    const products = await this.client.search(query).then((products) =>
+      products
+        .map(({ items }) => items)
+        .flat(1)
+        .map((p) => this.convertProduct(p))
+        .filter(({ title }) => title)
+    )
 
-    return products
-      .map(({ items }) => items)
-      .flat(1)
-      .map(({ id, name, price, image_id, unit_quantity }) => ({
-        id,
-        title: name,
-        price: { now: price / 100.0, unitSize: unit_quantity },
-        images: [
-          {
-            url: this.getImageUri(image_id, ImageSizes.SMALL)
-          }
-        ]
-      }))
-      .filter(({ title }) => title)
+    return this.getSelected(full, products)
+  }
+
+  convertProduct({ id, name, price, image_id, unit_quantity, product_id }) {
+    return {
+      id: id || product_id,
+      title: name,
+      price: { now: price / 100.0, unitSize: unit_quantity },
+      images: [
+        {
+          url: this.getImageUri(image_id, ImageSizes.SMALL)
+        }
+      ]
+    }
+  }
+
+  async getProduct(id) {
+    const { products } = (await this.client.getProduct(id)) || {}
+    if (products.length === 0) return
+    return this.convertProduct(products[0])
   }
 
   getImageUri(imageId, size) {
@@ -37,30 +48,32 @@ class PicnicApi {
     return `${alternateRoute}/static/images/${imageId}/${size}.png`
   }
 
-  getProduct(id) {
-    return axios
-      .get(`https://www.ah.nl/zoeken/api/products/product?webshopId=${id}`)
-      .then(({ data }) => {
-        return data.card.products.find((p) => p.id === id)
-      })
-  }
-
   async order(recipes) {
     const items = recipes
       .map(({ parsedIngredients }) => parsedIngredients)
       .flat(1)
-      .map(({ product: { id }, quantity }) => ({ id, quantity }))
-    for (const { id, quantity } of items) {
-      await this.client.addProductToShoppingCart(id, quantity)
+      .map(({ product, ...rest }) => ({ ...product, ...rest }))
+    const result = []
+    for (const { id, quantity } of items.filter(
+      ({ id, notAvailable, ignore }) => id && !notAvailable && !ignore
+    )) {
+      try {
+        await this.client.addProductToShoppingCart(id, quantity)
+        result.push({ id, quantity, status: 'OK' })
+      } catch (err) {
+        result.push({ id, quantity, status: err.message })
+      }
     }
-    console.log(items)
+    return result
   }
 }
 
 PicnicApi.create = async (ingToProduct, userDb, mail) => {
-  const { picnicUser, picnicPass } = await userDb.getUser(mail)
+  const { picnicUser, picnicPass } = (await userDb.getUser(mail)) || {}
   const api = new PicnicApi(ingToProduct)
-  await api.login(picnicUser, picnicPass)
+  if (picnicUser && picnicPass) {
+    await api.login(picnicUser, picnicPass)
+  }
   return api
 }
 

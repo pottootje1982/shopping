@@ -13,14 +13,12 @@ const app = express()
 
 async function getUser(req) {
   if (req.headers.authorization) {
-    try {
-      const {
-        data: { email }
-      } = await axios.get(
+    const { data: { email } = {} } = await axios
+      .get(
         `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${req.headers.authorization}`
       )
-      return email
-    } catch {}
+      .catch(() => ({}))
+    return email
   }
 }
 

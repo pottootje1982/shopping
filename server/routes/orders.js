@@ -42,8 +42,7 @@ router.post('/', async (req, res) => {
   const api = await create(supermarket, ingToProduct, userDb, req.user)
   await api.order(recipes)
   const response = await orderDb.storeOrder(recipes, supermarket, req.user)
-  const success = response.insertedCount > 0
-  res.status(success ? 201 : 400).send(success && response.ops[0])
+  res.status(201).send(response)
 })
 
 module.exports = router

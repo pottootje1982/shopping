@@ -12,7 +12,8 @@ router.get('/', async (req, res) => {
   const { supermarket, query, full } = req.query
   const api = await create(supermarket, ingToProduct, userDb, req.user)
   const products = await api.search(query, full).catch((err) => {
-    console.log(err.message, err.error, err.stack)
+    console.log(`Searching for ${query} failed: ${err.message}`)
+    return []
   })
   res.send(products)
 })

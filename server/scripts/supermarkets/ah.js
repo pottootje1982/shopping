@@ -1,8 +1,9 @@
 const axios = require('axios')
+const Supermarket = require('./supermarket')
 
-class AhApi {
+class AhApi extends Supermarket {
   constructor(ingToProduct) {
-    this.ingToProduct = ingToProduct
+    super(ingToProduct, 'ah')
   }
 
   login() {}
@@ -16,26 +17,7 @@ class AhApi {
       .map((card) => card.products[0])
       .map(({ id, title, images, price }) => ({ id, title, images, price }))
 
-    if (!full) {
-      return products
-    }
-    const mapping = await this.ingToProduct.getMapping(full, 'ah')
-    if (mapping && !mapping.product.ignore && !mapping.product.notAvailable) {
-      const id = mapping.product.id
-      let selectedProduct = products.find((p) => p.id === id)
-      const withoutSelected = products.filter((p) => p.id !== id)
-      if (!selectedProduct) {
-        try {
-          selectedProduct = await this.getProduct(id)
-        } catch (err) {
-          console.log(err)
-        }
-      }
-      products = selectedProduct
-        ? [selectedProduct, ...withoutSelected]
-        : products
-    }
-    return products
+    return this.getSelected(full, products)
   }
 
   getProduct(id) {

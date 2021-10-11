@@ -11,16 +11,18 @@ class UserDb extends Table {
   }
 
   async getUser(mail) {
-    let user = await this.db.get('users').find({ mail }).cloneDeep().value()
-    user.picnicPass = decrypt(user.picnicPass)
-    user.paprikaPass = decrypt(user.paprikaPass)
-    return user
+    if (!mail) return
+    const user = await this.db.get('users').find({ mail }).cloneDeep().value()
+    let { picnicPass, paprikaPass } = user
+    picnicPass = picnicPass && decrypt(picnicPass)
+    paprikaPass = paprikaPass && decrypt(paprikaPass)
+    return { ...user, picnicPass, paprikaPass }
   }
 
   storeUser(userMail, user) {
     let { picnicPass, paprikaPass } = user
-    picnicPass = encrypt(picnicPass)
-    paprikaPass = encrypt(paprikaPass)
+    picnicPass = picnicPass && encrypt(picnicPass)
+    paprikaPass = paprikaPass && encrypt(paprikaPass)
     return this.db
       .get(this.tableName)
       .find({

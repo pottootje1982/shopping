@@ -19,6 +19,7 @@
 
 # Bugs
 
+- add rashers as unit
 - Don't translate from any language: for instance 'mirin' is now translated as 'dood', because it comes from 'Kurdish'
 - Fix translations
 - Fix downloads

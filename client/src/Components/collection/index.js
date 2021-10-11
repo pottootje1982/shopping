@@ -94,7 +94,9 @@ export default function RecipeCollection({ setRecipeTitle }) {
     if (isOk && event.nativeEvent.key !== 'Escape') {
       try {
         const order = createOrder(selectedRecipes)
-        document.cookie = `order=${JSON.stringify(order)}`
+        if (supermarket === 'ah') {
+          document.cookie = `order=${JSON.stringify(order)}`
+        }
         const { data: newOrder } =
           (await server.post('orders/', {
             recipes: selectedRecipes,
@@ -126,7 +128,8 @@ export default function RecipeCollection({ setRecipeTitle }) {
   }
 
   function showOrderDialog() {
-    if (!getCookie('HAS_SHOPPING_EXTENSION')) setNoTokenOpen(true)
+    if (supermarket.key === 'ah' && !getCookie('HAS_SHOPPING_EXTENSION'))
+      setNoTokenOpen(true)
     else if (selectedRecipes.length === 0) {
       alert('Please select recipes before ordering')
     } else setOpen(true)

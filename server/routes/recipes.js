@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { PAPRIKA_API } = require('../config')
+const { uniqBy } = require('ramda')
 
 const Paprika = require(PAPRIKA_API)
 let recipeDb, translationsDb, ingToProduct, orderDb, userDb
@@ -19,7 +20,8 @@ router.get('/', async (req, res) => {
     req.user
   )
   const orders = await orderDb.getHydrated(recipes)
-  res.send({ recipes, orders, categories })
+  const uniqRecipes = uniqBy((r) => r.uid, recipes)
+  res.send({ recipes: uniqRecipes, orders, categories })
 })
 
 router.put('/', async (req, res) => {
@@ -78,7 +80,8 @@ router.get('/sync', async (req, res) => {
     req.query.supermarket,
     req.user
   )
-  res.send(recipes)
+  const uniqRecipes = uniqBy((r) => r.uid, recipes)
+  res.send(uniqRecipes)
 })
 
 router.post('/download', async (req, res) => {
