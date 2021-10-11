@@ -28,7 +28,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d306" },
@@ -59,7 +60,8 @@
     "image_url": null,
     "prep_time": "15 minuten",
     "servings": "2",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d307" },
@@ -93,7 +95,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--327515_12.jpg?itok=ZqsycSvB",
     "prep_time": "10 min",
     "servings": "6",
-    "nutritional_info": "kcalories 225\nprotein 10g\ncarbs 8g\nfat 17g\nsaturates 5g\nfibre 5g\nsugar 7g\nsalt 0.52g"
+    "nutritional_info": "kcalories 225\nprotein 10g\ncarbs 8g\nfat 17g\nsaturates 5g\nfibre 5g\nsugar 7g\nsalt 0.52g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d308" },
@@ -124,7 +127,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/trout.jpg?itok=zA-BFHBu",
     "prep_time": "10 min",
     "servings": "2",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d309" },
@@ -155,7 +159,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/user-collections/my-colelction-image/2015/12/smoky-hake-beans-greens-with-quick-garlic-mayonnaise.jpg?itok=d-YdLbU4",
     "prep_time": "15 min",
     "servings": "2",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d30a" },
@@ -186,7 +191,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--513547_11.jpg",
     "prep_time": "5 min",
     "servings": "4",
-    "nutritional_info": "kcalories 191\nprotein 30g\ncarbs 9g\nfat 5g\nsaturates 1g\nfibre 2g\nsugar 6g\nsalt 0.54g"
+    "nutritional_info": "kcalories 191\nprotein 30g\ncarbs 9g\nfat 5g\nsaturates 1g\nfibre 2g\nsugar 6g\nsalt 0.54g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d30b" },
@@ -217,7 +223,8 @@
     "image_url": "https://static.ah.nl/static/recepten/img_073452_890x594_JPG.jpg",
     "prep_time": "",
     "servings": "",
-    "nutritional_info": "Voedingswaarden\n(per stuk)\nenergie 95 kcal\neiwit 3 g\nkoolhydraten 13 g\nvet 3 g\nwaarvan verzadigd 0 g\nnatrium 50 mg\nvezels 1 g"
+    "nutritional_info": "Voedingswaarden\n(per stuk)\nenergie 95 kcal\neiwit 3 g\nkoolhydraten 13 g\nvet 3 g\nwaarvan verzadigd 0 g\nnatrium 50 mg\nvezels 1 g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d30c" },
@@ -248,7 +255,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--1227451_8.jpg?itok=5Oy_K3YG",
     "prep_time": "20 min",
     "servings": "8 individual pies",
-    "nutritional_info": "kcalories 498\nprotein 23g\ncarbs 45g\nfat 25g\nsaturates 15g\nfibre 7g\nsugar 9g\nsalt 1.2g"
+    "nutritional_info": "kcalories 498\nprotein 23g\ncarbs 45g\nfat 25g\nsaturates 15g\nfibre 7g\nsugar 9g\nsalt 1.2g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d30d" },
@@ -279,7 +287,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d30e" },
@@ -310,7 +319,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d30f" },
@@ -341,7 +351,8 @@
     "image_url": null,
     "prep_time": null,
     "servings": null,
-    "nutritional_info": null
+    "nutritional_info": null,
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d310" },
@@ -372,7 +383,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/classic-lasange.jpg?itok=ZGxQm3qj",
     "prep_time": "15 min",
     "servings": "4 - 6",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d311" },
@@ -403,7 +415,8 @@
     "image_url": "",
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d312" },
@@ -434,7 +447,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d313" },
@@ -465,7 +479,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--929470_11.jpg?itok=WoKz-qXT",
     "prep_time": "10 min",
     "servings": "4",
-    "nutritional_info": "kcalories 531\nprotein 48g\ncarbs 32g\nfat 22g\nsaturates 4g\nfibre 7g\nsugar 9g\nsalt 2.2g"
+    "nutritional_info": "kcalories 531\nprotein 48g\ncarbs 32g\nfat 22g\nsaturates 4g\nfibre 7g\nsugar 9g\nsalt 2.2g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d314" },
@@ -496,7 +511,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/one-pan-tikka-salmon-jewelled-rice.jpg?itok=j9GrJoeu",
     "prep_time": "10 min",
     "servings": "3",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d315" },
@@ -527,7 +543,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d316" },
@@ -558,7 +575,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--1283455_8.jpg?itok=w9r_MhXS",
     "prep_time": "20 min",
     "servings": "2",
-    "nutritional_info": "kcalories 490\nprotein 36g\ncarbs 45g\nfat 17g\nsaturates 3g\nfibre 10g\nsugar 8g\nsalt 0.8g"
+    "nutritional_info": "kcalories 490\nprotein 36g\ncarbs 45g\nfat 17g\nsaturates 3g\nfibre 10g\nsugar 8g\nsalt 0.8g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d317" },
@@ -589,7 +607,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--908509_10.jpg",
     "prep_time": "10 min",
     "servings": "4",
-    "nutritional_info": "kcalories 216\nprotein 12.3g\ncarbs 31g\nfat 5.1g\nsaturates 0.7g\nfibre 9.8g\nsugar 16.1g\nsalt 1.6g"
+    "nutritional_info": "kcalories 216\nprotein 12.3g\ncarbs 31g\nfat 5.1g\nsaturates 0.7g\nfibre 9.8g\nsugar 16.1g\nsalt 1.6g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d318" },
@@ -620,7 +639,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/egg-curry.jpg?itok=lK2BPmcc",
     "prep_time": "10 min",
     "servings": "4",
-    "nutritional_info": "kcalories 782\nprotein 30g\ncarbs 85g\nfat 35g\nsaturates 6g\nfibre 7g\nsugar 15g\nsalt 0.6g"
+    "nutritional_info": "kcalories 782\nprotein 30g\ncarbs 85g\nfat 35g\nsaturates 6g\nfibre 7g\nsugar 15g\nsalt 0.6g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d319" },
@@ -651,7 +671,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d31a" },
@@ -682,7 +703,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--14784_11.jpg",
     "prep_time": "20 min",
     "servings": "2",
-    "nutritional_info": "kcalories 328\nprotein 28g\ncarbs 25g\nfat 14g\nsaturates 2g\nfibre 0g\nsugar 10g\nsalt 2.94g"
+    "nutritional_info": "kcalories 328\nprotein 28g\ncarbs 25g\nfat 14g\nsaturates 2g\nfibre 0g\nsugar 10g\nsalt 2.94g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d31b" },
@@ -713,7 +735,8 @@
     "image_url": "http://caroskitchen.nl/wp-content/uploads/2014/01/kokosmacronen-150x150.jpg",
     "prep_time": "10 min",
     "servings": "9 makronen",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d31c" },
@@ -744,7 +767,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--522455_11.jpg?itok=YjnDxYNB",
     "prep_time": "2 mins",
     "servings": "Serves 4",
-    "nutritional_info": "Calories: 635\nTotal Carbohydrates: 75g\nTotal Fat: 28g\nDietary fiber: 7g\nProtein: 26g\nSaturated fat: 16g\nSodium: 0.54g\nSugar: 7g"
+    "nutritional_info": "Calories: 635\nTotal Carbohydrates: 75g\nTotal Fat: 28g\nDietary fiber: 7g\nProtein: 26g\nSaturated fat: 16g\nSodium: 0.54g\nSugar: 7g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d31d" },
@@ -775,7 +799,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d31e" },
@@ -806,7 +831,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d31f" },
@@ -837,7 +863,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--338509_11.jpg?itok=C5ODAIFW",
     "prep_time": "5 min",
     "servings": "4",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d320" },
@@ -868,7 +895,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--1074465_10.jpg?itok=T7rEq4kv",
     "prep_time": "35 min",
     "servings": "10",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d321" },
@@ -899,7 +927,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d322" },
@@ -930,7 +959,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d323" },
@@ -961,7 +991,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d324" },
@@ -992,7 +1023,8 @@
     "image_url": "https://www.ah.nl.kpnis.nl/static/recepten/img_044007_1600x560_JPG.jpg",
     "prep_time": "",
     "servings": "",
-    "nutritional_info": "Voedingswaarden\n(per eenpersoonsportie)\nenergie 925 kcal\neiwit 37 g\nkoolhydraten 61 g\nvet 59 g\nwaarvan verzadigd 35 g\nnatrium 2.072 mg\nvezels 2 g"
+    "nutritional_info": "Voedingswaarden\n(per eenpersoonsportie)\nenergie 925 kcal\neiwit 37 g\nkoolhydraten 61 g\nvet 59 g\nwaarvan verzadigd 35 g\nnatrium 2.072 mg\nvezels 2 g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d325" },
@@ -1023,7 +1055,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--946467_10.jpg?itok=L5XMldvu",
     "prep_time": "20 min",
     "servings": "6",
-    "nutritional_info": "kcalories 315\nprotein 37.3g\ncarbs 16.5g\nfat 11.3g\nsaturates 2g\nfibre 2.6g\nsugar 3.3g\nsalt 2.7g"
+    "nutritional_info": "kcalories 315\nprotein 37.3g\ncarbs 16.5g\nfat 11.3g\nsaturates 2g\nfibre 2.6g\nsugar 3.3g\nsalt 2.7g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d326" },
@@ -1054,7 +1087,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/lighter-spaghetti-meatballs.jpg?itok=nOf9DXkC",
     "prep_time": "30 min",
     "servings": "4",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d327" },
@@ -1085,7 +1119,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d328" },
@@ -1116,7 +1151,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d329" },
@@ -1147,7 +1183,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--1259504_7.jpg",
     "prep_time": "",
     "servings": "4",
-    "nutritional_info": "kcalories 401\nprotein 23g\ncarbs 68g\nfat 6g\nsaturates 1g\nfibre 4g\nsugar 0g\nsalt 0.4g"
+    "nutritional_info": "kcalories 401\nprotein 23g\ncarbs 68g\nfat 6g\nsaturates 1g\nfibre 4g\nsugar 0g\nsalt 0.4g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d32a" },
@@ -1178,7 +1215,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--1222541_10.jpg?itok=nvptq_Ns",
     "prep_time": "30 min",
     "servings": "10",
-    "nutritional_info": "kcalories 357\nprotein 28g\ncarbs 17g\nfat 19g\nsaturates 8g\nfibre 5g\nsugar 7g\nsalt 1.2g"
+    "nutritional_info": "kcalories 357\nprotein 28g\ncarbs 17g\nfat 19g\nsaturates 8g\nfibre 5g\nsugar 7g\nsalt 1.2g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d32b" },
@@ -1209,7 +1247,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--1252464_8.jpg",
     "prep_time": "35 min",
     "servings": "6",
-    "nutritional_info": "kcalories 670\nprotein 37g\ncarbs 35g\nfat 36g\nsaturates 11g\nfibre 7g\nsugar 9g\nsalt 1.2g"
+    "nutritional_info": "kcalories 670\nprotein 37g\ncarbs 35g\nfat 36g\nsaturates 11g\nfibre 7g\nsugar 9g\nsalt 1.2g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d32c" },
@@ -1240,7 +1279,8 @@
     "image_url": null,
     "prep_time": null,
     "servings": null,
-    "nutritional_info": null
+    "nutritional_info": null,
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d32d" },
@@ -1271,7 +1311,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d32e" },
@@ -1302,7 +1343,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--192681_12.jpg",
     "prep_time": "5 min",
     "servings": "2",
-    "nutritional_info": "kcalories 166\nprotein 22g\ncarbs 11g\nfat 4g\nsaturates 1g\nfibre 3g\nsugar 8g\nsalt 1.08g"
+    "nutritional_info": "kcalories 166\nprotein 22g\ncarbs 11g\nfat 4g\nsaturates 1g\nfibre 3g\nsugar 8g\nsalt 1.08g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d32f" },
@@ -1333,7 +1375,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--1309480_3.jpg?itok=QziRfFUh",
     "prep_time": "15 min",
     "servings": "2",
-    "nutritional_info": "kcalories 361\nprotein 43g\ncarbs 29g\nfat 8g\nsaturates 2g\nfibre 2g\nsugar 4g\nsalt 0.7g"
+    "nutritional_info": "kcalories 361\nprotein 43g\ncarbs 29g\nfat 8g\nsaturates 2g\nfibre 2g\nsugar 4g\nsalt 0.7g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d330" },
@@ -1364,7 +1407,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/couscous_0.jpg?itok=IHkJ-93d",
     "prep_time": "10 min",
     "servings": "1",
-    "nutritional_info": "kcalories 725\nprotein 43g\ncarbs 54g\nfat 36g\nsaturates 8g\nfibre 9g\nsugar 18g\nsalt 0.9g"
+    "nutritional_info": "kcalories 725\nprotein 43g\ncarbs 54g\nfat 36g\nsaturates 8g\nfibre 9g\nsugar 18g\nsalt 0.9g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d331" },
@@ -1395,7 +1439,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d332" },
@@ -1426,7 +1471,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--51643_11.jpg?itok=I_hF8vFL",
     "prep_time": "25 mins",
     "servings": "2 pizzas",
-    "nutritional_info": "Calories: 431\nTotal Carbohydrates: 59g\nTotal Fat: 15g\nDietary fiber: 3g\nProtein: 19g\nSaturated fat: 7g\nSodium: 1.87g\nSugar: 2g"
+    "nutritional_info": "Calories: 431\nTotal Carbohydrates: 59g\nTotal Fat: 15g\nDietary fiber: 3g\nProtein: 19g\nSaturated fat: 7g\nSodium: 1.87g\nSugar: 2g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d333" },
@@ -1457,7 +1503,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--513504_11.jpg?itok=2RKXJzK8",
     "prep_time": "10 min",
     "servings": "6",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d334" },
@@ -1488,7 +1535,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--12141_11.jpg?itok=RUtvuKpX",
     "prep_time": "5 mins",
     "servings": "Serves 2",
-    "nutritional_info": "Calories: 340\nTotal Carbohydrates: 21g\nTotal Fat: 20g\nDietary fiber: 0g\nProtein: 21g\nSaturated fat: 5g\nSodium: 1.25g\nSugar: 17g"
+    "nutritional_info": "Calories: 340\nTotal Carbohydrates: 21g\nTotal Fat: 20g\nDietary fiber: 0g\nProtein: 21g\nSaturated fat: 5g\nSodium: 1.25g\nSugar: 17g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d335" },
@@ -1519,7 +1567,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d336" },
@@ -1552,7 +1601,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2016/12/burnt-aubergine-chilli.jpg?itok=lLU2Cp5x",
     "prep_time": "25 mins",
     "servings": "Serves 4",
-    "nutritional_info": "Calories: 316\nTotal Carbohydrates: 38g\nTotal Fat: 8g\nDietary fiber: 17g\nProtein: 15g\nSaturated fat: 2g\nSodium: 2.2g\nSugar: 17g"
+    "nutritional_info": "Calories: 316\nTotal Carbohydrates: 38g\nTotal Fat: 8g\nDietary fiber: 17g\nProtein: 15g\nSaturated fat: 2g\nSodium: 2.2g\nSugar: 17g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d337" },
@@ -1583,7 +1633,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d338" },
@@ -1614,7 +1665,8 @@
     "image_url": "http://images.smulweb.nl/leden/avatar/berti.jpg?1197191761",
     "prep_time": "",
     "servings": "4 personen",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d339" },
@@ -1645,7 +1697,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--1110455_10.jpg",
     "prep_time": "15 min",
     "servings": "a family of 4 - 6 or makes 6-8 toddler meals",
-    "nutritional_info": "kcalories 455\nprotein 27.1g\ncarbs 50.5g\nfat 15.7g\nsaturates 7.5g\nfibre 5.7g\nsugar 7g\nsalt 1g"
+    "nutritional_info": "kcalories 455\nprotein 27.1g\ncarbs 50.5g\nfat 15.7g\nsaturates 7.5g\nfibre 5.7g\nsugar 7g\nsalt 1g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d33a" },
@@ -1676,7 +1729,8 @@
     "image_url": null,
     "prep_time": null,
     "servings": null,
-    "nutritional_info": null
+    "nutritional_info": null,
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d33b" },
@@ -1707,7 +1761,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--281730_12.jpg?itok=TCA1ZutH",
     "prep_time": "20 min",
     "servings": "4",
-    "nutritional_info": "kcalories 431\nprotein 22g\ncarbs 66g\nfat 11g\nsaturates 1g\nfibre 19g\nsugar 15g\nsalt 0.2g"
+    "nutritional_info": "kcalories 431\nprotein 22g\ncarbs 66g\nfat 11g\nsaturates 1g\nfibre 19g\nsugar 15g\nsalt 0.2g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d33c" },
@@ -1738,7 +1793,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--890477_11.jpg?itok=t7_NYa2X",
     "prep_time": "15 min",
     "servings": "5",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d33d" },
@@ -1772,7 +1828,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/cauliflower-paneer-pea-curry.jpg?itok=u8qW-F0r",
     "prep_time": "10 min",
     "servings": "4",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d33e" },
@@ -1803,7 +1860,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d33f" },
@@ -1834,7 +1892,8 @@
     "image_url": "https://www.ah.nl.kpnis.nl/static/recepten/img_007696_890x594_JPG.jpg",
     "prep_time": "",
     "servings": "",
-    "nutritional_info": "Voedingswaarden\n(per eenpersoonsportie)\nenergie 325 kcal\neiwit 6 g\nkoolhydraten 40 g\nvet 15 g\nwaarvan verzadigd 0 g"
+    "nutritional_info": "Voedingswaarden\n(per eenpersoonsportie)\nenergie 325 kcal\neiwit 6 g\nkoolhydraten 40 g\nvet 15 g\nwaarvan verzadigd 0 g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d340" },
@@ -1865,7 +1924,8 @@
     "image_url": "http://nlcdn.ar-cdn.com/recipes/xlarge/d9c90404-2fa1-44ab-bbdf-525e71977276.jpg",
     "prep_time": "30 min",
     "servings": "Porties: 4",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d341" },
@@ -1896,7 +1956,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d342" },
@@ -1927,7 +1988,8 @@
     "image_url": "//nlcdn.ar-cdn.com/recipes/originals/b42c5e4c-4d90-49d8-8f8f-ad131837dea0.jpg",
     "prep_time": "15 min",
     "servings": "Porties: 4",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d343" },
@@ -1958,7 +2020,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--338885_11.jpg?itok=aD0TXV2m",
     "prep_time": "5 min",
     "servings": "4",
-    "nutritional_info": "kcalories 326\nprotein 27g\ncarbs 5g\nfat 22g\nsaturates 9g\nfibre 2g\nsugar 4g\nsalt 0.46g"
+    "nutritional_info": "kcalories 326\nprotein 27g\ncarbs 5g\nfat 22g\nsaturates 9g\nfibre 2g\nsugar 4g\nsalt 0.46g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d344" },
@@ -1989,7 +2052,8 @@
     "image_url": "https://www.ah.nl.kpnis.nl/static/recepten/img_089725_890x594_JPG.jpg",
     "prep_time": "",
     "servings": "4 personen",
-    "nutritional_info": "Voedingswaarden\n(per eenpersoonsportie)\nenergie 795 kcal\neiwit 38 g\nkoolhydraten 66 g\nvet 41 g\nwaarvan verzadigd 12 g\nnatrium 920 mg\nvezels 5 g"
+    "nutritional_info": "Voedingswaarden\n(per eenpersoonsportie)\nenergie 795 kcal\neiwit 38 g\nkoolhydraten 66 g\nvet 41 g\nwaarvan verzadigd 12 g\nnatrium 920 mg\nvezels 5 g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d345" },
@@ -2020,7 +2084,8 @@
     "image_url": "https://www.ah.nl.kpnis.nl/static/recepten/img_074146_445x297_JPG.jpg",
     "prep_time": "14 min.",
     "servings": "4 personen",
-    "nutritional_info": "energie 510 kcal\neiwit 20 g\nkoolhydraten 68 g\nvet 16 g\nwaarvan verzadigd 8 g\nnatrium 585 mg\nvezels 7 g"
+    "nutritional_info": "energie 510 kcal\neiwit 20 g\nkoolhydraten 68 g\nvet 16 g\nwaarvan verzadigd 8 g\nnatrium 585 mg\nvezels 7 g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d346" },
@@ -2051,7 +2116,8 @@
     "image_url": "http://caroskitchen.nl/wp-content/uploads/2014/01/kokosmacronen-150x150.jpg",
     "prep_time": "10 min",
     "servings": "9 makronen",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d347" },
@@ -2082,7 +2148,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--1167501_11.jpg?itok=uitBS1qO",
     "prep_time": "10 min",
     "servings": "4",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d348" },
@@ -2113,7 +2180,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/pearl.jpg?itok=B3i8b6mm",
     "prep_time": "10 min",
     "servings": "4",
-    "nutritional_info": "kcalories 589\nprotein 43g\ncarbs 73g\nfat 15g\nsaturates 3g\nfibre 8g\nsugar 11g\nsalt 0.8g"
+    "nutritional_info": "kcalories 589\nprotein 43g\ncarbs 73g\nfat 15g\nsaturates 3g\nfibre 8g\nsugar 11g\nsalt 0.8g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d349" },
@@ -2144,7 +2212,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--1283492_9.jpg?itok=iexlCaE4",
     "prep_time": "10 min",
     "servings": "4",
-    "nutritional_info": "kcalories 620\nprotein 42g\ncarbs 68g\nfat 20g\nsaturates 8g\nfibre 7g\nsugar 10g\nsalt 3.7g"
+    "nutritional_info": "kcalories 620\nprotein 42g\ncarbs 68g\nfat 20g\nsaturates 8g\nfibre 7g\nsugar 10g\nsalt 3.7g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d34a" },
@@ -2175,7 +2244,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--1064518_11.jpg?itok=LYMbR4D7",
     "prep_time": "15 min",
     "servings": "4",
-    "nutritional_info": "kcalories 281\nprotein 20g\ncarbs 41g\nfat 6g\nsaturates 1g\nfibre 3g\nsugar 9g\nsalt 0.48g"
+    "nutritional_info": "kcalories 281\nprotein 20g\ncarbs 41g\nfat 6g\nsaturates 1g\nfibre 3g\nsugar 9g\nsalt 0.48g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d34b" },
@@ -2206,7 +2276,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--52263_11.jpg?itok=zeQu2PVq",
     "prep_time": "",
     "servings": "Serves 6",
-    "nutritional_info": "Calories: 494\nTotal Carbohydrates: 89g\nTotal Fat: 12g\nDietary fiber: 5g\nProtein: 14g\nSaturated fat: 1g\nSodium: 0.99g\nSugar: 0g"
+    "nutritional_info": "Calories: 494\nTotal Carbohydrates: 89g\nTotal Fat: 12g\nDietary fiber: 5g\nProtein: 14g\nSaturated fat: 1g\nSodium: 0.99g\nSugar: 0g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d34c" },
@@ -2237,7 +2308,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/recipe/recipe-image/2016/03/spinach-sweet-potato-lentil-dhal.jpg",
     "prep_time": "10 mins",
     "servings": "Serves 4",
-    "nutritional_info": "Calories: 397\nTotal Carbohydrates: 65g\nTotal Fat: 5g\nDietary fiber: 11g\nProtein: 18g\nSaturated fat: 1g\nSodium: 0.6g\nSugar: 19g"
+    "nutritional_info": "Calories: 397\nTotal Carbohydrates: 65g\nTotal Fat: 5g\nDietary fiber: 11g\nProtein: 18g\nSaturated fat: 1g\nSodium: 0.6g\nSugar: 19g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d34d" },
@@ -2268,7 +2340,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d34e" },
@@ -2299,7 +2372,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/pasta.jpg?itok=LfXL0DdV",
     "prep_time": "15 min",
     "servings": "4",
-    "nutritional_info": "kcalories 673\nprotein 35g\ncarbs 56g\nfat 34g\nsaturates 16g\nfibre 3g\nsugar 9g\nsalt 2.8g"
+    "nutritional_info": "kcalories 673\nprotein 35g\ncarbs 56g\nfat 34g\nsaturates 16g\nfibre 3g\nsugar 9g\nsalt 2.8g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d34f" },
@@ -2330,7 +2404,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--1274503_8.jpg?itok=p8Dr7V4b",
     "prep_time": "10 min",
     "servings": "4",
-    "nutritional_info": "kcalories 445\nprotein 30g\ncarbs 64g\nfat 10g\nsaturates 3g\nfibre 2g\nsugar 7g\nsalt 1.2g"
+    "nutritional_info": "kcalories 445\nprotein 30g\ncarbs 64g\nfat 10g\nsaturates 3g\nfibre 2g\nsugar 7g\nsalt 1.2g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d350" },
@@ -2361,7 +2436,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/fish-curry.jpg?itok=rs4zGbbg",
     "prep_time": "10 min",
     "servings": "2",
-    "nutritional_info": "kcalories 535\nprotein 41g\ncarbs 22g\nfat 33g\nsaturates 6g\nfibre 7g\nsugar 10g\nsalt 0.9g"
+    "nutritional_info": "kcalories 535\nprotein 41g\ncarbs 22g\nfat 33g\nsaturates 6g\nfibre 7g\nsugar 10g\nsalt 0.9g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d351" },
@@ -2392,7 +2468,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--1001451_6.jpg?itok=duyDvHm3",
     "prep_time": "1 hr 10 min",
     "servings": "4",
-    "nutritional_info": "kcalories 387\nprotein 36g\ncarbs 25g\nfat 17g\nsaturates 6g\nfibre 6g\nsugar 1g\nsalt 2.32g"
+    "nutritional_info": "kcalories 387\nprotein 36g\ncarbs 25g\nfat 17g\nsaturates 6g\nfibre 6g\nsugar 1g\nsalt 2.32g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d352" },
@@ -2423,7 +2500,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--339051_11.jpg?itok=eMt7DEfu",
     "prep_time": "10 mins",
     "servings": "Serves 4",
-    "nutritional_info": "Calories: 212\nTotal Carbohydrates: 15g\nTotal Fat: 15g\nDietary fiber: 3g\nProtein: 5g\nSaturated fat: 9g\nSodium: 0.71g\nSugar: 5g"
+    "nutritional_info": "Calories: 212\nTotal Carbohydrates: 15g\nTotal Fat: 15g\nDietary fiber: 3g\nProtein: 5g\nSaturated fat: 9g\nSodium: 0.71g\nSugar: 5g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d353" },
@@ -2454,7 +2532,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/chicken-mushroom-hot-pot.jpg?itok=osdJcWUy",
     "prep_time": "35 min",
     "servings": "4",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d354" },
@@ -2485,7 +2564,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d355" },
@@ -2516,7 +2596,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--1273575_8.jpg?itok=Q7rNP9eE",
     "prep_time": "10 min",
     "servings": "4",
-    "nutritional_info": "kcalories 405\nprotein 18g\ncarbs 38g\nfat 21g\nsaturates 8g\nfibre 4g\nsugar 13g\nsalt 1.36g"
+    "nutritional_info": "kcalories 405\nprotein 18g\ncarbs 38g\nfat 21g\nsaturates 8g\nfibre 4g\nsugar 13g\nsalt 1.36g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d357" },
@@ -2547,7 +2628,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/lemony-chicken-stew-with-giant-couscous.jpg?itok=28tPmaRT",
     "prep_time": "25 min",
     "servings": "4",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d358" },
@@ -2578,7 +2660,8 @@
     "image_url": "http://images.smulweb.nl/recepten/1372043/low_res/tartiflette.jpg",
     "prep_time": "",
     "servings": "4 personen",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d359" },
@@ -2609,7 +2692,8 @@
     "image_url": "http://images.smulweb.nl/recepten/200501/1106853/low_res/hutspot_met_hachee.jpg",
     "prep_time": "",
     "servings": "4 personen",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d35a" },
@@ -2640,7 +2724,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/risotto_1.jpg?itok=9zD6IVJ5",
     "prep_time": "5 min",
     "servings": "4",
-    "nutritional_info": "kcalories 381\nprotein 13g\ncarbs 61g\nfat 10g\nsaturates 4g\nfibre 4g\nsugar 9g\nsalt 1.1g"
+    "nutritional_info": "kcalories 381\nprotein 13g\ncarbs 61g\nfat 10g\nsaturates 4g\nfibre 4g\nsugar 9g\nsalt 1.1g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d35b" },
@@ -2671,7 +2756,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d35c" },
@@ -2702,7 +2788,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--1259467_8.jpg",
     "prep_time": "10 min",
     "servings": "4",
-    "nutritional_info": "kcalories 225\nprotein 25g\ncarbs 7g\nfat 11g\nsaturates 3g\nfibre 2g\nsugar 6g\nsalt 0.87g"
+    "nutritional_info": "kcalories 225\nprotein 25g\ncarbs 7g\nfat 11g\nsaturates 3g\nfibre 2g\nsugar 6g\nsalt 0.87g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d35d" },
@@ -2733,7 +2820,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d35e" },
@@ -2764,7 +2852,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--202451_12.jpg",
     "prep_time": "15 min",
     "servings": "10",
-    "nutritional_info": "kcalories 345\nprotein 31g\ncarbs 13g\nfat 19g\nsaturates 8g\nfibre 3g\nsugar 10g\nsalt 1.04g"
+    "nutritional_info": "kcalories 345\nprotein 31g\ncarbs 13g\nfat 19g\nsaturates 8g\nfibre 3g\nsugar 10g\nsalt 1.04g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d35f" },
@@ -2795,7 +2884,8 @@
     "image_url": "http://www.ah.nl.kpnis.nl/static/recepten/img_006188_445x297_JPG.jpg",
     "prep_time": "25 min.",
     "servings": "4 personen",
-    "nutritional_info": "Voedingswaarden (per eenpersoonsportie)\nenergie 705 kcal\neiwit 26 g\nkoolhydraten 66 g\nvet 39 g\nwaarvan verzadigd 0 g"
+    "nutritional_info": "Voedingswaarden (per eenpersoonsportie)\nenergie 705 kcal\neiwit 26 g\nkoolhydraten 66 g\nvet 39 g\nwaarvan verzadigd 0 g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d360" },
@@ -2826,7 +2916,8 @@
     "image_url": "http://images.smulweb.nl/leden/avatar/smulweb_geen_foto_v3.jpg",
     "prep_time": "",
     "servings": "6 personen",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d361" },
@@ -2857,7 +2948,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/luxe-fish-pie.jpg?itok=yZnlD0be",
     "prep_time": "45 min",
     "servings": "8",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d362" },
@@ -2888,7 +2980,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--5576_10.jpg",
     "prep_time": "10 min",
     "servings": "1",
-    "nutritional_info": "kcalories 552\nprotein 41g\ncarbs 57g\nfat 20g\nsaturates 23g\nfibre 2.1g\nsugar 6g\nsalt 0.46g"
+    "nutritional_info": "kcalories 552\nprotein 41g\ncarbs 57g\nfat 20g\nsaturates 23g\nfibre 2.1g\nsugar 6g\nsalt 0.46g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d363" },
@@ -2921,7 +3014,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/kale-with-chana-coconut.jpg?itok=Zqli0_yb",
     "prep_time": "10 mins",
     "servings": "Serves 2 as a main, 4 as a side",
-    "nutritional_info": "Calories: 233\nTotal Carbohydrates: 21g\nTotal Fat: 10g\nDietary fiber: 6g\nProtein: 10g\nSaturated fat: 6g\nSodium: 0.8g\nSugar: 7g"
+    "nutritional_info": "Calories: 233\nTotal Carbohydrates: 21g\nTotal Fat: 10g\nDietary fiber: 6g\nProtein: 10g\nSaturated fat: 6g\nSodium: 0.8g\nSugar: 7g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d364" },
@@ -2952,7 +3046,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d365" },
@@ -2983,7 +3078,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--684597_11.jpg?itok=Gh8ziVUE",
     "prep_time": "10 min",
     "servings": "2",
-    "nutritional_info": "kcalories 586\nprotein 40g\ncarbs 7g\nfat 44g\nsaturates 8g\nfibre 2g\nsugar 6g\nsalt 1.78g"
+    "nutritional_info": "kcalories 586\nprotein 40g\ncarbs 7g\nfat 44g\nsaturates 8g\nfibre 2g\nsugar 6g\nsalt 1.78g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d366" },
@@ -3014,7 +3110,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--1035656_11.jpg?itok=PqxFZpC0",
     "prep_time": "15 min",
     "servings": "4",
-    "nutritional_info": "kcalories 497\nprotein 40g\ncarbs 46g\nfat 18g\nsaturates 5g\nfibre 12g\nsugar 32g\nsalt 1.37g"
+    "nutritional_info": "kcalories 497\nprotein 40g\ncarbs 46g\nfat 18g\nsaturates 5g\nfibre 12g\nsugar 32g\nsalt 1.37g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d367" },
@@ -3045,7 +3142,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--1259731_8.jpg?itok=ywJ5NXBx",
     "prep_time": "10 min",
     "servings": "4",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d368" },
@@ -3076,7 +3174,8 @@
     "image_url": "https://i0.wp.com/onehungrybunny.com/wp-content/uploads/2016/12/DSC_1370.jpg?w=1200",
     "prep_time": "5 minutes",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d369" },
@@ -3107,7 +3206,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--265502_12.jpg?itok=fwCzUPrs",
     "prep_time": "15 mins",
     "servings": "Serves 4",
-    "nutritional_info": "Calories: 245\nTotal Carbohydrates: 44g\nTotal Fat: 4g\nDietary fiber: 6g\nProtein: 11g\nSaturated fat: 0g\nSodium: 0.51g\nSugar: 11g"
+    "nutritional_info": "Calories: 245\nTotal Carbohydrates: 44g\nTotal Fat: 4g\nDietary fiber: 6g\nProtein: 11g\nSaturated fat: 0g\nSodium: 0.51g\nSugar: 11g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d36a" },
@@ -3138,7 +3238,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "4 PERSONEN",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d36b" },
@@ -3169,7 +3270,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/spring-roast-chicken.jpg?itok=7YXOWweK",
     "prep_time": "15 min",
     "servings": "4",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d36c" },
@@ -3200,7 +3302,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--328048_12.jpg?itok=W2WxZv0_",
     "prep_time": "10 min",
     "servings": "1",
-    "nutritional_info": "kcalories 685\nprotein 27g\ncarbs 81g\nfat 27g\nsaturates 9g\nfibre 8g\nsugar 13g\nsalt 1.65g"
+    "nutritional_info": "kcalories 685\nprotein 27g\ncarbs 81g\nfat 27g\nsaturates 9g\nfibre 8g\nsugar 13g\nsalt 1.65g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d36d" },
@@ -3231,7 +3334,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d36e" },
@@ -3262,7 +3366,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d36f" },
@@ -3293,7 +3398,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1096483_12.jpg?itok=k206NqAN",
     "prep_time": "10 mins",
     "servings": "Serves 4",
-    "nutritional_info": "Calories: 641\nTotal Carbohydrates: 99g\nTotal Fat: 17g\nDietary fiber: 7g\nProtein: 24g\nSaturated fat: 2g\nSodium: 0.4g\nSugar: 9g"
+    "nutritional_info": "Calories: 641\nTotal Carbohydrates: 99g\nTotal Fat: 17g\nDietary fiber: 7g\nProtein: 24g\nSaturated fat: 2g\nSodium: 0.4g\nSugar: 9g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d370" },
@@ -3324,7 +3430,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/coconut-fish-curry.jpg?itok=k-SkWOWf",
     "prep_time": "15 min",
     "servings": "4",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d371" },
@@ -3355,7 +3462,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--22092_10.jpg?itok=ItBVgSSF",
     "prep_time": "15 min",
     "servings": "2",
-    "nutritional_info": "kcalories 793\nprotein 37g\ncarbs 40g\nfat 55g\nsaturates 27g\nfibre 6g\nsugar 9g\nsalt 1.75g"
+    "nutritional_info": "kcalories 793\nprotein 37g\ncarbs 40g\nfat 55g\nsaturates 27g\nfibre 6g\nsugar 9g\nsalt 1.75g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d372" },
@@ -3386,7 +3494,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/creamy-cod-chowder-stew.jpg?itok=3mIomA2q",
     "prep_time": "10 min",
     "servings": "2",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d373" },
@@ -3417,7 +3526,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d374" },
@@ -3448,7 +3558,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--523491_11.jpg?itok=06k6lhto",
     "prep_time": "10 mins",
     "servings": "Serves 4",
-    "nutritional_info": "Calories: 195\nTotal Carbohydrates: 5g\nTotal Fat: 14g\nDietary fiber: 3g\nProtein: 11g\nSaturated fat: 6g\nSodium: 1.3g\nSugar: 3g"
+    "nutritional_info": "Calories: 195\nTotal Carbohydrates: 5g\nTotal Fat: 14g\nDietary fiber: 3g\nProtein: 11g\nSaturated fat: 6g\nSodium: 1.3g\nSugar: 3g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d375" },
@@ -3479,7 +3590,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--4069_11.jpg?itok=B9edhPFn",
     "prep_time": "10 min",
     "servings": "4",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d376" },
@@ -3510,7 +3622,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d377" },
@@ -3541,7 +3654,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2016/08/gnocchi-with-mushrooms.jpg?itok=liX90eix",
     "prep_time": "10 mins",
     "servings": "Serves 4",
-    "nutritional_info": "Calories: 471\nTotal Carbohydrates: 63g\nTotal Fat: 15g\nDietary fiber: 8g\nProtein: 16g\nSaturated fat: 8g\nSodium: 2.7g\nSugar: 8g"
+    "nutritional_info": "Calories: 471\nTotal Carbohydrates: 63g\nTotal Fat: 15g\nDietary fiber: 8g\nProtein: 16g\nSaturated fat: 8g\nSodium: 2.7g\nSugar: 8g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d378" },
@@ -3572,7 +3686,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "4 PERSONEN",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d379" },
@@ -3603,7 +3718,8 @@
     "image_url": "http://www.vlees.nl/typo3temp/pics/gr_577_7fc5a813f8.jpg",
     "prep_time": "",
     "servings": "",
-    "nutritional_info": "Voedingswaarde p.p.\nEnergie (kJ) 1710,00\nEnergie (kcal) 410,00\nEiwit (gram) 31,00\nVet (gram) 20,00\nVerzadigd vet (gram) 4,00\nKoolhydraten (gram) 25,00\nVezels (gram) 3,30"
+    "nutritional_info": "Voedingswaarde p.p.\nEnergie (kJ) 1710,00\nEnergie (kcal) 410,00\nEiwit (gram) 31,00\nVet (gram) 20,00\nVerzadigd vet (gram) 4,00\nKoolhydraten (gram) 25,00\nVezels (gram) 3,30",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d37a" },
@@ -3634,7 +3750,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--356525_12.jpg?itok=QndP_oqk",
     "prep_time": "20 min",
     "servings": "6",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d37b" },
@@ -3665,7 +3782,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "4 PERSONEN",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d37c" },
@@ -3696,7 +3814,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--879453_11.jpg?itok=unHBDg-O",
     "prep_time": "20 mins",
     "servings": "Serves 6",
-    "nutritional_info": "Calories: 317\nTotal Carbohydrates: 20g\nTotal Fat: 24g\nDietary fiber: 0g\nProtein: 6g\nSaturated fat: 9g\nSodium: 0.54g\nSugar: 6g"
+    "nutritional_info": "Calories: 317\nTotal Carbohydrates: 20g\nTotal Fat: 24g\nDietary fiber: 0g\nProtein: 6g\nSaturated fat: 9g\nSodium: 0.54g\nSugar: 6g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d37d" },
@@ -3727,7 +3846,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2016/01/tomato-and-chickpea-curry.jpg?itok=M4rM3IBD",
     "prep_time": "10 mins",
     "servings": "Serves 4",
-    "nutritional_info": "Calories: 369\nTotal Carbohydrates: 28g\nTotal Fat: 23g\nDietary fiber: 6g\nProtein: 9g\nSaturated fat: 16g\nSodium: 0.5g\nSugar: 11g"
+    "nutritional_info": "Calories: 369\nTotal Carbohydrates: 28g\nTotal Fat: 23g\nDietary fiber: 6g\nProtein: 9g\nSaturated fat: 16g\nSodium: 0.5g\nSugar: 11g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d37e" },
@@ -3758,7 +3878,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/cottage-pie.jpg?itok=bVglkL_9",
     "prep_time": "20 min",
     "servings": "4",
-    "nutritional_info": "kcalories 759\nprotein 45g\ncarbs 73g\nfat 33g\nsaturates 16g\nfibre 9g\nsugar 9g\nsalt 1.4g"
+    "nutritional_info": "kcalories 759\nprotein 45g\ncarbs 73g\nfat 33g\nsaturates 16g\nfibre 9g\nsugar 9g\nsalt 1.4g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d37f" },
@@ -3789,7 +3910,8 @@
     "image_url": "http://cdn.jamieoliver.com/recipe-database/oldImages/xtra_med/757_36_1434037505.jpg",
     "prep_time": "",
     "servings": "Serves 6 cooks in 1h 35m",
-    "nutritional_info": "Calories 437 22%\nFat 24.8g 35%\nSaturates 8.6g 43%\nProtein 17.5g 39%\nCarbs 38.6g 15%\nSugars 8.4g 9%\nSalt 0.74g 12%\nFibre 4.7g -"
+    "nutritional_info": "Calories 437 22%\nFat 24.8g 35%\nSaturates 8.6g 43%\nProtein 17.5g 39%\nCarbs 38.6g 15%\nSugars 8.4g 9%\nSalt 0.74g 12%\nFibre 4.7g -",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d380" },
@@ -3820,7 +3942,8 @@
     "image_url": null,
     "prep_time": "30",
     "servings": "10",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d381" },
@@ -3851,7 +3974,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d382" },
@@ -3882,7 +4006,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d383" },
@@ -3913,7 +4038,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/recipe/recipe-image/2016/11/chilli.jpg",
     "prep_time": "30 mins",
     "servings": "Serves 8",
-    "nutritional_info": "Calories: 327\nTotal Carbohydrates: 41g\nTotal Fat: 6g\nDietary fiber: 18g\nProtein: 19g\nSaturated fat: 1g\nSodium: 0.6g\nSugar: 9g"
+    "nutritional_info": "Calories: 327\nTotal Carbohydrates: 41g\nTotal Fat: 6g\nDietary fiber: 18g\nProtein: 19g\nSaturated fat: 1g\nSodium: 0.6g\nSugar: 9g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d384" },
@@ -3944,7 +4070,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d386" },
@@ -3975,7 +4102,8 @@
     "image_url": "https://www.ah.nl.kpnis.nl/static/recepten/img_090303_890x594_JPG.jpg",
     "prep_time": "",
     "servings": "4 personen",
-    "nutritional_info": "Voedingswaarden\n(per eenpersoonsportie)\nenergie 630 kcal\neiwit 29 g\nkoolhydraten 69 g\nvet 25 g\nwaarvan verzadigd 18 g\nnatrium 40 mg\nvezels 6 g"
+    "nutritional_info": "Voedingswaarden\n(per eenpersoonsportie)\nenergie 630 kcal\neiwit 29 g\nkoolhydraten 69 g\nvet 25 g\nwaarvan verzadigd 18 g\nnatrium 40 mg\nvezels 6 g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d387" },
@@ -4006,7 +4134,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--546459_11.jpg?itok=N37xEKgY",
     "prep_time": "15 min",
     "servings": "4",
-    "nutritional_info": "kcalories 546\nprotein 27g\ncarbs 74g\nfat 17g\nsaturates 2g\nfibre 3g\nsugar 4g\nsalt 1.06g"
+    "nutritional_info": "kcalories 546\nprotein 27g\ncarbs 74g\nfat 17g\nsaturates 2g\nfibre 3g\nsugar 4g\nsalt 1.06g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d388" },
@@ -4037,7 +4166,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d389" },
@@ -4068,7 +4198,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--699476_11.jpg",
     "prep_time": "20 min",
     "servings": "8",
-    "nutritional_info": "kcalories 282\nprotein 24g\ncarbs 24g\nfat 11g\nsaturates 2g\nfibre 5g\nsugar 7g\nsalt 2.76g"
+    "nutritional_info": "kcalories 282\nprotein 24g\ncarbs 24g\nfat 11g\nsaturates 2g\nfibre 5g\nsugar 7g\nsalt 2.76g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d38a" },
@@ -4099,7 +4230,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--513575_11.jpg",
     "prep_time": "5 min",
     "servings": "2 generously",
-    "nutritional_info": "kcalories 463\nprotein 29g\ncarbs 50g\nfat 18g\nsaturates 6g\nfibre 17g\nsugar 17g\nsalt 6.32g"
+    "nutritional_info": "kcalories 463\nprotein 29g\ncarbs 50g\nfat 18g\nsaturates 6g\nfibre 17g\nsugar 17g\nsalt 6.32g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d38b" },
@@ -4130,7 +4262,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe/recipe-image/2014/05/salmon_9.jpg?itok=_gsBIiCK",
     "prep_time": "15 min",
     "servings": "4",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d38c" },
@@ -4161,7 +4294,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--10785_12.jpg?itok=5Mwov7Aq",
     "prep_time": "5 mins",
     "servings": "Serves 4",
-    "nutritional_info": "Calories: 285\nTotal Carbohydrates: 50g\nTotal Fat: 7g\nDietary fiber: 4g\nProtein: 10g\nSaturated fat: 3g\nSodium: 1.64g\nSugar: 8g"
+    "nutritional_info": "Calories: 285\nTotal Carbohydrates: 50g\nTotal Fat: 7g\nDietary fiber: 4g\nProtein: 10g\nSaturated fat: 3g\nSodium: 1.64g\nSugar: 8g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d38d" },
@@ -4192,7 +4326,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--192662_12.jpg",
     "prep_time": "5 min",
     "servings": "4",
-    "nutritional_info": "kcalories 172\nprotein 27g\ncarbs 7g\nfat 4g\nsaturates 1g\nfibre 1g\nsugar 6g\nsalt 1.11g"
+    "nutritional_info": "kcalories 172\nprotein 27g\ncarbs 7g\nfat 4g\nsaturates 1g\nfibre 1g\nsugar 6g\nsalt 1.11g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d38e" },
@@ -4223,7 +4358,8 @@
     "image_url": "",
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d38f" },
@@ -4254,7 +4390,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d390" },
@@ -4285,7 +4422,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d391" },
@@ -4316,7 +4454,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/recipe-image-legacy-id--1249463_8.jpg?itok=5oSJ3Qti",
     "prep_time": "10 mins",
     "servings": "Serves 4",
-    "nutritional_info": "Calories: 417\nTotal Carbohydrates: 28g\nTotal Fat: 24g\nDietary fiber: 4g\nProtein: 20g\nSaturated fat: 10g\nSodium: 2.8g\nSugar: 6g"
+    "nutritional_info": "Calories: 417\nTotal Carbohydrates: 28g\nTotal Fat: 24g\nDietary fiber: 4g\nProtein: 20g\nSaturated fat: 10g\nSodium: 2.8g\nSugar: 6g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d392" },
@@ -4347,7 +4486,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d393" },
@@ -4378,7 +4518,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--911510_11.jpg",
     "prep_time": "40 min",
     "servings": "8",
-    "nutritional_info": "kcalories 418\nprotein 9g\ncarbs 62g\nfat 13g\nsaturates 3g\nfibre 11g\nsugar 28g\nsalt 1.6g"
+    "nutritional_info": "kcalories 418\nprotein 9g\ncarbs 62g\nfat 13g\nsaturates 3g\nfibre 11g\nsugar 28g\nsalt 1.6g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d394" },
@@ -4409,7 +4550,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d395" },
@@ -4440,7 +4582,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--328017_12.jpg?itok=2s_nCj5E",
     "prep_time": "10 min",
     "servings": "4",
-    "nutritional_info": "kcalories 374\nprotein 9g\ncarbs 75g\nfat 6g\nsaturates 1g\nfibre 2g\nsugar 5g\nsalt 0.64g"
+    "nutritional_info": "kcalories 374\nprotein 9g\ncarbs 75g\nfat 6g\nsaturates 1g\nfibre 2g\nsugar 5g\nsalt 0.64g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d396" },
@@ -4471,7 +4614,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/masala.jpg?itok=0aIvkbSX",
     "prep_time": "20 min",
     "servings": "4",
-    "nutritional_info": "kcalories 378\nprotein 27g\ncarbs 14g\nfat 24g\nsaturates 9g\nfibre 3g\nsugar 7g\nsalt 0.9g"
+    "nutritional_info": "kcalories 378\nprotein 27g\ncarbs 14g\nfat 24g\nsaturates 9g\nfibre 3g\nsugar 7g\nsalt 0.9g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d397" },
@@ -4502,7 +4646,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--4765_11.jpg",
     "prep_time": "5 min",
     "servings": "4",
-    "nutritional_info": "kcalories 562\nprotein 29g\ncarbs 41g\nfat 33g\nsaturates 11g\nfibre 3g\nsugar 3g\nsalt 3.62g"
+    "nutritional_info": "kcalories 562\nprotein 29g\ncarbs 41g\nfat 33g\nsaturates 11g\nfibre 3g\nsugar 3g\nsalt 3.62g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d398" },
@@ -4533,7 +4678,8 @@
     "image_url": "https://www.ah.nl.kpnis.nl/static/recepten/img_074473_890x594_JPG.jpg",
     "prep_time": "",
     "servings": "4 personen",
-    "nutritional_info": "Voedingswaarden\n(per eenpersoonsportie)\nenergie 820 kcal\neiwit 31 g\nkoolhydraten 22 g\nvet 64 g\nwaarvan verzadigd 17 g\nnatrium 1.060 mg\nvezels 17 g"
+    "nutritional_info": "Voedingswaarden\n(per eenpersoonsportie)\nenergie 820 kcal\neiwit 31 g\nkoolhydraten 22 g\nvet 64 g\nwaarvan verzadigd 17 g\nnatrium 1.060 mg\nvezels 17 g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d399" },
@@ -4564,7 +4710,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--1273596_8.jpg",
     "prep_time": "15 min",
     "servings": "4",
-    "nutritional_info": "kcalories 528\nprotein 21g\ncarbs 46g\nfat 30g\nsaturates 8g\nfibre 9g\nsugar 12g\nsalt 2.11g"
+    "nutritional_info": "kcalories 528\nprotein 21g\ncarbs 46g\nfat 30g\nsaturates 8g\nfibre 9g\nsugar 12g\nsalt 2.11g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d39a" },
@@ -4595,7 +4742,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d39b" },
@@ -4626,7 +4774,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/chickencurry.jpg?itok=-35XVCmI",
     "prep_time": "10 min",
     "servings": "4",
-    "nutritional_info": "kcalories 373\nprotein 26g\ncarbs 35g\nfat 13g\nsaturates 4g\nfibre 7g\nsugar 15g\nsalt 1.9g"
+    "nutritional_info": "kcalories 373\nprotein 26g\ncarbs 35g\nfat 13g\nsaturates 4g\nfibre 7g\nsugar 15g\nsalt 1.9g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d39c" },
@@ -4657,7 +4806,8 @@
     "image_url": null,
     "prep_time": null,
     "servings": null,
-    "nutritional_info": null
+    "nutritional_info": null,
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d39d" },
@@ -4688,7 +4838,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "6",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d39e" },
@@ -4719,7 +4870,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d39f" },
@@ -4750,7 +4902,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/recipe_images/goats-cheese-olive-tapenade-spirals.jpg",
     "prep_time": "15 mins",
     "servings": "40",
-    "nutritional_info": "Calories: 60\nTotal Carbohydrates: 3g\nTotal Fat: 4g\nDietary fiber: 1g\nProtein: 2g\nSaturated fat: 2g\nSodium: 0.3g\nSugar: 0g"
+    "nutritional_info": "Calories: 60\nTotal Carbohydrates: 3g\nTotal Fat: 4g\nDietary fiber: 1g\nProtein: 2g\nSaturated fat: 2g\nSodium: 0.3g\nSugar: 0g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3a0" },
@@ -4781,7 +4934,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--698467_11.jpg?itok=1m-0AFVG",
     "prep_time": "30 min",
     "servings": "4",
-    "nutritional_info": "kcalories 356\nprotein 27g\ncarbs 4g\nfat 26g\nsaturates 4g\nfibre 0g\nsugar 0g\nsalt 0.16g"
+    "nutritional_info": "kcalories 356\nprotein 27g\ncarbs 4g\nfat 26g\nsaturates 4g\nfibre 0g\nsugar 0g\nsalt 0.16g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3a1" },
@@ -4812,7 +4966,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--399680_11.jpg",
     "prep_time": "10 min",
     "servings": "2",
-    "nutritional_info": "kcalories 624\nprotein 25g\ncarbs 105g\nfat 14g\nsaturates 2g\nfibre 8g\nsugar 17g\nsalt 2.35g"
+    "nutritional_info": "kcalories 624\nprotein 25g\ncarbs 105g\nfat 14g\nsaturates 2g\nfibre 8g\nsugar 17g\nsalt 2.35g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3a2" },
@@ -4843,7 +4998,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--1173688_12.jpg",
     "prep_time": "10 min",
     "servings": "4",
-    "nutritional_info": "kcalories 388\nprotein 28g\ncarbs 12g\nfat 25g\nsaturates 4g\nfibre 2g\nsugar 9g\nsalt 1.6g"
+    "nutritional_info": "kcalories 388\nprotein 28g\ncarbs 12g\nfat 25g\nsaturates 4g\nfibre 2g\nsugar 9g\nsalt 1.6g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3a3" },
@@ -4874,7 +5030,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--908543_10.jpg?itok=RNSjDaIu",
     "prep_time": "5 min",
     "servings": "4",
-    "nutritional_info": "kcalories 386\nprotein 42.6g\ncarbs 32g\nfat 9.6g\nsaturates 2g\nfibre 5.9g\nsugar 7.6g\nsalt 2.1g"
+    "nutritional_info": "kcalories 386\nprotein 42.6g\ncarbs 32g\nfat 9.6g\nsaturates 2g\nfibre 5.9g\nsugar 7.6g\nsalt 2.1g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3a4" },
@@ -4905,7 +5062,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--1178454_11.jpg?itok=WzpKA-iY",
     "prep_time": "20 min",
     "servings": "6",
-    "nutritional_info": "kcalories 548\nprotein 33g\ncarbs 56g\nfat 21g\nsaturates 10g\nfibre 4g\nsugar 8g\nsalt 1g"
+    "nutritional_info": "kcalories 548\nprotein 33g\ncarbs 56g\nfat 21g\nsaturates 10g\nfibre 4g\nsugar 8g\nsalt 1g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3a5" },
@@ -4936,7 +5094,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3a6" },
@@ -4967,7 +5126,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--745482_11.jpg?itok=YBkyzfQj",
     "prep_time": "10 min",
     "servings": "2",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3a7" },
@@ -4998,7 +5158,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/spinach-nutmeg-cannelloni.jpg?itok=GNNLfBYn",
     "prep_time": "20 mins",
     "servings": "Serves 4 - 6",
-    "nutritional_info": "Calories: 564\nTotal Carbohydrates: 32g\nTotal Fat: 37g\nDietary fiber: 5g\nProtein: 24g\nSaturated fat: 21g\nSodium: 1g\nSugar: 11g"
+    "nutritional_info": "Calories: 564\nTotal Carbohydrates: 32g\nTotal Fat: 37g\nDietary fiber: 5g\nProtein: 24g\nSaturated fat: 21g\nSodium: 1g\nSugar: 11g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3a8" },
@@ -5029,7 +5190,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "4",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3a9" },
@@ -5060,7 +5222,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--1057484_11.jpg?itok=wH5on6Nr",
     "prep_time": "20 min",
     "servings": "6",
-    "nutritional_info": "kcalories 284\nprotein 2g\ncarbs 12g\nfat 13g\nsaturates 4g\nfibre 2g\nsugar 4g\nsalt 1.7g"
+    "nutritional_info": "kcalories 284\nprotein 2g\ncarbs 12g\nfat 13g\nsaturates 4g\nfibre 2g\nsugar 4g\nsalt 1.7g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3aa" },
@@ -5091,7 +5254,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--1259716_8.jpg?itok=zl0ETPdN",
     "prep_time": "5 min",
     "servings": "4",
-    "nutritional_info": "kcalories 518\nprotein 32g\ncarbs 75g\nfat 12g\nsaturates 0.4g\nfibre 5g\nsugar 5g\nsalt 1.29g"
+    "nutritional_info": "kcalories 518\nprotein 32g\ncarbs 75g\nfat 12g\nsaturates 0.4g\nfibre 5g\nsugar 5g\nsalt 1.29g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3ab" },
@@ -5122,7 +5286,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3ac" },
@@ -5153,7 +5318,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--338576_12.jpg?itok=UtzH_l7G",
     "prep_time": "5 min",
     "servings": "4",
-    "nutritional_info": "kcalories 180\nprotein 20g\ncarbs 6g\nfat 9g\nsaturates 4g\nfibre 1g\nsugar 5g\nsalt 0.86g"
+    "nutritional_info": "kcalories 180\nprotein 20g\ncarbs 6g\nfat 9g\nsaturates 4g\nfibre 1g\nsugar 5g\nsalt 0.86g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3ad" },
@@ -5184,7 +5350,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--358621_11.jpg",
     "prep_time": "35 min",
     "servings": "8",
-    "nutritional_info": "kcalories 411\nprotein 39g\ncarbs 28g\nfat 16g\nsaturates 2g\nfibre 3g\nsugar 8g\nsalt 1.17g"
+    "nutritional_info": "kcalories 411\nprotein 39g\ncarbs 28g\nfat 16g\nsaturates 2g\nfibre 3g\nsugar 8g\nsalt 1.17g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3ae" },
@@ -5215,7 +5382,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/grilled-miso-salmon-with-rice-noodles.jpg?itok=hlgYPcHt",
     "prep_time": "10 min",
     "servings": "4",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3af" },
@@ -5246,7 +5414,8 @@
     "image_url": "https://www.ah.nl.kpnis.nl/static/recepten/img_089593_890x594_JPG.jpg",
     "prep_time": "",
     "servings": "",
-    "nutritional_info": "Voedingswaarden\n(per eenpersoonsportie)\nenergie 420 kcal\neiwit 16 g\nkoolhydraten 24 g\nvet 28 g\nwaarvan verzadigd 17 g\nnatrium 345 mg\nvezels 4 g"
+    "nutritional_info": "Voedingswaarden\n(per eenpersoonsportie)\nenergie 420 kcal\neiwit 16 g\nkoolhydraten 24 g\nvet 28 g\nwaarvan verzadigd 17 g\nnatrium 345 mg\nvezels 4 g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3b0" },
@@ -5277,7 +5446,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/sausage-casserole.jpg?itok=-6DbGu-i",
     "prep_time": "5 min",
     "servings": "4",
-    "nutritional_info": "kcalories 524\nprotein 24g\ncarbs 41g\nfat 29g\nsaturates 10g\nfibre 11g\nsugar 15g\nsalt 3.6g"
+    "nutritional_info": "kcalories 524\nprotein 24g\ncarbs 41g\nfat 29g\nsaturates 10g\nfibre 11g\nsugar 15g\nsalt 3.6g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3b1" },
@@ -5308,7 +5478,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3b2" },
@@ -5339,7 +5510,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3b3" },
@@ -5370,7 +5542,8 @@
     "image_url": "http://data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODguNTQ5IiBoZWlnaHQ9IjUzLjciIHZpZXdCb3g9IjAgMCAxODguNTQ5IDUzLjciPjxnIGZpbGw9IiNCQ0JDQkMiPjxwYXRoIGQ9Ik0xNjcuNCA3LjQ4NkMxNTcuMjEgNS43NSAxNDUuNjQ0IDkuNjUgMTQxLjUxIDE5LjgyYy0yLjA5IDUuMTM2LTEuOTEgMTAuOTQ3LjY4IDE1Ljg2MiAyLjQ2NSA0LjY3NyA2LjcwNyA4LjEzOCAxMS43MiA5Ljc3NSA2LjQwNSAyLjA5MiAxMy45NCAxLjU3NSAyMC4xNjgtLjg5LjUyLS4yMDYgMy4wOTgtLjk4IDMuMDk4LTEuNTZWMzUuODZjLTcuODU1IDUuMDIyLTIwLjcxMiA3LjY5LTI3LjM0OC0uODE2LTMuMS0zLjk3My0zLjUwOC05Ljc3NC0xLjIxLTE0LjIyNSAyLjQ5LTQuODU1IDcuODQyLTcuNDIzIDEzLjEzLTcuNjEzIDUuNDUtLjE5NSAxMC4zMiAxLjc0IDE1LjAyIDQuM3YtNi42NmMwLS4xOTQuMDktLjQ5Ni0uMTA4LS41NzUtLjk0Mi0uMzc4LTEuODk2LS43My0yLjg1My0xLjA2Ni0yLjA5LS43MzUtNC4yMy0xLjMyLTYuNDA4LTEuNzJ6TTEzMS40Ni4wMTZIMTg3LjgwN2MuNjE4IDAgLjctLjE1LjcuNDYydjUyLjMxNmMwIC41MS4yMTguOTA1LS4zMjcuOTA1aC01Ni42NDZjLS4xNyAwLS4wNzMtMS4zODMtLjA3My0xLjU1NVYuMDE2ek04Ny42MiAyOS42MnYxMC41NWg2Ljg1cy4xMzYtLjAwMy4zNi0uMDEyYy4yMy0uMDEuNTU3LS4wMi45NS0uMDU1Ljc1LS4wNyAxLjcyNi0uMjA1IDIuNjc1LS41MjYuODYtLjI5IDEuNjk4LS43MjUgMi4zMzYtMS4zNjQuMjQ3LS4yNDYuNDUtLjUwMy42MTUtLjc2Mi41MzgtLjg0Ni42NzQtMS43MDUuNzAzLTIuMTkzLjAxNi0uMjEyLjAxNS0uMzM0LjAxNS0uMzM0cy4wMDMtLjA5NiAwLS4yNmMtLjAwNy0uMjAzLS4wMzItLjYtLjE0LTEuMDItLjEzLS41LS4zNy0xLjA4Mi0uODAyLTEuNjEyLS4wOC0uMS0uMTY3LS4yLS4yNjUtLjI5OC0uMTg4LS4xODgtLjM5LS4zNy0uNjE0LS41MzMtLjM3NC0uMjc2LS44MDItLjUxMy0xLjI2OC0uNzE2LS42MTUtLjI2NS0xLjMwNS0uNDY0LTIuMDYtLjYwNS0uMzktLjA3NC0uOC0uMTM1LTEuMjItLjE3My0uMjYtLjAyNi0uNTItLjA0NC0uNzktLjA2LS4yMzMtLjAxNC0uNDc4LS4wMjQtLjcyMy0uMDI0LTIuNDMgMC02LjYyLS4wMDQtNi42Mi0uMDA0ek04Ny42MiAxMy41OHYxMC4wMDJoMy4zMTZzLjIyIDAgLjUxMy0uMDA4Yy4yMjgtLjAwOC41MDItLjAyMy43NDQtLjAzNi42ODMtLjA1IDEuNjI3LS4xNDYgMi41Ny0uNDEuMTg2LS4wNTIuMzctLjExLjU1My0uMTczLjc0LS4yNjMgMS40NS0uNjQ4IDItMS4xOS40NC0uNDMyLjczLS45MTIuOTItMS4zOC4yMzYtLjU3LjMyLTEuMTIuMzU0LTEuNTA3LjAzLS4zNDcuMDMtLjU2Ny4wMy0uNTY3cy4wMDYtLjE2My0uMDEtLjQyM2MtLjAyLS40MzctLjExMi0xLjE0NS0uNDU0LTEuODI3LS4xNjctLjMyNi0uMzk1LS42NC0uNzAyLS45NDUtLjM3NC0uMzctLjgyNi0uNjUtMS4zMTMtLjg2Ni0uOTMyLS40MTMtMi0uNTc3LTIuOS0uNjM3LS4zOS0uMDI2LS43NDgtLjAzLTEuMDUtLjAzLS42OC0uMDAyLTQuNTctLjAwMi00LjU3LS4wMDJ6TTgwLjY5NCA3LjU0NHYzOC42NjJoMTQuNTU0czcuMS4xOTUgMTEuMDE3LTMuNzI0YzMuMTg4LTMuMTg4IDIuOTYtNi44OCAyLjk2LTYuODhzLjIzLTMuODUzLTIuNzI0LTYuODA3Yy0yLjUxNS0yLjUxNi01LjcyOC0zLjE4Ni01LjcyOC0zLjE4NnMxLjQ1LS42ODIgMi41NjYtMS43OTdjLjUyLS41MjMgMi4zOC0yLjIgMi4zOC02LjI3MyAwLTQuMTA0LTIuNzMtNi40NjMtMi43My02LjQ2M3MtMi45OTItMy41MzQtOS43NDYtMy41MzRIODAuNjk0ek02NS43My4wMTZoNTcuMDQ1VjUzLjdINjUuNzNWLjAxNnpNMjEuODkgMjkuNjJ2MTAuNTVoNi44NDhzLjEzOC0uMDAzLjM2LS4wMTJjLjIzMy0uMDEuNTYtLjAyLjk1NC0uMDU1Ljc0Ni0uMDcgMS43MjMtLjIwNSAyLjY3My0uNTI2Ljg2LS4yOSAxLjY5Ny0uNzI1IDIuMzM3LTEuMzY0LjI0Ni0uMjQ2LjQ1LS41MDMuNjEzLS43NjIuNTM4LS44NDYuNjczLTEuNzA1LjcwMy0yLjE5My4wMTYtLjIxMi4wMTQtLjMzNC4wMTQtLjMzNHMuMDA0LS4wOTYgMC0uMjZjLS4wMDgtLjIwMy0uMDMtLjYtLjE0LTEuMDItLjEyOC0uNS0uMzctMS4wODItLjgtMS42MTItLjA4Mi0uMS0uMTctLjItLjI2Ni0uMjk4LS4xOS0uMTg4LS4zOTMtLjM3LS42MTUtLjUzMy0uMzc0LS4yNzYtLjgwMi0uNTEzLTEuMjctLjcxNi0uNjEzLS4yNjUtMS4zMDItLjQ2NC0yLjA2LS42MDUtLjM4Ny0uMDc0LS43OTgtLjEzNS0xLjIxNy0uMTczLS4yNi0uMDI2LS41Mi0uMDQ0LS43OS0uMDYtLjIzMy0uMDE0LS40OC0uMDI0LS43MjMtLjAyNC0yLjQzIDAtNi42Mi0uMDA0LTYuNjItLjAwNHpNMjEuODkgMTMuNTh2MTAuMDAyaDMuMzE2cy4yMiAwIC41MTMtLjAwOGMuMjI4LS4wMDguNTAyLS4wMjMuNzQ1LS4wMzYuNjgzLS4wNSAxLjYyNi0uMTQ2IDIuNTctLjQxLjE4NS0uMDUyLjM3LS4xMS41NTItLjE3My43NC0uMjYzIDEuNDUtLjY0OCAyLjAwMi0xLjE5LjQzNy0uNDMyLjcyNy0uOTEyLjkyLTEuMzguMjMzLS41Ny4zMTUtMS4xMi4zNS0xLjUwNy4wMy0uMzQ3LjAzLS41NjcuMDMtLjU2N3MuMDA2LS4xNjMtLjAwOC0uNDIzYy0uMDIzLS40MzctLjExNC0xLjE0NS0uNDU3LTEuODI3LS4xNjYtLjMyNi0uMzkzLS42NC0uNy0uOTQ1LS4zNzQtLjM3LS44MjYtLjY1LTEuMzEzLS44NjYtLjkzNC0uNDEzLTIuMDAyLS41NzctMi45MDItLjYzNy0uMzktLjAyNi0uNzQ4LS4wMy0xLjA1Mi0uMDMtLjY4LS4wMDItNC41Ny0uMDAyLTQuNTctLjAwMnpNMTQuOTY0IDcuNTQ0djM4LjY2MmgxNC41NTRzNy4wOTcuMTk1IDExLjAxNi0zLjcyNGMzLjE5LTMuMTg4IDIuOTYtNi44OCAyLjk2LTYuODhzLjIzMi0zLjg1My0yLjcyMy02LjgwN2MtMi41MTUtMi41MTYtNS43MjgtMy4xODYtNS43MjgtMy4xODZzMS40NS0uNjgyIDIuNTY2LTEuNzk3Yy41Mi0uNTIzIDIuMzgtMi4yIDIuMzgtNi4yNzMgMC00LjEwNC0yLjczLTYuNDYzLTIuNzMtNi40NjNzLTIuOTktMy41MzQtOS43NDYtMy41MzRIMTQuOTY0ek0wIC4wMTZoNTcuMDQ0VjUzLjdIMFYuMDE2eiIvPjwvZz48L3N2Zz4=",
     "prep_time": "less than 30 mins",
     "servings": "Approximately 20 biscuits",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3b4" },
@@ -5401,7 +5574,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--49153_11.jpg",
     "prep_time": "30 min",
     "servings": "4",
-    "nutritional_info": "kcalories 795\nprotein 49g\ncarbs 18g\nfat 57g\nsaturates 17g\nfibre 2g\nsugar 6g\nsalt 3.47g"
+    "nutritional_info": "kcalories 795\nprotein 49g\ncarbs 18g\nfat 57g\nsaturates 17g\nfibre 2g\nsugar 6g\nsalt 3.47g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3b5" },
@@ -5432,7 +5606,8 @@
     "image_url": "http://www.ah.nl.kpnis.nl/static/recepten/img_062499_1600x560_JPG.jpg",
     "prep_time": "",
     "servings": "4 personen",
-    "nutritional_info": "Voedingswaarden\n(per eenpersoonsportie)\nenergie 645 kcal\neiwit 38 g\nkoolhydraten 57 g\nvet 27 g\nwaarvan verzadigd 11 g\nnatrium 100 mg\nvezels 12 g"
+    "nutritional_info": "Voedingswaarden\n(per eenpersoonsportie)\nenergie 645 kcal\neiwit 38 g\nkoolhydraten 57 g\nvet 27 g\nwaarvan verzadigd 11 g\nnatrium 100 mg\nvezels 12 g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3b6" },
@@ -5463,7 +5638,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--991468_11.jpg?itok=Nz5phZsq",
     "prep_time": "10 min",
     "servings": "4",
-    "nutritional_info": "kcalories 483\nprotein 21.5g\ncarbs 57g\nfat 18.4g\nsaturates 9.1g\nfibre 3.8g\nsugar 6.4g\nsalt 1.2g"
+    "nutritional_info": "kcalories 483\nprotein 21.5g\ncarbs 57g\nfat 18.4g\nsaturates 9.1g\nfibre 3.8g\nsugar 6.4g\nsalt 1.2g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3b7" },
@@ -5494,7 +5670,8 @@
     "image_url": "http://www.bbcgoodfood.com/sites/default/files/styles/bbcgf_recipe/public/recipe_images/recipe-image-legacy-id--456460_11.jpg?itok=__RKEdNL",
     "prep_time": "15 min",
     "servings": "5",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3b9" },
@@ -5525,7 +5702,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe_images/kale-with-chana-coconut.jpg?itok=Zqli0_yb",
     "prep_time": "10 mins",
     "servings": "Serves 2 as a main, 4 as a side",
-    "nutritional_info": "Calories: 233\nTotal Carbohydrates: 21g\nTotal Fat: 10g\nDietary fiber: 6g\nProtein: 10g\nSaturated fat: 6g\nSodium: 0.8g\nSugar: 7g"
+    "nutritional_info": "Calories: 233\nTotal Carbohydrates: 21g\nTotal Fat: 10g\nDietary fiber: 6g\nProtein: 10g\nSaturated fat: 6g\nSodium: 0.8g\nSugar: 7g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3ba" },
@@ -5556,7 +5734,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2016/01/creamy-black-dhal-with-crispy-onions.jpg?itok=Zz0MmEQJ",
     "prep_time": "35 mins",
     "servings": "Serves 4",
-    "nutritional_info": "Calories: 527\nTotal Carbohydrates: 35g\nTotal Fat: 34g\nDietary fiber: 6g\nProtein: 19g\nSaturated fat: 21g\nSodium: 0.1g\nSugar: 9g"
+    "nutritional_info": "Calories: 527\nTotal Carbohydrates: 35g\nTotal Fat: 34g\nDietary fiber: 6g\nProtein: 19g\nSaturated fat: 21g\nSodium: 0.1g\nSugar: 9g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3bb" },
@@ -5587,7 +5766,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2019/09/spinach-kedgeree-with-spiced-salmon.jpg?itok=lCiYBQxb",
     "prep_time": "15 mins",
     "servings": "Serves 2",
-    "nutritional_info": "Calories: 636\nTotal Carbohydrates: 43g\nTotal Fat: 28g\nDietary fiber: 6g\nProtein: 49g\nSaturated fat: 6g\nSodium: 0.6g\nSugar: 14g"
+    "nutritional_info": "Calories: 636\nTotal Carbohydrates: 43g\nTotal Fat: 28g\nDietary fiber: 6g\nProtein: 49g\nSaturated fat: 6g\nSodium: 0.6g\nSugar: 14g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3bc" },
@@ -5618,7 +5798,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/user-collections/my-colelction-image/2015/12/recipe-image-legacy-id--560455_11.jpg?itok=bCDRjX6a",
     "prep_time": "5 mins",
     "servings": "Serves 4",
-    "nutritional_info": "Calories: 151\nTotal Carbohydrates: 13g\nTotal Fat: 2g\nDietary fiber: 11g\nProtein: 7g\nSaturated fat: 2g\nSodium: 0.51g\nSugar: 11g"
+    "nutritional_info": "Calories: 151\nTotal Carbohydrates: 13g\nTotal Fat: 2g\nDietary fiber: 11g\nProtein: 7g\nSaturated fat: 2g\nSodium: 0.51g\nSugar: 11g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3bd" },
@@ -5649,7 +5830,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "2 personen",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3bf" },
@@ -5674,7 +5856,8 @@
     "source_url": "https://www.bbcgoodfood.com/recipes/1055/easy-spiced-salmon-kedgeree",
     "uid": "db77ac80-0eee-11ea-9623-abeedb0c1bde",
     "created": "2019-11-24 20:21:18",
-    "hash": "012a3e896816a7e0736bf608a0f0ab088eea722a9fdf3a609dd599a48c5c2b97"
+    "hash": "012a3e896816a7e0736bf608a0f0ab088eea722a9fdf3a609dd599a48c5c2b97",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ddd7ce0ef4d68bb47d8d3c0" },
@@ -5699,7 +5882,8 @@
     "uid": "d025e880-0f5a-11ea-9075-61e7ea84c133",
     "directions": "1. Schil de aardappelen, halveer ze en kook 20 minuten in ruim kokend water met zout totdat ze gaar zijn. Giet daarna af in een vergiet.\n\n2. Verwarm de oven voor op 200 graden.\n\n3. Schil de ananas door de kap aan de boven- en onderkant weg te snijden. Daarna zet je de ananas op z’n kont. Met een scherp mes snijd je de schil van boven naar beneden. Draai de ananas rond totdat alle schillen zijn verwijderd. Nu snijd je de ananas in 4 kwarten in de lengte. Dan kun je heel gemakkelijk de harde kern wegsnijden. Vergelijk het met een appel schillen, dat gaat op dezelfde manier. De helft van de ananas snijd je in grove blokjes. De andere helft bewaar je afgedekt in de koelkast.\n\n4. Snijd de ui in dunne halve maantjes.\n\n5. Schep de zuurkool met vocht en al uit de verpakking in een pan. Als je niet zo’n fan bent van hele zure zuurkool, was de zuurkool dan eerst een keer onder stromend water. De zuurkool gaan we alleen even opwarmen in het eigen vocht (of een scheutje water) in een pannetje met de deksel erop. Omroeren als het teveel gaat stomen.\n\n6. Vet een ovenschaal in en beleg de bodem met de opgewarmde zuurkool.\n\n7. Verhit 1 el boter in een pan en fruit hier de ui in. Na een minuutje schep je de kerrie erdoor, bak dit kort mee. Voeg het gehakt toe en rul deze gaar. Breng op smaak met peper en zout en schep de blokjes ananas en rozijnen erdoor. Dit mengsel schep je op de zuurkool in de schaal.\n\n7. Inmiddels zijn je aardappelen gaar. Stamp deze tot een puree in de pan met een scheutje melk en een klontje boter. Breng op smaak met zout. De aardappelpuree verdeel je over het gehaktmengsel in je schaal.\n\n8. Als laatste gaat de geraspte kaas erover. Schuif de schaal in de oven en bak in 20-25 minuten totdat er een goudbruin korstje op de aardappelpuree zit.\n\nTips:\n– Met de overgebleven ananas kun je de volgende ochtend heerlijk ontbijten. Of eet het als snack tussendoor. Meer inspiratie voor koken met ananas vind je hier.\n– Je houdt nog een half zakje geraspte kaas over. Vries deze in om te kunnen bewaren voor een volgende ovenschotel.\n– De laatste keer dat ik dit gerecht maakte, heb ik ook nog een theelepel kurkuma door de puree geroerd. Die krijgt daardoor een heerlijke smaak en mooie, gele kleur.",
     "source_url": "https://www.francescakookt.nl/zuurkool-met-gehakt-kerrie-en-ananas/",
-    "hash": "73efdf82f6d4d4aa5a6513a10677831163d924041f13bbbc55ce2e00c37f5916"
+    "hash": "73efdf82f6d4d4aa5a6513a10677831163d924041f13bbbc55ce2e00c37f5916",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5de2e801ad2fa55dccc25246" },
@@ -5730,7 +5914,8 @@
     "image_url": "https://www.bbcgoodfood.com/sites/default/files/styles/recipe/public/recipe/recipe-image/2017/03/kedgeree.jpg?itok=R8PbVXcI",
     "prep_time": "10 mins",
     "servings": "Serves 4",
-    "nutritional_info": "Calories: 878\nTotal Carbohydrates: 52g\nTotal Fat: 50g\nDietary fiber: 7g\nProtein: 51g\nSaturated fat: 11g\nSodium: 3.2g\nSugar: 7g"
+    "nutritional_info": "Calories: 878\nTotal Carbohydrates: 52g\nTotal Fat: 50g\nDietary fiber: 7g\nProtein: 51g\nSaturated fat: 11g\nSodium: 3.2g\nSugar: 7g",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5de69df467025600174a195a" },
@@ -5755,7 +5940,8 @@
     "source_url": "https://www.google.com/amp/s/www.bbcgoodfood.com/recipes/moussaka%3famp",
     "uid": "efb71210-15f3-11ea-bf79-192f40cd6a75",
     "created": "2019-12-3 18:40:03",
-    "hash": "4cb60f98e3ad6a8bc718f370fdffc179de3279a5a2dabf2e391976d78988d646"
+    "hash": "4cb60f98e3ad6a8bc718f370fdffc179de3279a5a2dabf2e391976d78988d646",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5debccc9e4a5ad0017d71228" },
@@ -5780,7 +5966,8 @@
     "source_url": "https://www.bbcgoodfood.com/recipes/slow-cooker-honey-mustard-chicken-thighs",
     "uid": "c9b919e0-190a-11ea-8f65-157cf39dad89",
     "created": "2019-12-7 17:01:11",
-    "hash": "1c5435600876db7a750f9664a37855bca85b35a5ec45d5add0de56aa5f8b7bf0"
+    "hash": "1c5435600876db7a750f9664a37855bca85b35a5ec45d5add0de56aa5f8b7bf0",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5dede4baadd66f0017421839" },
@@ -5811,7 +5998,8 @@
     "image_url": null,
     "prep_time": "10 min",
     "servings": "6",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5defb84c90f85c3a14b3ffc2" },
@@ -5836,7 +6024,8 @@
     "uid": "ee655490-1b60-11ea-bb15-1f5397192852",
     "directions": "Verwarm de oven voor op 180c.\nSnijd de bloemkool in roosjes en kook ze beetgaar. Giet het goed af, pureer de bloemkool met een staafmixer en voeg de nootmuskaat toe.\nKnijp het vocht uit de bloemkool. \nVoeg de nootmuskaat toe.\nLaat de zuurkool uitlekken in een vergiet.\nBak ondertussen de spekblokjes crispy en voeg vervolgens het gehakt toe met de sambal, mosterd en alle droge kruiden. Snijd de champignons in stukjes en doe het bij het gehakt.\nAls het gehakt klaar is doe je het in een ovenschaal, gevolgd door de zuurkool, plakjes rookworst, bloemkoolpuree en strooi tot slot de geraspte kaas over het geheel.\nDoe de zuurkool ovenschotel 30 minuten in de oven totdat de kaas mooi goudbruin is geworden.",
     "source_url": "https://www.oanhskitchen.nl/zuurkool-kerrie-ovenschotel/",
-    "hash": "cb68e2a3bfb8449545fc879f8a0ab5eadef76a90044af3eac88b07f1073c45ba"
+    "hash": "cb68e2a3bfb8449545fc879f8a0ab5eadef76a90044af3eac88b07f1073c45ba",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5df009e2a5e911716c2e0352" },
@@ -5861,7 +6050,8 @@
     "uid": "90029e40-1b91-11ea-abcd-57b76efee3d9",
     "directions": "Amandelkoekjes\nDeze krokante koekjes smaken heerlijk bij een dessert, maar zijn natuurlijk ook lekker uit het vuistje. Met behulp van een stok geef je ze de ronde vorm.\n\nVoorbereiding:\nVerwarm de oven voor op 170 °C.\nBakgereedschap:\nStok, bijvoorbeeld een bezem\nBakplaat\nPaletmes\nBereidingswijze:\nMeng in een kom de amandelen, de suiker, de bloem en het zout.\nSmelt de boter in een pan samen met het water.\nMeng de gesmolten boter door het amandelmengsel\nRoer tot slot de eieren erdoor.\nSchep met een lepel bergjes beslag op de bakplaat en druk ze met een natte vork plat tot grofweg een rondje.\nBak de amandelkrullen op 170 °C, ongeveer 13 minuten.\nLeg intussen de stok(ken) klaar.\nNeem de amandelkrullen vrijwel direct na het bakken met een paletmes van de plaat en leg ze over een stokken om af te koelen.",
     "source_url": "https://heelhollandbakt.omroepmax.nl/recepten/details/amandelkoekjes/",
-    "hash": "812de0414c7f26d27d45f6149e0d84d82bff0988bf8d1c7673add18064f408c5"
+    "hash": "812de0414c7f26d27d45f6149e0d84d82bff0988bf8d1c7673add18064f408c5",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5df387ee83d11a37a097f339" },
@@ -5886,7 +6076,8 @@
     "uid": "74a02390-1da6-11ea-b041-bd56e7f8bea1",
     "directions": "1. Bind het vlees stevig op met keukengaren. Pel de ui en snijd hem zeer grof. Snijd de bleekselderij en de wortel in stukjes. Doe ui, selderij, wortel en knoflook in een keukenmachine en draai bijna, maar niet helemaal, tot pulp.\n\n2. Verhit de boter en de olie in een braadpan waar het vlees precies in past. Braad het vlees aan alle kanten aan, tot het een mooi kleurtje heeft. Haal uit de pan. Fruit nu de gehakte groenten een paar minuutjes. Voeg dan de rode wijn/marinade, tomatenpuree, ui met kruidnagel, de kruiden en het bouillonblokje toe. Breng aan de kook en leg er het vlees in.\n\n3. Zet op een zeer laag pitje en laat zachtjes sudderen, met het deksel op een kier. Hoe zachtjes? De vloeistof mag wel ‘rimpelen’ of eens een borrel geven, maar niet koken. Gebruik zo nodig een verdeelplaatje.\n\n4. Controleer na 3 uur of het vlees gaar wordt. Het moet boterzacht zijn. Zo niet, ga dan rustig door. Is het eenmaal gaar, dan mag het uit de pan. Voeg dan de brandy toe, verwijder de ui met kruidnagel en kook de saus zonder deksel op hoger vuur een poos (15-30 minuten) in. Controleer op smaak. Leg het vlees terug in de saus en draai het vuur uit.\n\n\nServeren:\n\nWarm het vlees heel zachtjes weer op in de saus. Snijd het aan dikke plakken; dunne zouden uit elkaar vallen. Verwijder de touwtjes. Eet met gekookte aardappels.",
     "source_url": "https://www.onnokleyn.nl/recept-stracotto-al-vino-rosso/",
-    "hash": "666c82e2b1620e084ba1b1ea2fa852c0f5143e6728d96a8308e4a21b5742deb0"
+    "hash": "666c82e2b1620e084ba1b1ea2fa852c0f5143e6728d96a8308e4a21b5742deb0",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5df3895e83d11a37a097f33a" },
@@ -5911,7 +6102,8 @@
     "uid": "4fec4690-1da7-11ea-b041-bd56e7f8bea1",
     "directions": "Schil de zoete aardappelen en snijd ze in kleine stukjes. Verhit de olie in een wok of braadpan en bak er de amandelen in tot ze goudgeel kleuren. Schep eruit. Doe het gehakt in de olie in de pan en roerbak rustig tot het los is en bijna knapperig wordt. Voeg de zoete aardappel en de peterselie toe en roerbak een paar minuten. Doe er de oestersaus, sambal en het limoensap bij plus 100 ml water, sluit de pan en zet het vuur laag. Laat in circa 10 minuten beetgaar worden. Breng op smaak met zout. Doe de amandelen erbij en serveer met gekookte rijst.",
     "source_url": "https://www.onnokleyn.nl/recept-zoete-aardappel-met-amandelen-en-een-beetje-gehakt/",
-    "hash": "6bacc5f72982f5f123a6c6ca4c69eb7ed79ef9f25877afc5cb1efb66bf78cd3a"
+    "hash": "6bacc5f72982f5f123a6c6ca4c69eb7ed79ef9f25877afc5cb1efb66bf78cd3a",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5df3ec996f53c5001757072f" },
@@ -5936,7 +6128,8 @@
     "source_url": "https://www.bbcgoodfood.com/recipes/mustardy-pork-apples",
     "uid": "748418d0-1de2-11ea-9040-77040b40618a",
     "created": "2019-12-13 20:55:04",
-    "hash": "e12c4b801651f8d6e0aec0ac96956713c7ba0c03022de8c566d3c03d1a4849ae"
+    "hash": "e12c4b801651f8d6e0aec0ac96956713c7ba0c03022de8c566d3c03d1a4849ae",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5ece60e898340700176ac5d0" },
@@ -5967,7 +6160,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5f70ed96ff378400170309de" },
@@ -5998,7 +6192,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5fa6cbeb3c81ac0017821a7a" },
@@ -6029,7 +6224,8 @@
     "image_url": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/sausage-leek-mash-pie-07a67d4.jpg?quality=90&resize=440,400",
     "prep_time": "5 mins",
     "servings": "Serves 4",
-    "nutritional_info": "kcal"
+    "nutritional_info": "kcal",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5fa6cbeb3c81ac0017821a7b" },
@@ -6060,7 +6256,8 @@
     "image_url": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/spicy-black-bean-tacos-6ac283a.jpg?quality=90&resize=440,400",
     "prep_time": "15 mins",
     "servings": "Serves 4",
-    "nutritional_info": "kcal"
+    "nutritional_info": "kcal",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5fa6cbed3c81ac0017821a7c" },
@@ -6091,7 +6288,8 @@
     "image_url": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/salmonpasta-11bb3f0.jpg?quality=90&resize=440,400",
     "prep_time": "5 mins",
     "servings": "Enough for 2 adults + 2 children",
-    "nutritional_info": "kcal"
+    "nutritional_info": "kcal",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5fa6cbee3c81ac0017821a7d" },
@@ -6122,7 +6320,8 @@
     "image_url": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/teriyaki-salmon-green-beans-e15a777.jpg?quality=90&resize=440,400",
     "prep_time": "10 mins",
     "servings": "Serves 4",
-    "nutritional_info": "kcal"
+    "nutritional_info": "kcal",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5fa6cbee3c81ac0017821a7e" },
@@ -6153,7 +6352,8 @@
     "image_url": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/meatballsgarlic-bread-9245ad6.jpg?quality=90&resize=440,400",
     "prep_time": "10 mins",
     "servings": "Serves 3",
-    "nutritional_info": "kcal"
+    "nutritional_info": "kcal",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5fa6cbef3c81ac0017821a7f" },
@@ -6184,7 +6384,8 @@
     "image_url": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-654456_10-5dfdcd6.jpg?quality=90&resize=440,400",
     "prep_time": "15 mins",
     "servings": "Serves 4",
-    "nutritional_info": "kcal"
+    "nutritional_info": "kcal",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5fe0c486ea6be70017f406bc" },
@@ -6215,7 +6416,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "4",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "5fe0c487ea6be70017f406bd" },
@@ -6246,7 +6448,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "4",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "609ae483126be50017689089" },
@@ -6277,7 +6480,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "609ae484126be5001768908a" },
@@ -6308,7 +6512,8 @@
     "image_url": null,
     "prep_time": "",
     "servings": "6",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   },
   {
     "_id": { "$oid": "60d777f621ae3b75e1a9ae54" },
@@ -6339,6 +6544,7 @@
     "image_url": null,
     "prep_time": "",
     "servings": "",
-    "nutritional_info": ""
+    "nutritional_info": "",
+    "user": "wouterpot2@gmail.com"
   }
 ]
