@@ -1,15 +1,11 @@
-const createDb = require('../tables')
 const { Ingredients } = require('../../ingredients')
 
 describe('storeTranslations()', () => {
   let translationsDb, recipeDb
 
-  beforeEach(async () => {
-    ;({ translationsDb, recipeDb } = await createDb(
-      './memory-db',
-      'data/db.unit-test.json'
-    ))
-    translationsDb.storeTranslations(
+  beforeAll(async () => {
+    ;({ translationsDb, recipeDb } = global)
+    await translationsDb.storeTranslations(
       [
         'vegetable oil',
         'large onion',
@@ -72,6 +68,7 @@ describe('storeTranslations()', () => {
       parsedIngredients: Ingredients.create(r.ingredients)
     }))
     recipes = await translationsDb.translateRecipes(...recipes)
+    delete recipes[0]._id
     expect(recipes).toMatchSnapshot()
   })
 })

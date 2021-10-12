@@ -1,16 +1,17 @@
 const Paprika = require('./paprika.js')
 const PaprikaApiStub = require('./paprika.mock')
-const createDb = require('./db/tables')
 
 describe('Index', () => {
   const apiStub = new PaprikaApiStub()
   let recipeDb, paprika
 
   beforeAll(async () => {
-    ;({ recipeDb } = await createDb(
-      './memory-db',
-      './data/small-db.unit-test.json'
-    ))
+    ;({ recipeDb } = global)
+    const recipes = await recipeDb.getRecipesRaw()
+    for (r of recipes.slice(4)) {
+      await recipeDb.removeRecipe(r)
+    }
+
     paprika = new Paprika(recipeDb)
     paprika.paprikaApi = apiStub
   })

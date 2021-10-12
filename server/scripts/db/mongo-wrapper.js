@@ -79,6 +79,8 @@ class MongoTableWrapper {
   }
 
   write() {
+    if (Array.isArray(this.valueToAdd))
+      return this.table.insertMany(this.valueToAdd)
     if (this.valueToAdd) {
       return this.table.insertOne(this.valueToAdd)
     } else if (this.query && this.valueToUpdate) {

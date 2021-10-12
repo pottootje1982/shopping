@@ -1,10 +1,11 @@
 class PaprikaApiStub {
   recipes() {
-    return this.recipeStore.map((r) => ({ uid: r.uid, hash: r.hash }))
+    return this.recipeStore.map((r) => ({ ...r }))
   }
 
   recipe(uid) {
-    return this.recipeStore.find((r) => r.uid === uid)
+    const recipe = this.recipeStore.find((r) => r.uid === uid)
+    return { ...recipe }
   }
 
   upsertRecipe(recipe) {

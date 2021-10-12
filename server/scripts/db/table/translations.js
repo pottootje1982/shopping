@@ -1,3 +1,5 @@
+const Table = require('./table')
+
 function getTranslation(translations, key) {
   let result = translations.find((t) => t.original === key.toLowerCase())
   if (!result) {
@@ -22,24 +24,23 @@ function getTranslations(translations, keys) {
   }
 }
 
-class TranslationsDb {
+class TranslationsDb extends Table {
   constructor(db) {
-    this.db = db
+    super(db, 'translations')
     this.db.defaults({ translations: [] }).write()
   }
 
   async storeTranslations(originals, translations) {
     for (let [i, original] of originals.entries()) {
       original = original.toLowerCase()
-      await this.db
-        .get('translations')
+      await this.table()
         .push({ original, translation: translations[i] })
         .write()
     }
   }
 
   get translations() {
-    return this.db.get('translations').value()
+    return this.table().value()
   }
 
   async getTranslation(key) {

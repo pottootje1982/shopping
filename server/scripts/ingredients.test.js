@@ -1,12 +1,8 @@
 const { Ingredient, Ingredients } = require('./ingredients')
-const createDb = require('./db/tables')
 
 describe('Ingredient', () => {
   async function getRecipes() {
-    const { recipeDb } = await createDb(
-      './memory-db',
-      './data/db.unit-test.json'
-    )
+    const { recipeDb } = global
     return recipeDb.getRecipes()
   }
 

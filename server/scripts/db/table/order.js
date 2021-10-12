@@ -5,7 +5,6 @@ const { ObjectId } = require('mongodb')
 class OrderDb extends Table {
   constructor(db) {
     super(db, 'orders')
-    this.db = db
     this.db.defaults({ orders: [] }).write()
   }
 
@@ -20,11 +19,11 @@ class OrderDb extends Table {
   }
 
   getOrders(user) {
-    return this.db.get('orders').findAll({ user }).cloneDeep().value()
+    return this.table().findAll({ user }).cloneDeep().value()
   }
 
   getOrder(user, uid) {
-    return this.db.get('orders').find({ user, uid }).cloneDeep().value()
+    return this.table().find({ user, uid }).cloneDeep().value()
   }
 
   deleteOrder(user, id) {

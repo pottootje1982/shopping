@@ -1,13 +1,8 @@
-const createDb = require('../tables')
-
 describe('storeRecipe()', () => {
   let orderDb, recipeDb
 
-  beforeEach(async () => {
-    ;({ orderDb, recipeDb } = await createDb(
-      './memory-db',
-      './data/db.unit-test.json'
-    ))
+  beforeAll(async () => {
+    ;({ orderDb, recipeDb } = global)
   })
 
   it('get orders', async () => {
@@ -50,8 +45,7 @@ describe('storeRecipe()', () => {
     expect(recipe.parsedIngredients.length).toBe(8)
     expect(recipe.parsedIngredients).toMatchSnapshot()
 
-    // Removing shouldn't be necessary since we want to start with empty db before each test
-    orderDb.remove({ date: order.date })
+    await orderDb.remove({ date: order.date })
   })
 
   it('store order', async () => {
@@ -122,5 +116,7 @@ describe('storeRecipe()', () => {
     expect(order.recipes.length).toEqual(1)
     const recipe = order.recipes[0]
     expect(recipe.parsedIngredients).toMatchSnapshot()
+
+    await orderDb.remove({ uid: order.uid })
   })
 })

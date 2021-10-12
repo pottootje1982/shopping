@@ -4,6 +4,10 @@ module.exports = class Table {
     this.tableName = tableName
   }
 
+  close() {
+    this.db.close()
+  }
+
   table() {
     return this.db.get(this.tableName)
   }

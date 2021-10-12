@@ -1,9 +1,9 @@
 const { Ingredient } = require('../../ingredients')
+const Table = require('./table')
 
-class IngredientProductDb {
-  constructor(db, tableName) {
-    this.tableName = tableName || 'ing-to-product'
-    this.db = db
+class IngredientProductDb extends Table {
+  constructor(db) {
+    super(db, 'ing-to-product')
     this.db
       .defaults({
         mapping: []
@@ -13,8 +13,7 @@ class IngredientProductDb {
 
   storeMapping(ingredient, { id, title, ignore, notAvailable }, supermarket) {
     ingredient = ingredient.toLowerCase()
-    return this.db
-      .get(this.tableName)
+    return this.table()
       .find({
         ingredient,
         supermarket
@@ -27,10 +26,13 @@ class IngredientProductDb {
       .write()
   }
 
+  storeMappings(mappings) {
+    return this.table().push(mappings).write()
+  }
+
   getMapping(ingredient, supermarket) {
     ingredient = ingredient.toLowerCase()
-    return this.db
-      .get(this.tableName)
+    return this.table()
       .find({
         ingredient,
         supermarket
@@ -39,7 +41,7 @@ class IngredientProductDb {
   }
 
   getAllMappings() {
-    return this.db.get(this.tableName).value() || []
+    return this.table().value() || []
   }
 
   async getMappings(recipes, supermarket) {

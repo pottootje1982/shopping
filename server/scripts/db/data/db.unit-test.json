@@ -418,7 +418,7 @@
       "translation": "zalm"
     }
   ],
-  "ing-to-product": [
+  "mappings": [
     {
       "ingredient": "prei",
       "supermarket": "ah",

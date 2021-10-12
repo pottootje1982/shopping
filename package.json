@@ -13,11 +13,6 @@
   "pre-commit": [
     "test"
   ],
-  "jest": {
-    "setupFiles": [
-      "<rootDir>/server/.jest/setEnvVars.js"
-    ]
-  },
   "dependencies": {
     "@google-cloud/translate": "^4.2.1",
     "@material-ui/icons": "^4.11.2",
@@ -41,6 +36,7 @@
     "uuidv1": "^1.6.14"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^2.1.0",
     "babel-jest": "^26.6.0",
     "babel-preset-es2015": "^6.24.1",
     "eslint": "^7.30.0",

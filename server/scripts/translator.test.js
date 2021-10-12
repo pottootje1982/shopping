@@ -1,14 +1,10 @@
 const Translator = require('./translator')
-const createDb = require('./db/tables')
 
 describe('translates', () => {
   let translationsDb, translator
 
   beforeAll(async () => {
-    ;({ translationsDb } = await createDb(
-      './memory-db',
-      'data/db.unit-test.json'
-    ))
+    ;({ translationsDb } = global)
     translationsDb.storeTranslations(
       [
         'vegetable oil',
@@ -78,8 +74,6 @@ describe('translates', () => {
   })
 
   it('does not translate already translated strings', async () => {
-    const { translationsDb } = await createDb('./memory-db')
-
     translationsDb.storeTranslations(
       ['baby new potatoes'],
       ['baby nieuwe aardappelen']

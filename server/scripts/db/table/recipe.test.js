@@ -1,10 +1,8 @@
-const createDb = require('../tables')
-
 describe('storeRecipe()', () => {
   let recipeDb
 
   beforeAll(async () => {
-    ;({ recipeDb } = await createDb('./memory-db', './data/db.unit-test.json'))
+    ;({ recipeDb } = global)
   })
 
   it('get recipes', async () => {

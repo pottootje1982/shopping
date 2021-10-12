@@ -126,14 +126,15 @@ class Paprika {
         !remote ||
         (remote.hash !== local.hash && local.created > remote.created)
       ) {
-        console.log(`Saving recipe '${local.name}' to Paprika`)
+        console.log(`Updating Paprika recipe '${local.name}'`)
         await this.paprikaApi.upsertRecipe(local)
       } else if (
         remote &&
         remote.hash !== local.hash &&
         remote.created > local.created
       ) {
-        this.recipeDb.editRecipe(remote)
+        console.log(`Updating local recipe '${local.name}'`)
+        await this.recipeDb.editRecipe(remote)
       }
     }
     const insertToLocal = remoteRecipes.filter((recipe) => {

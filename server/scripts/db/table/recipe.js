@@ -1,22 +1,19 @@
 const { Ingredients } = require('../../ingredients')
 const crypto = require('crypto')
 const uuidv1 = require('uuid/v1')
+const Table = require('./table')
 
-class RecipeDb {
+class RecipeDb extends Table {
   constructor(db, translationDb, ingToProduct) {
-    this.db = db
+    super(db, 'recipes')
     this.db.defaults({ recipes: [] }).write()
     this.translationDb = translationDb
     this.ingToProduct = ingToProduct
   }
 
-  close() {
-    this.db.close()
-  }
-
   storeOrder(recipes) {
     recipes.forEach((recipe) => {
-      this.db.get('recipes').push(recipe).write()
+      this.table().push(recipe).write()
     })
   }
 
@@ -57,11 +54,11 @@ class RecipeDb {
   }
 
   getRecipesRaw() {
-    return this.db.get('recipes').value()
+    return this.table().value()
   }
 
   getRecipeRaw(uid) {
-    return this.db.get('recipes').find({ uid }).cloneDeep().value()
+    return this.table().find({ uid }).cloneDeep().value()
   }
 
   async getRecipe(uid) {
@@ -96,7 +93,11 @@ class RecipeDb {
     // delete recipe.parsedIngredients
     recipe.uid = recipe.uid || uuidv1()
     this.setHash(recipe)
-    return this.db.get('recipes').push(recipe).write()
+    return this.table().push(recipe).write()
+  }
+
+  addRecipes(recipes) {
+    return this.table().push(recipes).write()
   }
 
   removeRecipe(recipe) {

@@ -1,10 +1,10 @@
-const { DB_CONNECTION_STRING } = require('../../config')
+const { MONGO_URL } = require('../../config')
 const MongoWrapper = require('./mongo-wrapper')
 
 const { MongoClient } = require('mongodb')
 
 async function createDb() {
-  const client = await MongoClient.connect(DB_CONNECTION_STRING, {
+  const client = await MongoClient.connect(MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   }).catch((err) => {
