@@ -5,7 +5,7 @@ const router = express.Router()
 let orderDb, ingToProduct, userDb
 const create = require('../scripts/supermarkets')
 
-require('../scripts/db/tables')('./mongo-client').then((dbs) => {
+require('../scripts/db/tables')().then((dbs) => {
   ;({ orderDb, ingToProduct, userDb } = dbs)
 })
 

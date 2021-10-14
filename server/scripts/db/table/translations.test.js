@@ -63,7 +63,7 @@ describe('storeTranslations()', () => {
   })
 
   it('translates recipes', async () => {
-    let recipes = (await recipeDb.getRecipesRaw()).slice(1, 2).map((r) => ({
+    let recipes = (await recipeDb.all()).slice(1, 2).map((r) => ({
       ...r,
       parsedIngredients: Ingredients.create(r.ingredients)
     }))

@@ -6,7 +6,7 @@ describe('storeRecipe()', () => {
   })
 
   it('get orders', async () => {
-    const orders = await orderDb.get()
+    const orders = await orderDb.all()
     expect(orders.length).toEqual(0)
   })
 
@@ -110,7 +110,7 @@ describe('storeRecipe()', () => {
       }
     ]
     await orderDb.storeOrder(order)
-    const orders = await orderDb.get()
+    const orders = await orderDb.all()
     expect(orders.length).toEqual(1)
     order = orders[0]
     expect(order.recipes.length).toEqual(1)

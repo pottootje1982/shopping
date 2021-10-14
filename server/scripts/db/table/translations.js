@@ -25,35 +25,28 @@ function getTranslations(translations, keys) {
 }
 
 class TranslationsDb extends Table {
-  constructor(db) {
-    super(db, 'translations')
-    this.db.defaults({ translations: [] }).write()
+  constructor(client) {
+    super(client, 'translations')
   }
 
   async storeTranslations(originals, translations) {
     for (let [i, original] of originals.entries()) {
       original = original.toLowerCase()
-      await this.table()
-        .push({ original, translation: translations[i] })
-        .write()
+      await this.table().insertOne({ original, translation: translations[i] })
     }
   }
 
-  get translations() {
-    return this.table().value()
-  }
-
   async getTranslation(key) {
-    const result = getTranslation(await this.translations, key)
+    const result = getTranslation(await this.all(), key)
     return result.translation
   }
 
   async getTranslations(keys) {
-    return getTranslations(await this.translations, keys)
+    return getTranslations(await this.all(), keys)
   }
 
   async translateRecipes(...recipes) {
-    const allTranslations = await this.translations
+    const allTranslations = await this.all()
     return recipes.map(({ parsedIngredients, ...r }) => {
       const ingredients = parsedIngredients
       const products = parsedIngredients.map((i) => i.ingredient)

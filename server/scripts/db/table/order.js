@@ -5,7 +5,6 @@ const { ObjectId } = require('mongodb')
 class OrderDb extends Table {
   constructor(db) {
     super(db, 'orders')
-    this.db.defaults({ orders: [] }).write()
   }
 
   storeOrder(recipes, supermarket, user) {
@@ -15,19 +14,19 @@ class OrderDb extends Table {
       parsedIngredients
     }))
     const order = { date, recipes, supermarket, user }
-    return this.store(order)
+    return this.table().insertOne(order)
   }
 
   getOrders(user) {
-    return this.table().findAll({ user }).cloneDeep().value()
+    return this.table().find({ user }).toArray()
   }
 
   getOrder(user, uid) {
-    return this.table().find({ user, uid }).cloneDeep().value()
+    return this.table().findOne({ user, uid })
   }
 
   deleteOrder(user, id) {
-    return this.remove({ user, _id: ObjectId(id) })
+    return this.table().deleteOne({ user, _id: ObjectId(id) })
   }
 
   async getHydrated(user, recipes) {

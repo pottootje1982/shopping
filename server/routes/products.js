@@ -4,7 +4,7 @@ const router = express.Router()
 const create = require('../scripts/supermarkets')
 
 let ingToProduct, userDb
-require('../scripts/db/tables')('./mongo-client').then((dbs) => {
+require('../scripts/db/tables')().then((dbs) => {
   ;({ ingToProduct, userDb } = dbs)
 })
 

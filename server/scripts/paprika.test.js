@@ -7,9 +7,9 @@ describe('Index', () => {
 
   beforeAll(async () => {
     ;({ recipeDb } = global)
-    const recipes = await recipeDb.getRecipesRaw()
+    const recipes = await recipeDb.all()
     for (r of recipes.slice(4)) {
-      await recipeDb.removeRecipe(r)
+      await recipeDb.remove(r)
     }
 
     paprika = new Paprika(recipeDb)

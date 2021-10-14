@@ -9,18 +9,14 @@ module.exports = class Table {
   }
 
   table() {
-    return this.db.get(this.tableName)
-  }
-
-  get(query) {
-    return query ? this.table().find(query).value() : this.table().value()
+    return this.db.collection(this.tableName)
   }
 
   remove(query) {
-    return this.table().remove(query).write()
+    return this.table().deleteOne(query)
   }
 
-  store(item) {
-    return this.table().push(item).write()
+  all() {
+    return this.table().find().toArray()
   }
 }

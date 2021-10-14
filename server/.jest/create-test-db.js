@@ -5,13 +5,15 @@ const {
   mappings
 } = require('../scripts/db/data/db.unit-test.json')
 
+let client
+
 beforeAll(async () => {
-  const { recipeDb, translationsDb, ingToProduct, orderDb } = await createDb(
-    './mongo-client'
-  )
-  await recipeDb.addRecipes(recipes)
-  await ingToProduct.storeMappings(mappings)
-  await translationsDb.table().push(translations).write()
+  const dbs = await createDb()
+  const { recipeDb, translationsDb, ingToProduct, orderDb } = dbs
+  client = dbs.client
+  await recipeDb.table().insertMany(recipes)
+  await ingToProduct.table().insertMany(mappings)
+  await translationsDb.table().insertMany(translations)
   global.recipeDb = recipeDb
   global.translationsDb = translationsDb
   global.ingToProduct = ingToProduct
@@ -19,12 +21,9 @@ beforeAll(async () => {
 })
 
 afterAll(async () => {
-  await global.recipeDb.table().table.deleteMany()
-  await global.ingToProduct.table().table.deleteMany()
-  await global.translationsDb.table().table.deleteMany()
-  await global.orderDb.table().table.deleteMany()
-  await global.recipeDb.close()
-  await global.ingToProduct.close()
-  await global.translationsDb.close()
-  await global.orderDb.close()
+  await global.recipeDb.table().deleteMany()
+  await global.ingToProduct.table().deleteMany()
+  await global.translationsDb.table().deleteMany()
+  await global.orderDb.table().deleteMany()
+  await client.close()
 })

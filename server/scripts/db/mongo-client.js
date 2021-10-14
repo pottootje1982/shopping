@@ -1,6 +1,4 @@
 const { MONGO_URL } = require('../../config')
-const MongoWrapper = require('./mongo-wrapper')
-
 const { MongoClient } = require('mongodb')
 
 async function createDb() {
@@ -16,7 +14,7 @@ async function createDb() {
   }
 
   try {
-    return new MongoWrapper(client)
+    return client
   } catch (err) {
     console.log(err)
   }

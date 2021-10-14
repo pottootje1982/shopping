@@ -5,7 +5,7 @@ const { uniqBy } = require('ramda')
 
 const Paprika = require(PAPRIKA_API)
 let recipeDb, translationsDb, ingToProduct, orderDb, userDb
-require('../scripts/db/tables')('./mongo-client').then((dbs) => {
+require('../scripts/db/tables')().then((dbs) => {
   ;({ recipeDb, ingToProduct, translationsDb, orderDb, userDb } = dbs)
 })
 
@@ -64,7 +64,7 @@ router.delete('/', async (req, res) => {
   const successes = await Promise.all(
     recipes.map(async (recipe) => {
       const success = await paprika.deleteRecipe(req.body)
-      const removedRecipe = await recipeDb.removeRecipe(recipe)
+      const removedRecipe = await recipeDb.remove(recipe)
       return removedRecipe && success
     })
   )
@@ -73,7 +73,7 @@ router.delete('/', async (req, res) => {
 
 router.get('/sync', async (req, res) => {
   const paprika = await Paprika.create(recipeDb, userDb, req.user)
-  await paprika.synchronize(await recipeDb.getRecipesRaw())
+  await paprika.synchronize(await recipeDb.all())
   const categories = await paprika.categories()
   const recipes = await recipeDb.getRecipes(
     categories,

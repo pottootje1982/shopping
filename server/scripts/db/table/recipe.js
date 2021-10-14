@@ -6,14 +6,13 @@ const Table = require('./table')
 class RecipeDb extends Table {
   constructor(db, translationDb, ingToProduct) {
     super(db, 'recipes')
-    this.db.defaults({ recipes: [] }).write()
     this.translationDb = translationDb
     this.ingToProduct = ingToProduct
   }
 
   storeOrder(recipes) {
     recipes.forEach((recipe) => {
-      this.table().push(recipe).write()
+      this.table().insertOne(recipe)
     })
   }
 
@@ -44,21 +43,15 @@ class RecipeDb extends Table {
   }
 
   async getRecipes(categories, supermarket, user) {
-    const recipes = await this.db
-      .get('recipes')
-      .findAll({ $or: [{ user }, { user: null }] })
-      .cloneDeep()
-      .value()
+    const recipes = await this.table()
+      .find({ $or: [{ user }, { user: null }] })
+      .toArray()
     const recipesWithCategoryNames = this.addCategoryNames(recipes, categories)
     return this.translateRecipes(recipesWithCategoryNames, supermarket)
   }
 
-  getRecipesRaw() {
-    return this.table().value()
-  }
-
   getRecipeRaw(uid) {
-    return this.table().find({ uid }).cloneDeep().value()
+    return this.table().findOne({ uid })
   }
 
   async getRecipe(uid) {
@@ -79,13 +72,7 @@ class RecipeDb extends Table {
     delete newRecipe.parsedIngredients
     delete newRecipe.categoryNames
     this.setHash(newRecipe)
-    await this.db
-      .get('recipes')
-      .find({
-        uid: recipe.uid
-      })
-      .assign(newRecipe)
-      .write()
+    await this.table().findOneAndReplace({ uid: recipe.uid }, newRecipe)
     return newRecipe
   }
 
@@ -93,20 +80,11 @@ class RecipeDb extends Table {
     // delete recipe.parsedIngredients
     recipe.uid = recipe.uid || uuidv1()
     this.setHash(recipe)
-    return this.table().push(recipe).write()
+    return this.table().insertOne(recipe)
   }
 
   addRecipes(recipes) {
-    return this.table().push(recipes).write()
-  }
-
-  removeRecipe(recipe) {
-    return this.db
-      .get('recipes')
-      .remove({
-        uid: recipe.uid
-      })
-      .write()
+    return this.table().insertOne(recipes)
   }
 }
 

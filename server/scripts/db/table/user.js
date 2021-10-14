@@ -6,35 +6,26 @@ const { PUBLIC_KEY, INIT_VECTOR } = require('../../../config')
 class UserDb extends Table {
   constructor(db) {
     super(db, 'users')
-    this.db = db
-    this.db.defaults({ orders: [] }).write()
   }
 
   async getUser(mail) {
     if (!mail) return
-    const user = await this.db.get('users').find({ mail }).cloneDeep().value()
+    const user = await this.table().findOne({ mail })
     let { picnicPass, paprikaPass } = user
     picnicPass = picnicPass && decrypt(picnicPass)
     paprikaPass = paprikaPass && decrypt(paprikaPass)
     return { ...user, picnicPass, paprikaPass }
   }
 
-  storeUser(userMail, user) {
+  storeUser(mail, user) {
     let { picnicPass, paprikaPass } = user
     picnicPass = picnicPass && encrypt(picnicPass)
     paprikaPass = paprikaPass && encrypt(paprikaPass)
-    return this.db
-      .get(this.tableName)
-      .find({
-        mail: userMail
-      })
-      .upsert({
-        mail: userMail,
-        ...user,
-        picnicPass,
-        paprikaPass
-      })
-      .write()
+    return this.table().findOneAndReplace(
+      { mail },
+      { mail, ...user, picnicPass, paprikaPass },
+      { upsert: true }
+    )
   }
 }
 
