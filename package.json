@@ -6,7 +6,7 @@
     "test": "jest server",
     "test:watch": "npm run test -- jest --watch --no-coverage --testPathIgnorePatterns=client/",
     "start": "node server/app.js",
-    "start:mock": "AH_API=ah.stub USE_MEMORY_DB=true node server/app.js",
+    "start:mock": "AH_API=ah.stub USE_TEST_DB=true node server/app.js",
     "test:api": "npm run start:mock & newman run api-tests/ShoppingAPItests.postman_collection.json -e api-tests/shopping.postman_environment.json",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },

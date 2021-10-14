@@ -4,15 +4,10 @@ const RecipeDb = require('./table/recipe')
 const OrderDb = require('./table/order')
 const UserDb = require('./table/user')
 
-const { USE_MEMORY_DB } = require('../../config')
-
-module.exports = async function createRecipeDb(connector, file) {
-  connector = USE_MEMORY_DB ? './memory-db' : connector
-
+module.exports = async function createRecipeDb(connector) {
   const createDb = require(connector)
 
-  file = USE_MEMORY_DB ? 'data/db.api-test.json' : file
-  const db = await createDb(file)
+  const db = await createDb()
   const translationsDb = new TranslationsDb(db)
   const ingToProduct = new IngredientProductDb(db)
   const orderDb = new OrderDb(db)
