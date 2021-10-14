@@ -26,6 +26,9 @@ class AhApi extends Supermarket {
       .then(({ data }) => {
         return data.card.products.find((p) => p.id === id)
       })
+      .catch(() => {
+        console.log(`Product with id '${id}' not found in AH`)
+      })
   }
 
   order(recipes) {

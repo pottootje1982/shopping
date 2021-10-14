@@ -154,8 +154,8 @@ class Paprika {
   }
 }
 
-Paprika.create = async (recipeDb, userDb, mail) => {
-  const { paprikaUser, paprikaPass } = userDb.getUser(mail)
+Paprika.create = async (recipeDb, userDb, user) => {
+  const { paprikaUser, paprikaPass } = userDb.getUser(user)
   if (paprikaUser) return new paprika(recipeDb, paprikaUser, paprikaPass)
   else return new PaprikaStub(recipeDb)
 }

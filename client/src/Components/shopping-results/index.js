@@ -56,10 +56,9 @@ export default function ProductSearch({
     }
     setSelectedIngredient({ ...selectedIngredient, product: newProduct })
 
-    server.post('products/choose', {
+    server.post(`products/choose?supermarket=${supermarket.key}`, {
       ingredient: bareIngredient,
-      product: newProduct,
-      supermarket: supermarket.key
+      product: newProduct
     })
   }
 

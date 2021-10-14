@@ -16,7 +16,8 @@ class Supermarket {
       const withoutSelected = products.filter((p) => p.id !== id)
       if (!selectedProduct) {
         selectedProduct = await this.getProduct(id).catch(console.log)
-        return [selectedProduct, ...withoutSelected]
+        if (selectedProduct) withoutSelected.splice(0, 0, selectedProduct)
+        return withoutSelected
       }
     }
     return products

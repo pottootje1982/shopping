@@ -38,8 +38,9 @@ class PicnicApi extends Supermarket {
   }
 
   async getProduct(id) {
-    const { products } = (await this.client.getProduct(id)) || {}
-    if (products.length === 0) return
+    const { products } =
+      (await this.client.getProduct(id).catch(console.log)) || {}
+    if (!products || products.length === 0) return
     return this.convertProduct(products[0])
   }
 
@@ -68,8 +69,8 @@ class PicnicApi extends Supermarket {
   }
 }
 
-PicnicApi.create = async (ingToProduct, userDb, mail) => {
-  const { picnicUser, picnicPass } = (await userDb.getUser(mail)) || {}
+PicnicApi.create = async (ingToProduct, userDb, user) => {
+  const { picnicUser, picnicPass } = (await userDb.getUser(user)) || {}
   const api = new PicnicApi(ingToProduct)
   if (picnicUser && picnicPass) {
     await api.login(picnicUser, picnicPass)
