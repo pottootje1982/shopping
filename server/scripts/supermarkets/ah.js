@@ -21,8 +21,10 @@ class AhApi extends Supermarket {
   }
 
   getProduct(id) {
+    id = parseInt(id)
+    const url = `https://www.ah.nl/zoeken/api/products/product?webshopId=${id}`
     return axios
-      .get(`https://www.ah.nl/zoeken/api/products/product?webshopId=${id}`)
+      .get(url)
       .then(({ data }) => {
         return data.card.products.find((p) => p.id === id)
       })

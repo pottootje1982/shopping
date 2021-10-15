@@ -6,10 +6,126 @@
 	},
 	"item": [
 		{
-			"name": "Recipes",
+			"name": "Users",
+			"item": [
+				{
+					"name": "users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Returns 1 users', () => {",
+									"    pm.response.to.have.status(200)",
+									"    pm.respon",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/users",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recipes call with no auth",
 			"item": [
 				{
 					"name": "recipes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const recipes =  pm.response.json().recipes",
+									"const recipeIds = recipes.map(r=>r.uid)",
+									"",
+									"pm.test('First recipe has id existingRecipe', () => {",
+									"    pm.response.to.have.status(200)",
+									"    pm.expect(recipes.length).equals(3)",
+									"    pm.expect(recipeIds.includes(pm.variables.get('existingRecipe')), \"Zalm met prei exists\").equals(true)",
+									"",
+									"    const zalm = recipes.find(r=>r.name === 'Zalm met prei')",
+									"    pm.expect(zalm.ingredients).equals(\"Prei\\nDille\\nBlik tomaten\\nZalm\\nAardappels\\nWijn\\nHoning\\nkoriander poeder\")",
+									"    pm.expect(zalm.parsedIngredients.map(i=>i.product).every(p=>p)).equals(true)",
+									"",
+									"    pm.expect(recipeIds.includes(pm.variables.get(\"unexistingRecipeToEdit\")), \"Unexisting recipe to edit should not exist\").equals(false)",
+									"})",
+									"",
+									"pm.test('unexistingRecipeToEdit does not exist', () => {",
+									"    pm.expect(recipeIds.includes(pm.variables.get(\"unexistingRecipeToEdit\")), \"Unexisting recipe to edit should not exist\").equals(false)",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/recipes?supermarket=ah",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "supermarket",
+									"value": "ah"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Recipes",
+			"item": [
+				{
+					"name": "recipes AH",
 					"event": [
 						{
 							"listen": "test",
@@ -23,12 +139,16 @@
 									"})",
 									"",
 									"pm.test('First recipe has id existingRecipe', () => {",
-									"    pm.expect(recipes.length).equals(12)",
+									"    pm.expect(recipes.length).equals(11)",
 									"    pm.expect(recipeIds.includes(pm.variables.get('existingRecipe')), \"Zalm met prei exists\").equals(true)",
 									"",
-									"    const firstRecipe = recipes[0]",
-									"    pm.expect(firstRecipe.ingredients).equals(\"Prei\\nDille\\nBlik tomaten\\nZalm\\n3 Aardappels\\nWijn\\nHoning\\nkoriander poeder\")",
-									"    pm.expect(firstRecipe.name).equals(\"Zalm met prei\")",
+									"    const zalm = recipes.find(r=>r.name === 'Zalm met prei')",
+									"    delete zalm._id",
+									"    var uuid = require('uuid');",
+									"    zalm.uid = uuid.v4()",
+									"    pm.collectionVariables.set('zalm', JSON.stringify(zalm))",
+									"    pm.expect(zalm.ingredients).equals(\"Prei\\nDille\\nBlik tomaten\\nZalm\\nAardappels\\nWijn\\nHoning\\nkoriander poeder\")",
+									"    pm.expect(zalm.parsedIngredients.map(i=>i.product).every(p=>p)).equals(true)",
 									"",
 									"    pm.expect(recipeIds.includes(pm.variables.get(\"unexistingRecipeToEdit\")), \"Unexisting recipe to edit should not exist\").equals(false)",
 									"})",
@@ -44,6 +164,156 @@
 					"request": {
 						"method": "GET",
 						"header": [],
+						"url": {
+							"raw": "{{api}}/recipes?supermarket=ah",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "supermarket",
+									"value": "ah"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipes Picnic",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const recipes =  pm.response.json().recipes",
+									"const recipeIds = recipes.map(r=>r.uid)",
+									"",
+									"pm.test('Status code is 200', () => {",
+									"    pm.response.to.have.status(200)",
+									"})",
+									"",
+									"pm.test('First recipe has id existingRecipe', () => {",
+									"    pm.expect(recipes.length).equals(11)",
+									"    pm.expect(recipeIds.includes(pm.variables.get('existingRecipe')), \"Zalm met prei exists\").equals(true)",
+									"",
+									"    const zalm = recipes.find(r=>r.name === 'Zalm met prei')",
+									"    pm.expect(zalm.ingredients).equals(\"Prei\\nDille\\nBlik tomaten\\nZalm\\nAardappels\\nWijn\\nHoning\\nkoriander poeder\")",
+									"    pm.expect(zalm.parsedIngredients.map(i=>i.product).every(p=>p)).equals(true)",
+									"",
+									"    pm.expect(recipeIds.includes(pm.variables.get(\"unexistingRecipeToEdit\")), \"Unexisting recipe to edit should not exist\").equals(false)",
+									"})",
+									"",
+									"pm.test('unexistingRecipeToEdit does not exist', () => {",
+									"    pm.expect(recipeIds.includes(pm.variables.get(\"unexistingRecipeToEdit\")), \"Unexisting recipe to edit should not exist\").equals(false)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/recipes?supermarket=picnic",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "supermarket",
+									"value": "picnic"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipes sync",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check if all recipes get returned', () => {",
+									"    pm.response.to.have.status(200)",
+									"    const recipes =  pm.response.json()",
+									"    pm.expect(recipes.length).equals(11)",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/recipes/sync?supermarket=ah",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"recipes",
+								"sync"
+							],
+							"query": [
+								{
+									"key": "supermarket",
+									"value": "ah"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Copy zalm recipe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Edit existing recipe returns 201 and recipe with added properties', () => {",
+									"    pm.response.to.have.status(201)",
+									"    const recipe =  pm.response.json()",
+									"    pm.expect(recipe.name).equals(\"Zalm met prei\")",
+									"    pm.collectionVariables.set('zalmCopy', JSON.stringify(recipe))",
+									"    pm.collectionVariables.set('zalmCopyUid', recipe.uid)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{{zalm}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{api}}/recipes",
 							"host": [
@@ -87,19 +357,25 @@
 							"raw": "{\n    \"rating\": 0,\n    \"photo_hash\": null,\n    \"on_favorites\": false,\n    \"photo\": null,\n    \"uid\": \"{{unexistingRecipeToEdit}}\",\n    \"scale\": null,\n    \"ingredients\": \"test\",\n    \"is_pinned\": null,\n    \"source\": null,\n    \"total_time\": null,\n    \"hash\": \"73901df3e7a6d2ced0b1435c2ba30bab5e0549350c40a7e3f2d9aaa5eb74ced6\",\n    \"description\": null,\n    \"source_url\": \"\",\n    \"difficulty\": null,\n    \"on_grocery_list\": null,\n    \"in_trash\": false,\n    \"directions\": \"\",\n    \"categories\": [],\n    \"photo_url\": null,\n    \"cook_time\": \"\",\n    \"name\": \"test\",\n    \"created\": \"2019-12-06 22:57:49\",\n    \"notes\": \"\",\n    \"photo_large\": null,\n    \"image_url\": null,\n    \"prep_time\": \"\",\n    \"servings\": \"\",\n    \"nutritional_info\": \"\"\n}"
 						},
 						"url": {
-							"raw": "{{api}}/recipes",
+							"raw": "{{api}}/recipes?supermarket=ah",
 							"host": [
 								"{{api}}"
 							],
 							"path": [
 								"recipes"
+							],
+							"query": [
+								{
+									"key": "supermarket",
+									"value": "ah"
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "edit existing test",
+					"name": "edit existing zalmCopy",
 					"event": [
 						{
 							"listen": "test",
@@ -128,7 +404,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"uid\": \"{{existingRecipe}}\",\n    \"ingredients\": \"zalm\",\n    \"name\": \"Zalm met prei edited\"\n}"
+							"raw": "{\n    \"uid\": \"{{zalmCopyUid}}\",\n    \"ingredients\": \"zalm\",\n    \"name\": \"Zalm met prei edited\"\n}"
 						},
 						"url": {
 							"raw": "{{api}}/recipes",
@@ -154,9 +430,9 @@
 									"    const recipes =  pm.response.json().recipes",
 									"    pm.expect(recipes.length).equals(12)",
 									"",
-									"    const firstRecipe = recipes[0]",
-									"    pm.expect(firstRecipe.ingredients).equals(\"zalm\")",
-									"    pm.expect(firstRecipe.name).equals(\"Zalm met prei edited\")",
+									"    const edited = recipes.find(r=>r.name==='Zalm met prei edited')",
+									"    pm.expect(edited.ingredients).equals(\"zalm\")",
+									"    pm.expect(edited.name).equals(\"Zalm met prei edited\")",
 									"})"
 								],
 								"type": "text/javascript"
@@ -173,6 +449,48 @@
 							],
 							"path": [
 								"recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete zalmCopy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Returns 204', () => {",
+									"    pm.response.to.have.status(204)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{{zalmCopy}}]"
+						},
+						"url": {
+							"raw": "{{api}}/recipes/",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"recipes",
+								""
 							]
 						}
 					},
@@ -196,10 +514,6 @@
 								"exec": [
 									"pm.test('Full recipe collection contains edited recipe', () => {",
 									"    pm.response.to.have.status(200)",
-									"    const downloadedRecipe = pm.response.json()",
-									"    downloadedRecipe.uid = \"b51566c7-9460-4340-96fb-ea74947feea7\"",
-									"    pm.collectionVariables.set('downloadedRecipe', JSON.stringify(downloadedRecipe))",
-									"    console.log(pm.collectionVariables.get('downloadedRecipe'))",
 									"})"
 								],
 								"type": "text/javascript"
@@ -240,95 +554,6 @@
 					"response": []
 				},
 				{
-					"name": "Add downloaded recipe",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test('Edit existing recipe returns 200 and recipe with added properties', () => {",
-									"    pm.response.to.have.status(200)",
-									"    const recipe =  pm.response.json()",
-									"    pm.expect(recipe.name).equals(\"Spinach kedgeree with spiced salmon\")",
-									"    pm.expect(recipe.source_url).equals(\"https://www.bbcgoodfood.com/recipes/spinach-kedgeree-spiced-salmon\")",
-									"    // TODO: check ingredients, download is broke ATM",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{{downloadedRecipe}}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{api}}/recipes",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"recipes"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Check downloaded recipes was added to db",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test('Full recipe collection contains edited recipe', () => {",
-									"    pm.response.to.have.status(200)",
-									"    const recipes =  pm.response.json().recipes",
-									"",
-									"    console.log(pm.collectionVariables.get('downloadedRecipe'))",
-									"",
-									"    pm.expect(recipes.length).equals(13)",
-									"",
-									"    const lastRecipe = recipes[recipes.length-1]",
-									"    pm.expect(lastRecipe.name).equals(\"Spinach kedgeree with spiced salmon\")",
-									"    pm.expect(lastRecipe.source_url).equals(\"https://www.bbcgoodfood.com/recipes/spinach-kedgeree-spiced-salmon\")",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{api}}/recipes",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"recipes"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "translate unexisting recipe",
 					"event": [
 						{
@@ -338,7 +563,9 @@
 									"pm.test('Edit unexisting recipe returns 404', () => {",
 									"    pm.response.to.have.status(404)",
 									"})",
-									""
+									"",
+									"// TODO: fix translations",
+									"postman.setNextRequest('product AH') "
 								],
 								"type": "text/javascript"
 							}
@@ -440,7 +667,7 @@
 			"name": "Products",
 			"item": [
 				{
-					"name": "product",
+					"name": "product AH",
 					"event": [
 						{
 							"listen": "test",
@@ -462,7 +689,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{api}}/products/216032/product",
+							"raw": "{{api}}/products/216032/product?supermarket=ah",
 							"host": [
 								"{{api}}"
 							],
@@ -470,6 +697,54 @@
 								"products",
 								"216032",
 								"product"
+							],
+							"query": [
+								{
+									"key": "supermarket",
+									"value": "ah"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "product Picnic",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Check if product nr can be found from AH', ()=>{",
+									"    pm.response.to.have.status(200)",
+									"    const product = pm.response.json()",
+									"    pm.expect(product.id).equals(90006011)",
+									"    pm.expect(product.title).equals(\"Prei\")",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/products/90006011/product?supermarket=picnic",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"products",
+								"90006011",
+								"product"
+							],
+							"query": [
+								{
+									"key": "supermarket",
+									"value": "picnic"
+								}
 							]
 						}
 					},
@@ -497,7 +772,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{api}}/products?query=koriander%20poeder&full=koriander%20poeder",
+							"raw": "{{api}}/products?supermarket=ah&query=koriander%20poeder&full=koriander%20poeder",
 							"host": [
 								"{{api}}"
 							],
@@ -505,6 +780,10 @@
 								"products"
 							],
 							"query": [
+								{
+									"key": "supermarket",
+									"value": "ah"
+								},
 								{
 									"key": "query",
 									"value": "koriander%20poeder"
@@ -519,17 +798,16 @@
 					"response": []
 				},
 				{
-					"name": "mappings",
+					"name": "search Picnic",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test('Has different value for prei', ()=>{",
+									"pm.test('Check if search yields results from AH', ()=>{",
 									"    pm.response.to.have.status(200)",
-									"    const mappings =  pm.response.json()",
-									"    const differentId = parseInt(pm.environment.get('changeProductIdMapping'))",
-									"    pm.expect(mappings.Prei.id).equals(differentId)",
+									"    const products = pm.response.json()",
+									"    pm.expect(products.length).greaterThan(0)",
 									"})",
 									""
 								],
@@ -541,18 +819,25 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{api}}/products/mappings?uid={{existingRecipe}}",
+							"raw": "{{api}}/products?supermarket=picnic&query=koriander%20poeder&full=koriander%20poeder",
 							"host": [
 								"{{api}}"
 							],
 							"path": [
-								"products",
-								"mappings"
+								"products"
 							],
 							"query": [
 								{
-									"key": "uid",
-									"value": "{{existingRecipe}}"
+									"key": "supermarket",
+									"value": "picnic"
+								},
+								{
+									"key": "query",
+									"value": "koriander%20poeder"
+								},
+								{
+									"key": "full",
+									"value": "koriander%20poeder"
 								}
 							]
 						}
@@ -566,8 +851,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test('Returns 200', ()=>{",
-									"    pm.response.to.have.status(200)",
+									"pm.test('Returns 201', ()=>{",
+									"    pm.response.to.have.status(201)",
 									"})",
 									""
 								],
@@ -587,16 +872,22 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"ingredient\":\"prei\", \"product\":{\"id\": 12312} }"
+							"raw": "{\"ingredient\":\"prei\", \"product\":{\"id\": 12312}}"
 						},
 						"url": {
-							"raw": "{{api}}/products/choose",
+							"raw": "{{api}}/products/choose?supermarket=ah",
 							"host": [
 								"{{api}}"
 							],
 							"path": [
 								"products",
 								"choose"
+							],
+							"query": [
+								{
+									"key": "supermarket",
+									"value": "ah"
+								}
 							]
 						}
 					},
@@ -611,10 +902,10 @@
 								"exec": [
 									"pm.test('Has different value for prei', ()=>{",
 									"    pm.response.to.have.status(200)",
-									"    const mappings =  pm.response.json()",
-									"    const differentId = parseInt(pm.environment.get('changeProductIdMapping'))",
-									"",
-									"    pm.expect(mappings[0].id).equals(12312)",
+									"    const recipes =  pm.response.json().recipes",
+									"    const zalm = recipes.find(r=>r.name==='Zalm met prei')",
+									"    const ing = zalm.parsedIngredients.find(i=>i.full === 'Prei')",
+									"    pm.expect(ing.product.id).equals(12312)",
 									"})",
 									""
 								],
@@ -626,18 +917,17 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{api}}/products/mappings?uid={{existingRecipe}}",
+							"raw": "{{api}}/recipes?supermarket=ah",
 							"host": [
 								"{{api}}"
 							],
 							"path": [
-								"products",
-								"mappings"
+								"recipes"
 							],
 							"query": [
 								{
-									"key": "uid",
-									"value": "{{existingRecipe}}"
+									"key": "supermarket",
+									"value": "ah"
 								}
 							]
 						}
@@ -651,23 +941,64 @@
 			"item": [
 				{
 					"name": "orders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Returns empty array', ()=>{",
+									"    pm.response.to.have.status(200)",
+									"    const orders =  pm.response.json()",
+									"    pm.expect(orders.length).equals(0)",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{api}}/orders",
+							"raw": "{{api}}/orders?supermarket=ah",
 							"host": [
 								"{{api}}"
 							],
 							"path": [
 								"orders"
+							],
+							"query": [
+								{
+									"key": "supermarket",
+									"value": "ah"
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "order",
+					"name": "order AH",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Returns 201', ()=>{",
+									"    pm.response.to.have.status(201)",
+									"    const order =  pm.response.json()",
+									"    pm.expect(order.recipes.length).equals(1)",
+									"    pm.expect(order.date).not.eq(undefined)",
+									"    pm.expect(order._id).not.eq(undefined)",
+									"    pm.environment.set('storedOrder', order._id)",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -680,21 +1011,84 @@
 							{
 								"key": "ah_token",
 								"value": "62052875_82f4-40b4-8cda-b39055c70408.af133e97-bbb2-440f-9bc3-72e796049b78",
-								"type": "text",
-								"disabled": true
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"recipes\": [\n        {\n            \"mappings\": {\n                \"baby nieuwe aardappelen\": {\n                    \"id\": 215683,\n                    \"quantity\": 1,\n                    \"title\": \"AH Krieltjes vastkokend voordeel\",\n                    \"price\": {\n                        \"unitInfo\": {\n                            \"price\": 2.09,\n                            \"description\": \"KG\"\n                        },\n                        \"now\": 2.09,\n                        \"unitSize\": \"1 kg\"\n                    }\n                }\n            }\n        }\n    ]\n}"
+							"raw": "{\n    \"recipes\": [\n        {\n            \"parsedIngredients\": [\n                {\n                    \"product\": {\n                        \"id\": 215683,\n                        \"quantity\": 1,\n                        \"title\": \"AH Krieltjes vastkokend voordeel\",\n                        \"price\": {\n                            \"unitInfo\": {\n                                \"price\": 2.09,\n                                \"description\": \"KG\"\n                            },\n                            \"now\": 2.09,\n                            \"unitSize\": \"1 kg\"\n                        }\n                    }\n                }\n            ]\n        }\n    ],\n    \"supermarket\": \"ah\"\n}"
 						},
 						"url": {
-							"raw": "{{api}}/orders",
+							"raw": "{{api}}/orders?supermarket=ah",
 							"host": [
 								"{{api}}"
 							],
 							"path": [
 								"orders"
+							],
+							"query": [
+								{
+									"key": "supermarket",
+									"value": "ah"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "order Picnic",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Returns 201', ()=>{",
+									"    pm.response.to.have.status(201)",
+									"    const order =  pm.response.json()",
+									"    pm.expect(order.recipes.length).equals(1)",
+									"    pm.expect(order.date).not.eq(undefined)",
+									"    pm.expect(order._id).not.eq(undefined)",
+									"    pm.environment.set('storedOrderPicnic', order._id)",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "ah_token",
+								"value": "62052875_82f4-40b4-8cda-b39055c70408.af133e97-bbb2-440f-9bc3-72e796049b78",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"recipes\": [\n        {\n            \"parsedIngredients\": [\n                {\n                    \"product\": {\n                        \"id\": \"10581997\",\n                        \"title\": \"Verstegen koriander gemalen\",\n                        \"supermarket\": \"picnic\",\n                        \"ignore\": null,\n                        \"notAvailable\": null\n                    },\n                    \"quantity\": 1\n                },\n                {\n                    \"product\": {\n                        \"id\": \"90006011\",\n                        \"title\": \"Prei\",\n                        \"supermarket\": \"picnic\",\n                        \"ignore\": null,\n                        \"notAvailable\": null\n                    },\n                    \"quantity\": 1\n                }\n            ]\n        }\n    ],\n    \"supermarket\": \"picnic\"\n}"
+						},
+						"url": {
+							"raw": "{{api}}/orders?supermarket=picnic",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"orders"
+							],
+							"query": [
+								{
+									"key": "supermarket",
+									"value": "picnic"
+								}
 							]
 						}
 					},
@@ -717,20 +1111,26 @@
 							"raw": "{\n    \"items\": [\n        {\n            \"id\": 215683,\n            \"quantity\": 1\n        }\n    ]\n}"
 						},
 						"url": {
-							"raw": "{{api}}/orders/product",
+							"raw": "{{api}}/orders/product?supermarket=ah",
 							"host": [
 								"{{api}}"
 							],
 							"path": [
 								"orders",
 								"product"
+							],
+							"query": [
+								{
+									"key": "supermarket",
+									"value": "ah"
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "delete order",
+					"name": "delete order AH",
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -749,16 +1149,51 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"recipes\": [\n        {\n            \"mappings\": {\n                \"baby nieuwe aardappelen\": {\n                    \"id\": 215683,\n                    \"quantity\": 1,\n                    \"title\": \"AH Krieltjes vastkokend voordeel\",\n                    \"price\": {\n                        \"unitInfo\": {\n                            \"price\": 2.09,\n                            \"description\": \"KG\"\n                        },\n                        \"now\": 2.09,\n                        \"unitSize\": \"1 kg\"\n                    }\n                }\n            }\n        }\n    ]\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "{{api}}/orders/5f6e555abcba6def4a46aae3",
+							"raw": "{{api}}/orders/{{storedOrder}}",
 							"host": [
 								"{{api}}"
 							],
 							"path": [
 								"orders",
-								"5f6e555abcba6def4a46aae3"
+								"{{storedOrder}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete order Picnic",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "ah_token",
+								"type": "text",
+								"value": "62052875_82f4-40b4-8cda-b39055c70408.af133e97-bbb2-440f-9bc3-72e796049b78",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api}}/orders/{{storedOrderPicnic}}",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"orders",
+								"{{storedOrderPicnic}}"
 							]
 						}
 					},
@@ -767,6 +1202,21 @@
 			]
 		}
 	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{authToken}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "authorization",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -790,6 +1240,18 @@
 	"variable": [
 		{
 			"key": "downloadedRecipe",
+			"value": ""
+		},
+		{
+			"key": "zalm",
+			"value": ""
+		},
+		{
+			"key": "zalmCopy",
+			"value": ""
+		},
+		{
+			"key": "zalmCopyUid",
 			"value": ""
 		}
 	]

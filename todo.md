@@ -1,8 +1,6 @@
 # Features
 
 - add translations for quantities: 4
-- users
-- multiple supermarkets
 
 # Refactor
 

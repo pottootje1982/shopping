@@ -26,7 +26,7 @@ class PicnicApi extends Supermarket {
 
   convertProduct({ id, name, price, image_id, unit_quantity, product_id }) {
     return {
-      id: id || product_id,
+      id: parseInt(id || product_id),
       title: name,
       price: { now: price / 100.0, unitSize: unit_quantity },
       images: [

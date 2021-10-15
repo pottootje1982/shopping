@@ -2,7 +2,10 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
-const axios = require('axios')
+
+const { GOOGLE_AUTH } = require('./config')
+
+const getUser = require(GOOGLE_AUTH)
 
 const usersRouter = require('./routes/users')
 const recipesRouter = require('./routes/recipes')
@@ -11,20 +14,31 @@ const ordersRouter = require('./routes/orders')
 
 const app = express()
 
-async function getUser(req) {
-  if (req.headers.authorization) {
-    const { data: { email } = {} } = await axios
-      .get(
-        `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${req.headers.authorization}`
-      )
-      .catch(() => ({}))
-    return email
-  }
-}
-
-app.use(async (req, _res, next) => {
-  req.user = await getUser(req)
+app.use(async (req, res, next) => {
+  const user = await getUser(req.headers.authorization)
+  const { supermarket } = req.query
+  const { url, method } = req
+  if (
+    !supermarket &&
+    method !== 'DELETE' &&
+    (url.startsWith('/orders') || url.startsWith('/products'))
+  )
+    return res.status(400).send('Specify supermarket in query')
+  if (!user && supermarket === 'ah' && url.startsWith('/products'))
+    return next()
+  if (!user && url.startsWith('/users')) return res.status(401).send()
+  if (!user && url.startsWith('/recipes?') && method === 'GET') return next()
+  if (!user && method !== 'OPTIONS') return res.status(401).send()
+  req.user = user
   next()
+})
+
+app.use((err, req, res, next) => {
+  if (res.headersSent) {
+    return next(err)
+  }
+  res.status(500)
+  res.render('error', { error: err })
 })
 
 // Serve static files from the React app

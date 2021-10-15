@@ -2,6 +2,7 @@ const { Ingredients } = require('../../ingredients')
 const crypto = require('crypto')
 const uuidv1 = require('uuid/v1')
 const Table = require('./table')
+const { ObjectId } = require('mongodb')
 
 class RecipeDb extends Table {
   constructor(db, translationDb, ingToProduct) {
@@ -56,6 +57,7 @@ class RecipeDb extends Table {
 
   async getRecipe(uid) {
     const recipe = await this.getRecipeRaw(uid)
+    if (!recipe) throw `Recipe ${uid} does not exist`
     const translated = await this.translateRecipes([recipe])
     return translated[0]
   }
@@ -85,6 +87,10 @@ class RecipeDb extends Table {
 
   addRecipes(recipes) {
     return this.table().insertOne(recipes)
+  }
+
+  removeRecipe(id) {
+    return this.table().remove({ _id: ObjectId(id) })
   }
 }
 

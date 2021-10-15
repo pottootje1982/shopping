@@ -9,8 +9,10 @@ require('../scripts/db/tables')().then((dbs) => {
   ;({ orderDb, ingToProduct, userDb } = dbs)
 })
 
-router.get('/', async (_req, res) => {
-  const orders = await orderDb.get(req.user)
+router.get('/', async (req, res) => {
+  const { user, query } = req
+  const { supermarket } = query
+  const orders = await orderDb.find({ user, supermarket })
   res.send(orders)
 })
 

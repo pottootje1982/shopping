@@ -50,25 +50,32 @@ const defaultRecipe = {
   prep_time: ''
 }
 
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
   const recipe = { ...defaultRecipe, ...req.body }
-  await recipeDb.addRecipe(recipe)
-  const paprika = await Paprika.create(recipeDb, userDb, req.user)
-  await paprika.updateRecipe(recipe)
-  res.send(await recipeDb.getRecipe(recipe.uid))
+  await recipeDb.addRecipe(recipe).catch(next)
+  const paprika = await Paprika.create(recipeDb, userDb, req.user).catch(next)
+  await paprika.updateRecipe(recipe).catch(next)
+  res.status(201).send(await recipeDb.getRecipe(recipe.uid).catch(next))
 })
 
-router.delete('/', async (req, res) => {
+router.delete('/', async (req, res, next) => {
   const recipes = req.body
   const paprika = await Paprika.create(recipeDb, userDb, req.user)
   const successes = await Promise.all(
     recipes.map(async (recipe) => {
-      const success = await paprika.deleteRecipe(req.body)
-      const removedRecipe = await recipeDb.remove(recipe)
+      const success = await paprika
+        .deleteRecipe(recipe)
+        .catch(() => next({ err: 'Fail to delete from Paprika' }))
+      const { _id } = recipe
+      const removedRecipe = await recipeDb
+        .removeRecipe(_id)
+        .catch(() => next({ err: 'Fail to delete from recipe db' }))
       return removedRecipe && success
     })
   )
-  res.send(successes.every((s) => s))
+
+  const ok = successes.every((s) => s)
+  res.status(ok ? 204 : 500).send()
 })
 
 router.get('/sync', async (req, res) => {
@@ -95,15 +102,15 @@ router.post('/download', async (req, res) => {
   res.send(recipe)
 })
 
-router.post('/translate', async (req, res) => {
-  const recipe = await recipeDb.getRecipe(req.body.recipeId)
+router.post('/translate', async (req, res, next) => {
+  const recipe = await recipeDb.getRecipe(req.body.recipeId).catch(next)
   if (!recipe) res.sendStatus(404)
   else {
     const translator = new Translator(translationsDb)
     try {
-      await translator.translate(
-        recipe.parsedIngredients.map((i) => i.ingredient)
-      )
+      await translator
+        .translate(recipe.parsedIngredients.map((i) => i.ingredient))
+        .catch(next)
       // update recipe with values from cache
       await translationsDb.translateRecipes(recipe)
       const supermarket = req.query.supermarket

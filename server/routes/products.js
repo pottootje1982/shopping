@@ -8,17 +8,6 @@ require('../scripts/db/tables')().then((dbs) => {
   ;({ ingToProduct, userDb } = dbs)
 })
 
-router.use((req, res, next) => {
-  const { supermarket } = req.query
-  const { user } = req
-  if (!supermarket) return res.status(400).send('Specify supermarket in query')
-  if (!user && supermarket === 'picnic' && !req.url.startsWith('/choose'))
-    return res
-      .status(401)
-      .send(`For supermarket ${supermarket} you need to be signed in`)
-  next()
-})
-
 router.get('/', async (req, res) => {
   const { supermarket, query, full } = req.query
   const api = await create(supermarket, ingToProduct, userDb, req.user)

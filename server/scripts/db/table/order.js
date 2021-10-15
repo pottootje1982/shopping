@@ -14,7 +14,9 @@ class OrderDb extends Table {
       parsedIngredients
     }))
     const order = { date, recipes, supermarket, user }
-    return this.table().insertOne(order)
+    return this.table()
+      .insertOne(order)
+      .then(() => order)
   }
 
   getOrders(user) {

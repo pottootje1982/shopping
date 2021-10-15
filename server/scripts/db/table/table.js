@@ -16,6 +16,10 @@ module.exports = class Table {
     return this.table().deleteOne(query)
   }
 
+  find(query) {
+    return this.table().find(query).toArray()
+  }
+
   all() {
     return this.table().find().toArray()
   }

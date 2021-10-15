@@ -3,15 +3,15 @@ class Paprika {
     this.recipeDb = db
   }
 
-  getRecipe(uid) {
+  async getRecipe(uid) {
     return this.paprikaApi.recipe(uid)
   }
 
-  getRecipes() {
+  async getRecipes() {
     return true
   }
 
-  categories() {
+  async categories() {
     return [
       {
         order_flag: 0,
@@ -34,19 +34,23 @@ class Paprika {
     ]
   }
 
-  updateRecipe() {
+  async updateRecipe() {
     return true
   }
 
-  deleteRecipe() {
+  async deleteRecipe() {
     return true
   }
 
-  downloadRecipe() {
-    return true
+  async downloadRecipe() {
+    return {
+      _id: '60fd46b3be4079d135edc694',
+      uid: '00fb7960-bdd1-4796-b13f-a7dbff348e4f',
+      name: 'Spinach, Sweet Potato & Lentil Dhal'
+    }
   }
 
-  synchronize() {
+  async synchronize() {
     return true
   }
 }
