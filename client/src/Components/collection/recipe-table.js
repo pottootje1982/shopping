@@ -24,6 +24,7 @@ import {
   useRowSelect,
   usePagination,
   useFilters,
+  useSortBy,
   useGlobalFilter
 } from 'react-table'
 
@@ -176,10 +177,11 @@ export default function RecipeTable() {
     },
     useFilters,
     useGlobalFilter,
+    useSortBy,
     usePagination,
     useRowSelect,
     /* eslint-disable */
-    (hooks) => {
+    (hooks) => {  
       hooks.allColumns.push((columns) => [
         {
           id: 'selection',
@@ -225,8 +227,15 @@ export default function RecipeTable() {
               {headerGroups.map((headerGroup, i) => (
                 <TableRow key={i} {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column, j) => (
-                    <TableCell key={j} {...column.getHeaderProps()}>
-                      {column.render('Header')}
+                    <TableCell key={j} {...column.getHeaderProps(column.getSortByToggleProps())}>
+                      {column.render(`Header`)}
+                      <span>
+                        {column.isSorted
+                      ? column.isSortedDesc
+                        ? ' 🔽'
+                        : ' 🔼'
+                      : ''}
+                      </span>
                     </TableCell>
                   ))}
                 </TableRow>
