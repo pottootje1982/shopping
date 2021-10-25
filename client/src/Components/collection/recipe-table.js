@@ -18,6 +18,8 @@ import TableToolbar from './TableToolbar'
 import TablePaginationActions from './TablePaginationActions'
 import RecipeContext from './RecipeProvider'
 import PropTypes from 'prop-types'
+import IndeterminateCheckbox from './IndeterminateCheckbox'
+import { StarBorder, Star } from '@material-ui/icons'
 
 import {
   useTable,
@@ -27,24 +29,6 @@ import {
   useSortBy,
   useGlobalFilter
 } from 'react-table'
-
-const IndeterminateCheckbox = React.forwardRef(
-  ({ indeterminate, ...rest }, ref) => {
-    const defaultRef = React.useRef()
-    const resolvedRef = ref || defaultRef
-
-    React.useEffect(() => {
-      resolvedRef.current.indeterminate = indeterminate
-    }, [resolvedRef, indeterminate])
-
-    return (
-      <>
-        <Checkbox ref={resolvedRef} {...rest} />
-      </>
-    )
-  }
-)
-IndeterminateCheckbox.displayName = 'IndeterminateCheckbox'
 
 export default function RecipeTable() {
   const theme = createMuiTheme({
@@ -72,7 +56,7 @@ export default function RecipeTable() {
     const recipe = recipes.find((r) => r.uid === uid)
     setSelectedRecipe(recipe)
   }
-
+  /* eslint-disable */
   const columns = useMemo(
     () => [
       {
@@ -87,14 +71,32 @@ export default function RecipeTable() {
       {
         Header: 'Categories',
         accessor: 'categoryNames',
-        Cell: ({ value }) => <span>{value?.join(',')}</span> //eslint-disable-line
+        Cell: ({ value }) => <span>{value?.join(',')}</span>
       },
       { accessor: 'parsedIngredients' },
-      { accessor: 'categories' }
+      { accessor: 'categories' },
+      {
+        Header: 'Favourite',
+        accessor: 'favourite',
+        Cell: (props, rest) => {
+          console.log(props)
+          return (
+            <Checkbox
+              indeterminateIcon={<StarBorder></StarBorder>}
+              icon={<StarBorder></StarBorder>}
+              checkedIcon={<Star></Star>}
+              checked={props.value}
+              onChange={(_e, checked) =>
+                setSelectedRecipe({ ...selectedRecipe, favourite: checked })
+              }
+            ></Checkbox>
+          )
+        }
+      }
     ],
     []
   )
-
+  /* eslint-enable */
   columns[3].Cell.propTypes = {
     value: PropTypes.array
   }
@@ -156,8 +158,6 @@ export default function RecipeTable() {
     headerGroups,
     page,
     prepareRow,
-    // selectedFlatRows,
-    // toggleRowSelected,
     gotoPage,
     setPageSize,
     setGlobalFilter,
@@ -291,8 +291,4 @@ export default function RecipeTable() {
       </TableContainer>
     )
   )
-}
-
-IndeterminateCheckbox.propTypes = {
-  indeterminate: PropTypes.bool.isRequired
 }
