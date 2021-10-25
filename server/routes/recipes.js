@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
     req.query.supermarket,
     req.user
   )
-  const orders = await orderDb.getHydrated(recipes)
+  const orders = await orderDb.getHydrated(req.user, recipes)
   const uniqRecipes = uniqBy((r) => r.uid, recipes)
   res.send({ recipes: uniqRecipes, orders, categories })
 })

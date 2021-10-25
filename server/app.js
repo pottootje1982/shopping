@@ -20,7 +20,7 @@ app.use(async (req, res, next) => {
   const { url, method } = req
   if (
     !supermarket &&
-    method !== 'DELETE' &&
+    method !== 'DELETE' && method !== 'OPTIONS' &&
     (url.startsWith('/orders') || url.startsWith('/products'))
   )
     return res.status(400).send('Specify supermarket in query')
@@ -28,7 +28,7 @@ app.use(async (req, res, next) => {
     return next()
   if (!user && url.startsWith('/users')) return res.status(401).send()
   if (!user && url.startsWith('/recipes?') && method === 'GET') return next()
-  if (!user && method !== 'OPTIONS') return res.status(401).send()
+  if (!user && method !== 'OPTIONS' && (url.startsWith('/recipes') || url.startsWith('/orders') || url.startsWith('/products') || url.startsWith('/users'))) return res.status(401).send()
   req.user = user
   next()
 })
