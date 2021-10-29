@@ -23,7 +23,7 @@ app.use(async (req, res, next) => {
     method !== 'DELETE' && method !== 'OPTIONS' &&
     (url.startsWith('/orders') || url.startsWith('/products'))
   )
-    return res.status(400).send('Specify supermarket in query')
+    return res.status(400).send({message:'Specify supermarket in query'})
   if (!user && supermarket === 'ah' && url.startsWith('/products'))
     return next()
   if (!user && url.startsWith('/users')) return res.status(401).send()

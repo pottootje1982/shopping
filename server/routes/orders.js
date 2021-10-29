@@ -40,7 +40,8 @@ router.get('/extension', async (_req, res) => {
 })
 
 router.post('/', async (req, res) => {
-  const { recipes, supermarket } = req.body
+  const { recipes } = req.body
+  const { supermarket } = req.query
   const api = await create(supermarket, ingToProduct, userDb, req.user)
   await api.order(recipes)
   const response = await orderDb.storeOrder(recipes, supermarket, req.user)
