@@ -1,7 +1,7 @@
 const dotenv = require('dotenv')
 dotenv.config()
 
-const {
+let {
   USE_PAPRIKA_STUB,
   AH_API,
   PUBLIC_KEY,
@@ -14,6 +14,10 @@ const {
 } = process.env
 
 if (USE_TEST_DB && !TEST_DB_URL) throw 'Please define TEST_DB_URL'
+
+USE_PAPRIKA_STUB = /^true$/i.test(USE_PAPRIKA_STUB)
+USE_TEST_DB = /^true$/i.test(USE_TEST_DB)
+USE_GOOGLE_AUTH_STUB = /^true$/i.test(USE_GOOGLE_AUTH_STUB)
 
 module.exports = {
   ...env,

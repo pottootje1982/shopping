@@ -56,6 +56,7 @@ it.skip('add users to recipes', () => {
 it.skip('add users to orders', () => {
   const orders = require('./orders.json')
   const updated = orders.map(({ ...order }) => ({
+    supermarket: 'ah',
     ...order,
     user: 'wouterpot2@gmail.com'
   }))

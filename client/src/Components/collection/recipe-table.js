@@ -181,7 +181,7 @@ export default function RecipeTable() {
     usePagination,
     useRowSelect,
     /* eslint-disable */
-    (hooks) => {  
+    (hooks) => {
       hooks.allColumns.push((columns) => [
         {
           id: 'selection',
@@ -227,14 +227,17 @@ export default function RecipeTable() {
               {headerGroups.map((headerGroup, i) => (
                 <TableRow key={i} {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column, j) => (
-                    <TableCell key={j} {...column.getHeaderProps(column.getSortByToggleProps())}>
+                    <TableCell
+                      key={j}
+                      {...column.getHeaderProps(column.getSortByToggleProps())}
+                    >
                       {column.render(`Header`)}
                       <span>
                         {column.isSorted
-                      ? column.isSortedDesc
-                        ? ' 🔽'
-                        : ' 🔼'
-                      : ''}
+                          ? column.isSortedDesc
+                            ? ' 🔽'
+                            : ' 🔼'
+                          : ''}
                       </span>
                     </TableCell>
                   ))}

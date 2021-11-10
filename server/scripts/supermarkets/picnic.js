@@ -56,7 +56,8 @@ class PicnicApi extends Supermarket {
       .map(({ product, ...rest }) => ({ ...product, ...rest }))
     const result = []
     for (const { id, quantity } of items.filter(
-      ({ id, notAvailable, ignore }) => id && !notAvailable && !ignore
+      ({ id, notAvailable, ignore, quantity }) =>
+        id && !notAvailable && !ignore && quantity > 0
     )) {
       try {
         await this.client.addProductToShoppingCart(id, quantity)

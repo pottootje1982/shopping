@@ -1,12 +1,12 @@
 # Bugs
 
-- clear selected recipes after orderign
-- don't order items with zero (picnic)
+- clear selected recipes after ordering
   Lower prio:
 - add rashers as unit
 - Don't translate from any language: for instance 'mirin' is now translated as 'dood', because it comes from 'Kurdish'
 - Fix translations
 - Fix downloads
+- Remove recipes from table after deleting
 
 # Features
 

@@ -101,7 +101,9 @@ export default function RecipeCollection({ setRecipeTitle }) {
           (await server.post(`orders?supermarket=${supermarket.key}`, {
             recipes: selectedRecipes
           })) || {}
-        if (newOrder) setOrders((orders) => [...orders, newOrder])
+        if (newOrder) {
+          setOrders((orders) => [...orders, newOrder])
+        }
       } catch (err) {
         console.log(err)
         alert(err.response.data)
