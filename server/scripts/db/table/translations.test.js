@@ -67,7 +67,7 @@ describe('storeTranslations()', () => {
       ...r,
       parsedIngredients: Ingredients.create(r.ingredients)
     }))
-    recipes = await translationsDb.translateRecipes(...recipes)
+    recipes = await translationsDb.translateRecipes(recipes)
     delete recipes[0]._id
     expect(recipes).toMatchSnapshot()
   })

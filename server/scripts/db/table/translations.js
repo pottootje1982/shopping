@@ -45,7 +45,7 @@ class TranslationsDb extends Table {
     return getTranslations(await this.all(), keys)
   }
 
-  async translateRecipes(...recipes) {
+  async translateRecipes(recipes) {
     const allTranslations = await this.all()
     return recipes.map(({ parsedIngredients, ...r }) => {
       const ingredients = parsedIngredients

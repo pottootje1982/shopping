@@ -111,14 +111,13 @@ router.post('/translate', async (req, res, next) => {
       await translator
         .translate(recipe.parsedIngredients.map((i) => i.ingredient))
         .catch(next)
-      // update recipe with values from cache
-      await translationsDb.translateRecipes(recipe)
-      const supermarket = req.query.supermarket
-      const mapping = await ingToProduct.getMappings(recipe, supermarket)
-      res.send({ recipe, mapping })
-    } catch ({ code, errors }) {
-      console.log(errors)
-      res.status(code).send(errors)
+      const recipes = await recipeDb.translateRecipes(
+        [recipe],
+        req.query.supermarket
+      )
+      res.send({ recipe: recipes[0] })
+    } catch (err) {
+      next(err)
     }
   }
 })

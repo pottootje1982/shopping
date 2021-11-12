@@ -18,12 +18,11 @@ class RecipeDb extends Table {
   }
 
   async translateRecipes(recipes, supermarket) {
-    recipes.forEach((recipe) => {
-      if (recipe.parsedIngredients?.constructor.name !== 'Ingredients') {
-        recipe.parsedIngredients = Ingredients.create(recipe.ingredients)
-      }
-    })
-    recipes = await this.translationDb.translateRecipes(...recipes)
+    recipes = recipes.map((recipe) => ({
+      ...recipe,
+      parsedIngredients: Ingredients.create(recipe.ingredients)
+    }))
+    recipes = await this.translationDb.translateRecipes(recipes)
     return this.ingToProduct.getMappings(recipes, supermarket)
   }
 
