@@ -3,6 +3,7 @@ const PaprikaStub = require('./paprika.stub')
 
 const fs = require('fs')
 const zlib = require('zlib')
+const recipeScraper = require('recipe-scraper')
 
 function createZip(recipe, fn) {
   return new Promise((resolve, reject) => {
@@ -109,8 +110,10 @@ class Paprika {
     return this.paprikaApi.upsertRecipe(recipe)
   }
 
-  downloadRecipe(url) {
-    return this.paprikaApi.downloadRecipe(url)
+  async downloadRecipe(url) {
+    const stub = new PaprikaStub()
+    return stub.downloadRecipe(url)
+    // return this.paprikaApi.downloadRecipe(url)
   }
 
   async synchronize(localRecipes) {

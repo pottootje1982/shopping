@@ -67,10 +67,10 @@ const TableToolbar = ({
 
   async function removeRecipes() {
     if (selectedRecipes.length > 0) {
-      const { data: success } = await server.delete('recipes', {
+      const { status } = await server.delete('recipes', {
         data: selectedRecipes
       })
-      if (success) {
+      if (status === 204) {
         const index = recipes.indexOf(selectedRecipe)
         const {
           data: { recipes: newRecipes = [] }

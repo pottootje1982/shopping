@@ -1,3 +1,5 @@
+const recipeScraper = require('recipe-scraper')
+
 class Paprika {
   constructor(db) {
     this.recipeDb = db
@@ -42,12 +44,21 @@ class Paprika {
     return true
   }
 
-  async downloadRecipe() {
-    return {
-      _id: '60fd46b3be4079d135edc694',
-      uid: '00fb7960-bdd1-4796-b13f-a7dbff348e4f',
-      name: 'Spinach, Sweet Potato & Lentil Dhal'
+  async downloadRecipe(url) {
+    const { ingredients, image, instructions, name, servings, time } =
+      await recipeScraper(url)
+    const recipe = {
+      created: new Date().toLocaleString(),
+      ingredients: ingredients.join('\n'),
+      name,
+      directions: instructions
+        .map((instr, i) => `${i + 1}. ${instr}`)
+        .join('\n'),
+      servings,
+      prep_time: `Cooking time: ${time.cook}\nPreparation time: ${time.prep}`,
+      image_url: image
     }
+    return recipe
   }
 
   async synchronize() {
