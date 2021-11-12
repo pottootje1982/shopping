@@ -46,7 +46,7 @@ const IndeterminateCheckbox = React.forwardRef(
 )
 IndeterminateCheckbox.displayName = 'IndeterminateCheckbox'
 
-export default function RecipeTable() {
+export default function RecipeTable({ clearSelection }) {
   const theme = createMuiTheme({
     overrides: {
       MuiTableCell: {
@@ -158,6 +158,7 @@ export default function RecipeTable() {
     prepareRow,
     // selectedFlatRows,
     // toggleRowSelected,
+    toggleAllRowsSelected,
     gotoPage,
     setPageSize,
     setGlobalFilter,
@@ -200,6 +201,10 @@ export default function RecipeTable() {
       ]) /* eslint-enable */
     }
   )
+
+  useEffect(() => {
+    toggleAllRowsSelected(false)
+  }, [clearSelection])
 
   useEffect(() => {
     localStorage.setItem('selectedRowIds', JSON.stringify(selectedRowIds))
@@ -298,4 +303,8 @@ export default function RecipeTable() {
 
 IndeterminateCheckbox.propTypes = {
   indeterminate: PropTypes.bool.isRequired
+}
+
+RecipeTable.propTypes = {
+  clearSelection: PropTypes.object.isRequired
 }

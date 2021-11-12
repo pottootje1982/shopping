@@ -1,6 +1,7 @@
 const PicnicClient = require('picnic-api')
 const { ImageSizes } = PicnicClient
 const Supermarket = require('./supermarket')
+const { uniqBy } = require('ramda')
 
 class PicnicApi extends Supermarket {
   constructor(ingToProduct, authKey) {
@@ -21,7 +22,8 @@ class PicnicApi extends Supermarket {
         .filter(({ title }) => title)
     )
 
-    return this.getSelected(full, products)
+    const result = await this.getSelected(full, products)
+    return uniqBy((item) => item.id, result)
   }
 
   convertProduct({ id, name, price, image_id, unit_quantity, product_id }) {

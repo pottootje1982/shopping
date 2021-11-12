@@ -98,8 +98,8 @@ export default function ProductSearch({
       alignItems="stretch"
       spacing={1}
     >
-      {bareIngredient.split(' ').map((item) => (
-        <Button key={item} variant="outlined" onClick={() => search(item)}>
+      {bareIngredient.split(' ').map((item, i) => (
+        <Button key={i} variant="outlined" onClick={() => search(item)}>
           {item}
         </Button>
       ))}

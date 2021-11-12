@@ -35,6 +35,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
   const [categories, setCategories] = useState()
   const [open, setOpen] = useState(false)
   const [noTokenOpen, setNoTokenOpen] = useState(false)
+  const [clearSelection, setClearSelection] = useState({})
 
   function selectedFirstRecipe() {
     server.get(`recipes?supermarket=${supermarket?.key}`).then(initialize)
@@ -103,6 +104,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
           })) || {}
         if (newOrder) {
           setOrders((orders) => [...orders, newOrder])
+          setClearSelection({})
         }
       } catch (err) {
         console.log(err)
@@ -207,7 +209,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
           </Select>
         </FormControl>
         <Grid item xs={12}>
-          <RecipeTable />
+          <RecipeTable clearSelection={clearSelection} />
         </Grid>
       </Grid>
       {selectedRecipe ? <Recipe key={selectedRecipe.uid} /> : null}
