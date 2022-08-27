@@ -1,21 +1,34 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Place AH.nl Order",
   "description": "Extension helper to place a AH.nl order from https://gogetmeals.herokuapp.com",
   "version": "0.0.1",
-  "permissions": ["cookies", "*://gogetmeals.herokuapp.com/*"],
+  "permissions": [
+    "cookies"
+  ],
+  "host_permissions": [
+    "*://gogetmeals.herokuapp.com/*"
+  ],
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "matches": ["https://www.ah.nl/*"],
-      "js": ["load-ah.js"]
+      "matches": [
+        "https://www.ah.nl/*"
+      ],
+      "js": [
+        "load-ah.js"
+      ]
     },
     {
-      "matches": ["http://localhost/*", "https://gogetmeals.herokuapp.com/*"],
-      "js": ["load-shopping.js"]
+      "matches": [
+        "http://localhost/*",
+        "https://gogetmeals.herokuapp.com/*"
+      ],
+      "js": [
+        "load-shopping.js"
+      ]
     }
   ]
 }

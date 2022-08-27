@@ -95,7 +95,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
     if (isOk && event.nativeEvent.key !== 'Escape') {
       try {
         const order = createOrder(selectedRecipes)
-        if (supermarket === 'ah') {
+        if (supermarket.key === 'ah') {
           document.cookie = `order=${JSON.stringify(order)}`
         }
         const { data: newOrder } =

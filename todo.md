@@ -1,5 +1,7 @@
 # Bugs
 
+- Let user accept cookies
+
 Lower prio:
 
 - add rashers as unit

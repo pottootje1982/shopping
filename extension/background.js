@@ -4,8 +4,11 @@ const tabIds = {}
 chrome.runtime.onMessage.addListener(function (request) {
   const { name, tabName } = request
   if (name === 'register') {
-    chrome.tabs.getSelected(null, (tab) => {
-      tabIds[tabName] = tab.id
+    chrome.tabs.query({
+      active: true,
+      lastFocusedWindow: true
+    }, (tabs) => {
+      tabIds[tabName] = tabs[0].id
     })
     return true
   }
