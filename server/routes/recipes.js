@@ -4,9 +4,9 @@ const { PAPRIKA_API } = require('../config')
 const { uniqBy } = require('ramda')
 
 const Paprika = require(PAPRIKA_API)
-let recipeDb, translationsDb, ingToProduct, orderDb, userDb
+let recipeDb, translationsDb, orderDb, userDb
 require('../scripts/db/tables')().then((dbs) => {
-  ;({ recipeDb, ingToProduct, translationsDb, orderDb, userDb } = dbs)
+  ;({ recipeDb, translationsDb, orderDb, userDb } = dbs)
 })
 
 const Translator = require('../scripts/translator')
@@ -21,6 +21,7 @@ router.get('/', async (req, res) => {
   )
   const orders = await orderDb.getHydrated(req.user, recipes)
   const uniqRecipes = uniqBy((r) => r.uid, recipes)
+  console.log('recipes', recipes.length)
   res.send({ recipes: uniqRecipes, orders, categories })
 })
 

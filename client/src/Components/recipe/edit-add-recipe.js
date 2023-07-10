@@ -5,7 +5,7 @@ import getDateString from '../date'
 import { TextField, Button, Fab } from '../styled'
 import DownloadIcon from '@material-ui/icons/GetApp'
 import PropTypes from 'prop-types'
-const uuidv1 = require('uuid/v1')
+const { v1: uuidv1 } = require('uuid');
 
 export default function EditAddRecipe({
   selectedRecipe,

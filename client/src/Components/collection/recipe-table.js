@@ -8,7 +8,7 @@ import {
   TableContainer,
   ThemeProvider
 } from '@material-ui/core'
-import { createMuiTheme } from '@material-ui/core/styles'
+import {  createTheme } from '@material-ui/core/styles'
 import MaUTable from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -47,7 +47,7 @@ const IndeterminateCheckbox = React.forwardRef(
 IndeterminateCheckbox.displayName = 'IndeterminateCheckbox'
 
 export default function RecipeTable({ clearSelection }) {
-  const theme = createMuiTheme({
+  const theme = createTheme({
     overrides: {
       MuiTableCell: {
         root: {
@@ -288,8 +288,8 @@ export default function RecipeTable({ clearSelection }) {
                     inputProps: { 'aria-label': 'rows per page' },
                     native: true
                   }}
-                  onChangePage={handleChangePage}
-                  onChangeRowsPerPage={handleChangeRowsPerPage}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
                   ActionsComponent={TablePaginationActions}
                 />
               </TableRow>

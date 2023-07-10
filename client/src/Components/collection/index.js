@@ -124,10 +124,14 @@ export default function RecipeCollection({ setRecipeTitle }) {
   }
 
   async function sync() {
-    const res = await server.get(`recipes/sync?supermarket=${supermarket.key}`)
-    const recipes = res.data
-    if (recipes && recipes !== '') {
-      setRecipes(recipes)
+    try {
+      const res = await server.get(`recipes/sync?supermarket=${supermarket.key}`)
+      const recipes = res.data
+      if (recipes && recipes !== '') {
+        setRecipes(recipes)
+      }
+    } catch (error) {
+      console.warn('Syncing recipes failed, are you signed in?')
     }
   }
 

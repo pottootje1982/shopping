@@ -56,7 +56,7 @@ class RecipeDb extends Table {
 
   async getRecipe(uid) {
     const recipe = await this.getRecipeRaw(uid)
-    if (!recipe) throw `Recipe ${uid} does not exist`
+    if (!recipe) throw new Error(`Recipe ${uid} does not exist`)
     const translated = await this.translateRecipes([recipe])
     return translated[0]
   }

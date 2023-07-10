@@ -3,7 +3,6 @@ const PaprikaStub = require('./paprika.stub')
 
 const fs = require('fs')
 const zlib = require('zlib')
-const recipeScraper = require('recipe-scraper')
 
 function createZip(recipe, fn) {
   return new Promise((resolve, reject) => {
@@ -158,8 +157,9 @@ class Paprika {
 }
 
 Paprika.create = async (recipeDb, userDb, user) => {
+  if (!user) return new PaprikaStub(recipeDb)
   const { paprikaUser, paprikaPass } = await userDb.getUser(user)
-  if (paprikaUser) return new Paprika(recipeDb, paprikaUser, paprikaPass)
+  if (user) return new Paprika(recipeDb, paprikaUser, paprikaPass)
   else return new PaprikaStub(recipeDb)
 }
 

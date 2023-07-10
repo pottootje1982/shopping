@@ -130,7 +130,7 @@ export default function Recipe() {
   return (
     <Fragment>
       <Grid container item xs={2} spacing={1}>
-        <Fab onClick={(e) => translate(recipeId)}>
+        <Fab onClick={() => translate(recipeId)}>
           <Translate />
         </Fab>
         <Fab onClick={editRecipeClick}>
@@ -210,7 +210,7 @@ export default function Recipe() {
                         onWheel={(e) => onAdjustQuantityWheel(ingredient, e)}
                       />
                       <IconButton
-                        onClick={(e) => order(product)}
+                        onClick={() => order(product)}
                         style={{
                           marginRight: -20,
                           marginTop: -20,

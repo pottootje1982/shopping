@@ -24,7 +24,7 @@ export default function UserSettingsDialog({ setDialogOpen, dialogOpen }) {
     setDialogOpen(false)
   }
 
-  useEffect(async () => {
+  async function openDialog() {
     if (dialogOpen) {
       const res = await server.get('/users')
       const {
@@ -36,6 +36,10 @@ export default function UserSettingsDialog({ setDialogOpen, dialogOpen }) {
       setPaprikaUser(paprikaUser)
       setPaprikaPass(paprikaPass)
     }
+  }
+
+  useEffect(() => {
+    openDialog()
   }, [dialogOpen])
 
   function onOkClick() {

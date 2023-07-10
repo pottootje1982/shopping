@@ -3,8 +3,8 @@ import React, { useEffect, useRef, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Grid,
-  GridList,
-  GridListTile,
+  ImageList,
+  ImageListItem,
   TextField,
   Typography,
   FormControlLabel,
@@ -149,13 +149,13 @@ export default function ProductSearch({
             No products found
           </Typography>
         ) : (
-          <GridList
+          <ImageList
             cols={3}
-            cellHeight="auto"
+            rowHeight="auto"
             style={{ maxHeight: '78vh', overflow: 'auto' }}
           >
             {products.map((item) => (
-              <GridListTile key={item.id} xs={4}>
+              <ImageListItem key={item.id} xs={4}>
                 <MuiButton
                   color="primary"
                   onClick={() => selectProduct(item)}
@@ -181,9 +181,9 @@ export default function ProductSearch({
                     </Link>
                   </div>
                 </MuiButton>
-              </GridListTile>
+              </ImageListItem>
             ))}
-          </GridList>
+          </ImageList>
         )}
       </Grid>
     </Grid>
