@@ -1,14 +1,13 @@
 {
   "version": "0.2.0",
   "configurations": [
+    // Launch start:debug script from package.json
     {
-      "type": "node",
+      "command": "yarn dev",
+      "name": "Debug Shopping",
       "request": "launch",
-      "name": "Start",
-      "program": "app.js",
-      "cwd": "${workspaceFolder}/server",
-      "args": ["start"],
-      "console": "integratedTerminal"
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}/server"
     },
     {
       "type": "node",

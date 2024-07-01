@@ -1,0 +1,933 @@
+{
+  "id": "search-page-results",
+  "analytics": {},
+  "body": {
+    "type": "STATE_BOUNDARY",
+    "id": "GlobalState",
+    "child": {
+      "type": "BLOCK",
+      "id": "root",
+      "analytics": {
+        "contexts": [
+          {
+            "schema": "iglu:nl.picnic.snowplow/search/jsonschema/1-4-0",
+            "data": {
+              "search_id": "e2dfd767-8c1f-4619-b178-8f51e5968c15",
+              "query": "korianderpoeder",
+              "is_first_search_result": true,
+              "product_ids": ["s1005228"],
+              "recipe_ids": [],
+              "initial_filters": ["Recipes"],
+              "selected_filters": [],
+              "initial_sorting_strategies": [
+                "RELEVANCE",
+                "PRICE",
+                "PRICE_PER_KILO",
+                "CONTENT"
+              ],
+              "selected_sorting_strategy": "RELEVANCE"
+            }
+          }
+        ]
+      },
+      "size": {
+        "crossAxis": "SCREEN_WIDTH"
+      },
+      "layout": {
+        "type": "FLOW",
+        "axis": "VERTICAL",
+        "overflow": "HIDDEN"
+      },
+      "children": [
+        {
+          "type": "BLOCK",
+          "id": "search-page-header",
+          "analytics": {},
+          "size": {
+            "crossAxis": "SCREEN_WIDTH",
+            "mainAxis": 48
+          },
+          "layout": {
+            "type": "FLOW",
+            "axis": "HORIZONTAL",
+            "padding": {
+              "top": 4,
+              "bottom": 12,
+              "left": 12,
+              "right": 12
+            },
+            "spacing": {
+              "mainAxis": 8
+            }
+          },
+          "children": [
+            {
+              "type": "PML",
+              "id": "search-header-sorting-button",
+              "analytics": {},
+              "size": {
+                "crossAxis": 50,
+                "mainAxis": 36,
+                "isMainAxisEstimated": true
+              },
+              "pml": {
+                "pmlVersion": "0.1.0",
+                "images": {},
+                "component": {
+                  "onPress": {
+                    "actionType": "OPEN",
+                    "target": "app.picnic://store/page;id=search-sort-options-root,presentation-mode=MODAL_OVER_CONTEXT,search_id=e2dfd767-8c1f-4619-b178-8f51e5968c15&term=korianderpoeder&sorting_options_ids=RELEVANCE&sorting_options_ids=PRICE&sorting_options_ids=PRICE_PER_KILO&sorting_options_ids=CONTENT&sorting_options_names=Relevant%20voor%20jou&sorting_options_names=Laagste%20prijs&sorting_options_names=Laagste%20prijs%20per%20kilo&sorting_options_names=Kleinste%20verpakking&selected_sorting=RELEVANCE&initial_filters=Recipes"
+                  },
+                  "type": "TOUCHABLE",
+                  "child": {
+                    "borderRadius": 8,
+                    "height": 32,
+                    "backgroundColor": "#f8f5f2",
+                    "type": "CONTAINER",
+                    "child": {
+                      "axis": "HORIZONTAL",
+                      "height": "100%",
+                      "alignment": "CENTER",
+                      "padding": {
+                        "left": 12,
+                        "right": 12
+                      },
+                      "spacing": 4,
+                      "type": "STACK",
+                      "children": [
+                        {
+                          "width": 16,
+                          "height": 16,
+                          "iconKey": "swap",
+                          "color": "#333333",
+                          "type": "ICON"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "PML",
+              "id": "search-header-recipe-toggle",
+              "analytics": {},
+              "size": {
+                "crossAxis": 50,
+                "mainAxis": 100,
+                "isMainAxisEstimated": true
+              },
+              "pml": {
+                "pmlVersion": "0.1.0",
+                "images": {},
+                "component": {
+                  "onPress": {
+                    "actionType": "OPEN",
+                    "method": "REPLACE",
+                    "target": "app.picnic://store/page;id=search-page-results,search_id=e2dfd767-8c1f-4619-b178-8f51e5968c15&search_term=korianderpoeder&is_recipe=true&selected_sorting=RELEVANCE&initial_filters=Recipes&is_not_first_search_result=true"
+                  },
+                  "type": "TOUCHABLE",
+                  "child": {
+                    "borderRadius": 8,
+                    "height": 32,
+                    "backgroundColor": "#f8f5f2",
+                    "type": "CONTAINER",
+                    "child": {
+                      "axis": "HORIZONTAL",
+                      "height": "100%",
+                      "alignment": "CENTER",
+                      "padding": {
+                        "left": 8,
+                        "right": 12
+                      },
+                      "spacing": 4,
+                      "type": "STACK",
+                      "children": [
+                        {
+                          "height": 20,
+                          "borderRadius": 5,
+                          "backgroundColor": "#4B8505",
+                          "padding": {
+                            "left": 4,
+                            "right": 4
+                          },
+                          "type": "CONTAINER",
+                          "child": {
+                            "axis": "HORIZONTAL",
+                            "height": "100%",
+                            "alignment": "CENTER",
+                            "distribution": "CENTER",
+                            "type": "STACK",
+                            "children": [
+                              {
+                                "textAttributes": {
+                                  "size": 14,
+                                  "weight": "MEDIUM",
+                                  "color": "#333333"
+                                },
+                                "markdown": "#(#ffffff)4#(#ffffff)",
+                                "type": "RICH_TEXT"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "textAttributes": {
+                            "size": 14,
+                            "weight": "MEDIUM",
+                            "color": "#333333"
+                          },
+                          "markdown": "#(#000000)Recepten#(#000000)",
+                          "type": "RICH_TEXT"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "BLOCK",
+          "id": "search-results-selling-units-section",
+          "analytics": {},
+          "size": {
+            "crossAxis": "12g",
+            "mainAxis": "CONTAINER_HEIGHT - 48"
+          },
+          "layout": {
+            "type": "FLOW",
+            "axis": "VERTICAL",
+            "spacing": {
+              "mainAxis": 4,
+              "crossAxis": 0
+            },
+            "padding": {
+              "left": 8,
+              "right": 8,
+              "top": 4,
+              "bottom": 4
+            }
+          },
+          "children": [
+            {
+              "type": "BLOCK",
+              "id": "search-result-section",
+              "analytics": {},
+              "size": {
+                "crossAxis": "12g"
+              },
+              "layout": {
+                "type": "FLOW",
+                "axis": "VERTICAL"
+              },
+              "children": [
+                {
+                  "type": "BLOCK",
+                  "id": "structured-selling-unit-search-result",
+                  "analytics": {},
+                  "size": {
+                    "crossAxis": "12g"
+                  },
+                  "layout": {
+                    "type": "FLOW",
+                    "axis": "VERTICAL",
+                    "spacing": {
+                      "mainAxis": 4,
+                      "crossAxis": 4
+                    }
+                  },
+                  "children": [
+                    {
+                      "type": "PML",
+                      "id": "selling-unit-s1005228-tile",
+                      "analytics": {
+                        "contexts": [
+                          {
+                            "schema": "iglu:tech.picnic.snowplow.analytics/page_component/jsonschema/1-1-0",
+                            "data": {
+                              "type": "page_tile",
+                              "position": {
+                                "x": 1,
+                                "y": 1
+                              }
+                            }
+                          },
+                          {
+                            "schema": "iglu:tech.picnic.snowplow.analytics/product/jsonschema/1-0-0",
+                            "data": {
+                              "product_id": "s1005228"
+                            }
+                          },
+                          {
+                            "schema": "iglu:tech.picnic.snowplow.analytics/page_section/jsonschema/1-0-0",
+                            "data": {
+                              "name": "Alle resultaten - Hidden",
+                              "type": "page_tile"
+                            }
+                          },
+                          {
+                            "schema": "iglu:nl.picnic.snowplow/search/jsonschema/1-4-0",
+                            "data": {
+                              "search_id": "e2dfd767-8c1f-4619-b178-8f51e5968c15",
+                              "query": "korianderpoeder",
+                              "is_first_search_result": true,
+                              "product_ids": ["s1005228"],
+                              "recipe_ids": [],
+                              "initial_filters": ["Recipes"],
+                              "selected_filters": [],
+                              "initial_sorting_strategies": [
+                                "RELEVANCE",
+                                "PRICE",
+                                "PRICE_PER_KILO",
+                                "CONTENT"
+                              ],
+                              "selected_sorting_strategy": "RELEVANCE"
+                            }
+                          }
+                        ]
+                      },
+                      "size": {
+                        "crossAxis": "(SCREEN_WIDTH - 16 - 4 ) / 2",
+                        "mainAxis": "(((SCREEN_WIDTH - 16 - 4 ) / 2) + 110)"
+                      },
+                      "pml": {
+                        "pmlVersion": "0.1.0",
+                        "images": {},
+                        "component": {
+                          "axis": "VERTICAL",
+                          "distribution": "START",
+                          "alignment": "END",
+                          "backgroundColor": "#ffffff",
+                          "height": "100%",
+                          "type": "STACK",
+                          "children": [
+                            {
+                              "accessible": true,
+                              "hideFromAccessibility": true,
+                              "width": "100%",
+                              "aspectRatio": 1,
+                              "type": "CONTAINER",
+                              "child": {
+                                "onPress": {
+                                  "actionType": "EVENT",
+                                  "action": {
+                                    "type": "SELLING_UNIT_MUTATION",
+                                    "selling_unit_id": "s1005228",
+                                    "quantity": 1,
+                                    "mutation": "ADD"
+                                  }
+                                },
+                                "activeOpacity": 1,
+                                "activeColor": "rgba(0, 0, 0, 0.1)",
+                                "activeScale": 0.98,
+                                "borderRadius": 12,
+                                "backgroundColor": "#F0E8DD",
+                                "type": "TOUCHABLE",
+                                "child": {
+                                  "width": "100%",
+                                  "height": "100%",
+                                  "overflow": "hidden",
+                                  "type": "CONTAINER",
+                                  "child": {
+                                    "axis": "VERTICAL",
+                                    "height": "100%",
+                                    "type": "STACK",
+                                    "children": [
+                                      {
+                                        "source": {
+                                          "id": "picnic-page/29712dcc4e7f5f6ad4679aa082ba2cb3fb1656d86562f8cf42b50660ba4be28d"
+                                        },
+                                        "width": "100%",
+                                        "height": "100%",
+                                        "resizeMode": "COVER",
+                                        "placeholder": "NONE",
+                                        "type": "IMAGE"
+                                      },
+                                      {
+                                        "absolutePosition": {
+                                          "top": 0,
+                                          "bottom": 0,
+                                          "left": 0,
+                                          "right": 0
+                                        },
+                                        "type": "CONTAINER",
+                                        "child": {
+                                          "id": "selling-unit-image",
+                                          "type": "REFERENCE_CONTAINER",
+                                          "child": {
+                                            "source": {
+                                              "id": "68be3950e627809e6a6af00031200627280ee8bfd30c3876cb000d0f1a2edce4"
+                                            },
+                                            "derivativeType": "padded",
+                                            "placeholder": {
+                                              "resizeMode": "CONTAIN",
+                                              "icon": "loadingCarrotTranslucentPadding"
+                                            },
+                                            "resizeMode": "CONTAIN",
+                                            "type": "IMAGE"
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "hideFromAccessibility": true,
+                                        "height": "100%",
+                                        "width": "100%",
+                                        "absolutePosition": {
+                                          "left": 0,
+                                          "top": 0,
+                                          "right": 0,
+                                          "bottom": 0
+                                        },
+                                        "type": "CONTAINER",
+                                        "child": {
+                                          "id": "selling-unit-label-container",
+                                          "presets": {
+                                            "EXPANDED_VISIBLE": {
+                                              "marginBottom": {
+                                                "type": "TIMING",
+                                                "toValue": 0,
+                                                "duration": 150
+                                              },
+                                              "opacity": {
+                                                "type": "TIMING",
+                                                "toValue": 1,
+                                                "duration": 150
+                                              }
+                                            },
+                                            "EXPANDED_HIDDEN": {
+                                              "marginBottom": {
+                                                "type": "TIMING",
+                                                "toValue": 0,
+                                                "duration": 150
+                                              },
+                                              "opacity": {
+                                                "type": "TIMING",
+                                                "toValue": 0,
+                                                "duration": 150
+                                              }
+                                            },
+                                            "COLLAPSED_VISIBLE": {
+                                              "marginBottom": {
+                                                "type": "TIMING",
+                                                "toValue": 36,
+                                                "duration": 150
+                                              },
+                                              "opacity": {
+                                                "type": "TIMING",
+                                                "toValue": 1,
+                                                "duration": 150
+                                              }
+                                            },
+                                            "COLLAPSED_HIDDEN": {
+                                              "marginBottom": {
+                                                "type": "TIMING",
+                                                "toValue": 36,
+                                                "duration": 150
+                                              },
+                                              "opacity": {
+                                                "type": "TIMING",
+                                                "toValue": 0,
+                                                "duration": 150
+                                              }
+                                            }
+                                          },
+                                          "type": "ANIMATION_CONTAINER",
+                                          "child": {
+                                            "height": "100%",
+                                            "width": "100%",
+                                            "axis": "VERTICAL",
+                                            "type": "STACK",
+                                            "children": [
+                                              {
+                                                "absolutePosition": {
+                                                  "top": 8,
+                                                  "right": 8
+                                                },
+                                                "type": "CONTAINER",
+                                                "child": {
+                                                  "axis": "HORIZONTAL",
+                                                  "spacing": 10,
+                                                  "type": "STACK",
+                                                  "children": [
+                                                    {
+                                                      "onPress": {
+                                                        "actionType": "OPEN",
+                                                        "target": "app.picnic://store/page;id=product-details-page-root,id=s1005228&show_category_action=true"
+                                                      },
+                                                      "activeOpacity": 0.8,
+                                                      "hitSlop": {
+                                                        "horizontal": 22,
+                                                        "vertical": 22
+                                                      },
+                                                      "type": "TOUCHABLE",
+                                                      "child": {
+                                                        "backgroundColor": "#b40117",
+                                                        "borderRadius": 4,
+                                                        "height": 22,
+                                                        "padding": {
+                                                          "left": 6,
+                                                          "right": 4
+                                                        },
+                                                        "type": "CONTAINER",
+                                                        "child": {
+                                                          "axis": "HORIZONTAL",
+                                                          "height": "100%",
+                                                          "spacing": 2,
+                                                          "alignment": "CENTER",
+                                                          "type": "STACK",
+                                                          "children": [
+                                                            {
+                                                              "iconKey": "percentage",
+                                                              "fallback": {
+                                                                "id": "picnic-page/34a29c8efdbc2f15f1a95b8e15239786298e50566e19e8a586f5dff52606041e"
+                                                              },
+                                                              "color": "#ffffff",
+                                                              "width": 14,
+                                                              "height": 14,
+                                                              "type": "ICON"
+                                                            },
+                                                            {
+                                                              "textAttributes": {
+                                                                "size": 13,
+                                                                "weight": "REGULAR",
+                                                                "color": "#ffffff",
+                                                                "family": "PicnicSymbols"
+                                                              },
+                                                              "markdown": ">",
+                                                              "type": "RICH_TEXT"
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "overflow": "hidden",
+                              "accessible": true,
+                              "hideFromAccessibility": true,
+                              "borderRadius": 12,
+                              "width": "100%",
+                              "type": "CONTAINER",
+                              "child": {
+                                "activeColor": "rgba(0, 0, 0, 0.05)",
+                                "onPress": {
+                                  "actionType": "OPEN",
+                                  "target": "app.picnic://store/page;id=product-details-page-root,id=s1005228&show_category_action=true"
+                                },
+                                "type": "TOUCHABLE",
+                                "child": {
+                                  "axis": "VERTICAL",
+                                  "distribution": "START",
+                                  "alignment": "START",
+                                  "spacing": 2,
+                                  "padding": {
+                                    "top": 8,
+                                    "bottom": 8,
+                                    "left": 8,
+                                    "right": 8
+                                  },
+                                  "type": "STACK",
+                                  "children": [
+                                    {
+                                      "numberOfLines": 2,
+                                      "type": "RICH_TEXT",
+                                      "children": [
+                                        {
+                                          "markdown": "#(#333333)Koriander#(#333333) ",
+                                          "textAttributes": {
+                                            "size": 16,
+                                            "weight": "MEDIUM",
+                                            "color": "#333333"
+                                          },
+                                          "type": "RICH_TEXT"
+                                        },
+                                        {
+                                          "textAttributes": {
+                                            "size": 16,
+                                            "weight": "REGULAR",
+                                            "color": "#333333",
+                                            "family": "PicnicSymbols"
+                                          },
+                                          "markdown": ">",
+                                          "type": "RICH_TEXT"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "axis": "HORIZONTAL",
+                                      "distribution": "START",
+                                      "alignment": "CENTER",
+                                      "width": "100%",
+                                      "spacing": 4,
+                                      "type": "STACK",
+                                      "children": [
+                                        {
+                                          "textAttributes": {
+                                            "size": 14,
+                                            "weight": "REGULAR",
+                                            "color": "#333333"
+                                          },
+                                          "numberOfLines": 1,
+                                          "markdown": "#(#333333)Verstegen#(#333333)",
+                                          "type": "RICH_TEXT"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "CONTAINER",
+                                      "child": {
+                                        "axis": "HORIZONTAL",
+                                        "distribution": "START",
+                                        "alignment": "CENTER",
+                                        "spacing": 6,
+                                        "type": "STACK",
+                                        "children": [
+                                          {
+                                            "price": 309,
+                                            "fontSize": 22,
+                                            "color": "#333333",
+                                            "type": "PRICE"
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "axis": "HORIZONTAL",
+                                      "distribution": "START",
+                                      "alignment": "CENTER",
+                                      "spacing": 4,
+                                      "type": "STACK",
+                                      "children": [
+                                        {
+                                          "numberOfLines": 1,
+                                          "flexShrink": 1,
+                                          "textAttributes": {
+                                            "size": 12,
+                                            "weight": "MEDIUM",
+                                            "color": "#787570"
+                                          },
+                                          "markdown": "33 gram",
+                                          "type": "RICH_TEXT"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            },
+                            {
+                              "presentationStyle": "SELLING_UNIT_REGULAR_TILE",
+                              "sellingUnitId": "s1005228",
+                              "color": "#9F7234",
+                              "secondaryColor": "#F0E8DD",
+                              "type": "UNAVAILABILITY_CONTAINER"
+                            },
+                            {
+                              "absolutePosition": {
+                                "left": 0,
+                                "top": 0,
+                                "right": 0,
+                                "bottom": 0
+                              },
+                              "pointerEvents": "box-none",
+                              "type": "CONTAINER",
+                              "child": {
+                                "width": "100%",
+                                "pointerEvents": "box-none",
+                                "aspectRatio": 1,
+                                "type": "CONTAINER",
+                                "child": {
+                                  "absolutePosition": {
+                                    "bottom": 8,
+                                    "right": 8,
+                                    "left": 8
+                                  },
+                                  "type": "CONTAINER",
+                                  "child": {
+                                    "color": "#9F7234",
+                                    "showCollapsed": false,
+                                    "showCollapsedRemoveButton": true,
+                                    "sellingUnitId": "s1005228",
+                                    "onIncrementPress": {
+                                      "actionType": "EVENT",
+                                      "action": {
+                                        "type": "SELLING_UNIT_MUTATION",
+                                        "selling_unit_id": "s1005228",
+                                        "quantity": 1,
+                                        "mutation": "ADD"
+                                      }
+                                    },
+                                    "onDecrementPress": {
+                                      "actionType": "EVENT",
+                                      "action": {
+                                        "type": "SELLING_UNIT_MUTATION",
+                                        "selling_unit_id": "s1005228",
+                                        "quantity": 1,
+                                        "mutation": "REMOVE"
+                                      }
+                                    },
+                                    "type": "STEPPER"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "contentType": "SELLING_UNIT",
+                              "sellingUnitId": "s1005228",
+                              "availableAccessibility": {
+                                "accessible": true,
+                                "accessibilityRole": "adjustable",
+                                "accessibilityLabel": "Koriander gemalen, van Verstegen, voor, 3 € 9 cent, 33 gram",
+                                "accessibilityHint": "voor meer informatie tik twee keer, dubbel tik met twee vingers voor bundelbonus",
+                                "accessibilityActions": [
+                                  {
+                                    "name": "activate",
+                                    "onAction": {
+                                      "actionType": "OPEN",
+                                      "target": "app.picnic://store/page;id=product-details-page-root,id=s1005228&show_category_action=true"
+                                    }
+                                  },
+                                  {
+                                    "name": "increment",
+                                    "onAction": {
+                                      "actionType": "EVENT",
+                                      "action": {
+                                        "type": "SELLING_UNIT_MUTATION",
+                                        "selling_unit_id": "s1005228",
+                                        "quantity": 1,
+                                        "mutation": "ADD"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "decrement",
+                                    "onAction": {
+                                      "actionType": "EVENT",
+                                      "action": {
+                                        "type": "SELLING_UNIT_MUTATION",
+                                        "selling_unit_id": "s1005228",
+                                        "quantity": 1,
+                                        "mutation": "REMOVE"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "name": "magicTap",
+                                    "onAction": {
+                                      "actionType": "OPEN",
+                                      "target": "app.picnic://store/page;id=product-details-page-root,id=s1005228"
+                                    }
+                                  }
+                                ]
+                              },
+                              "unavailableAccessibility": {
+                                "accessible": true,
+                                "accessibilityRole": "adjustable",
+                                "accessibilityLabel": "Koriander gemalen, van Verstegen",
+                                "accessibilityHint": "dubbel tik om alternatief te kiezen",
+                                "accessibilityActions": [
+                                  {
+                                    "name": "activate"
+                                  },
+                                  {
+                                    "name": "decrement",
+                                    "onAction": {
+                                      "actionType": "EVENT",
+                                      "action": {
+                                        "type": "SELLING_UNIT_MUTATION",
+                                        "selling_unit_id": "s1005228",
+                                        "quantity": 1,
+                                        "mutation": "REMOVE"
+                                      }
+                                    }
+                                  }
+                                ]
+                              },
+                              "type": "ACCESSIBILITY_CONTAINER"
+                            }
+                          ]
+                        }
+                      },
+                      "content": {
+                        "type": "SELLING_UNIT_TILE",
+                        "sellingUnit": {
+                          "id": "s1005228",
+                          "name": "Verstegen koriander gemalen",
+                          "decorators": [],
+                          "display_price": 309,
+                          "image_id": "68be3950e627809e6a6af00031200627280ee8bfd30c3876cb000d0f1a2edce4",
+                          "max_count": 50,
+                          "unit_quantity": "33 gram"
+                        },
+                        "sellingUnitImageConfiguration": {
+                          "derivativeType": "padded",
+                          "id": "68be3950e627809e6a6af00031200627280ee8bfd30c3876cb000d0f1a2edce4"
+                        }
+                      }
+                    },
+                    {
+                      "type": "PML",
+                      "id": "missing-selling-unit-suggest-tile",
+                      "analytics": {},
+                      "size": {
+                        "crossAxis": "6g"
+                      },
+                      "pml": {
+                        "pmlVersion": "0.1.0",
+                        "images": {},
+                        "component": {
+                          "onPress": {
+                            "actionType": "OPEN",
+                            "target": "app.picnic://store/product-suggestion"
+                          },
+                          "type": "TOUCHABLE",
+                          "child": {
+                            "axis": "VERTICAL",
+                            "width": "100%",
+                            "height": "100%",
+                            "backgroundColor": "#ffffff",
+                            "type": "STACK",
+                            "children": [
+                              {
+                                "width": "100%",
+                                "borderRadius": 12,
+                                "backgroundColor": "#f0e8dd",
+                                "aspectRatio": 1,
+                                "type": "CONTAINER",
+                                "child": {
+                                  "axis": "VERTICAL",
+                                  "width": "100%",
+                                  "height": "100%",
+                                  "type": "STACK",
+                                  "children": [
+                                    {
+                                      "source": {
+                                        "id": "picnic-page/29712dcc4e7f5f6ad4679aa082ba2cb3fb1656d86562f8cf42b50660ba4be28d"
+                                      },
+                                      "width": "100%",
+                                      "height": "100%",
+                                      "resizeMode": "COVER",
+                                      "placeholder": {
+                                        "resizeMode": "CONTAIN",
+                                        "icon": "loadingCarrotTranslucentPadding"
+                                      },
+                                      "type": "IMAGE"
+                                    },
+                                    {
+                                      "width": "100%",
+                                      "height": "100%",
+                                      "absolutePosition": {
+                                        "top": 0,
+                                        "left": 0,
+                                        "right": 0,
+                                        "bottom": 0
+                                      },
+                                      "type": "CONTAINER",
+                                      "child": {
+                                        "axis": "VERTICAL",
+                                        "height": "100%",
+                                        "width": "100%",
+                                        "distribution": "CENTER",
+                                        "alignment": "CENTER",
+                                        "type": "STACK",
+                                        "children": [
+                                          {
+                                            "placeholder": "NONE",
+                                            "resizeMode": "CONTAIN",
+                                            "source": {
+                                              "id": "picnic-page/9c669031f917e72ae7134634680b08c8626b8a4022bec455a633c2d8ade4500c"
+                                            },
+                                            "width": 96,
+                                            "height": 120,
+                                            "type": "IMAGE"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "width": "100%",
+                                "height": 70,
+                                "axis": "VERTICAL",
+                                "padding": {
+                                  "bottom": 8,
+                                  "left": 8,
+                                  "top": 8,
+                                  "right": 8
+                                },
+                                "spacing": 2,
+                                "type": "STACK",
+                                "children": [
+                                  {
+                                    "markdown": "#(#9C6D2B)Mis je iets?#(#9C6D2B)",
+                                    "textAttributes": {
+                                      "size": 12,
+                                      "weight": "MEDIUM",
+                                      "color": "#333333"
+                                    },
+                                    "type": "RICH_TEXT"
+                                  },
+                                  {
+                                    "type": "RICH_TEXT",
+                                    "children": [
+                                      {
+                                        "textAttributes": {
+                                          "size": 16,
+                                          "weight": "MEDIUM",
+                                          "color": "#333333"
+                                        },
+                                        "markdown": "Vraag het aan ",
+                                        "type": "RICH_TEXT"
+                                      },
+                                      {
+                                        "textAttributes": {
+                                          "size": 16,
+                                          "weight": "REGULAR",
+                                          "color": "#333333",
+                                          "family": "PicnicSymbols"
+                                        },
+                                        "markdown": ">",
+                                        "type": "RICH_TEXT"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "state": {}
+  },
+  "header": null,
+  "presentation": {
+    "type": "FULL_SCREEN",
+    "style": {
+      "backgroundColor": "#ffffff"
+    }
+  }
+}

@@ -166,18 +166,13 @@ export default function ProductSearch({
                   title={item.title}
                 >
                   <div>
-                    <img
-                      src={
-                        item.images.length > 0 ? item.images[0].url : undefined
-                      }
-                      alt={item.title}
-                    />
+                    <img src={item.image} alt={item.title} />
                     <Link
                       href={`https://www.ah.nl${item.link}`}
                       target="_blank"
                     >
                       {item.title} ({item.price.unitSize}) €
-                      {item.price.now && item.price.now.toFixed(2)}
+                      {item.price.now && item.price.now}
                     </Link>
                   </div>
                 </MuiButton>

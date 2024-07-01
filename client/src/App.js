@@ -30,7 +30,7 @@ export default function App() {
   const onSuccess = (res) => {
     console.log('Login Success: currentUser:', res.profileObj, res)
     setSettingsDisabled(false)
-    localStorage.setItem('authToken', res.accessToken)
+    localStorage.setItem('authToken', res.tokenId)
     refreshTokenSetup(res)
     // Refresh recipes:
     setSupermarket({ ...supermarket })

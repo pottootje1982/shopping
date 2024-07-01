@@ -16,7 +16,7 @@ axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
   const token = localStorage.getItem('authToken')
-  config.headers.Authorization = token
+  config.headers.Authorization = `Bearer ${token}`
   return config
 })
 

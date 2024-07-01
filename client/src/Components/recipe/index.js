@@ -75,6 +75,7 @@ export default function Recipe() {
     const searchResponse = await server.get(
       `products?supermarket=${supermarket.key}&query=${query}&full=${selectedIngredient.ingredient}`
     )
+    console.log(searchResponse)
     const products = searchResponse.data
     setProducts(products)
   }
