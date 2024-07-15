@@ -11,15 +11,15 @@ import UserSettingsDialog from './Components/user-settings'
 import { Fab } from './Components/styled'
 import { Settings } from '@material-ui/icons'
 import RecipeContext from './Components/collection/RecipeProvider'
+import ServerContext from './server-context'
 
 const clientId =
   '525923155725-8k5ukoaer4isj73bl6jpi887v2r70ic8.apps.googleusercontent.com'
 
 export default function App() {
+  const { setAccessToken, server, signedIn } = useContext(ServerContext)
   const [recipeTitle, setRecipeTitle] = useState()
-  const [settingsDisabled, setSettingsDisabled] = useState(
-    !localStorage.getItem('authToken')
-  )
+  const [settingsDisabled, setSettingsDisabled] = useState(!server)
   const [, , removeCookie] = useCookies(['HAS_SHOPPING_EXTENSION'])
 
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -30,7 +30,7 @@ export default function App() {
   const onSuccess = (res) => {
     console.log('Login Success: currentUser:', res.profileObj, res)
     setSettingsDisabled(false)
-    localStorage.setItem('authToken', res.tokenId)
+    setAccessToken(res.tokenId)
     refreshTokenSetup(res)
     // Refresh recipes:
     setSupermarket({ ...supermarket })
@@ -41,7 +41,6 @@ export default function App() {
   }
 
   const logout = () => {
-    localStorage.removeItem('authToken')
     setSettingsDisabled(true)
   }
 
@@ -84,7 +83,9 @@ export default function App() {
         </Grid>
       </div>
 
-      <RecipeCollection setRecipeTitle={setRecipeTitle}></RecipeCollection>
+      {signedIn && (
+        <RecipeCollection setRecipeTitle={setRecipeTitle}></RecipeCollection>
+      )}
       <UserSettingsDialog
         dialogOpen={dialogOpen}
         setDialogOpen={setDialogOpen}

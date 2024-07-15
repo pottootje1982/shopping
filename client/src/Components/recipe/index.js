@@ -13,11 +13,12 @@ import { Edit, Translate, ShoppingCart } from '@material-ui/icons'
 import ProductSearch from '../shopping-results'
 import EditAddRecipe from './edit-add-recipe'
 import { blue, green, grey } from '@material-ui/core/colors'
-import server from '../server'
 import { Fab } from '../styled'
 import RecipeContext from '../collection/RecipeProvider'
+import ServerContext from '../../server-context'
 
 export default function Recipe() {
+  const { server } = useContext(ServerContext)
   const [products, setProducts] = useState([])
   const [selectedIngredient, setSelectedIngredient] = useState()
   const [editOrAddRecipe, setEditOrAddRecipe] = useState()
@@ -72,16 +73,15 @@ export default function Recipe() {
 
   async function search(item, customSearch) {
     const query = customSearch || item.ingredient
-    const searchResponse = await server.get(
+    const searchResponse = await server().get(
       `products?supermarket=${supermarket.key}&query=${query}&full=${selectedIngredient.ingredient}`
     )
-    console.log(searchResponse)
     const products = searchResponse.data
     setProducts(products)
   }
 
   async function translate(uid) {
-    const res = await server.post('recipes/translate', { recipeId: uid })
+    const res = await server().post('recipes/translate', { recipeId: uid })
     const ingredientIndex = ingredients.indexOf(selectedIngredient)
     const recipe = res.data.recipe
     setSelectedRecipe(recipe)

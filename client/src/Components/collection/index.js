@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react'
-import server from '../server'
 import {
   Grid,
   Select,
@@ -17,8 +16,10 @@ import { Fab } from '../styled'
 import NoTokenDialog from './no-token-dialog'
 import { getCookie } from '../../cookie.js'
 import RecipeContext from './RecipeProvider'
+import ServerContext from '../../server-context.js'
 
 export default function RecipeCollection({ setRecipeTitle }) {
+  const { server } = useContext(ServerContext)
   const {
     recipes,
     setRecipes,
@@ -38,7 +39,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
   const [clearSelection, setClearSelection] = useState({})
 
   function selectedFirstRecipe() {
-    server.get(`recipes?supermarket=${supermarket?.key}`).then(initialize)
+    server().get(`recipes?supermarket=${supermarket?.key}`).then(initialize)
   }
 
   function initialize(result) {
@@ -99,7 +100,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
           document.cookie = `order=${JSON.stringify(order)}`
         }
         const { data: newOrder } =
-          (await server.post(`orders?supermarket=${supermarket.key}`, {
+          (await server().post(`orders?supermarket=${supermarket.key}`, {
             recipes: selectedRecipes
           })) || {}
         if (newOrder) {
@@ -125,7 +126,9 @@ export default function RecipeCollection({ setRecipeTitle }) {
 
   async function sync() {
     try {
-      const res = await server.get(`recipes/sync?supermarket=${supermarket.key}`)
+      const res = await server().get(
+        `recipes/sync?supermarket=${supermarket.key}`
+      )
       const recipes = res.data
       if (recipes && recipes !== '') {
         setRecipes(recipes)
@@ -145,7 +148,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
 
   function deleteOrder() {
     if (recipes.length > 0 && selectedOrder) {
-      server.delete(`orders/${selectedOrder._id}`)
+      server().delete(`orders/${selectedOrder._id}`)
       const index = orders.indexOf(selectedOrder)
       orders.splice(index, 1)
       setOrders([...orders])

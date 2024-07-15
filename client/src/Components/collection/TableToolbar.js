@@ -9,7 +9,6 @@ import ConfirmationDialog from './confirmation-dialog'
 import { Fab } from '../styled'
 import { Add } from '@material-ui/icons'
 import getDateString from '../date'
-import server from '../server'
 import RecipeContext from './RecipeProvider'
 
 import {
@@ -20,6 +19,7 @@ import {
   Tooltip,
   IconButton
 } from '@material-ui/core'
+import ServerContext from '../../server-context'
 
 const useToolbarStyles = makeStyles((theme) => ({
   root: {
@@ -47,6 +47,7 @@ const TableToolbar = ({
   setGlobalFilter,
   globalFilter
 }) => {
+  const { server } = useContext(ServerContext)
   const classes = useToolbarStyles()
   const [deletionDialogOpen, setDeletionDialogOpen] = useState(false)
   const {
@@ -67,14 +68,14 @@ const TableToolbar = ({
 
   async function removeRecipes() {
     if (selectedRecipes.length > 0) {
-      const { status } = await server.delete('recipes', {
+      const { status } = await server().delete('recipes', {
         data: selectedRecipes
       })
       if (status === 204) {
         const index = recipes.indexOf(selectedRecipe)
         const {
           data: { recipes: newRecipes = [] }
-        } = (await server.get('recipes')) || {}
+        } = (await server().get('recipes')) || {}
         setRecipes(newRecipes)
         const newIndex = Math.min(index, newRecipes.length - 1)
         setSelectedRecipe(newRecipes[newIndex])

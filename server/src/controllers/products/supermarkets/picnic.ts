@@ -58,6 +58,7 @@ export class PicnicApi extends Supermarket {
     };
 
     return products.map((c) => ({
+      id: c.id,
       title: c.name,
       price: {
         now: (c.display_price / 100).toFixed(2),

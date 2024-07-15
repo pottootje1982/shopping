@@ -1,4 +1,3 @@
-import server from '../server'
 import React, { useEffect, useRef, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -17,6 +16,7 @@ import {
 import { Button } from '../styled'
 import PropTypes from 'prop-types'
 import RecipeContext from '../collection/RecipeProvider'
+import ServerContext from '../../server-context'
 
 const styles = makeStyles(() => ({
   input: {
@@ -32,6 +32,7 @@ export default function ProductSearch({
   searchProducts,
   products
 }) {
+  const { server } = useContext(ServerContext)
   const classes = styles()
   const searchRef = useRef(null)
   const bareIngredient = selectedIngredient.ingredient
@@ -56,7 +57,7 @@ export default function ProductSearch({
     }
     setSelectedIngredient({ ...selectedIngredient, product: newProduct })
 
-    server.post(`products/choose?supermarket=${supermarket.key}`, {
+    server().post(`products/choose?supermarket=${supermarket.key}`, {
       ingredient: bareIngredient,
       product: newProduct
     })

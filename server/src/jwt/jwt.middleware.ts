@@ -2,15 +2,10 @@ import { Injectable, NestMiddleware } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 export interface User {
-  iss: string;
-  azp: string;
-  aud: string;
-  sub: string;
+  provider: string;
+  providerId: string;
+  name: string;
   email: string;
-  email_verified: boolean;
-  at_hash: string;
-  iat: number;
-  exp: number;
 }
 
 @Injectable()

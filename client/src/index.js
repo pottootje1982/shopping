@@ -4,11 +4,26 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import { RecipeProvider } from './Components/collection/RecipeProvider'
+import { Authorized, Authorize } from './authorize'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom' 
+import { ServerProvider } from './server-context'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <RecipeProvider>
-    <App />
-  </RecipeProvider>
+  <GoogleOAuthProvider clientId="525923155725-8k5ukoaer4isj73bl6jpi887v2r70ic8.apps.googleusercontent.com">
+    <RecipeProvider>
+      <ServerProvider>
+        <Router>
+          <Routes>
+            <Route path="/authorized" element={<Authorized />}></Route>
+            <Route exact path={"/"} element={<Authorize />} ></Route>
+            <Route exact path={"/login"} element={<Authorize />}></Route>
+            <Route path={"/recipes/*"} element={<App />} />
+          </Routes>
+        </Router>
+      </ServerProvider>
+    </RecipeProvider>
+  </GoogleOAuthProvider>
 )
 
 // If you want your app to work offline and load faster, you can change

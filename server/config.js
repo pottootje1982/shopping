@@ -1,6 +1,6 @@
-const path = require('path')
+const path = require('path');
 
-require('dotenv').config({ path: path.join(__dirname, '.env') })
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 let {
   USE_PAPRIKA_STUB,
@@ -12,13 +12,13 @@ let {
   TEST_DB_URL,
   USE_GOOGLE_AUTH_STUB,
   ...env
-} = process.env
+} = process.env;
 
-if (USE_TEST_DB && !TEST_DB_URL) throw 'Please define TEST_DB_URL'
+if (USE_TEST_DB && !TEST_DB_URL) throw 'Please define TEST_DB_URL';
 
-USE_PAPRIKA_STUB = /^true$/i.test(USE_PAPRIKA_STUB)
-USE_TEST_DB = /^true$/i.test(USE_TEST_DB)
-USE_GOOGLE_AUTH_STUB = /^true$/i.test(USE_GOOGLE_AUTH_STUB)
+USE_PAPRIKA_STUB = /^true$/i.test(USE_PAPRIKA_STUB);
+USE_TEST_DB = /^true$/i.test(USE_TEST_DB);
+USE_GOOGLE_AUTH_STUB = /^true$/i.test(USE_GOOGLE_AUTH_STUB);
 
 module.exports = {
   ...env,
@@ -29,5 +29,5 @@ module.exports = {
   GOOGLE_AUTH: USE_GOOGLE_AUTH_STUB ? './google-auth.stub' : './google-auth',
   PAPRIKA_API: USE_PAPRIKA_STUB
     ? '../scripts/paprika.stub'
-    : '../scripts/paprika'
-}
+    : '../scripts/paprika',
+};

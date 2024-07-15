@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   Dialog,
   DialogTitle,
@@ -8,10 +8,11 @@ import {
   Typography
 } from '@material-ui/core'
 import PropTypes from 'prop-types'
-
-import { getServerUrl } from '../server'
+import ServerContext from '../../server-context'
 
 export default function NoTokenDialog({ dialogOpen, setDialogOpen }) {
+  const { serverUrl } = useContext(ServerContext)
+
   const closeDialog = () => {
     setDialogOpen(false)
   }
@@ -22,7 +23,7 @@ export default function NoTokenDialog({ dialogOpen, setDialogOpen }) {
   }
 
   function getExtension() {
-    window.open(`${getServerUrl()}/orders/extension`)
+    window.open(`${serverUrl}/orders/extension`)
   }
 
   function onOk() {

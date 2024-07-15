@@ -5,12 +5,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "command": "yarn start",
+      "name": "Debug Shopping",
       "request": "launch",
-      "name": "Launch Program",
-      "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}",
-      "runtimeExecutable": "${env:HOME}/.nvm/versions/node/v14.17.0/bin/node"
+      "type": "node-terminal"
     },
     {
       "type": "node",

@@ -1,17 +1,18 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import { Typography, Grid, Link, List, ListItem } from '@material-ui/core'
-import server from '../server'
 import getDateString from '../date'
 import { TextField, Button, Fab } from '../styled'
 import DownloadIcon from '@material-ui/icons/GetApp'
 import PropTypes from 'prop-types'
-const { v1: uuidv1 } = require('uuid');
+import ServerContext from '../../server-context'
+const { v1: uuidv1 } = require('uuid')
 
 export default function EditAddRecipe({
   selectedRecipe,
   setSelectedRecipe,
   setEditOrAddRecipe
 }) {
+  const { server } = useContext(ServerContext)
   const nameRef = useRef(null)
   const ingredientsRef = useRef(null)
   const directionsRef = useRef(null)
@@ -37,11 +38,11 @@ export default function EditAddRecipe({
     }
     let res
     if (edit) {
-      res = await server.put('recipes', recipe)
+      res = await server().put('recipes', recipe)
     } else {
       recipe = { ...selectedRecipe, ...recipe }
       delete recipe.parsedIngredients
-      res = await server.post('recipes', recipe)
+      res = await server().post('recipes', recipe)
     }
     setSelectedRecipe(res.data)
   }
@@ -52,7 +53,7 @@ export default function EditAddRecipe({
 
   async function downloadRecipe() {
     const sourceUrl = urlRef.current.value
-    const res = await server.post('recipes/download', { url: sourceUrl })
+    const res = await server().post('recipes/download', { url: sourceUrl })
     if (res.data) {
       setSelectedRecipe(res.data)
     } else {

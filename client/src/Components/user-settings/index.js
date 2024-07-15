@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {
   Dialog,
   DialogTitle,
@@ -8,9 +8,10 @@ import {
   TextField
 } from '@material-ui/core'
 import PropTypes from 'prop-types'
-import server from '../server'
+import ServerContext from '../../server-context'
 
 export default function UserSettingsDialog({ setDialogOpen, dialogOpen }) {
+  const { server } = useContext(ServerContext)
   const [picnicUser, setPicnicUser] = useState()
   const [picnicPass, setPicnicPass] = useState()
   const [paprikaUser, setPaprikaUser] = useState()
@@ -26,7 +27,7 @@ export default function UserSettingsDialog({ setDialogOpen, dialogOpen }) {
 
   async function openDialog() {
     if (dialogOpen) {
-      const res = await server.get('/users')
+      const res = await server().get('/users')
       const {
         data: { picnicUser, picnicPass, paprikaUser, paprikaPass } = {}
       } = res
@@ -43,7 +44,7 @@ export default function UserSettingsDialog({ setDialogOpen, dialogOpen }) {
   }, [dialogOpen])
 
   function onOkClick() {
-    server.post('users', { picnicUser, picnicPass, paprikaUser, paprikaPass })
+    server().post('users', { picnicUser, picnicPass, paprikaUser, paprikaPass })
     closeDialog()
   }
 
