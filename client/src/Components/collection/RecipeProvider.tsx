@@ -1,39 +1,94 @@
+import React from 'react'
 import { useState, createContext, useEffect } from 'react'
-import PropTypes from 'prop-types'
+
+export interface Ingredient {
+  full: string
+  ingredient: string
+  quantity: string
+  unit: string
+  product: Product
+}
+
+export interface Price {
+  now: string
+  unitSize: string
+}
+
+export interface Product {
+  id: string
+  title: string
+  ignore: boolean
+  notAvailable: boolean
+  price?: Price
+  image?: string
+  link?: string
+}
+
+export interface Recipe {
+  uid: string
+  id?: string
+  name: string
+  category?: string
+  ingredients: string
+  directions?: string
+  source_url?: string
+  parsedIngredients?: Ingredient[]
+  created?: string
+  categoryNames?: string[]
+}
+
+export interface Order {
+  _id: string
+  title: string
+  recipes: Recipe[]
+  ingredients: Ingredient[]
+  date: string
+}
+
+export interface Category {
+  id: string
+  uid: string
+  name: string
+}
+
+export interface Supermarket {
+  key: string
+  name: string
+}
 
 type RecipeContextType = {
-  recipes: any[]
-  setRecipes: (value: any[]) => void
-  selectedRecipes: any[]
-  setSelectedRecipes: (value: any[]) => void
-  selectedRecipe: any
-  setSelectedRecipe: (value: any) => void
-  selectedOrder: any
-  setSelectedOrder: (value: any) => void
-  selectedCategory: any
-  setSelectedCategory: (value: any) => void
-  supermarket: any
-  setSupermarket: (value: any) => void
-  supermarkets: any[]
+  recipes: Recipe[]
+  setRecipes: (value: Recipe[]) => void
+  selectedRecipes: Recipe[]
+  setSelectedRecipes: (value: Recipe[]) => void
+  selectedRecipe?: Recipe
+  setSelectedRecipe: React.Dispatch<React.SetStateAction<Recipe | undefined>>
+  selectedOrder?: Order
+  setSelectedOrder: (value?: Order) => void
+  selectedCategory?: Category
+  setSelectedCategory: (value?: Category) => void
+  supermarket?: Supermarket
+  setSupermarket: (value: Supermarket) => void
+  supermarkets: Supermarket[]
 }
 
 const RecipeContext = createContext({} as RecipeContextType)
 
 export default RecipeContext
 
-const supermarkets = [
+export const supermarkets = [
   { key: 'ah', name: 'AH' },
   { key: 'picnic', name: 'Picnic' }
 ]
 
 export function RecipeProvider(props: any) {
   const supermarketKey = localStorage.getItem('supermarket')
-  const [recipes, setRecipes] = useState([])
-  const [selectedRecipes, setSelectedRecipes] = useState(() => [])
-  const [selectedRecipe, setSelectedRecipe] = useState()
-  const [selectedOrder, setSelectedOrder] = useState()
-  const [selectedCategory, setSelectedCategory] = useState()
-  const [supermarket, setSupermarket] = useState(
+  const [recipes, setRecipes] = useState<Recipe[]>([])
+  const [selectedRecipes, setSelectedRecipes] = useState<Recipe[]>(() => [])
+  const [selectedRecipe, setSelectedRecipe] = useState<Recipe>()
+  const [selectedOrder, setSelectedOrder] = useState<Order>()
+  const [selectedCategory, setSelectedCategory] = useState<Category>()
+  const [supermarket, setSupermarket] = useState<Supermarket>(
     supermarkets.find((s) => s.key === supermarketKey) || supermarkets[0]
   )
 
@@ -63,8 +118,4 @@ export function RecipeProvider(props: any) {
       {props.children}
     </RecipeContext.Provider>
   )
-}
-
-RecipeProvider.propTypes = {
-  children: PropTypes.object.isRequired
 }

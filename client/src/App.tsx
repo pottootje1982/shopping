@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import './App.css'
 import RecipeCollection from './Components/collection'
 import { Grid, Typography } from '@material-ui/core'
-import { ReactComponent as Hat } from './hat.svg'
+import Hat from './hat'
 import blue from '@material-ui/core/colors/blue'
 import { useCookies } from 'react-cookie'
 import {
@@ -15,7 +15,9 @@ import { refreshTokenSetup } from './util/refreshToken'
 import UserSettingsDialog from './Components/user-settings'
 import { Fab } from './Components/styled'
 import { Settings } from '@material-ui/icons'
-import RecipeContext from './Components/collection/RecipeProvider'
+import RecipeContext, {
+  Supermarket
+} from './Components/collection/RecipeProvider'
 import ServerContext from './server-context'
 
 const clientId =
@@ -23,7 +25,7 @@ const clientId =
 
 export default function App() {
   const { setAccessToken, server, signedIn } = useContext(ServerContext)
-  const [recipeTitle, setRecipeTitle] = useState()
+  const [recipeTitle, setRecipeTitle] = useState<string>()
   const [settingsDisabled, setSettingsDisabled] = useState(!server)
   const [, , removeCookie] = useCookies(['HAS_SHOPPING_EXTENSION'])
 
@@ -39,7 +41,7 @@ export default function App() {
       setAccessToken(res.tokenId)
       refreshTokenSetup(res)
       // Refresh recipes:
-      setSupermarket({ ...supermarket })
+      setSupermarket({ ...supermarket } as Supermarket)
     }
   }
 
@@ -63,7 +65,7 @@ export default function App() {
               </Typography>
             </Grid>
             <Grid item>
-              <Hat style={{ width: 60, height: 60 }}></Hat>
+              <Hat></Hat>
             </Grid>
           </Grid>
           <Grid item xs={6}>
@@ -80,7 +82,7 @@ export default function App() {
             style={{ marginTop: '100px' }}
             isSignedIn={true}
           />
-          <GoogleLogout onLogoutSuccess={logout} />
+          <GoogleLogout onLogoutSuccess={logout} clientId={clientId} />
           <Fab onClick={() => setDialogOpen(true)} disabled={settingsDisabled}>
             <Settings />
           </Fab>

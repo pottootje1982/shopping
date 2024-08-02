@@ -8,23 +8,36 @@ import {
   Grid,
   Box
 } from '@material-ui/core'
-import PropTypes from 'prop-types'
+import { Product, Recipe } from './RecipeProvider'
+import * as R from 'ramda'
 
-export default function OrderDialog({ open, handleClose, selectedRecipes }) {
-  const [items, setItems] = useState([])
-  const [ignored, setIgnored] = useState([])
-  const [notAvailable, setNotAvailable] = useState([])
+interface OrderDialogProps {
+  open: boolean
+  handleClose: (e: any, cancel: boolean) => void
+  selectedRecipes: Recipe[]
+}
+
+type ProductWithIngredient = Product & { ingredient: string; quantity: string }
+
+export default function OrderDialog({
+  open,
+  handleClose,
+  selectedRecipes
+}: OrderDialogProps) {
+  const [items, setItems] = useState<ProductWithIngredient[]>([])
+  const [ignored, setIgnored] = useState<ProductWithIngredient[]>([])
+  const [notAvailable, setNotAvailable] = useState<ProductWithIngredient[]>([])
 
   useEffect(() => {
     const products = selectedRecipes.map((r) =>
-      r.parsedIngredients.map(({ ingredient, product }) => {
+      (r?.parsedIngredients ?? []).map(({ product, ...rest }) => {
         return {
-          ingredient,
+          ...rest,
           ...product
         }
       })
     )
-    const items = [].concat(...products).filter((p) => p.id)
+    const items = R.flatten(products).filter((p) => p.id)
     setItems(items.filter((i) => !i.notAvailable && !i.ignore))
     setIgnored(items.filter((i) => i.ignore))
     setNotAvailable(items.filter((i) => i.notAvailable))
@@ -33,10 +46,9 @@ export default function OrderDialog({ open, handleClose, selectedRecipes }) {
   return (
     <Dialog
       open={open}
-      onClose={handleClose}
+      onClose={(e) => handleClose(e, false)}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
-      modal="true"
       maxWidth="md"
     >
       <DialogTitle id="alert-dialog-title">
@@ -78,10 +90,4 @@ export default function OrderDialog({ open, handleClose, selectedRecipes }) {
       </DialogActions>
     </Dialog>
   )
-}
-
-OrderDialog.propTypes = {
-  open: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired,
-  selectedRecipes: PropTypes.array.isRequired
 }

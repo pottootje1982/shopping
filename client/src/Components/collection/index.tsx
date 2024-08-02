@@ -7,18 +7,30 @@ import {
   InputLabel
 } from '@material-ui/core'
 import { ShoppingCart, Delete } from '@material-ui/icons'
-import PropTypes from 'prop-types'
 
-import Recipe from '../recipe'
+import RecipeComponent from '../recipe'
 import OrderDialog from './OrderDialog'
 import RecipeTable from './recipe-table'
 import { Fab } from '../styled'
 import NoTokenDialog from './no-token-dialog'
-import { getCookie } from '../../cookie.js'
-import RecipeContext from './RecipeProvider'
-import ServerContext from '../../server-context.js'
+import RecipeContext, { Recipe, Order, Category } from './RecipeProvider'
+import * as R from 'ramda'
+import ServerContext from '../../server-context'
+import { getCookie } from '../../cookie'
 
-export default function RecipeCollection({ setRecipeTitle }) {
+interface RecipeCollectionProps {
+  setRecipeTitle: React.Dispatch<React.SetStateAction<string | undefined>>
+}
+
+interface SupermarketResponse {
+  recipes: Recipe[]
+  orders: Order[]
+  categories: Category[]
+}
+
+export default function RecipeCollection({
+  setRecipeTitle
+}: RecipeCollectionProps) {
   const { server } = useContext(ServerContext)
   const {
     recipes,
@@ -32,37 +44,36 @@ export default function RecipeCollection({ setRecipeTitle }) {
     setSelectedCategory,
     supermarket
   } = useContext(RecipeContext)
-  const [orders, setOrders] = useState()
-  const [categories, setCategories] = useState()
+  const [orders, setOrders] = useState<Order[]>()
+  const [categories, setCategories] = useState<Category[]>()
   const [open, setOpen] = useState(false)
   const [noTokenOpen, setNoTokenOpen] = useState(false)
   const [clearSelection, setClearSelection] = useState({})
 
   function selectedFirstRecipe() {
-    server().get(`recipes?supermarket=${supermarket?.key}`).then(initialize)
+    server()
+      .get(`recipes?supermarket=${supermarket?.key}`)
+      .then(({ data }: { data: SupermarketResponse }) => initialize(data))
   }
 
-  function initialize(result) {
-    const data = result.data
-    const recipes = data.recipes
+  function initialize({ recipes, orders, categories }: SupermarketResponse) {
     setRecipes(recipes)
     if (recipes.length > 0) {
       const recipe = recipes[0]
       setSelectedRecipe(recipe)
       sync()
     }
-    setSelectedOrder()
-    setSelectedCategory()
-    setOrders(data.orders)
-    setCategories(data.categories)
+    setSelectedOrder(undefined)
+    setSelectedCategory(undefined)
+    setOrders(orders)
+    setCategories(categories)
   }
 
-  function createOrder(recipes) {
+  function createOrder(recipes: Recipe[]) {
     const items = recipes.map((r) =>
-      r.parsedIngredients.filter((i) => i.product)
+      (r.parsedIngredients ?? []).filter((i) => i.product)
     )
-    return []
-      .concat(...items)
+    return R.flatten(items)
       .map(({ product: { id }, quantity }) => ({ id, quantity }))
       .filter((item) => item.id)
   }
@@ -75,9 +86,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
     if (!selectedRecipe) return
     setRecipeTitle(selectedRecipe.name)
     if (!recipes.includes(selectedRecipe)) {
-      const index = recipes.indexOf(
-        recipes.find((r) => r.uid === selectedRecipe.uid)
-      )
+      const index = recipes.findIndex((r) => r.uid === selectedRecipe.uid)
       const newRecipes = [...recipes]
       if (index >= 0) {
         // edit
@@ -90,44 +99,50 @@ export default function RecipeCollection({ setRecipeTitle }) {
     }
   }
 
-  async function closeOrderDialog(event, isOk) {
+  async function closeOrderDialog(event: any, isOk: boolean) {
     setOpen(false)
 
     if (isOk && event.nativeEvent.key !== 'Escape') {
       try {
         const order = createOrder(selectedRecipes)
-        if (supermarket.key === 'ah') {
+        if (supermarket?.key === 'ah') {
           document.cookie = `order=${JSON.stringify(order)}`
         }
         const { data: newOrder } =
-          (await server().post(`orders?supermarket=${supermarket.key}`, {
+          (await server().post(`orders?supermarket=${supermarket?.key}`, {
             recipes: selectedRecipes
           })) || {}
         if (newOrder) {
-          setOrders((orders) => [...orders, newOrder])
+          setOrders((orders) => [...(orders ?? []), newOrder])
           setClearSelection({})
         }
-      } catch (err) {
+      } catch (err: any) {
         console.log(err)
         alert(err.response.data)
       }
     }
   }
 
-  function selectOrder(event) {
+  function selectOrder(
+    event: React.ChangeEvent<{ name?: string; value: unknown }>
+  ) {
     setSelectedCategory()
-    setSelectedOrder(event.target.value)
+    const order = orders?.find((o) => o.date === event.target.value)
+    setSelectedOrder(order)
   }
 
-  function selectCategory(event) {
+  function selectCategory(
+    event: React.ChangeEvent<{ name?: string | undefined; value: unknown }>
+  ) {
     setSelectedOrder()
-    setSelectedCategory(event.target.value)
+    const category = categories?.find((c) => c.name === event.target.value)
+    setSelectedCategory(category)
   }
 
   async function sync() {
     try {
       const res = await server().get(
-        `recipes/sync?supermarket=${supermarket.key}`
+        `recipes/sync?supermarket=${supermarket?.key}`
       )
       const recipes = res.data
       if (recipes && recipes !== '') {
@@ -139,7 +154,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
   }
 
   function showOrderDialog() {
-    if (supermarket.key === 'ah' && !getCookie('HAS_SHOPPING_EXTENSION'))
+    if (supermarket?.key === 'ah' && !getCookie('HAS_SHOPPING_EXTENSION'))
       setNoTokenOpen(true)
     else if (selectedRecipes.length === 0) {
       alert('Please select recipes before ordering')
@@ -147,7 +162,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
   }
 
   function deleteOrder() {
-    if (recipes.length > 0 && selectedOrder) {
+    if (recipes.length > 0 && selectedOrder && orders) {
       server().delete(`orders/${selectedOrder._id}`)
       const index = orders.indexOf(selectedOrder)
       orders.splice(index, 1)
@@ -177,14 +192,14 @@ export default function RecipeCollection({ setRecipeTitle }) {
 
           <Select
             onChange={selectOrder}
-            value={selectedOrder || ''}
+            value={selectedOrder?.title ?? ''}
             style={{ marginLeft: 5 }}
           >
             <MenuItem key="Orders" value="">
               <em>None</em>
             </MenuItem>
             {sortedOrders.map((order) => (
-              <MenuItem key={order.date} value={order}>
+              <MenuItem key={order.date} value={order.title}>
                 {order.date}
               </MenuItem>
             ))}
@@ -209,7 +224,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
               <em>None</em>
             </MenuItem>
             {(categories || []).map((category) => (
-              <MenuItem key={category.name} value={category}>
+              <MenuItem key={category.name} value={category.name}>
                 {category.name}
               </MenuItem>
             ))}
@@ -219,7 +234,7 @@ export default function RecipeCollection({ setRecipeTitle }) {
           <RecipeTable clearSelection={clearSelection} />
         </Grid>
       </Grid>
-      {selectedRecipe ? <Recipe key={selectedRecipe.uid} /> : null}
+      {selectedRecipe ? <RecipeComponent key={selectedRecipe.uid} /> : null}
       <OrderDialog
         open={open}
         handleClose={closeOrderDialog}
@@ -231,8 +246,4 @@ export default function RecipeCollection({ setRecipeTitle }) {
       ></NoTokenDialog>
     </Grid>
   )
-}
-
-RecipeCollection.propTypes = {
-  setRecipeTitle: PropTypes.func.isRequired
 }

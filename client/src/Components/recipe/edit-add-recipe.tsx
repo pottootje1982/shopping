@@ -3,30 +3,44 @@ import { Typography, Grid, Link, List, ListItem } from '@material-ui/core'
 import getDateString from '../date'
 import { TextField, Button, Fab } from '../styled'
 import DownloadIcon from '@material-ui/icons/GetApp'
-import PropTypes from 'prop-types'
 import ServerContext from '../../server-context'
-const { v1: uuidv1 } = require('uuid')
+import { Recipe } from '../collection/RecipeProvider'
+
+import { v1 } from 'uuid'
+
+interface EditAddRecipeProps {
+  selectedRecipe: Recipe
+  setSelectedRecipe: (selectedRecipe: Recipe) => void
+  setEditOrAddRecipe: (editOrAddRecipe: boolean) => void
+}
 
 export default function EditAddRecipe({
   selectedRecipe,
   setSelectedRecipe,
   setEditOrAddRecipe
-}) {
+}: EditAddRecipeProps) {
   const { server } = useContext(ServerContext)
-  const nameRef = useRef(null)
-  const ingredientsRef = useRef(null)
-  const directionsRef = useRef(null)
-  const urlRef = useRef(null)
+  const nameRef = useRef<HTMLInputElement>(null)
+  const ingredientsRef = useRef<HTMLInputElement>()
+  const directionsRef = useRef<HTMLInputElement>(null)
+  const urlRef = useRef<HTMLInputElement>(null)
   const edit = selectedRecipe.uid !== undefined
   const title = edit ? 'Edit Recipe' : 'Add Recipe'
 
   async function saveRecipeClick() {
+    if (
+      !nameRef?.current ||
+      !ingredientsRef.current ||
+      !directionsRef.current ||
+      !urlRef.current
+    )
+      return
     const name = nameRef.current.value
-    const uid = selectedRecipe.uid || uuidv1()
+    const uid = selectedRecipe.uid || v1()
     const ingredients = ingredientsRef.current.value
     const directions = directionsRef.current.value
     const sourceUrl = urlRef.current.value
-    let recipe = {
+    let recipe: Recipe = {
       name,
       uid,
       ingredients,
@@ -52,6 +66,7 @@ export default function EditAddRecipe({
   }
 
   async function downloadRecipe() {
+    if (!urlRef.current) return
     const sourceUrl = urlRef.current.value
     const res = await server().post('recipes/download', { url: sourceUrl })
     if (res.data) {
@@ -68,7 +83,7 @@ export default function EditAddRecipe({
         <Button onClick={cancelClick}>Cancel</Button>
       </div>
       <Typography variant="h5">{title}</Typography>
-      <List padding={1} style={{ maxHeight: '70vh', overflow: 'auto' }}>
+      <List style={{ maxHeight: '70vh', overflow: 'auto', padding: 1 }}>
         <ListItem>
           <TextField
             label="Source Url"
@@ -121,10 +136,4 @@ export default function EditAddRecipe({
       </List>
     </Grid>
   )
-}
-
-EditAddRecipe.propTypes = {
-  selectedRecipe: PropTypes.object.isRequired,
-  setSelectedRecipe: PropTypes.func.isRequired,
-  setEditOrAddRecipe: PropTypes.func.isRequired
 }

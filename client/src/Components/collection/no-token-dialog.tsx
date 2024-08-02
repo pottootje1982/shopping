@@ -7,10 +7,17 @@ import {
   Button,
   Typography
 } from '@material-ui/core'
-import PropTypes from 'prop-types'
 import ServerContext from '../../server-context'
 
-export default function NoTokenDialog({ dialogOpen, setDialogOpen }) {
+interface NoTokenDialogProps {
+  dialogOpen: boolean
+  setDialogOpen: (dialogOpen: boolean) => void
+}
+
+export default function NoTokenDialog({
+  dialogOpen,
+  setDialogOpen
+}: NoTokenDialogProps) {
   const { serverUrl } = useContext(ServerContext)
 
   const closeDialog = () => {
@@ -49,9 +56,4 @@ export default function NoTokenDialog({ dialogOpen, setDialogOpen }) {
       </DialogActions>
     </Dialog>
   )
-}
-
-NoTokenDialog.propTypes = {
-  dialogOpen: PropTypes.bool.isRequired,
-  setDialogOpen: PropTypes.func.isRequired
 }

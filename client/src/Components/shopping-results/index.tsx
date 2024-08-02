@@ -14,8 +14,10 @@ import {
   MenuItem
 } from '@material-ui/core'
 import { Button } from '../styled'
-import PropTypes from 'prop-types'
-import RecipeContext from '../collection/RecipeProvider'
+import RecipeContext, {
+  Ingredient,
+  Product
+} from '../collection/RecipeProvider'
 import ServerContext from '../../server-context'
 
 const styles = makeStyles(() => ({
@@ -26,17 +28,24 @@ const styles = makeStyles(() => ({
   }
 }))
 
+interface ProductSearchProps {
+  selectedIngredient: Ingredient
+  setSelectedIngredient: (value: Ingredient) => void
+  searchProducts: (ingredient?: Ingredient, search?: string) => Promise<void>
+  products: Product[]
+}
+
 export default function ProductSearch({
   selectedIngredient,
   setSelectedIngredient,
   searchProducts,
   products
-}) {
+}: ProductSearchProps) {
   const { server } = useContext(ServerContext)
   const classes = styles()
-  const searchRef = useRef(null)
+  const searchRef = useRef<HTMLInputElement>(null)
   const bareIngredient = selectedIngredient.ingredient
-  const { product = {} } = selectedIngredient
+  const { product } = selectedIngredient
 
   const { supermarket, supermarkets, setSupermarket } =
     useContext(RecipeContext)
@@ -47,7 +56,7 @@ export default function ProductSearch({
     searchProducts(selectedIngredient)
   }
 
-  function selectProduct(completeProduct) {
+  function selectProduct(completeProduct: Product) {
     const { id, title, ignore, notAvailable } = completeProduct
     const newProduct = {
       id,
@@ -57,37 +66,45 @@ export default function ProductSearch({
     }
     setSelectedIngredient({ ...selectedIngredient, product: newProduct })
 
-    server().post(`products/choose?supermarket=${supermarket.key}`, {
-      ingredient: bareIngredient,
-      product: newProduct
-    })
+    server().post(
+      `products/choose`,
+      {
+        ingredient: bareIngredient,
+        product: newProduct
+      },
+      { params: { supermarket: supermarket?.key } }
+    )
   }
 
-  function textFieldSearch(event) {
-    if (event.keyCode === 13) {
-      searchProducts(undefined, event.target.value)
+  function textFieldSearch(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.code === 'Enter') {
+      searchProducts(undefined, event.currentTarget.value)
     }
   }
 
-  function search(value) {
-    searchRef.current.value = value
-    searchProducts(undefined, value)
+  function search(value: string) {
+    if (searchRef.current) {
+      searchRef.current.value = value
+      searchProducts(undefined, value)
+    }
   }
 
-  function ignoreIngredient(checked) {
+  function ignoreIngredient(checked: boolean) {
     product.ignore = checked
     product.notAvailable = false
     selectProduct(product)
   }
 
-  function notAvailableIngredient(checked) {
+  function notAvailableIngredient(checked: boolean) {
     product.notAvailable = checked
     product.ignore = false
     selectProduct(product)
   }
 
-  function changeSupermarket(e) {
-    setSupermarket(e.target.value)
+  function changeSupermarket(e: React.ChangeEvent<{ value: unknown }>) {
+    const supermarket = supermarkets.find((s) => s.key === e.target.value)
+    if (!supermarket) return
+    setSupermarket(supermarket)
   }
 
   return (
@@ -110,7 +127,9 @@ export default function ProductSearch({
         }}
         inputRef={searchRef}
         defaultValue={bareIngredient}
-        onKeyDown={(e) => textFieldSearch(e)}
+        onKeyDown={(e) =>
+          textFieldSearch(e as React.KeyboardEvent<HTMLInputElement>)
+        }
         variant="outlined"
       />
       <FormControlLabel
@@ -135,11 +154,11 @@ export default function ProductSearch({
       />
       <Select
         onChange={changeSupermarket}
-        value={supermarkets.find((s) => s.key === supermarket.key)}
         style={{ marginLeft: 5 }}
+        value={supermarket?.key}
       >
         {supermarkets.map((supermarket) => (
-          <MenuItem key={supermarket.key} value={supermarket}>
+          <MenuItem key={supermarket.key} value={supermarket.key}>
             {supermarket.name}
           </MenuItem>
         ))}
@@ -156,13 +175,13 @@ export default function ProductSearch({
             style={{ maxHeight: '78vh', overflow: 'auto' }}
           >
             {products.map((item) => (
-              <ImageListItem key={item.id} xs={4}>
+              <ImageListItem key={item.id}>
                 <MuiButton
                   color="primary"
                   onClick={() => selectProduct(item)}
                   style={{
                     textTransform: 'none',
-                    border: product.id === item.id ? '2px solid' : ''
+                    border: product?.id === item.id ? '2px solid' : ''
                   }}
                   title={item.title}
                 >
@@ -172,8 +191,8 @@ export default function ProductSearch({
                       href={`https://www.ah.nl${item.link}`}
                       target="_blank"
                     >
-                      {item.title} ({item.price.unitSize}) €
-                      {item.price.now && item.price.now}
+                      {item.title} ({item?.price?.unitSize}) €
+                      {item?.price?.now && item.price.now}
                     </Link>
                   </div>
                 </MuiButton>
@@ -184,11 +203,4 @@ export default function ProductSearch({
       </Grid>
     </Grid>
   )
-}
-
-ProductSearch.propTypes = {
-  selectedIngredient: PropTypes.object.isRequired,
-  setSelectedIngredient: PropTypes.func.isRequired,
-  searchProducts: PropTypes.func.isRequired,
-  products: PropTypes.array.isRequired
 }

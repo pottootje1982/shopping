@@ -7,7 +7,6 @@ import {
   Button,
   TextField
 } from '@material-ui/core'
-import PropTypes from 'prop-types'
 import ServerContext from '../../server-context'
 
 interface UserSettingsDialogProps {
@@ -20,14 +19,16 @@ export default function UserSettingsDialog({
   dialogOpen
 }: UserSettingsDialogProps) {
   const { server } = useContext(ServerContext)
-  const [picnicUser, setPicnicUser] = useState()
-  const [picnicPass, setPicnicPass] = useState()
-  const [paprikaUser, setPaprikaUser] = useState()
-  const [paprikaPass, setPaprikaPass] = useState()
+  const [picnicUser, setPicnicUser] = useState<string>('')
+  const [picnicPass, setPicnicPass] = useState<string>('')
+  const [paprikaUser, setPaprikaUser] = useState<string>('')
+  const [paprikaPass, setPaprikaPass] = useState<string>('')
 
-  const handleChange = (setter) => (event) => {
-    setter(event.target.value)
-  }
+  const handleChange =
+    (setter: React.Dispatch<React.SetStateAction<string>>) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setter(event.target.value)
+    }
 
   const closeDialog = () => {
     setDialogOpen(false)
@@ -35,10 +36,8 @@ export default function UserSettingsDialog({
 
   async function openDialog() {
     if (dialogOpen) {
-      const res = await server().get('/users')
-      const {
-        data: { picnicUser, picnicPass, paprikaUser, paprikaPass } = {}
-      } = res
+      const { data = {} } = await server().get('/users')
+      const { picnicUser, picnicPass, paprikaUser, paprikaPass } = data
       setPicnicUser(picnicUser)
       setPicnicPass(picnicPass)
       setPaprikaUser(paprikaUser)
@@ -100,9 +99,4 @@ export default function UserSettingsDialog({
       </DialogActions>
     </Dialog>
   )
-}
-
-UserSettingsDialog.propTypes = {
-  setDialogOpen: PropTypes.func.isRequired,
-  dialogOpen: PropTypes.bool.isRequired
 }

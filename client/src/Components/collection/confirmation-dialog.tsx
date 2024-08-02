@@ -6,7 +6,14 @@ import {
   DialogActions,
   Button
 } from '@material-ui/core'
-import PropTypes from 'prop-types'
+
+interface ConfirmationDialogProps {
+  title: string
+  message: string
+  onOk: () => void
+  dialogOpen: boolean
+  setDialogOpen: (dialogOpen: boolean) => void
+}
 
 export default function ConfirmationDialog({
   title,
@@ -14,7 +21,7 @@ export default function ConfirmationDialog({
   onOk,
   dialogOpen,
   setDialogOpen
-}) {
+}: ConfirmationDialogProps) {
   const closeDialog = () => {
     setDialogOpen(false)
   }
@@ -36,12 +43,4 @@ export default function ConfirmationDialog({
       </DialogActions>
     </Dialog>
   )
-}
-
-ConfirmationDialog.propTypes = {
-  title: PropTypes.string.isRequired,
-  message: PropTypes.string.isRequired,
-  onOk: PropTypes.func.isRequired,
-  dialogOpen: PropTypes.bool.isRequired,
-  setDialogOpen: PropTypes.func.isRequired
 }

@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useMemo, useCallback } from 'react'
+import React, {
+  useContext,
+  useEffect,
+  useMemo,
+  useCallback,
+  ForwardedRef
+} from 'react'
 import blue from '@material-ui/core/colors/blue'
 import green from '@material-ui/core/colors/green'
 import {
@@ -8,7 +14,7 @@ import {
   TableContainer,
   ThemeProvider
 } from '@material-ui/core'
-import {  createTheme } from '@material-ui/core/styles'
+import { createTheme } from '@material-ui/core/styles'
 import MaUTable from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -16,8 +22,7 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import TableToolbar from './TableToolbar'
 import TablePaginationActions from './TablePaginationActions'
-import RecipeContext from './RecipeProvider'
-import PropTypes from 'prop-types'
+import RecipeContext, { Recipe } from './RecipeProvider'
 
 import {
   useTable,
@@ -25,28 +30,44 @@ import {
   usePagination,
   useFilters,
   useSortBy,
-  useGlobalFilter
+  useGlobalFilter,
+  Row,
+  Column,
+  IdType
 } from 'react-table'
 
-const IndeterminateCheckbox = React.forwardRef(
-  ({ indeterminate, ...rest }, ref) => {
-    const defaultRef = React.useRef()
-    const resolvedRef = ref || defaultRef
+export interface Filter {
+  value?: string
+  showSelected?: boolean
+}
 
-    React.useEffect(() => {
+type InterdeminateCheckbox = HTMLButtonElement & { indeterminate?: boolean }
+
+const IndeterminateCheckbox = React.forwardRef<
+  InterdeminateCheckbox,
+  { indeterminate?: boolean }
+>(({ indeterminate, ...rest }, ref: ForwardedRef<InterdeminateCheckbox>) => {
+  const defaultRef = React.useRef<InterdeminateCheckbox>(null)
+  const resolvedRef = ref || defaultRef
+
+  React.useEffect(() => {
+    if ('current' in resolvedRef && resolvedRef.current)
       resolvedRef.current.indeterminate = indeterminate
-    }, [resolvedRef, indeterminate])
+  }, [resolvedRef, indeterminate])
 
-    return (
-      <>
-        <Checkbox ref={resolvedRef} {...rest} />
-      </>
-    )
-  }
-)
+  return (
+    <>
+      <Checkbox ref={resolvedRef} {...rest} />
+    </>
+  )
+})
 IndeterminateCheckbox.displayName = 'IndeterminateCheckbox'
 
-export default function RecipeTable({ clearSelection }) {
+interface RecipeTableProps {
+  clearSelection: object
+}
+
+export default function RecipeTable({ clearSelection }: RecipeTableProps) {
   const theme = createTheme({
     overrides: {
       MuiTableCell: {
@@ -67,17 +88,16 @@ export default function RecipeTable({ clearSelection }) {
     selectedOrder
   } = useContext(RecipeContext)
 
-  function clickRow(row) {
+  function clickRow(row: Row<Recipe>) {
     const uid = row.values.uid
     const recipe = recipes.find((r) => r.uid === uid)
     setSelectedRecipe(recipe)
   }
 
   const columns = useMemo(
-    () => [
+    (): Column<Recipe>[] => [
       {
-        accessor: 'uid',
-        show: false
+        accessor: 'uid'
       },
       {
         Header: 'Name',
@@ -87,44 +107,58 @@ export default function RecipeTable({ clearSelection }) {
       {
         Header: 'Categories',
         accessor: 'categoryNames',
-        Cell: ({ value }) => <span>{value?.join(',')}</span> //eslint-disable-line
+        Cell: ({ value }: { value: string[] | undefined }) => (
+          <span>{value?.join(',')}</span>
+        ) //eslint-disable-line
       },
       { accessor: 'parsedIngredients' },
-      { accessor: 'categories' }
+      { accessor: 'category' }
     ],
     []
   )
 
-  columns[3].Cell.propTypes = {
-    value: PropTypes.array
+  function color(selected: boolean, allChosen: boolean) {
+    if (allChosen) return green[selected ? 200 : 100]
+    return blue[selected ? 100 : 50]
   }
 
-  function determineRowColor(row) {
-    const values = row.values
-    const ingredients = values.parsedIngredients || []
-    const selectedOffset =
-      values.uid === (selectedRecipe && selectedRecipe.uid) ? 100 : 0
+  function determineRowColor(row: Row<Recipe>) {
+    const recipe = row.original
+    const ingredients = recipe.parsedIngredients || []
 
     const allChosen = ingredients.every(
       ({ product }) => product?.id || product?.ignore || product?.notAvailable
     )
+
+    const backgroundColor: string = color(
+      recipe.uid === selectedRecipe?.uid,
+      allChosen
+    )
+
     return {
       maxHeight: 10,
-      backgroundColor: allChosen
-        ? green[100 + selectedOffset]
-        : blue[50 + selectedOffset]
+      backgroundColor
     }
   }
 
-  const handleChangePage = (_event, newPage) => {
+  const handleChangePage = (
+    _event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ) => {
     gotoPage(newPage)
   }
 
-  const handleChangeRowsPerPage = (event) => {
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setPageSize(Number(event.target.value))
   }
 
-  const globalFilterFunc = (rows, _cols, filterValue = {}) => {
+  const globalFilterFunc = (
+    rows: Array<Row<Recipe>>,
+    _cols: Array<IdType<Recipe>>,
+    filterValue: Filter = {}
+  ) => {
     return rows.filter((row) => {
       const { value: searchString, showSelected } = filterValue
       const { name, categories, uid } = row.values
@@ -134,14 +168,14 @@ export default function RecipeTable({ clearSelection }) {
         const orderedRecipes = selectedOrder.recipes.map((r) => r.uid)
         show = show && orderedRecipes.includes(uid)
       }
-      if (selectedCategory) {
+      if (selectedCategory?.uid) {
         show =
           show &&
           categories
-            .map((c) => c.toLowerCase())
+            .map((c: string) => c.toLowerCase())
             .includes(selectedCategory.uid.toLowerCase())
       }
-      if (showSelected) show &= row.isSelected
+      if (showSelected) show &&= row.isSelected
       return (
         show &&
         (searchString && name
@@ -164,16 +198,18 @@ export default function RecipeTable({ clearSelection }) {
     setGlobalFilter,
     preGlobalFilteredRows,
     state: { pageIndex, pageSize, selectedRowIds, globalFilter }
-  } = useTable(
+  } = useTable<Recipe>(
     {
       columns,
       data: recipes,
       initialState: {
         hiddenColumns: ['uid', 'parsedIngredients', 'categories', 'created'],
-        pageSize: 15,
-        selectedRowIds: JSON.parse(localStorage.getItem('selectedRowIds')) || {}
+        selectedRowIds: JSON.parse(
+          localStorage.getItem('selectedRowIds') ?? '{}'
+        ),
+        pageSize: 15
       },
-      getRowId: useCallback((row) => row.uid, []),
+      getRowId: useCallback((row: Recipe) => row.uid, []),
       globalFilter: globalFilterFunc
     },
     useFilters,
@@ -214,7 +250,7 @@ export default function RecipeTable({ clearSelection }) {
   }, [selectedRowIds, setSelectedRecipes, recipes])
 
   useEffect(() => {
-    setGlobalFilter((filter) => ({ ...filter, value: undefined }))
+    setGlobalFilter((filter: Filter) => ({ ...filter, value: undefined }))
   }, [selectedCategory, selectedOrder, setGlobalFilter, recipes])
 
   return (
@@ -230,13 +266,13 @@ export default function RecipeTable({ clearSelection }) {
           <MaUTable {...getTableProps()} style={{ minHeight: '78vh' }}>
             <TableHead>
               {headerGroups.map((headerGroup, i) => (
-                <TableRow key={i} {...headerGroup.getHeaderGroupProps()}>
+                <TableRow {...headerGroup.getHeaderGroupProps()} key={i}>
                   {headerGroup.headers.map((column, j) => (
                     <TableCell
-                      key={j}
                       {...column.getHeaderProps(column.getSortByToggleProps())}
+                      key={j}
                     >
-                      {column.render(`Header`)}
+                      {column.render(`Header`) as React.ReactNode}
                       <span>
                         {column.isSorted
                           ? column.isSortedDesc
@@ -250,19 +286,19 @@ export default function RecipeTable({ clearSelection }) {
               ))}
             </TableHead>
             <TableBody>
-              {page.map((row, i) => {
+              {page.map((row: Row<Recipe>, i: number) => {
                 prepareRow(row)
                 return (
                   <TableRow
-                    key={i}
                     {...row.getRowProps()}
+                    key={i}
                     onClick={() => clickRow(row)}
                     style={determineRowColor(row)}
                   >
                     {row.cells.map((cell, j) => {
                       return (
-                        <TableCell key={j} {...cell.getCellProps()}>
-                          {cell.render('Cell')}
+                        <TableCell {...cell.getCellProps()} key={j}>
+                          {cell.render('Cell') as React.ReactNode}
                         </TableCell>
                       )
                     })}
@@ -299,12 +335,4 @@ export default function RecipeTable({ clearSelection }) {
       </TableContainer>
     )
   )
-}
-
-IndeterminateCheckbox.propTypes = {
-  indeterminate: PropTypes.bool.isRequired
-}
-
-RecipeTable.propTypes = {
-  clearSelection: PropTypes.object.isRequired
 }
