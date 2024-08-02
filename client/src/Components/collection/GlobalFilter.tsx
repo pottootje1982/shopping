@@ -1,8 +1,6 @@
 import React from 'react'
-
 import InputBase from '@material-ui/core/InputBase'
 import { alpha, makeStyles } from '@material-ui/core/styles'
-import PropTypes from 'prop-types'
 import SearchIcon from '@material-ui/icons/Search'
 
 const useStyles = makeStyles((theme) => ({
@@ -43,11 +41,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+interface GlobalFilterProps {
+  preGlobalFilteredRows: any[]
+  globalFilter: any
+  setGlobalFilter: (value: any) => void
+}
+
 const GlobalFilter = ({
   preGlobalFilteredRows,
   globalFilter,
   setGlobalFilter
-}) => {
+}: GlobalFilterProps) => {
   const classes = useStyles()
   const count = preGlobalFilteredRows.length
 
@@ -63,7 +67,7 @@ const GlobalFilter = ({
       <InputBase
         value={globalFilter?.value || ''}
         onChange={(e) => {
-          setGlobalFilter((prev) => ({
+          setGlobalFilter((prev: object) => ({
             ...prev,
             value: e.target.value || undefined
           }))
@@ -77,12 +81,6 @@ const GlobalFilter = ({
       />
     </div>
   )
-}
-
-GlobalFilter.propTypes = {
-  preGlobalFilteredRows: PropTypes.array.isRequired,
-  globalFilter: PropTypes.object,
-  setGlobalFilter: PropTypes.func.isRequired
 }
 
 export default GlobalFilter

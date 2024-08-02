@@ -4,7 +4,6 @@ import clsx from 'clsx'
 import DeleteIcon from '@material-ui/icons/Delete'
 import GlobalFilter from './GlobalFilter'
 import { lighten, makeStyles } from '@material-ui/core/styles'
-import PropTypes from 'prop-types'
 import ConfirmationDialog from './confirmation-dialog'
 import { Fab } from '../styled'
 import { Add } from '@material-ui/icons'
@@ -20,6 +19,7 @@ import {
   IconButton
 } from '@material-ui/core'
 import ServerContext from '../../server-context'
+import { Filter } from './recipe-table'
 
 const useToolbarStyles = makeStyles((theme) => ({
   root: {
@@ -41,12 +41,19 @@ const useToolbarStyles = makeStyles((theme) => ({
   }
 }))
 
+interface TableToolbarProps {
+  numSelected: number
+  setGlobalFilter: (value: any) => void
+  preGlobalFilteredRows: any[]
+  globalFilter: any
+}
+
 const TableToolbar = ({
   numSelected,
   preGlobalFilteredRows,
   setGlobalFilter,
   globalFilter
-}) => {
+}: TableToolbarProps) => {
   const { server } = useContext(ServerContext)
   const classes = useToolbarStyles()
   const [deletionDialogOpen, setDeletionDialogOpen] = useState(false)
@@ -61,6 +68,9 @@ const TableToolbar = ({
   function addRecipe() {
     const created = getDateString()
     setSelectedRecipe({
+      uid: '',
+      name: '',
+      ingredients: '',
       parsedIngredients: [],
       created
     })
@@ -71,7 +81,7 @@ const TableToolbar = ({
       const { status } = await server().delete('recipes', {
         data: selectedRecipes
       })
-      if (status === 204) {
+      if (status === 204 && selectedRecipe) {
         const index = recipes.indexOf(selectedRecipe)
         const {
           data: { recipes: newRecipes = [] }
@@ -137,7 +147,10 @@ const TableToolbar = ({
             <Checkbox
               color="primary"
               onChange={(_e, checked) =>
-                setGlobalFilter((prev) => ({ ...prev, showSelected: checked }))
+                setGlobalFilter((prev: Filter) => ({
+                  ...prev,
+                  showSelected: checked
+                }))
               }
             ></Checkbox>
           }
@@ -146,13 +159,6 @@ const TableToolbar = ({
       )}
     </Toolbar>
   )
-}
-
-TableToolbar.propTypes = {
-  numSelected: PropTypes.number.isRequired,
-  setGlobalFilter: PropTypes.func.isRequired,
-  preGlobalFilteredRows: PropTypes.array.isRequired,
-  globalFilter: PropTypes.object
 }
 
 export default TableToolbar

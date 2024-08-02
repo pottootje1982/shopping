@@ -14,23 +14,28 @@ import ProductSearch from '../shopping-results'
 import EditAddRecipe from './edit-add-recipe'
 import { blue, green, grey } from '@material-ui/core/colors'
 import { Fab } from '../styled'
-import RecipeContext from '../collection/RecipeProvider'
+import RecipeContext, {
+  Ingredient,
+  Product,
+  Recipe
+} from '../collection/RecipeProvider'
 import ServerContext from '../../server-context'
 
-export default function Recipe() {
+export default function RecipeComponent() {
   const { server } = useContext(ServerContext)
   const [products, setProducts] = useState([])
-  const [selectedIngredient, setSelectedIngredient] = useState()
-  const [editOrAddRecipe, setEditOrAddRecipe] = useState()
-  const listRef = useRef(null)
+  const [selectedIngredient, setSelectedIngredient] = useState<Ingredient>()
+  const [editOrAddRecipe, setEditOrAddRecipe] = useState<boolean>()
+  const listRef = useRef<HTMLUListElement>(null)
 
   const { selectedRecipe, setSelectedRecipe, selectedOrder, supermarket } =
     useContext(RecipeContext)
 
-  const { uid: recipeId, parsedIngredients: ingredients } = selectedRecipe
+  const { uid: recipeId, parsedIngredients: ingredients = [] } =
+    selectedRecipe || {}
 
   const ordered = selectedOrder?.recipes?.find((r) => r.uid === recipeId)
-  const { parsedIngredients: orderedIngs = {} } = ordered || {}
+  const { parsedIngredients: orderedIngs = [] } = ordered || {}
 
   const addRecipe = !recipeId
 
@@ -47,9 +52,7 @@ export default function Recipe() {
 
   function removeMouseWheel() {
     if (listRef.current) {
-      listRef.current.removeEventListener('mousewheel', listWheel, {
-        passive: false
-      })
+      listRef.current.removeEventListener('mousewheel', listWheel)
     }
   }
 
@@ -63,25 +66,32 @@ export default function Recipe() {
   useEffect(() => {
     if (!selectedIngredient || ingredients?.indexOf(selectedIngredient) >= 0)
       return
-    const ing = ingredients.find(
+    const index = ingredients.findIndex(
       (i) => i.ingredient === selectedIngredient?.ingredient
     )
-    const index = ingredients.indexOf(ing)
     ingredients.splice(index, 1, selectedIngredient)
-    setSelectedRecipe((r) => ({ ...r, parsedIngredients: ingredients }))
+    setSelectedRecipe((r?: Recipe) =>
+      r ? { ...r, parsedIngredients: ingredients } : undefined
+    )
   }, [selectedIngredient])
 
-  async function search(item, customSearch) {
-    const query = customSearch || item.ingredient
-    const searchResponse = await server().get(
-      `products?supermarket=${supermarket.key}&query=${query}&full=${selectedIngredient.ingredient}`
-    )
+  async function search(ing?: Ingredient, customSearch?: string) {
+    const query = customSearch || ing?.ingredient
+    const searchResponse = await server().get('products', {
+      params: {
+        query: query,
+        full: selectedIngredient?.ingredient,
+        supermarket: supermarket?.key
+      }
+    })
     const products = searchResponse.data
     setProducts(products)
   }
 
-  async function translate(uid) {
+  async function translate(uid?: string) {
+    if (!uid) return
     const res = await server().post('recipes/translate', { recipeId: uid })
+    if (!selectedIngredient) return
     const ingredientIndex = ingredients.indexOf(selectedIngredient)
     const recipe = res.data.recipe
     setSelectedRecipe(recipe)
@@ -92,39 +102,45 @@ export default function Recipe() {
     setEditOrAddRecipe(true)
   }
 
-  function onAdjustQuantity(ingredient, event) {
-    if (ingredient.product) {
-      const target = event.target
+  function onAdjustQuantity(
+    ingredient: Ingredient,
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    if (ingredient.product && selectedRecipe) {
+      const target = event.currentTarget
       const value = parseInt(target.value)
-      ingredient.quantity = value
+      ingredient.quantity = value.toString()
       setSelectedRecipe({ ...selectedRecipe })
     }
   }
 
-  function onAdjustQuantityWheel(ingredient, event) {
-    if (ingredient.product) {
-      const target = event.target
+  function onAdjustQuantityWheel(
+    ingredient: Ingredient,
+    event: React.WheelEvent<HTMLDivElement>
+  ) {
+    if (ingredient.product && selectedRecipe) {
+      const target = event.currentTarget as HTMLInputElement
       let value = parseInt(target.value)
       if (event.deltaY < 0) {
         value = value + 1
       } else {
         value = Math.max(value - 1, 0)
       }
-      target.value = value
-      ingredient.quantity = value
+      target.value = value.toString()
+      ingredient.quantity = value.toString()
       setSelectedRecipe({ ...selectedRecipe })
     }
   }
 
-  function order(item) {
+  function order(item: Product) {
     document.cookie = `order=${JSON.stringify([{ ...item, quantity: 1 }])}`
   }
 
-  function listWheel(e) {
-    const { clientX, clientY } = e
+  function listWheel(e: Event) {
+    const { clientX, clientY } = e as WheelEvent
     const focusedElement = document.elementFromPoint(clientX, clientY)
-    if (focusedElement.nodeName === 'INPUT') {
-      e.preventDefault(true)
+    if (focusedElement?.nodeName === 'INPUT') {
+      e.preventDefault()
     }
   }
 
@@ -155,20 +171,21 @@ export default function Recipe() {
                   },
                   i
                 ) => {
-                  const orderedQuantity = orderedIngs[i]?.product?.quantity
+                  const orderedQuantity = orderedIngs[i]?.quantity
                   const ingredient = ingredients[i]
                   return (
                     <ListItem
                       divider={true}
                       button
-                      selected={name === selectedIngredient}
+                      selected={name === selectedIngredient?.ingredient}
                       key={i}
                       onClick={() => setSelectedIngredient(ingredient)}
                       style={{
                         backgroundColor:
                           orderedQuantity !== undefined &&
-                          orderedQuantity !== quantity &&
-                          blue[200]
+                          orderedQuantity !== quantity
+                            ? blue[200]
+                            : undefined
                       }}
                     >
                       <ListItemText
@@ -230,7 +247,7 @@ export default function Recipe() {
         </Grid>
       </Grid>
 
-      {editOrAddRecipe ? (
+      {editOrAddRecipe && selectedRecipe ? (
         <EditAddRecipe
           key={selectedRecipe.name}
           selectedRecipe={selectedRecipe}
@@ -239,7 +256,7 @@ export default function Recipe() {
         />
       ) : selectedIngredient ? (
         <ProductSearch
-          key={selectedIngredient}
+          key={selectedIngredient.ingredient}
           setSelectedIngredient={setSelectedIngredient}
           products={products}
           selectedIngredient={selectedIngredient}

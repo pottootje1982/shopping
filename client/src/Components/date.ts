@@ -1,12 +1,12 @@
-function pad(s, size) {
-  s = s.toString()
-  while (s.length < (size || 2)) {
-    s = '0' + s
+function pad(num: number, size: number) {
+  let str = num.toString()
+  while (str.length < (size || 2)) {
+    str = '0' + num
   }
-  return s
+  return num
 }
 
-module.exports = function(date) {
+export default function (date?: Date) {
   date = date || new Date()
   const month = pad(date.getMonth() + 1, 2)
   const day = pad(date.getDate(), 2)

@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 import { getCookie } from './cookie'
 import React, { createContext, useCallback, useState } from 'react'
 
@@ -9,7 +9,7 @@ axios.defaults.baseURL =
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8'
 
 interface ServerContextType {
-  server: () => any
+  server: () => AxiosInstance
   setAccessToken: (value: string) => void
   signedIn: boolean
   serverUrl?: string

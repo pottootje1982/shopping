@@ -18,8 +18,11 @@ export function Authorized() {
   const { server, setAccessToken } = useContext(ServerContext)
 
   function init() {
-    setAccessToken(getCookie('access_token'))
-    navigate('/recipes')
+    const accessToken = getCookie('access_token')
+    if (accessToken) {
+      setAccessToken(accessToken)
+      navigate('/recipes')
+    }
   }
 
   useEffect(init, [code, navigate, server])
