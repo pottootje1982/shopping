@@ -5,7 +5,12 @@ import { Grid, Typography } from '@material-ui/core'
 import { ReactComponent as Hat } from './hat.svg'
 import blue from '@material-ui/core/colors/blue'
 import { useCookies } from 'react-cookie'
-import { GoogleLogin, GoogleLogout } from 'react-google-login'
+import {
+  GoogleLogin,
+  GoogleLoginResponse,
+  GoogleLoginResponseOffline,
+  GoogleLogout
+} from 'react-google-login'
 import { refreshTokenSetup } from './util/refreshToken'
 import UserSettingsDialog from './Components/user-settings'
 import { Fab } from './Components/styled'
@@ -27,16 +32,18 @@ export default function App() {
 
   useEffect(() => removeCookie('HAS_SHOPPING_EXTENSION'), [removeCookie])
 
-  const onSuccess = (res) => {
-    console.log('Login Success: currentUser:', res.profileObj, res)
-    setSettingsDisabled(false)
-    setAccessToken(res.tokenId)
-    refreshTokenSetup(res)
-    // Refresh recipes:
-    setSupermarket({ ...supermarket })
+  const onSuccess = (res: GoogleLoginResponse | GoogleLoginResponseOffline) => {
+    if (res && 'profileObj' in res && 'tokenId' in res) {
+      console.log('Login Success: currentUser:', res.profileObj, res)
+      setSettingsDisabled(false)
+      setAccessToken(res.tokenId)
+      refreshTokenSetup(res)
+      // Refresh recipes:
+      setSupermarket({ ...supermarket })
+    }
   }
 
-  const onFailure = (res) => {
+  const onFailure = (res: any) => {
     console.log('Login failed: res:', res)
   }
 

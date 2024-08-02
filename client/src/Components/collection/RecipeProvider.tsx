@@ -1,7 +1,23 @@
-import React, { useState, createContext, useEffect } from 'react'
+import { useState, createContext, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const RecipeContext = createContext()
+type RecipeContextType = {
+  recipes: any[]
+  setRecipes: (value: any[]) => void
+  selectedRecipes: any[]
+  setSelectedRecipes: (value: any[]) => void
+  selectedRecipe: any
+  setSelectedRecipe: (value: any) => void
+  selectedOrder: any
+  setSelectedOrder: (value: any) => void
+  selectedCategory: any
+  setSelectedCategory: (value: any) => void
+  supermarket: any
+  setSupermarket: (value: any) => void
+  supermarkets: any[]
+}
+
+const RecipeContext = createContext({} as RecipeContextType)
 
 export default RecipeContext
 
@@ -10,7 +26,7 @@ const supermarkets = [
   { key: 'picnic', name: 'Picnic' }
 ]
 
-export function RecipeProvider(props) {
+export function RecipeProvider(props: any) {
   const supermarketKey = localStorage.getItem('supermarket')
   const [recipes, setRecipes] = useState([])
   const [selectedRecipes, setSelectedRecipes] = useState(() => [])

@@ -8,11 +8,22 @@ axios.defaults.baseURL =
     : 'https://lazychef.onrender.com'
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8'
 
-const ServerContext = createContext()
+interface ServerContextType {
+  server: () => any
+  setAccessToken: (value: string) => void
+  signedIn: boolean
+  serverUrl?: string
+}
+
+const ServerContext = createContext({} as ServerContextType)
 
 export default ServerContext
 
-export function ServerProvider(props) {
+interface ServerProviderProps {
+  children: React.ReactNode
+}
+
+export function ServerProvider(props: ServerProviderProps) {
   const [accessToken, setAccessToken] = useState(getCookie('access_token'))
   const server = useCallback(() => {
     const res = axios.create({

@@ -1,4 +1,6 @@
-export const refreshTokenSetup = (res) => {
+import { GoogleLoginResponse } from 'react-google-login'
+
+export const refreshTokenSetup = (res: GoogleLoginResponse) => {
   // Timing to renew access token
   let refreshTiming = (res.tokenObj.expires_in || 3600 - 5 * 60) * 1000
 
@@ -7,7 +9,7 @@ export const refreshTokenSetup = (res) => {
     refreshTiming = (newAuthRes.expires_in || 3600 - 5 * 60) * 1000
     console.log('newAuthRes:', newAuthRes)
     // SaveUserToken(newAuthRes.access_token);  <-- save new token
-    localStorage.setItem('authToken', newAuthRes.tokenId)
+    localStorage.setItem('authToken', newAuthRes.id_token)
 
     // Setup the other timer after the first one
     setTimeout(refreshToken, refreshTiming)

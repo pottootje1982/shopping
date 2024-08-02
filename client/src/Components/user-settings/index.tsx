@@ -10,7 +10,15 @@ import {
 import PropTypes from 'prop-types'
 import ServerContext from '../../server-context'
 
-export default function UserSettingsDialog({ setDialogOpen, dialogOpen }) {
+interface UserSettingsDialogProps {
+  setDialogOpen: (value: boolean) => void
+  dialogOpen: boolean
+}
+
+export default function UserSettingsDialog({
+  setDialogOpen,
+  dialogOpen
+}: UserSettingsDialogProps) {
   const { server } = useContext(ServerContext)
   const [picnicUser, setPicnicUser] = useState()
   const [picnicPass, setPicnicPass] = useState()
@@ -31,7 +39,6 @@ export default function UserSettingsDialog({ setDialogOpen, dialogOpen }) {
       const {
         data: { picnicUser, picnicPass, paprikaUser, paprikaPass } = {}
       } = res
-      console.log(res)
       setPicnicUser(picnicUser)
       setPicnicPass(picnicPass)
       setPaprikaUser(paprikaUser)
