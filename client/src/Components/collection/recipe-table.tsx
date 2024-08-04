@@ -33,13 +33,9 @@ import {
   useGlobalFilter,
   Row,
   Column,
-  IdType
+  IdType,
+  FilterValue
 } from 'react-table'
-
-export interface Filter {
-  value?: string
-  showSelected?: boolean
-}
 
 type InterdeminateCheckbox = HTMLButtonElement & { indeterminate?: boolean }
 
@@ -157,7 +153,7 @@ export default function RecipeTable({ clearSelection }: RecipeTableProps) {
   const globalFilterFunc = (
     rows: Array<Row<Recipe>>,
     _cols: Array<IdType<Recipe>>,
-    filterValue: Filter = {}
+    filterValue: FilterValue = {}
   ) => {
     return rows.filter((row) => {
       const { value: searchString, showSelected } = filterValue
@@ -240,7 +236,7 @@ export default function RecipeTable({ clearSelection }: RecipeTableProps) {
 
   useEffect(() => {
     toggleAllRowsSelected(false)
-  }, [clearSelection])
+  }, [clearSelection, toggleAllRowsSelected])
 
   useEffect(() => {
     localStorage.setItem('selectedRowIds', JSON.stringify(selectedRowIds))
@@ -250,7 +246,7 @@ export default function RecipeTable({ clearSelection }: RecipeTableProps) {
   }, [selectedRowIds, setSelectedRecipes, recipes])
 
   useEffect(() => {
-    setGlobalFilter((filter: Filter) => ({ ...filter, value: undefined }))
+    setGlobalFilter((filter: FilterValue) => ({ ...filter, value: undefined }))
   }, [selectedCategory, selectedOrder, setGlobalFilter, recipes])
 
   return (

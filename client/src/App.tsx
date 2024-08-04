@@ -45,7 +45,7 @@ export default function App() {
     }
   }
 
-  const onFailure = (res: any) => {
+  const onFailure = (res: unknown) => {
     console.log('Login failed: res:', res)
   }
 

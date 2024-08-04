@@ -8,7 +8,11 @@ export function getCookie(name: string) {
   return match ? match[1] : undefined
 }
 
-export function setCookie(name: string, value: any, expirationHours: number) {
+export function setCookie(
+  name: string,
+  value: string,
+  expirationHours: number
+) {
   const exdate = new Date()
   exdate.setHours(exdate.getHours() + expirationHours)
   document.cookie =

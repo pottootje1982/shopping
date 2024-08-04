@@ -13,7 +13,7 @@ import * as R from 'ramda'
 
 interface OrderDialogProps {
   open: boolean
-  handleClose: (e: any, cancel: boolean) => void
+  handleClose: (e: object, cancel: boolean) => void
   selectedRecipes: Recipe[]
 }
 

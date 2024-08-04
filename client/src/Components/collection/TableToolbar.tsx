@@ -8,7 +8,7 @@ import ConfirmationDialog from './confirmation-dialog'
 import { Fab } from '../styled'
 import { Add } from '@material-ui/icons'
 import getDateString from '../date'
-import RecipeContext from './RecipeProvider'
+import RecipeContext, { Recipe } from './RecipeProvider'
 
 import {
   Toolbar,
@@ -19,7 +19,7 @@ import {
   IconButton
 } from '@material-ui/core'
 import ServerContext from '../../server-context'
-import { Filter } from './recipe-table'
+import { FilterValue, Row } from 'react-table'
 
 const useToolbarStyles = makeStyles((theme) => ({
   root: {
@@ -43,9 +43,9 @@ const useToolbarStyles = makeStyles((theme) => ({
 
 interface TableToolbarProps {
   numSelected: number
-  setGlobalFilter: (value: any) => void
-  preGlobalFilteredRows: any[]
-  globalFilter: any
+  setGlobalFilter: (filterValue: FilterValue) => void
+  preGlobalFilteredRows: Row<Recipe>[]
+  globalFilter: FilterValue
 }
 
 const TableToolbar = ({
@@ -147,7 +147,7 @@ const TableToolbar = ({
             <Checkbox
               color="primary"
               onChange={(_e, checked) =>
-                setGlobalFilter((prev: Filter) => ({
+                setGlobalFilter((prev: FilterValue) => ({
                   ...prev,
                   showSelected: checked
                 }))

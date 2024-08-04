@@ -81,7 +81,7 @@ export const supermarkets = [
   { key: 'picnic', name: 'Picnic' }
 ]
 
-export function RecipeProvider(props: any) {
+export function RecipeProvider(props: { children: React.ReactNode }) {
   const supermarketKey = localStorage.getItem('supermarket')
   const [recipes, setRecipes] = useState<Recipe[]>([])
   const [selectedRecipes, setSelectedRecipes] = useState<Recipe[]>(() => [])

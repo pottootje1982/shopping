@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import {
   Dialog,
   DialogTitle,
@@ -34,7 +34,7 @@ export default function UserSettingsDialog({
     setDialogOpen(false)
   }
 
-  async function openDialog() {
+  const openDialog = useCallback(async () => {
     if (dialogOpen) {
       const { data = {} } = await server().get('/users')
       const { picnicUser, picnicPass, paprikaUser, paprikaPass } = data
@@ -43,11 +43,11 @@ export default function UserSettingsDialog({
       setPaprikaUser(paprikaUser)
       setPaprikaPass(paprikaPass)
     }
-  }
+  }, [dialogOpen, server])
 
   useEffect(() => {
     openDialog()
-  }, [dialogOpen])
+  }, [dialogOpen, server, openDialog])
 
   function onOkClick() {
     server().post('users', { picnicUser, picnicPass, paprikaUser, paprikaPass })

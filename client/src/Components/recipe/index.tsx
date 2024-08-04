@@ -1,4 +1,11 @@
-import React, { Fragment, useEffect, useState, useRef, useContext } from 'react'
+import React, {
+  Fragment,
+  useEffect,
+  useState,
+  useRef,
+  useContext,
+  useCallback
+} from 'react'
 import {
   Grid,
   Paper,
@@ -39,22 +46,22 @@ export default function RecipeComponent() {
 
   const addRecipe = !recipeId
 
-  useEffect(addMouseWheel, [])
+  const removeMouseWheel = useCallback(() => {
+    if (listRef.current) {
+      listRef.current.removeEventListener('mousewheel', listWheel)
+    }
+  }, [])
 
-  function addMouseWheel() {
+  const addMouseWheel = useCallback(() => {
     if (listRef.current) {
       listRef.current.addEventListener('mousewheel', listWheel, {
         passive: false
       })
     }
     return removeMouseWheel
-  }
+  }, [removeMouseWheel])
 
-  function removeMouseWheel() {
-    if (listRef.current) {
-      listRef.current.removeEventListener('mousewheel', listWheel)
-    }
-  }
+  useEffect(addMouseWheel, [removeMouseWheel, addMouseWheel])
 
   useEffect(() => {
     setEditOrAddRecipe(addRecipe)
@@ -73,20 +80,23 @@ export default function RecipeComponent() {
     setSelectedRecipe((r?: Recipe) =>
       r ? { ...r, parsedIngredients: ingredients } : undefined
     )
-  }, [selectedIngredient])
+  }, [selectedIngredient, ingredients, setSelectedRecipe])
 
-  async function search(ing?: Ingredient, customSearch?: string) {
-    const query = customSearch || ing?.ingredient
-    const searchResponse = await server().get('products', {
-      params: {
-        query: query,
-        full: selectedIngredient?.ingredient,
-        supermarket: supermarket?.key
-      }
-    })
-    const products = searchResponse.data
-    setProducts(products)
-  }
+  const search = useCallback(
+    async (ing?: Ingredient, customSearch?: string) => {
+      const query = customSearch || ing?.ingredient
+      const searchResponse = await server().get('products', {
+        params: {
+          query: query,
+          full: selectedIngredient?.ingredient,
+          supermarket: supermarket?.key
+        }
+      })
+      const products = searchResponse.data
+      setProducts(products)
+    },
+    [server, supermarket, selectedIngredient]
+  )
 
   async function translate(uid?: string) {
     if (!uid) return

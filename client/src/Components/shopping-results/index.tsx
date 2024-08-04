@@ -50,7 +50,7 @@ export default function ProductSearch({
   const { supermarket, supermarkets, setSupermarket } =
     useContext(RecipeContext)
 
-  useEffect(doSearch, [selectedIngredient])
+  useEffect(doSearch, [selectedIngredient, searchProducts])
 
   function doSearch() {
     searchProducts(selectedIngredient)

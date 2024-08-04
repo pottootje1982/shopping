@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useCallback } from 'react'
 import {
   Grid,
   Select,
@@ -50,24 +50,49 @@ export default function RecipeCollection({
   const [noTokenOpen, setNoTokenOpen] = useState(false)
   const [clearSelection, setClearSelection] = useState({})
 
-  function selectedFirstRecipe() {
+  const sync = useCallback(async () => {
+    try {
+      const res = await server().get(
+        `recipes/sync?supermarket=${supermarket?.key}`
+      )
+      const recipes = res.data
+      if (recipes && recipes !== '') {
+        setRecipes(recipes)
+      }
+    } catch (error) {
+      console.warn('Syncing recipes failed, are you signed in?')
+    }
+  }, [server, setRecipes, supermarket])
+
+  const initialize = useCallback(
+    ({ recipes, orders, categories }: SupermarketResponse) => {
+      setRecipes(recipes)
+      if (recipes.length > 0) {
+        const recipe = recipes[0]
+        setSelectedRecipe(recipe)
+        sync()
+      }
+      setSelectedOrder(undefined)
+      setSelectedCategory(undefined)
+      setOrders(orders)
+      setCategories(categories)
+    },
+    [
+      setRecipes,
+      setSelectedRecipe,
+      setSelectedOrder,
+      setSelectedCategory,
+      setOrders,
+      setCategories,
+      sync
+    ]
+  )
+
+  const selectedFirstRecipe = useCallback(() => {
     server()
       .get(`recipes?supermarket=${supermarket?.key}`)
       .then(({ data }: { data: SupermarketResponse }) => initialize(data))
-  }
-
-  function initialize({ recipes, orders, categories }: SupermarketResponse) {
-    setRecipes(recipes)
-    if (recipes.length > 0) {
-      const recipe = recipes[0]
-      setSelectedRecipe(recipe)
-      sync()
-    }
-    setSelectedOrder(undefined)
-    setSelectedCategory(undefined)
-    setOrders(orders)
-    setCategories(categories)
-  }
+  }, [initialize, server, supermarket])
 
   function createOrder(recipes: Recipe[]) {
     const items = recipes.map((r) =>
@@ -78,9 +103,15 @@ export default function RecipeCollection({
       .filter((item) => item.id)
   }
 
-  useEffect(selectedFirstRecipe, [])
-  useEffect(selectedFirstRecipe, [supermarket])
-  useEffect(selectRecipe, [selectedRecipe])
+  useEffect(selectedFirstRecipe, [selectedFirstRecipe])
+  useEffect(selectedFirstRecipe, [supermarket, selectedFirstRecipe])
+  useEffect(selectRecipe, [
+    selectedRecipe,
+    recipes,
+    setRecipes,
+    selectedRecipes,
+    setRecipeTitle
+  ])
 
   function selectRecipe() {
     if (!selectedRecipe) return
@@ -99,7 +130,8 @@ export default function RecipeCollection({
     }
   }
 
-  async function closeOrderDialog(event: any, isOk: boolean) {
+  async function closeOrderDialog(e: object, isOk: boolean) {
+    const event = e as React.KeyboardEvent<Element>
     setOpen(false)
 
     if (isOk && event.nativeEvent.key !== 'Escape') {
@@ -116,8 +148,8 @@ export default function RecipeCollection({
           setOrders((orders) => [...(orders ?? []), newOrder])
           setClearSelection({})
         }
-      } catch (err: any) {
-        console.log(err)
+      } catch (e: unknown) {
+        const err = e as { response: { data: string } }
         alert(err.response.data)
       }
     }
@@ -137,20 +169,6 @@ export default function RecipeCollection({
     setSelectedOrder()
     const category = categories?.find((c) => c.name === event.target.value)
     setSelectedCategory(category)
-  }
-
-  async function sync() {
-    try {
-      const res = await server().get(
-        `recipes/sync?supermarket=${supermarket?.key}`
-      )
-      const recipes = res.data
-      if (recipes && recipes !== '') {
-        setRecipes(recipes)
-      }
-    } catch (error) {
-      console.warn('Syncing recipes failed, are you signed in?')
-    }
   }
 
   function showOrderDialog() {

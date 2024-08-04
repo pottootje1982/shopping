@@ -2,6 +2,8 @@ import React from 'react'
 import InputBase from '@material-ui/core/InputBase'
 import { alpha, makeStyles } from '@material-ui/core/styles'
 import SearchIcon from '@material-ui/icons/Search'
+import { FilterValue, Row } from 'react-table'
+import { Recipe } from './RecipeProvider'
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -42,9 +44,9 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 interface GlobalFilterProps {
-  preGlobalFilteredRows: any[]
-  globalFilter: any
-  setGlobalFilter: (value: any) => void
+  preGlobalFilteredRows: Row<Recipe>[]
+  globalFilter: FilterValue
+  setGlobalFilter: (filterValue: FilterValue) => void
 }
 
 const GlobalFilter = ({
@@ -67,7 +69,7 @@ const GlobalFilter = ({
       <InputBase
         value={globalFilter?.value || ''}
         onChange={(e) => {
-          setGlobalFilter((prev: object) => ({
+          setGlobalFilter((prev: FilterValue) => ({
             ...prev,
             value: e.target.value || undefined
           }))

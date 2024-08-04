@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useEffect, useContext, useState, useCallback } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import ServerContext from '../server-context'
 import { getCookie } from '../cookie'
@@ -17,14 +17,14 @@ export function Authorized() {
 
   const { server, setAccessToken } = useContext(ServerContext)
 
-  function init() {
+  const init = useCallback(() => {
     const accessToken = getCookie('access_token')
     if (accessToken) {
       setAccessToken(accessToken)
       navigate('/recipes')
     }
-  }
+  }, [navigate, setAccessToken])
 
-  useEffect(init, [code, navigate, server])
+  useEffect(init, [code, navigate, server, init])
   return <React.Fragment />
 }

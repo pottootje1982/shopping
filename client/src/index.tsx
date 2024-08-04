@@ -9,22 +9,25 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ServerProvider } from './server-context'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <GoogleOAuthProvider clientId="525923155725-8k5ukoaer4isj73bl6jpi887v2r70ic8.apps.googleusercontent.com">
-    <RecipeProvider>
-      <ServerProvider>
-        <Router>
-          <Routes>
-            <Route path="/authorized" element={<Authorized />}></Route>
-            <Route path={'/'} element={<Authorize />}></Route>
-            <Route path={'/login'} element={<Authorize />}></Route>
-            <Route path={'/recipes/*'} element={<App />} />∏
-          </Routes>
-        </Router>
-      </ServerProvider>
-    </RecipeProvider>
-  </GoogleOAuthProvider>
-)
+const root = document.getElementById('root')
+if (root) {
+  ReactDOM.createRoot(root).render(
+    <GoogleOAuthProvider clientId="525923155725-8k5ukoaer4isj73bl6jpi887v2r70ic8.apps.googleusercontent.com">
+      <RecipeProvider>
+        <ServerProvider>
+          <Router>
+            <Routes>
+              <Route path="/authorized" element={<Authorized />}></Route>
+              <Route path={'/'} element={<Authorize />}></Route>
+              <Route path={'/login'} element={<Authorize />}></Route>
+              <Route path={'/recipes/*'} element={<App />} />∏
+            </Routes>
+          </Router>
+        </ServerProvider>
+      </RecipeProvider>
+    </GoogleOAuthProvider>
+  )
+}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
