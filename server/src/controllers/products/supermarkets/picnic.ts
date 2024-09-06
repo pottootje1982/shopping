@@ -10,7 +10,7 @@ export class PicnicApi extends Supermarket {
   private client;
   private authKey: string;
 
-  private countryCode = 'NL';
+  private countryCode = 'nl';
   private apiVersion = '17';
 
   get url() {
@@ -40,8 +40,9 @@ export class PicnicApi extends Supermarket {
       {
         headers: {
           'x-picnic-auth': this.authKey,
-          'x-picnic-agent': '30100;1.15.232-15154',
-          'x-picnic-did': '3C417201548B2E3B',
+          'Content-Type': 'application/json',
+          'x-picnic-agent': '30100;1.15.243-18832',
+          'x-picnic-did': '3E48EB73F10C53E6',
         },
       },
     );
