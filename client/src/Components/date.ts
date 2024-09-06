@@ -1,9 +1,6 @@
 function pad(num: number, size: number) {
-  let str = num.toString()
-  while (str.length < (size || 2)) {
-    str = '0' + num
-  }
-  return num
+  const str = num.toString()
+  return str.padStart(size, '0')
 }
 
 export default function (date?: Date) {
