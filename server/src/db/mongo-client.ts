@@ -1,8 +1,9 @@
-import { MONGO_URL } from '../../config';
 import { MongoClient } from 'mongodb';
 
-export async function createMongoClient(): Promise<MongoClient> {
-  const client: void | MongoClient = await MongoClient.connect(MONGO_URL).catch(
+export async function createMongoClient(
+  mongoUrl: string,
+): Promise<MongoClient> {
+  const client: void | MongoClient = await MongoClient.connect(mongoUrl).catch(
     (err) => {
       console.log(err);
     },

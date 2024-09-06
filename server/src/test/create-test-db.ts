@@ -13,7 +13,7 @@ export interface TestDbs {
 }
 
 export const createTestDbs = async (): Promise<TestDbs> => {
-  const client = await createMongoClient();
+  const client = await createMongoClient(process.env.TEST_DB_URL);
   const dbs = client.db();
   const translationsDb = new TranslationsDb(dbs);
   const ingToProduct = new IngredientProductDb(dbs);

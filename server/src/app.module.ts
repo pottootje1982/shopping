@@ -59,6 +59,14 @@ import { JwtModule } from '@nestjs/jwt';
       useValue: process.env.GOOGLE_API_KEY,
     },
     {
+      provide: 'PUBLIC_KEY',
+      useFactory: () => Buffer.from(process.env.PUBLIC_KEY, 'utf8'),
+    },
+    {
+      provide: 'INIT_VECTOR',
+      useValue: () => Buffer.from(process.env.INIT_VECTOR, 'utf8'),
+    },
+    {
       provide: v2.Translate,
       useFactory: (googleApiKey) => {
         return new v2.Translate({ key: googleApiKey });
@@ -79,7 +87,11 @@ import { JwtModule } from '@nestjs/jwt';
     {
       provide: Db,
       useFactory: async () => {
-        const client = await createMongoClient();
+        const client = await createMongoClient(
+          process.env.USE_TEST_DB
+            ? process.env.TEST_DB_URL
+            : process.env.MONGO_URL,
+        );
         return client.db();
       },
     },
