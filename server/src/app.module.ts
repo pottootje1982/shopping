@@ -20,9 +20,14 @@ import { UserDb } from './db/table/user';
 import { AuthModule } from './auth/auth.module';
 import { JwtMiddleware } from './jwt/jwt.middleware';
 import { JwtModule } from '@nestjs/jwt';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../../../..', 'client/build'),
+    }),
     ConfigModule.forRoot({ isGlobal: true }),
     AuthModule,
     JwtModule.register({ secret: process.env.JWT_SECRET }),

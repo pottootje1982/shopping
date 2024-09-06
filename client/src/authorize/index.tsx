@@ -2,10 +2,11 @@ import React, { useEffect, useContext, useState, useCallback } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import ServerContext from '../server-context'
 import { getCookie } from '../cookie'
+import axios from 'axios'
 
 export function Authorize() {
   useEffect(() => {
-    window.location.href = `http://localhost:5000/google?redirect_uri=${window.location.origin}/authorized`
+    window.location.href = `${axios.defaults.baseURL}/google?redirect_uri=${window.location.origin}/authorized`
   }, [])
   return <React.Fragment />
 }
